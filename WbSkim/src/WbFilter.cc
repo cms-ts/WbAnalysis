@@ -113,11 +113,21 @@ WbFilter::~WbFilter() {
 bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
    using namespace edm;
 
+   // get electron collection
+   edm::Handle < pat::ElectronCollection > electrons;
+   iEvent.getByLabel ("matchedElectrons", electrons);
+
+   // get muon collection
+   edm::Handle < pat::MuonCollection > muons;
+   iEvent.getByLabel ("matchedMuons", muons);
+
    //get jet collection
    edm::Handle<std::vector<pat::Jet>  > jets;
    iEvent.getByLabel("goodJets",jets);
 
    //std::cout<<"numero j="<<jets->size()<<std::endl;
+
+   if (electrons->size()==0 && muons->size()==0) return false;
 
    if (jets->size()==0) return false;
 
