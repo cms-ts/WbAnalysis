@@ -11,7 +11,7 @@
      [Notes on implementation]
 */
 //
-// Original Author:  Vieri Candelise
+// Original Author:  Andrea Schizzi
 //         Created:  Thu Nov  1 11:32:14 CET 2012
 // $Id: WbFilter.cc,v 1.2 2013/04/17 07:23:07 dellaric Exp $
 //
@@ -120,7 +120,20 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
    //std::cout<<"numero j="<<jets->size()<<std::endl;
 
    if (jets->size()==0) return false;
-   return true;
+
+   for (std::vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
+
+     double discrCSV = jet->bDiscriminator("combinedSecondaryVertexBJetTags");
+
+     //if (discrCSV > 0.244) return true; // CSVL
+
+     if (discrCSV > 0.679) return true; // CSVM
+
+     //if (discrCSV > 0.898) return true; // CSVT
+
+   }
+
+   return false;
 
 }
 // ------------ method called once each job just before starting event loop  ------------
