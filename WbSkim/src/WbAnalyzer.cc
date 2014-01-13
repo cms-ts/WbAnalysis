@@ -690,7 +690,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   lepton_           = iConfig.getUntrackedParameter < std::string > ("lepton", "electron");
   par_              = iConfig.getUntrackedParameter <double> ("JEC", 0);
   par2_             = iConfig.getUntrackedParameter <double> ("JER", 0);
-  path_             = iConfig.getUntrackedParameter < std::string > ("path", "/gpfs/cms/users/candelis/work/ZbSkim/test");
+  path_             = iConfig.getUntrackedParameter < std::string > ("path", "/gpfs/cms/users/schizzi/Wbb2012/test/");
   icut_             = iConfig.getUntrackedParameter <unsigned int> ("icut", 0);
   usePartonFlavour_ = iConfig.getUntrackedParameter <bool> ("usePartonFlavour", false);
   pcut_             = iConfig.getUntrackedParameter <bool> ("pcut", false);
