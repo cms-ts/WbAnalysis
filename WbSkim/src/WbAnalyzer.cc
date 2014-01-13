@@ -1454,9 +1454,13 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       MyWeight = MyWeight * scalFac_first_e * scalFac_second_e;
     }
     if (mm_event) {
+// FIXME : HLT scale factor
+      scalFac_first_m  = MuSF_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta());
+      //scalFac_first_m  = MuSF_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta()) * MuSF2_->Val (vect_muon[imuon0].pt(), vect_muon[imuon1].eta());
       if (imuon1!=-1) {
-        scalFac_first_m  = MuSF_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta()) * sqrt(MuSF2_->Val (fabs(vect_muon[imuon0].eta()), fabs(vect_muon[imuon1].eta())));
-        scalFac_second_m = MuSF_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta()) * sqrt(MuSF2_->Val (fabs(vect_muon[imuon0].eta()), fabs(vect_muon[imuon1].eta())));
+// FIXME : HLT scale factor
+        scalFac_second_m = MuSF_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta());
+        //scalFac_second_m = MuSF_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta()) * MuSF2_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta());
       }
       MyWeight = MyWeight * scalFac_first_m * scalFac_second_m;
       //cout<<vect_muon[imuon0].pt()<<vect_muon[imuon0].eta()<< " mu  SF =" << scalFac_first_m <<endl;
