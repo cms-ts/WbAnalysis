@@ -440,7 +440,7 @@ process.out.outputCommands += [
 	'keep *_addPileupInfo_*_*',
 	'keep *_matchedElectrons_*_*',
 	'keep *_matchedMuons_*_*',
-	'keep *_matchedElectronsQCD_*_*',
+        'keep *_matchedElectronsQCD_*_*',
 	'keep *_matchedMuonsQCD_*_*',
 	'keep *_matchedElectronsEM_*_*',
 	'keep *_matchedMuonsEM_*_*',
