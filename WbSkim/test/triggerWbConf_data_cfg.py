@@ -159,6 +159,22 @@ process.matchedMuons = selectedPatMuons.clone(
 		)
 )
 
+process.matchedMuonsQCD = selectedPatMuons.clone(
+		src = cms.InputTag('matchedMuons0'),
+		cut = cms.string(
+		        'pt > 25 & abs(eta) < 2.4 &'
+		        'isGlobalMuon & isPFMuon &'
+		        'globalTrack.normalizedChi2 < 10 &'
+		        'track.hitPattern.trackerLayersWithMeasurement > 5 &'
+		        'globalTrack.hitPattern.numberOfValidMuonHits > 0 &'
+		        'innerTrack.hitPattern.numberOfValidPixelHits > 0 &'
+		        'abs(dB) < 0.2 &'
+		        'numberOfMatchedStations > 1 &'
+		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt > 0.2 &'
+		        'triggerObjectMatches.size > 0'
+		)
+)
+
 process.zmuMatchedmuMatched = cms.EDProducer('CandViewShallowCloneCombiner',
                                decay = cms.string('matchedMuons@+ matchedMuons@-'),
                                cut   = cms.string('mass > 50.0 & mass < 200.0'),
@@ -256,6 +272,32 @@ process.matchedElectrons = selectedPatElectrons.clone(
 			'abs(dB) < 0.02 &'
 			'abs(1./ecalEnergy - eSuperClusterOverP/ecalEnergy) < 0.05 &'
 			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et < 0.15 &'
+			'passConversionVeto &'
+			'gsfTrack.trackerExpectedHitsInner.numberOfHits <= 1 &'
+			'triggerObjectMatches.size > 0'
+		     )
+)
+
+process.matchedElectronsQCD = selectedPatElectrons.clone(
+		     src = cms.InputTag('selectedPatElectronsTriggerMatch'),
+		     cut = cms.string(
+			'pt > 10 & abs(eta) < 2.4 &'
+			'(('
+			 'abs(superCluster.eta) < 1.442 &'
+			 'abs(deltaEtaSuperClusterTrackAtVtx) < 0.004 &'
+			 'abs(deltaPhiSuperClusterTrackAtVtx) < 0.06 &'
+			 'sigmaIetaIeta < 0.01 &'
+			 'hadronicOverEm < 0.12'
+			')|('
+			 'abs(superCluster.eta) > 1.566 & abs(superCluster.eta) < 2.5 &'
+			 'abs(deltaEtaSuperClusterTrackAtVtx) < 0.007 &'
+			 'abs(deltaPhiSuperClusterTrackAtVtx) < 0.03 &'
+			 'sigmaIetaIeta < 0.03 &'
+			 'hadronicOverEm < 0.10'
+			')) &'
+			'abs(dB) < 0.02 &'
+			'abs(1./ecalEnergy - eSuperClusterOverP/ecalEnergy) < 0.05 &'
+			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et > 0.15 &'
 			'passConversionVeto &'
 			'gsfTrack.trackerExpectedHitsInner.numberOfHits <= 1 &'
 			'triggerObjectMatches.size > 0'
@@ -367,10 +409,12 @@ process.p = cms.Path(
    process.selectedPatMuonsTriggerMatch *
    process.matchedMuons0 *
    process.matchedMuons *
+   process.matchedMuonsQCD *
    process.zmuMatchedmuMatched *
    process.selectedTriggeredPatElectrons *
    process.selectedPatElectronsTriggerMatch *
    process.matchedElectrons *
+   process.matchedElectronsQCD *
    process.zeleMatchedeleMatched *
    process.selectedTriggeredPatMuonsEM *
    process.selectedPatMuonsTriggerMatchEM *
@@ -396,6 +440,8 @@ process.out.outputCommands += [
 	'keep *_addPileupInfo_*_*',
 	'keep *_matchedElectrons_*_*',
 	'keep *_matchedMuons_*_*',
+	'keep *_matchedElectronsQCD_*_*',
+	'keep *_matchedMuonsQCD_*_*',
 	'keep *_matchedElectronsEM_*_*',
 	'keep *_matchedMuonsEM_*_*',
 	'keep *_goodJets_*_*',
