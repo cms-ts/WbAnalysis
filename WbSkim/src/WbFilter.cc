@@ -121,13 +121,21 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
    edm::Handle < pat::MuonCollection > muons;
    iEvent.getByLabel ("matchedMuons", muons);
 
+   // get electron collection with inverted ISO cuts for QCD studies
+   edm::Handle < pat::ElectronCollection > electronsQCD;
+   iEvent.getByLabel ("matchedElectronsQCD", electronsQCD);
+
+   // get muon collection with inverted ISO cuts for QCD studies
+   edm::Handle < pat::MuonCollection > muonsQCD;
+   iEvent.getByLabel ("matchedMuonsQCD", muonsQCD);
+
    //get jet collection
    edm::Handle<std::vector<pat::Jet>  > jets;
    iEvent.getByLabel("goodJets",jets);
 
    //std::cout<<"numero j="<<jets->size()<<std::endl;
 
-   if (electrons->size()==0 && muons->size()==0) return false;
+   if (electrons->size()==0 && muons->size()==0 && electronsQCD->size()==0 && muonsQCD->size()==0) return false;
 
    if (jets->size()==0) return false;
 
