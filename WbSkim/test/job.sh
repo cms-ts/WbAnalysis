@@ -2,8 +2,7 @@
 
 ulimit -c 0
 
-#cd /gpfs/cms/users/schizzi/Wbb2012/CMSSW_5_3_11
-cd /afs/infn.it/ts/project/cms/users/dellaric/work/cms/CMSSW_5_3_11
+cd /gpfs/cms/users/schizzi/Wbb2012/CMSSW_5_3_11
 eval `scramv1 runtime -sh`
 cd -
 
