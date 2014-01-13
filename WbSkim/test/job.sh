@@ -7,7 +7,7 @@ cd /afs/infn.it/ts/project/cms/users/dellaric/work/cms/CMSSW_5_3_11
 eval `scramv1 runtime -sh`
 cd -
 
-cp /gpfs/cms/users/dellaric/work/cms/Wbb/test/demoanalyzer_cfg.py job.py
+cp /gpfs/cms/users/schizzi/Wbb2012/test/demoanalyzer_cfg.py job.py
 
 cut=$1
 echo "process.demoEle.icut = cms.untracked.uint32("$cut")" >> job.py
