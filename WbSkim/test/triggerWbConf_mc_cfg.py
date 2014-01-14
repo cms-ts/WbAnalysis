@@ -99,25 +99,6 @@ process.selectedPatMuonsTriggerMatch = cms.EDProducer("PATTriggerMatchMuonEmbedd
 	             matches = cms.VInputTag('selectedTriggeredPatMuons')
 )
 
-########### mu Trigger Matching - em version
-
-pathTriggerEleMu = 'path("HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL*") || path("HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v*")'
-
-process.selectedTriggeredPatMuonsEM = cms.EDProducer("PATTriggerMatcherDRLessByR",
-                                                   src     = cms.InputTag('selectedPatMuons'+postfix),
-                                                   matched = cms.InputTag('patTrigger'),    # selections of trigger objects
-                                                   matchedCuts = cms.string(pathTriggerEleMu),   # selection of matches
-                                                   maxDPtRel   = cms.double(0.5),
-                                                   maxDeltaR   = cms.double(0.3),
-                                                   resolveAmbiguities    = cms.bool(True),
-                                                   resolveByMatchQuality = cms.bool(True)
-)
-
-process.selectedPatMuonsTriggerMatchEM = cms.EDProducer("PATTriggerMatchMuonEmbedder",
-                   src     = cms.InputTag('selectedPatMuons'+postfix),
-                   matches = cms.VInputTag('selectedTriggeredPatMuonsEM')
-)
-
 ############## Making Jets
 
 process.goodJets = selectedPatJets.clone(
@@ -182,32 +163,6 @@ process.zmuMatchedmuMatched = cms.EDProducer('CandViewShallowCloneCombiner',
                                roles = cms.vstring('matched1', 'matched2')
 )
 
-############## Making Z to mumu - em version
-
-process.matchedMuons0EM = cms.EDProducer("MuScleFitPATMuonCorrector",
-                         src = cms.InputTag("selectedPatMuonsTriggerMatchEM"),
-                         debug = cms.bool(False),
-                         identifier = cms.string("Data2012_53X_ReReco"),
-                         applySmearing = cms.bool(False),
-                         fakeSmearing = cms.bool(False)
-)
-
-process.matchedMuonsEM = selectedPatMuons.clone(
-             src = cms.InputTag('matchedMuons0EM'),
-             cut = cms.string(
-                     'pt > 25 & abs(eta) < 2.4 &'
-                     'isGlobalMuon & isPFMuon &'
-                     'globalTrack.normalizedChi2 < 10 &'
-                     'track.hitPattern.trackerLayersWithMeasurement > 5 &'
-                     'globalTrack.hitPattern.numberOfValidMuonHits > 0 &'
-                     'innerTrack.hitPattern.numberOfValidPixelHits > 0 &'
-                     'abs(dB) < 0.2 &'
-                     'numberOfMatchedStations > 1 &'
-                     '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt < 0.2 &'
-                     'triggerObjectMatches.size > 0'
-	     )
-)
-
 ############## e Trigger Matching
 
 pathTriggerEle = 'path("HLT_Ele27_WP80*")'
@@ -227,26 +182,9 @@ process.selectedPatElectronsTriggerMatch = cms.EDProducer("PATTriggerMatchElectr
 	             matches = cms.VInputTag('selectedTriggeredPatElectrons')
 )
 
-############## e Trigger Matching - em version
-
-process.selectedTriggeredPatElectronsEM = cms.EDProducer("PATTriggerMatcherDRLessByR",
-                                                   src     = cms.InputTag('selectedPatElectrons'+postfix),
-                                                   matched = cms.InputTag('patTrigger'),    # selections of trigger objects
-                                                   matchedCuts = cms.string(pathTriggerEleMu),  # selection of matches
-                                                   maxDPtRel   = cms.double(0.5),
-                                                   maxDeltaR   = cms.double(0.3),
-                                                   resolveAmbiguities    = cms.bool(True),
-                                                   resolveByMatchQuality = cms.bool(True)
-)
-
-process.selectedPatElectronsTriggerMatchEM = cms.EDProducer("PATTriggerMatchElectronEmbedder",
-                   src     = cms.InputTag('selectedPatElectrons'+postfix),
-                   matches = cms.VInputTag('selectedTriggeredPatElectronsEM')
-)
-
 ##############
 
-switchOnTriggerMatching(process,triggerMatchers = ['selectedTriggeredPatMuons','selectedTriggeredPatElectrons','selectedTriggeredPatMuonsEM','selectedTriggeredPatElectronsEM'],sequence ='patDefaultSequence',hltProcess = '*')
+switchOnTriggerMatching(process,triggerMatchers = ['selectedTriggeredPatMuons','selectedTriggeredPatElectrons'],sequence ='patDefaultSequence',hltProcess = '*')
 
 removeCleaningFromTriggerMatching(process)
 
@@ -309,43 +247,6 @@ process.zeleMatchedeleMatched = cms.EDProducer('CandViewShallowCloneCombiner',
 				    cut   = cms.string('mass > 50.0 & mass < 200.0'),
 				    name  = cms.string('Zelematchedelematched'),
 				    roles = cms.vstring('matched1', 'matched2')
-)
-
-############## Making Z to ee - em version
-
-process.matchedElectronsEM = selectedPatElectrons.clone(
-                   src = cms.InputTag('selectedPatElectronsTriggerMatchEM'),
-                   cut = cms.string(
-                      'pt > 10 & abs(eta) < 2.4 &'
-                      '(('
-                       'abs(superCluster.eta) < 1.442 &'
-                       'abs(deltaEtaSuperClusterTrackAtVtx) < 0.004 &'
-                       'abs(deltaPhiSuperClusterTrackAtVtx) < 0.06 &'
-                       'sigmaIetaIeta < 0.01 &'
-                       'hadronicOverEm < 0.12'
-                      ')|('
-                       'abs(superCluster.eta) > 1.566 & abs(superCluster.eta) < 2.5 &'
-                       'abs(deltaEtaSuperClusterTrackAtVtx) < 0.007 &'
-                       'abs(deltaPhiSuperClusterTrackAtVtx) < 0.03 &'
-                       'sigmaIetaIeta < 0.03 &'
-                       'hadronicOverEm < 0.10'
-                      ')) &'
-                      'abs(dB) < 0.02 &'
-                      'abs(1./ecalEnergy - eSuperClusterOverP/ecalEnergy) < 0.05 &'
-                      '(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et < 0.15 &'
-                      'passConversionVeto &'
-                      'gsfTrack.trackerExpectedHitsInner.numberOfHits <= 1 &'
-                      'triggerObjectMatches.size > 0'
-                   )
-)
-
-############## Making Z to em
-
-process.zeleMatchedmuMatched = cms.EDProducer('CandViewShallowCloneCombiner',
-                                  decay = cms.string('matchedElectronsEM@+ matchedMuonsEM@-'),
-                                  cut   = cms.string('mass > 50.0 & mass < 200.0'),
-                                  name  = cms.string('ZelematchedmumatchedEM'),
-                                  roles = cms.vstring('matched1', 'matched2')
 )
 
 ##############
@@ -428,14 +329,6 @@ process.p = cms.Path(
    process.matchedElectrons *
    process.matchedElectronsQCD *
    process.zeleMatchedeleMatched *
-   process.selectedTriggeredPatMuonsEM *
-   process.selectedPatMuonsTriggerMatchEM *
-   process.matchedMuons0EM *
-   process.matchedMuonsEM *
-   process.selectedTriggeredPatElectronsEM *
-   process.selectedPatElectronsTriggerMatchEM *
-   process.matchedElectronsEM *
-   process.zeleMatchedmuMatched *
    process.MyProcess
    #process.dump
 )
@@ -454,12 +347,9 @@ process.out.outputCommands += [
 	'keep *_matchedMuons_*_*',
         'keep *_matchedElectronsQCD_*_*',
 	'keep *_matchedMuonsQCD_*_*',
-	'keep *_matchedElectronsEM_*_*',
-	'keep *_matchedMuonsEM_*_*',
 	'keep *_goodJets_*_*',
 	'keep *_zeleMatchedeleMatched_*_*',
 	'keep *_zmuMatchedmuMatched_*_*',
-	'keep *_zeleMatchedmuMatched_*_*',
 	'keep *_goodOfflinePrimaryVertices_*_*'
 ]
 
