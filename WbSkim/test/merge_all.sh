@@ -11,10 +11,10 @@ fi
 ./merge.sh SingleElectron_2012C_22Jan13 $VERSION
 ./merge.sh SingleElectron_2012D_22Jan13 $VERSION
 
-./merge.sh SingleMuParked_2012A_22Jan13 $VERSION
-./merge.sh SingleMuParked_2012B_22Jan13 $VERSION
-./merge.sh SingleMuParked_2012C_22Jan13 $VERSION
-./merge.sh SingleMuParked_2012D_22Jan13 $VERSION
+./merge.sh SingleMu_2012A_22Jan13 $VERSION
+./merge.sh SingleMu_2012B_22Jan13 $VERSION
+./merge.sh SingleMu_2012C_22Jan13 $VERSION
+./merge.sh SingleMu_2012D_22Jan13 $VERSION
 
 ./merge.sh data-all $VERSION
 
