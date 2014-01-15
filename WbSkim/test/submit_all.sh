@@ -28,5 +28,6 @@ fi
 ./submit.sh WW $VERSION $CUT
 ./submit.sh WZ $VERSION $CUT
 ./submit.sh Wj $VERSION $CUT
+./submit.sh ZZ $VERSION $CUT
 
 exit
