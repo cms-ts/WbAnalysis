@@ -11,7 +11,6 @@ cp /gpfs/cms/users/schizzi/Wbb2012/test/demoanalyzer_cfg.py job.py
 cut=$1
 echo "process.demoEle.icut = cms.untracked.uint32("$cut")" >> job.py
 echo "process.demoMuo.icut = cms.untracked.uint32("$cut")" >> job.py
-echo "process.demoEleMuo.icut = cms.untracked.uint32("$cut")" >> job.py
 
 shift
 
