@@ -25,9 +25,13 @@ fi
 ./submit.sh TTbar $VERSION $CUT
 ./submit.sh TToLeptons $VERSION $CUT
 ./submit.sh TBarToLeptons $VERSION $CUT
-./submit.sh WW $VERSION $CUT
 ./submit.sh WZ $VERSION $CUT
 ./submit.sh Wj $VERSION $CUT
+./submit.sh W1j $VERSION $CUT
+./submit.sh W2j $VERSION $CUT
+./submit.sh W3j $VERSION $CUT
+./submit.sh W4j $VERSION $CUT
+./submit.sh WW $VERSION $CUT
 ./submit.sh ZZ $VERSION $CUT
 
 exit
