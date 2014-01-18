@@ -156,13 +156,6 @@ process.matchedMuonsQCD = selectedPatMuons.clone(
 		)
 )
 
-process.zmuMatchedmuMatched = cms.EDProducer('CandViewShallowCloneCombiner',
-                               decay = cms.string('matchedMuons@+ matchedMuons@-'),
-                               cut   = cms.string('mass > 50.0 & mass < 200.0'),
-                               name  = cms.string('Zmumatchedmumatched'),
-                               roles = cms.vstring('matched1', 'matched2')
-)
-
 ############## e Trigger Matching
 
 pathTriggerEle = 'path("HLT_Ele27_WP80*")'
@@ -242,13 +235,6 @@ process.matchedElectronsQCD = selectedPatElectrons.clone(
 		     )
 )
 
-process.zeleMatchedeleMatched = cms.EDProducer('CandViewShallowCloneCombiner',
-			            decay = cms.string('matchedElectrons@+ matchedElectrons@-'),
-				    cut   = cms.string('mass > 50.0 & mass < 200.0'),
-				    name  = cms.string('Zelematchedelematched'),
-				    roles = cms.vstring('matched1', 'matched2')
-)
-
 ##############
 
 process.GlobalTag.globaltag = 'FT53_V21A_AN6::All'
@@ -311,12 +297,10 @@ process.p = cms.Path(
    process.matchedMuons0 *
    process.matchedMuons *
    process.matchedMuonsQCD *
-   process.zmuMatchedmuMatched *
    process.selectedTriggeredPatElectrons *
    process.selectedPatElectronsTriggerMatch *
    process.matchedElectrons *
    process.matchedElectronsQCD *
-   process.zeleMatchedeleMatched *
    process.MyProcess
    #process.dump
 )
@@ -336,8 +320,6 @@ process.out.outputCommands += [
         'keep *_matchedElectronsQCD_*_*',
 	'keep *_matchedMuonsQCD_*_*',
 	'keep *_goodJets_*_*',
-	'keep *_zeleMatchedeleMatched_*_*',
-	'keep *_zmuMatchedmuMatched_*_*',
 	'keep *_goodOfflinePrimaryVertices_*_*'
 ]
 
