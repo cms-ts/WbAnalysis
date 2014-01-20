@@ -23,8 +23,12 @@ fi
 
 ./submit.sh DYJetsToLL $VERSION $CUT
 ./submit.sh TTbar $VERSION $CUT
-./submit.sh TToLeptons $VERSION $CUT
-./submit.sh TBarToLeptons $VERSION $CUT
+./submit.sh TToLeptons_s $VERSION $CUT
+./submit.sh TBarToLeptons_s $VERSION $CUT
+./submit.sh TToLeptons_t $VERSION $CUT
+./submit.sh TBarToLeptons_t $VERSION $CUT
+./submit.sh TToThadWlep_tW $VERSION $CUT
+./submit.sh TBarToThadWlep_tW $VERSION $CUT
 ./submit.sh WZ $VERSION $CUT
 ./submit.sh Wj $VERSION $CUT
 ./submit.sh W1j $VERSION $CUT
