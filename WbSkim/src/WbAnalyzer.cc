@@ -205,6 +205,7 @@ private:
   table* ElSF2_;
   table* MuSF_;
   table* MuSF2_;
+  table* MuSF3_;
   table* BtSF_;
   table* LtSF_;
 
@@ -1149,7 +1150,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
 
-    if (muon->pt()>25 && fabs(muon->eta())<2.4) {
+    if (muon->pt()>25 && fabs(muon->eta())<2.1) {
       vect_muon.push_back (*muon);
     }
 
@@ -1175,16 +1176,16 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   if (isMC) {
     if (wenu_event) {
-      scalFac_first_e  =  ElSF_->Val (vect_ele[0].pt(), vect_ele[0].eta()) * ElSF2_->Val (vect_ele[0].pt(), vect_ele[0].eta());  // HLT SC: to be fixed!
+      scalFac_first_e  =  ElSF_->Val (vect_ele[0].pt(), vect_ele[0].eta());  // HLT SC: to be fixed!
       if (vect_ele.size()==2) {
-        scalFac_second_e =  ElSF_->Val (vect_ele[1].pt(), vect_ele[1].eta()) * ElSF2_->Val (vect_ele[1].pt(), vect_ele[1].eta());  // HLT SC: to be fixed!
+        scalFac_second_e =  ElSF_->Val (vect_ele[1].pt(), vect_ele[1].eta());  // HLT SC: to be fixed!
       }
       MyWeight = MyWeight * scalFac_first_e * scalFac_second_e;
     }
     if (wmnu_event) {
-      scalFac_first_m  = MuSF_->Val (vect_muon[0].pt(), vect_muon[0].eta());  // HLT SC: to be fixed!
+      scalFac_first_m  = MuSF_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF2_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF3_->Val (vect_muon[0].pt(), vect_muon[0].eta());
       if (vect_muon.size()==2) {
-        scalFac_second_m = MuSF_->Val (vect_muon[1].pt(), vect_muon[1].eta());  // HLT SC: to be fixed!
+        scalFac_second_m = MuSF2_->Val (vect_muon[1].pt(), vect_muon[1].eta()) * MuSF3_->Val (vect_muon[1].pt(), vect_muon[1].eta());
       }
       MyWeight = MyWeight * scalFac_first_m * scalFac_second_m;
     }
@@ -2412,8 +2413,9 @@ void WbAnalyzer::beginJob () {
 
   ElSF_  = new table(path_ + "/" + "ele_eff.txt");
   ElSF2_ = new table(path_ + "/" + "ele_eff2.txt");
-  MuSF_  = new table(path_ + "/" + "muon_eff.txt");
-  MuSF2_ = new table(path_ + "/" + "muon_eff2.txt");
+  MuSF_  = new table(path_ + "/" + "muon_sc_hlt.txt");
+  MuSF2_ = new table(path_ + "/" + "muon_sc_id.txt");
+  MuSF3_ = new table(path_ + "/" + "muon_sc_iso.txt");
   BtSF_  = new table(path_ + "/" + "btag_eff.txt");   //btagging scale factors SFb = SFc
   LtSF_  = new table(path_ + "/" + "light_eff.txt");  //light flavour scale factors
 
@@ -2427,6 +2429,7 @@ void WbAnalyzer::endJob () {
   delete ElSF2_;
   delete MuSF_;
   delete MuSF2_;
+  delete MuSF3_;
   delete BtSF_;
   delete LtSF_;
 
