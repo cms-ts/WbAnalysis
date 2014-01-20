@@ -1001,9 +1001,6 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   edm::Handle < pat::MuonCollection > muons;
   iEvent.getByLabel ("matchedMuons", muons);
 
-  if (lepton_=="electron" && !electrons.isValid()) return;
-  if (lepton_=="muon" && !muons.isValid()) return;
-
   // Get jet collection
   edm::Handle < vector < pat::Jet > > jets;
   iEvent.getByLabel ("goodJets", jets);
@@ -1165,7 +1162,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   bool mt_cut_wmnu = mt_wmnu > 45.;
 
   //  Decisions:
-  if (vect_ele.size()==0 && vect_muon.size()==0) {if (debug) cout << "No isolated leptons, quitting..." << endl; return;}
+  if (vect_ele.size()==0 && vect_muon.size()==0) {if (debug) cout << "No isolated leptons!!" << endl;}
   if (vect_ele.size()==1 && vect_muon.size()==0) wenu_event = true;
   if (vect_muon.size()==1 && vect_ele.size()==0) wmnu_event = true;
   if (vect_ele.size()>1) ee_event = true; //temporary!!
