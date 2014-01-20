@@ -3,7 +3,7 @@ string version = "v01";
 //////////////////// Integrated luminosity in 1/picobarn
 
 double Lumi2012_ele  = 19743.0; // full 2012 electrons luminosity
-double Lumi2012_muon = 19779.0; // full 2012 muons luminosity
+double Lumi2012_muon = 19783.0; // full 2012 muons luminosity
 double Lumi2012_ele_muon = 19780.0; // full 2012 electrons+muons luminosity
 
 // single period lumi, same for electrons and muons dataset in 1/picobarn
