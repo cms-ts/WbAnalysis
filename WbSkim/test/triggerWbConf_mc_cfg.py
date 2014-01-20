@@ -326,6 +326,7 @@ process.out.outputCommands = patEventContent
 process.out.outputCommands += patExtraAodEventContent
 process.out.outputCommands += patTriggerEventContent
 process.out.outputCommands += [
+	'keep LHERunInfoProduct_*_*_*',
 	'keep LHEEventProduct_*_*_*',
 	'keep *_addPileupInfo_*_*',
 	'keep *_matchedElectrons_*_*',
