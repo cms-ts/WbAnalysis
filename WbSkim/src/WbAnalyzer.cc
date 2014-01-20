@@ -94,10 +94,10 @@ private:
   virtual void produce (edm::Event &, const edm::EventSetup &);
   virtual void endJob ();
 
-  virtual void beginRun (edm::Run const &, edm::EventSetup const &);
-  virtual void endRun (edm::Run const &, edm::EventSetup const &);
-  virtual void beginLuminosityBlock (edm::LuminosityBlock const &, edm::EventSetup const &);
-  virtual void endLuminosityBlock (edm::LuminosityBlock const &, edm::EventSetup const &);
+  virtual void beginRun (edm::Run &, edm::EventSetup const &);
+  virtual void endRun (edm::Run &, edm::EventSetup const &);
+  virtual void beginLuminosityBlock (edm::LuminosityBlock &, edm::EventSetup const &);
+  virtual void endLuminosityBlock (edm::LuminosityBlock &, edm::EventSetup const &);
 
 #define ECALDRIVEN 0
 
@@ -2433,19 +2433,19 @@ void WbAnalyzer::endJob () {
 }
 
 // ------------ method called when starting to processes a run ------------
-void WbAnalyzer::beginRun (edm::Run const &, edm::EventSetup const &) {
+void WbAnalyzer::beginRun (edm::Run &, edm::EventSetup const &) {
 }
 
 // ------------ method called when ending the processing of a run ------------
-void WbAnalyzer::endRun (edm::Run const &, edm::EventSetup const &) {
+void WbAnalyzer::endRun (edm::Run &, edm::EventSetup const &) {
 }
 
 // ------------ method called when starting to processes a luminosity block ------------
-void WbAnalyzer::beginLuminosityBlock (edm::LuminosityBlock const &, edm::EventSetup const &) {
+void WbAnalyzer::beginLuminosityBlock (edm::LuminosityBlock &, edm::EventSetup const &) {
 }
 
 // ------------ method called when ending the processing of a luminosity block ------------
-void WbAnalyzer::endLuminosityBlock (edm::LuminosityBlock const &, edm::EventSetup const &) {
+void WbAnalyzer::endLuminosityBlock (edm::LuminosityBlock &, edm::EventSetup const &) {
 }
 
 // define this as a plug-in
