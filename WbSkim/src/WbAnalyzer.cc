@@ -244,6 +244,7 @@ private:
   TH1F*     t_first_jet_pt;
   TH1F*     w_first_jet_eta;
   TH1F*     b_first_jet_eta;
+  TH1F*     c_first_jet_eta;
   TH1F*     t_first_jet_eta;
   TH1F*     w_second_jet_pt;
   TH1F*     b_second_jet_pt;
