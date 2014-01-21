@@ -31,6 +31,7 @@
 #include "FWCore/Framework/interface/EDProducer.h"
 #include "Math/VectorUtil.h"
 #include "FWCore/Framework/interface/Event.h"
+#include "FWCore/Framework/interface/Run.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Framework/interface/ESHandle.h"
@@ -68,6 +69,8 @@
 #include "DataFormats/JetReco/interface/GenJetCollection.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
+#include "SimDataFormats/GeneratorProducts/interface/LHERunInfoProduct.h"
+#include "SimDataFormats/GeneratorProducts/interface/LHEEventProduct.h"
 #include "JetMETCorrections/Objects/interface/JetCorrector.h"
 #include "DataFormats/PatCandidates/interface/JetCorrFactors.h"
 #include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
@@ -200,6 +203,8 @@ private:
 
   JetCorrectionUncertainty *jetCorrectionUncertainty_;
   edm::LumiReWeighting LumiWeights_;
+
+  int nprup;
 
   table* ElSF_;
   table* ElSF2_;
@@ -1105,6 +1110,27 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     double mcWeight = genEventInfoHandle->weight();
 
     MyWeight = MyWeight*mcWeight;
+
+  }
+
+  Handle<LHEEventProduct> evt;
+
+  if (iEvent.getByLabel ("source", evt)) {
+
+    const lhef::HEPEUP hepeup = evt->hepeup();
+    const int nup = hepeup.NUP;
+    const std::vector<int> idup = hepeup.IDUP;
+
+    if (nup>=5) {
+      if (abs(idup[2])==24 && abs(idup[3])>=11 && abs(idup[3])<=16) {
+
+        int nmult = nup-5;
+        if (nprup==10) {
+          if (nmult!=0) MyWeight = 0.0;
+        }
+
+      }
+    }
 
   }
 
@@ -2433,7 +2459,15 @@ void WbAnalyzer::endJob () {
 }
 
 // ------------ method called when starting to processes a run ------------
-void WbAnalyzer::beginRun (edm::Run &, edm::EventSetup const &) {
+void WbAnalyzer::beginRun (edm::Run & iRun, edm::EventSetup const & iSetup) {
+  nprup = 0;
+
+  edm::Handle<LHERunInfoProduct> run;
+  if (iRun.getByLabel ("source", run)) {
+    const lhef::HEPRUP heprup = run->heprup();
+    nprup = heprup.NPRUP;
+  }
+
 }
 
 // ------------ method called when ending the processing of a run ------------
