@@ -57,9 +57,9 @@ double eXsec_tbar_tw = 0;
 
 //////////////////////// TToThadWlep_tW
 
-double Ngen_tbar_tw = 1457622;
-double Xsec_tbar_tw = 11.1; // NLO
-double eXsec_tbar_tw = 0;
+double Ngen_t_tw = 1457622;
+double Xsec_t_tw = 11.1; // NLO
+double eXsec_t_tw = 0;
 
 //////////////////////// ZZ
 
