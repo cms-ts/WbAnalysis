@@ -20,6 +20,12 @@ fi
 
 ./merge.sh DYJetsToLL $VERSION
 ./merge.sh TTbar $VERSION
+./merge.sh TToLeptons_s $VERSION
+./merge.sh TBarToLeptons_s $VERSION
+./merge.sh TToLeptons_t $VERSION
+./merge.sh TBarToLeptons_t $VERSION
+./merge.sh TToThadWlep_tW $VERSION
+./merge.sh TBarToThadWlep_tW $VERSION
 ./merge.sh WZ $VERSION
 ./merge.sh Wj $VERSION
 ./merge.sh W1j $VERSION
