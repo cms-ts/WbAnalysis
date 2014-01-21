@@ -990,7 +990,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   using namespace edm;
   using namespace std;
 
-  bool debug = false;
+  bool debug = true;
   if (debug) cout << "Processing new event..." << endl;
 
   // Get electron collection
@@ -1410,7 +1410,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ MET PLOTS
 
-  if (vtx_cut) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wenu)) && vtx_cut) {
     scalFac_b = btagSF(isMC, vect_jets, 0);
     w_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight);
     w_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight);
