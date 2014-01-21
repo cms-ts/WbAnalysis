@@ -21,7 +21,7 @@ fi
 
 DIR=/gpfs/cms/users/schizzi/work/Wbb2012/test/data/$VERSION/
 
-[ "$USER" == "dellaric" ] && DIR=/gpfs/cms/users/dellaric/work/cms/Wbb/test/data/$VERSION/
+[ "$USER" == "dellaric" ] && DIR=/gpfs/cms/users/schizzi/Wbb2012/test/GDR/data/$VERSION/
 
 if [ ! -e $DIR ]; then
   echo "ERROR: $DIR does not exist !"
