@@ -205,6 +205,8 @@ private:
   edm::LumiReWeighting LumiWeights_;
 
   int nprup;
+  TH1F* h_nmult0;
+  TH1F* h_nmult1;
 
   table* ElSF_;
   table* ElSF2_;
@@ -767,6 +769,9 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   useDeltaR_        = iConfig.getUntrackedParameter <bool> ("useDeltaR", false);
   // now do what ever initialization is needed
   edm::Service < TFileService > fs;
+
+  h_nmult0 =            fs->make < TH1F > ("h_nmult0", "h_nmult0", 8, -0.5, 7.5);
+  h_nmult1 =            fs->make < TH1F > ("h_nmult1", "h_nmult1", 8, -0.5, 7.5);
 
   h_jetmultiplicity =   fs->make < TH1F > ("h_jetmultiplicity", "h_jetmultiplicity;N_jets", 8, 0.5, 8.5);
 
@@ -1420,10 +1425,16 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (nup>=5) {
       if (abs(idup[2])==24 && abs(idup[3])>=11 && abs(idup[3])<=16) {
 
+        double lheWeight = 1.0;
         int nmult = nup-5;
+        h_nmult0->Fill(nmult);
+
         if (nprup==10) {
-          if (nmult!=0) MyWeight = 0.0;
+          if (nmult!=0) lheWeight = 0.0;
         }
+
+        h_nmult1->Fill(nmult,lheWeight);
+        MyWeight = MyWeight*lheWeight;
 
       }
     }
