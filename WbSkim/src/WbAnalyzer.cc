@@ -1291,7 +1291,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   using namespace edm;
   using namespace std;
 
-  bool debug = true;
+  bool debug = false;
   if (debug) cout << "Processing new event..." << endl;
 
   // Get electron collection
@@ -1483,7 +1483,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   double mt_wmnu = sqrt(2*muopt*op_met*(1-TMath::Cos(deltaPhiMetMuo)));
   bool mt_cut_wmnu = mt_wmnu > 45.;
 
-  //  Decisions:
+
+  // +++++++++ Decisions:
+
   if (vect_ele.size()==0 && vect_muon.size()==0) {if (debug) cout << "No isolated leptons!!" << endl;}
   if (vect_ele.size()==1 && vect_muon.size()==0) wenu_event = true;
   if (vect_muon.size()==1 && vect_ele.size()==0) wmnu_event = true;
@@ -1495,6 +1497,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   ee_event = ee_event && (lepton_ == "electron");
   mm_event = mm_event && (lepton_ == "muon");
   //  em_event = em_event && (lepton_ == "electron+muon");  
+
 
   // +++++++++ SCALE FACTORS:
 
