@@ -1489,7 +1489,12 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (vect_muon.size()==1 && vect_ele.size()==0) wmnu_event = true;
   if (vect_ele.size()>1) ee_event = true; //temporary!!
   if (vect_muon.size()>1) mm_event = true; //temporary!!
-  
+
+  wenu_event = wenu_event && (lepton_ == "electron");
+  wmnu_event = wmnu_event && (lepton_ == "muon");
+  ee_event = ee_event && (lepton_ == "electron");
+  mm_event = mm_event && (lepton_ == "muon");
+  //  em_event = em_event && (lepton_ == "electron+muon");  
 
   // +++++++++ SCALE FACTORS:
 
@@ -1551,7 +1556,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       //      if ((int) (abs(thepart->pdgId() / 100) % 10 ) == 4 || (int) (abs(thepart->pdgId() / 1000) % 10) == 4) {
       //        isc = true;
       //      }
-      if ((int) abs(thepart->pdgId()) == 23) {
+      if ((int) abs(thepart->pdgId()) == 24) {
 	for (UInt_t i=0; i<thepart->numberOfDaughters(); i++){
 	  if (abs(thepart->daughter(i)->pdgId()) == 15 && thepart->daughter(i)->status()==3){
 	    ist = true;
@@ -1737,19 +1742,19 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wenu)) && vtx_cut) {
     scalFac_b = btagSF(isMC, vect_jets, 0);
-    w_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight);
-    w_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight);
+    w_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+    w_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     if (ist) {
-      t_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight);
-      t_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight);
+      t_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      t_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
-      b_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight);
-      b_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight);
+      b_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      b_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
-      c_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight);
-      c_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight);
+      c_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      c_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     }
     if (Nb == 1) {
       scalFac_b = btagSF(isMC, vect_jets, 1);
