@@ -14,8 +14,7 @@ TFile *Target;
 
 void hmerge_(TDirectory *target, TList *sourcelist, double crossArray[]);
 
-//string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
-string path = "/gpfs/cms/users/schizzi/Wbb2012/test/GDR/data/";
+string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
 void hmerge(string title="W") {
 
