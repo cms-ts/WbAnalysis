@@ -367,11 +367,6 @@ private:
   TH1F*     c_second_muon_eta;
   TH1F*     t_second_muon_eta;
 
-  TH1F*     w_numberOfZ;
-  TH1F*     b_numberOfZ;
-  TH1F*     c_numberOfZ;
-  TH1F*     t_numberOfZ;
-
   TH1F*     w_mass_ee_wide;
   TH1F*     b_mass_ee_wide;
   TH1F*     c_mass_ee_wide;
@@ -982,11 +977,6 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_muon_eta =   fs->make < TH1F > ("b_second_muon_eta", "b_second_muon_eta;Eta", 16, -2.5, 2.5);
   c_second_muon_eta =   fs->make < TH1F > ("c_second_muon_eta", "c_second_muon_eta;Eta", 16, -2.5, 2.5);
   t_second_muon_eta =   fs->make < TH1F > ("t_second_muon_eta", "t_second_muon_eta;Eta", 16, -2.5, 2.5);
-
-  w_numberOfZ =         fs->make < TH1F > ("w_numberOfZ",       "w_numberOfZ;N_Z", 5, 0, 5);
-  b_numberOfZ =         fs->make < TH1F > ("b_numberOfZ",       "b_numberOfZ;N_Z", 5, 0, 5);
-  c_numberOfZ =         fs->make < TH1F > ("c_numberOfZ",       "c_numberOfZ;N_Z", 5, 0, 5);
-  t_numberOfZ =         fs->make < TH1F > ("t_numberOfZ",       "t_numberOfZ;N_Z", 5, 0, 5);
 
   w_mass_ee_wide =      fs->make < TH1F > ("w_mass_ee_wide",    "w_mass_ee_wide;Mass [GeV]", 40, 50., 200.);
   b_mass_ee_wide =      fs->make < TH1F > ("b_mass_ee_wide",    "b_mass_ee_wide;Mass [GeV]", 40, 50., 200.);
@@ -2144,7 +2134,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mass_ee_wide->Fill (diele_mass, MyWeight);
     }
-    if (Nb > 0 && b_selection) {
+    if (Nb > 0) {
       scalFac_b = btagSF(isMC, vect_jets, 0);
       w_mass_ee_b_wide->Fill (diele_mass, MyWeight*scalFac_b);
       if (ist) {
@@ -2156,19 +2146,6 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mass_ee_b_wide->Fill (diele_mass, MyWeight*scalFac_b);
       }
-    }
-  }
-
-  if (ee_event && Nj > 0 && vtx_cut) {
-    w_numberOfZ->Fill (zee->size(), MyWeight);
-    if (ist) {
-      t_numberOfZ->Fill (zee->size(), MyWeight);
-    }
-    if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
-      b_numberOfZ->Fill (zee->size(), MyWeight);
-    }
-    if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
-      c_numberOfZ->Fill (zee->size(), MyWeight);
     }
   }
 
@@ -2200,7 +2177,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       c_mass_Zj_ee->Fill (zj_ee_mass, MyWeight);
       c_delta_ee->Fill (delta_phi_ee, MyWeight);
     }
-    if (Nb > 0 && met_cut && b_selection) {
+    if (Nb > 0 && met_cut) {
       scalFac_b = btagSF(isMC, vect_jets, 0);
       w_mass_ee_b->Fill (diele_mass, MyWeight*scalFac_b);
       w_pt_Z_ee_b->Fill (diele_pt, MyWeight*scalFac_b);
@@ -2356,7 +2333,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mass_mm_wide->Fill (dimuon_mass, MyWeight);
     }
-    if (Nb > 0 && b_selection) {
+    if (Nb > 0) {
       scalFac_b = btagSF(isMC, vect_jets, 0);
       w_mass_mm_b_wide->Fill (dimuon_mass, MyWeight*scalFac_b);
       if (ist) {
@@ -2368,19 +2345,6 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mass_mm_b_wide->Fill (dimuon_mass, MyWeight*scalFac_b);
       }
-    }
-  }
-
-  if (mm_event && Nj > 0 && vtx_cut) {
-    w_numberOfZ->Fill (zmm->size(), MyWeight);
-    if (ist) {
-      t_numberOfZ->Fill (zmm->size(), MyWeight);
-    }
-    if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
-      b_numberOfZ->Fill (zmm->size(), MyWeight);
-    }
-    if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
-      c_numberOfZ->Fill (zmm->size(), MyWeight);
     }
   }
 
@@ -2412,7 +2376,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       c_mass_Zj_mm->Fill (zj_mm_mass, MyWeight);
       c_delta_mm->Fill (delta_phi_mm, MyWeight);
     }
-    if (Nb > 0 && met_cut && b_selection) {
+    if (Nb > 0 && met_cut) {
       scalFac_b = btagSF(isMC, vect_jets, 0);
       w_mass_mm_b->Fill (dimuon_mass, MyWeight*scalFac_b);
       w_pt_Z_mm_b->Fill (dimuon_pt, MyWeight*scalFac_b);
@@ -3039,7 +3003,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ JETS PLOTS
 
-  if ((ee_event || mm_event || em_event) && Nj > 0 && vtx_cut) {
+  if ((ee_event || mm_event) && Nj > 0 && vtx_cut) {
     h_jetmultiplicity->Fill (Nj);
     w_jetmultiplicity->Fill (Nj, MyWeight);
     w_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight);
@@ -3061,7 +3025,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if ((ee_event || mm_event || em_event) && Nj > 1 && vtx_cut) {
+  if ((ee_event || mm_event) && Nj > 1 && vtx_cut) {
     w_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight);
     w_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight);
     if (ist) {
@@ -3078,7 +3042,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if ((ee_event || mm_event || em_event) && Nj > 2 && vtx_cut) {
+  if ((ee_event || mm_event) && Nj > 2 && vtx_cut) {
     w_third_jet_pt->Fill (vect_jets[2].pt(), MyWeight);
     w_third_jet_eta->Fill (vect_jets[2].eta(), MyWeight);
     if (ist) {
