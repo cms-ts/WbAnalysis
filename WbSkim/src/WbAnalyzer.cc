@@ -1682,19 +1682,28 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (isMC) {
     if (wenu_event) {
       scalFac_first_e  =  ElSF_->Val (vect_ele[0].pt(), vect_ele[0].eta());  // HLT SC: to be fixed!
-      if (vect_ele.size()==2) {
-        scalFac_second_e =  ElSF_->Val (vect_ele[1].pt(), vect_ele[1].eta());  // HLT SC: to be fixed!
-      }
-      MyWeight = MyWeight * scalFac_first_e * scalFac_second_e;
+      MyWeight = MyWeight * scalFac_first_e;
     }
     if (wmnu_event) {
       scalFac_first_m  = MuSF_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF2_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF3_->Val (vect_muon[0].pt(), vect_muon[0].eta());
-      if (vect_muon.size()==2) {
-        scalFac_second_m = MuSF2_->Val (vect_muon[1].pt(), vect_muon[1].eta()) * MuSF3_->Val (vect_muon[1].pt(), vect_muon[1].eta());
-      }
-      MyWeight = MyWeight * scalFac_first_m * scalFac_second_m;
+      MyWeight = MyWeight * scalFac_first_m;
     }
   }
+
+  if (isMC) {
+    if (ee_event) {
+      scalFac_first_e  =  ElSF_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta());
+      scalFac_second_e =  ElSF_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta());
+      MyWeight = MyWeight * scalFac_first_e * scalFac_second_e;
+    }
+    if (mm_event) {
+      scalFac_first_m  = MuSF_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta()) * MuSF2_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta()) * MuSF3_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta());
+      scalFac_second_m = MuSF2_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta()) * MuSF3_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta());
+      MyWeight = MyWeight * scalFac_first_m * scalFac_second_m;
+
+    }
+  }
+
 
   // ++++++++ VERTICES
 
