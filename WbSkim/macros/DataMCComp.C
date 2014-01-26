@@ -178,6 +178,7 @@ if (irun==99) {            // irun==99 => pur
 	double norm5 = ((Lumi2012 * Xsec_qcd) / Ngen_qcd);
 	double norm6 = ((Lumi2012 * Xsec_ww) / Ngen_ww);
 	double norm7 = ((Lumi2012 * Xsec_dy) / Ngen_dy);
+	double norm8 = ((Lumi2012 * Xsec_tbar_t) / Ngen_tbar_t);
 
 	double enorm1 = ((Lumi2012 * eXsec_wj) / Ngen_wj);
 	double enorm2 = ((Lumi2012 * eXsec_tt) / Ngen_tt);
@@ -187,6 +188,7 @@ if (irun==99) {            // irun==99 => pur
 	double enorm5 = ((Lumi2012 * eXsec_qcd) / Ngen_qcd);
 	double enorm6 = ((Lumi2012 * eXsec_ww) / Ngen_ww);
 	double enorm7 = ((Lumi2012 * eXsec_dy) / Ngen_dy);
+	double enorm8 = ((Lumi2012 * eXsec_tbar_t) / Ngen_tbar_t);
 
 	if (title.empty()) title = "w_jetmultiplicity";
 
@@ -213,6 +215,7 @@ if (irun==99) {            // irun==99 => pur
 //	TFile *mc5 = TFile::Open((path + "/" + version + "/" + "QCD.root").c_str());
 	TFile *mc6 = TFile::Open((path + "/" + version + "/" + "WW.root").c_str());
 	TFile *mc7 = TFile::Open((path + "/" + version + "/" + "DYJetsToLL.root").c_str());
+	TFile *mc8 = TFile::Open((path + "/" + version + "/" + "T_merge.root").c_str());
 
 	if (ilepton==1) data->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2) data->cd(("demoMuo"+postfix).c_str());
@@ -267,6 +270,11 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) mc7->cd(("demoMuo"+postfix).c_str());
 	if (ilepton==3) mc7->cd(("demoEleMuo"+postfix).c_str());
 	TH1F* h_mc7 = (TH1F*)gDirectory->Get(title.c_str());
+
+	if (ilepton==1) mc8->cd(("demoEle"+postfix).c_str());
+	if (ilepton==2) mc8->cd(("demoMuo"+postfix).c_str());
+	if (ilepton==3) mc8->cd(("demoEleMuo"+postfix).c_str());
+	TH1F* h_mc8 = (TH1F*)gDirectory->Get(title.c_str());
 
 	h_data -> Sumw2();
 
@@ -324,6 +332,11 @@ if (irun==99) {            // irun==99 => pur
 	h_mc7 -> SetFillColor(kGray);
 	//h_mc7 -> SetFillStyle(3004);
 
+	h_mc8 -> Sumw2();
+	h_mc8 -> SetLineColor(kBlack);
+	h_mc8 -> SetFillColor(kAzure-3);
+	//h_mc8 -> SetFillStyle(3004);
+
 	if (irun==10) {
 	  norm1 = norm1 + enorm1;
 	  norm2 = norm2 + enorm2;
@@ -332,6 +345,7 @@ if (irun==99) {            // irun==99 => pur
 	  norm5 = norm5 + enorm5;
 	  norm6 = norm6 + enorm6;
 	  norm7 = norm7 + enorm7;
+	  norm8 = norm8 + enorm8;
 	}
 
 	h_mc1->Scale(norm1);
@@ -344,6 +358,7 @@ if (irun==99) {            // irun==99 => pur
 //	h_mc5->Scale(norm5);
 	h_mc6->Scale(norm6);
 	h_mc7->Scale(norm7);
+	h_mc8->Scale(norm8);
 
 	if (useFitResults) {
 	  h_mc2->Scale(1./norm2);
@@ -369,10 +384,12 @@ if (irun==99) {            // irun==99 => pur
 //	    h_mc5->SetBinError(i, 1.1*h_mc5->GetBinError(i));
 	    h_mc6->SetBinError(i, 1.1*h_mc6->GetBinError(i));
 	    h_mc7->SetBinError(i, 1.1*h_mc7->GetBinError(i));
+	    h_mc8->SetBinError(i, 1.1*h_mc8->GetBinError(i));
 	  }
 	}
 
 	if (doBkg) {
+	  h_data->Add(h_mc8, -1.);
 	  h_data->Add(h_mc7, -1.);
 	  h_data->Add(h_mc6, -1.);
 //	  h_data->Add(h_mc5, -1.);
@@ -398,6 +415,7 @@ if (irun==99) {            // irun==99 => pur
 	if (doFit==1) {
 	  h_data_fit = (TH1F*)h_data->Clone("h_data_fit");
 	  if (!doBkg) {
+	    h_data_fit->Add(h_mc8, -1.);
 	    h_data_fit->Add(h_mc7, -1.);
 	    h_data_fit->Add(h_mc6, -1.);
 //	    h_data_fit->Add(h_mc5, -1.);
@@ -460,6 +478,8 @@ if (irun==99) {            // irun==99 => pur
 	      h_mc6->SetBinError(i, 0);
 	      h_mc7->SetBinContent(i, 0);
 	      h_mc7->SetBinError(i, 0);
+	      h_mc8->SetBinContent(i, 0);
+	      h_mc8->SetBinError(i, 0);
 	    }
 	  }
 	  fitter = TVirtualFitter::Fitter(0, 1);
@@ -473,6 +493,7 @@ if (irun==99) {            // irun==99 => pur
 	if (doFit==2) {
 	  h_data_fit = (TH1F*)h_data->Clone("h_data_fit");
 	  if (!doBkg) {
+	    h_data_fit->Add(h_mc8, -1.);
 	    h_data_fit->Add(h_mc7, -1.);
 	    h_data_fit->Add(h_mc6, -1.);
 //	    h_data_fit->Add(h_mc5, -1.);
@@ -501,6 +522,7 @@ if (irun==99) {            // irun==99 => pur
 	if (doFit==3) {
 	  h_data_fit = (TH1F*)h_data->Clone("h_data_fit");
 	  if (!doBkg) {
+	    h_data_fit->Add(h_mc8, -1.);
 	    h_data_fit->Add(h_mc7, -1.);
 	    h_data_fit->Add(h_mc6, -1.);
 //	    h_data_fit->Add(h_mc5, -1.);
@@ -544,6 +566,8 @@ if (irun==99) {            // irun==99 => pur
 	      h_mc6->SetBinError(i, 0);
 	      h_mc7->SetBinContent(i, 0);
 	      h_mc7->SetBinError(i, 0);
+	      h_mc8->SetBinContent(i, 0);
+	      h_mc8->SetBinError(i, 0);
 	    }
 	  }
 	  fitter = TVirtualFitter::Fitter(0, 3);
@@ -567,6 +591,7 @@ if (irun==99) {            // irun==99 => pur
 	ht->Reset();
 	if (h_mc1t) ht->Add(h_mc1t);
 	if (!doBkg) {
+	  ht->Add(h_mc8);
 	  ht->Add(h_mc7);
 	  ht->Add(h_mc6);
 //	  ht->Add(h_mc5);
@@ -584,6 +609,7 @@ if (irun==99) {            // irun==99 => pur
 //	  hs->Add(h_mc5);
 	  hs->Add(h_mc6);
 	  hs->Add(h_mc7);
+	  hs->Add(h_mc8);
 	  hs->Add(h_mc4);
 	  hs->Add(h_mc3);
 	  hs->Add(h_mc2);
@@ -655,6 +681,7 @@ if (irun==99) {            // irun==99 => pur
 	  leg->AddEntry(h_mc3,"ZZ","f");
 	  leg->AddEntry(h_mc4,"WZ","f");
 	  leg->AddEntry(h_mc7,"Z+jets", "f");
+	  leg->AddEntry(h_mc8,"t / #bar{t}", "f");
 	  leg->AddEntry(h_mc6,"WW","f");
 //	  leg->AddEntry(h_mc5,"QCD","f");
 	}

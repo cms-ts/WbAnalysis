@@ -54,11 +54,11 @@ void hmerge(string title="W") {
     FileList->Add(TFile::Open((path + "/" + version + "/" + "TToThadWlep_tW.root").c_str()));
 
     crossSections[0] = (Xsec_tbar_t / Ngen_tbar_t);
-    crossSections[1] = (Xsec_tbar_s / Ngen_tbar_s) / crossSections[0];
-    crossSections[2] = (Xsec_t_t / Ngen_t_t) / crossSections[0];
-    crossSections[3] = (Xsec_t_s / Ngen_t_s) / crossSections[0];
-    crossSections[4] = (Xsec_tbar_tw / Ngen_tbar_tw) / crossSections[0];
-    crossSections[5] = (Xsec_t_tw / Ngen_t_tw) / crossSections[0];
+    crossSections[1] = (Xsec_tbar_s / Ngen_tbar_s);
+    crossSections[2] = (Xsec_t_t / Ngen_t_t);
+    crossSections[3] = (Xsec_t_s / Ngen_t_s);
+    crossSections[4] = (Xsec_tbar_tw / Ngen_tbar_tw);
+    crossSections[5] = (Xsec_t_tw / Ngen_t_tw);
 
     crossSections[0] = crossSections[0] / (Xsec_tbar_t / Ngen_tbar_t);
     crossSections[1] = crossSections[1] / (Xsec_tbar_t / Ngen_tbar_t);
