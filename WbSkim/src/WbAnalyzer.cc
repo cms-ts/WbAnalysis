@@ -225,7 +225,7 @@ private:
    ***************************************************/
 
   TH1F*     h_jetmultiplicity;
-  TH1F*     h_jetmultiplicity;
+  TH1F*     h_eventYield;
 
   TH1F*     ecaldriven;
   TProfile* ecaldriven2;
