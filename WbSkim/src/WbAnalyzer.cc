@@ -225,7 +225,7 @@ private:
    ***************************************************/
 
   TH1F*     h_jetmultiplicity;
-  TH1F*     h_eventYield;
+  TH1F*     h_eventYields;
 
   TH1F*     ecaldriven;
   TProfile* ecaldriven2;
@@ -1940,13 +1940,13 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ EVENT YIELDS:
 
-  h_eventYield->Fill(1);
-  if (wenu_event || wenu_event) h_eventYield->Fill(2);
-  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) h_eventYield->Fill(3);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) h_eventYield->Fill(4);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3) h_eventYield->Fill(5);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb>1) h_eventYield->Fill(6);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb==1) h_eventYield->Fill(7);
+  h_eventYields->Fill(1);
+  if (wenu_event || wenu_event) h_eventYields->Fill(2);
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) h_eventYields->Fill(3);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) h_eventYields->Fill(4);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3) h_eventYields->Fill(5);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb>1) h_eventYields->Fill(6);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb==1) h_eventYields->Fill(7);
 
   // ++++++++ MET PLOTS
 
