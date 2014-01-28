@@ -225,6 +225,7 @@ private:
    ***************************************************/
 
   TH1F*     h_jetmultiplicity;
+  TH1F*     h_jetmultiplicity;
 
   TH1F*     ecaldriven;
   TProfile* ecaldriven2;
@@ -839,6 +840,8 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   h_nmult1 =            fs->make < TH1F > ("h_nmult1", "h_nmult1", 8, -0.5, 7.5);
 
   h_jetmultiplicity =   fs->make < TH1F > ("h_jetmultiplicity", "h_jetmultiplicity;N_jets", 8, 0.5, 8.5);
+
+  h_eventYields =   fs->make < TH1F > ("h_eventYields", "h_eventYields;selection", 8, 0.5, 8.5);
 
   ecaldriven =          fs->make < TH1F > ("ecaldriven",        "ecaldriven - pf", 100, -5, 5);
   ecaldriven2 =         fs->make < TProfile > ("ecaldriven2",   "ecaldriven - pf versus pf", 100, -2.5, 2.5, -1, 1);
@@ -1801,7 +1804,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
     jetNew.setP4(jetNew_p4);
 
-    if (fabs(jetNew.eta()) < 2.5 && jetNew.pt() > 30) {
+    if (fabs(jetNew.eta()) < 2.4 && jetNew.pt() > 25) {
 
       ++Nj;
 
@@ -1935,6 +1938,15 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (debug && Nj<1) cout << "Warning: 0 Jets in the event!" << endl;
   if (debug && Nb<1) cout << "Warning: 0 b-Jets in the event!" << endl;
 
+  // ++++++++ EVENT YIELDS:
+
+  h_eventYield->Fill(1);
+  if (wenu_event || wenu_event) h_eventYield->Fill(2);
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) h_eventYield->Fill(3);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) h_eventYield->Fill(4);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3) h_eventYield->Fill(5);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb>1) h_eventYield->Fill(6);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb==1) h_eventYield->Fill(7);
 
   // ++++++++ MET PLOTS
 
@@ -2133,7 +2145,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ Zee PLOTS
 
-  if (lepton_=="electron" && iele1!=-1 && Nj > 0 && vtx_cut && !met_cut) {
+  if (lepton_=="electron" && iele1!=-1 && Nj > 0 && vtx_cut && !met_cut && Nj<3 && Nb<3) {
     w_mass_ee_wide->Fill (diele_mass, MyWeight);
     if (ist) {
       t_mass_ee_wide->Fill (diele_mass, MyWeight);
@@ -2159,7 +2171,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if (ee_event && Nj > 0 && vtx_cut) {
+  if (ee_event && Nj > 0 && vtx_cut && Nj<3 && Nb<3) {
     double delta_phi_ee = fabs(diele_phi - vect_jets[0].phi());
     if (delta_phi_ee > acos (-1)) delta_phi_ee = 2 * acos (-1) - delta_phi_ee;
     h_mass_ee->Fill (diele_mass);
@@ -2332,7 +2344,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ Zmm PLOTS
 
-  if (lepton_=="muon" && imuon1!=-1 && Nj > 0 && vtx_cut && !met_cut) {
+  if (lepton_=="muon" && imuon1!=-1 && Nj > 0 && vtx_cut && !met_cut && Nj<3 && Nb<3) {
     w_mass_mm_wide->Fill (dimuon_mass, MyWeight);
     if (ist) {
       t_mass_mm_wide->Fill (dimuon_mass, MyWeight);
@@ -2358,7 +2370,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if (mm_event && Nj > 0 && vtx_cut) {
+  if (mm_event && Nj > 0 && vtx_cut && Nj<3 && Nb<3) {
     double delta_phi_mm = fabs(dimuon_phi - vect_jets[0].phi());
     if (delta_phi_mm > acos (-1)) delta_phi_mm = 2 * acos (-1) - delta_phi_mm;
     h_mass_mm->Fill (dimuon_mass);
