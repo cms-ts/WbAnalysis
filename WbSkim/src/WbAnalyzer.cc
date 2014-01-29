@@ -1916,18 +1916,20 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (wenu_event || wmnu_event) h_eventYields->Fill(2);
   if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) h_eventYields->Fill(3);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) h_eventYields->Fill(4);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3) h_eventYields->Fill(5);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb>1) h_eventYields->Fill(6);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb==1) h_eventYields->Fill(7);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) h_eventYields->Fill(5);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb>1) h_eventYields->Fill(6);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb==1) h_eventYields->Fill(7);
 
   scalFac_b = btagSF(isMC, vect_jets, 0);
   w_eventYields->Fill(1, MyWeight*scalFac_b);
   if (wenu_event || wmnu_event) w_eventYields->Fill(2, MyWeight*scalFac_b);
   if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) w_eventYields->Fill(3, MyWeight*scalFac_b);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) w_eventYields->Fill(4, MyWeight*scalFac_b);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3) w_eventYields->Fill(5, MyWeight*scalFac_b);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb>1) w_eventYields->Fill(6, MyWeight*scalFac_b);
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj<3 && Nb<3 && Nb==1) w_eventYields->Fill(7, MyWeight*scalFac_b);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) w_eventYields->Fill(5, MyWeight*scalFac_b);
+  w_eventYields->Fill(2, MyWeight*scalFac_b);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb>1) w_eventYields->Fill(6, MyWeight*scalFac_b);
+  w_eventYields->Fill(1, MyWeight*scalFac_b);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb==1) w_eventYields->Fill(7, MyWeight*scalFac_b);
 
   // ++++++++ MET PLOTS
 
@@ -2592,7 +2594,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     w_first_ele_pt_b->Fill (vect_ele[0].pt(), MyWeight*scalFac_b);
   }
 
-  if (wenu_event && mt_cut_wenu && vtx_cut && Nb > 1 && Nj<3 && Nb<3) {
+  if (wenu_event && mt_cut_wenu && vtx_cut && Nb > 1) {
     scalFac_b = btagSF(isMC, vect_jets, 2);
     w_first_ele_pt_bb->Fill (vect_ele[0].pt(), MyWeight*scalFac_b);
   }
@@ -2945,7 +2947,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if ((ee_event || mm_event) && vtx_cut) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
     w_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
     w_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
     if (ist) {
@@ -2962,7 +2964,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if ((ee_event || mm_event) && Nj > 2 && vtx_cut) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && Nj > 2 && vtx_cut) {
     w_third_jet_pt->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
     w_third_jet_eta->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
     if (ist) {
@@ -3011,7 +3013,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && Nb > 1 && vtx_cut) {
     scalFac_b = btagSF(isMC, vect_jets, 2);
     w_second_jet_pt_b->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
     w_second_jet_eta_b->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
