@@ -141,13 +141,12 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
 
    for (std::vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
 
-     double discrCSV = jet->bDiscriminator("combinedSecondaryVertexBJetTags");
-
-     //if (discrCSV > 0.244) return true; // CSVL
-
-     if (discrCSV > 0.679) return true; // CSVM
-
-     //if (discrCSV > 0.898) return true; // CSVT
+     if (fabs(jet->eta()<2.5) {
+       double discrCSV = jet->bDiscriminator("combinedSecondaryVertexBJetTags");
+       //if (discrCSV > 0.244) return true; // CSVL
+       if (discrCSV > 0.679) return true; // CSVM
+       //if (discrCSV > 0.898) return true; // CSVT
+     }
 
    }
 
