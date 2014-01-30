@@ -2760,7 +2760,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     scalFac_b = btagSF(isMC, vect_jets, 0);
     w_first_muon_pt->Fill (vect_muon[0].pt(), MyWeight*scalFac_b);
     w_first_muon_eta->Fill (vect_muon[0].eta(), MyWeight*scalFac_b);
-    w_first_muon_iso->Fill ((vect_muon[0].chargedHadronIso + max(vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso()),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
+    w_first_muon_iso->Fill ((vect_muon[0].chargedHadronIso + max(vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso(),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
     if (mm_event) { // temporary !!!
       w_second_muon_pt->Fill (vect_muon[1].pt(), MyWeight*scalFac_b);
       w_second_muon_eta->Fill (vect_muon[1].eta(), MyWeight*scalFac_b);
