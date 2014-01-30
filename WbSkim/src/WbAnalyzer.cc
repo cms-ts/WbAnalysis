@@ -2710,7 +2710,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     scalFac_b = btagSF(isMC, vect_jets, 0);
     w_first_ele_pt->Fill (vect_ele[0].pt(), MyWeight*scalFac_b);
     w_first_ele_eta->Fill (vect_ele[0].eta(), MyWeight*scalFac_b);
-    w_first_ele_iso->Fill (vect_ele[0].chargedHadronIso + max((vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso()),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
+    w_first_ele_iso->Fill ((vect_ele[0].chargedHadronIso + max(vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso(),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
     if (ee_event) { // temporary !!!
       w_second_ele_pt->Fill (vect_ele[1].pt(), MyWeight*scalFac_b);
       w_second_ele_eta->Fill (vect_ele[1].eta(), MyWeight*scalFac_b);
@@ -2718,7 +2718,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (ist) {
       t_first_ele_pt->Fill (vect_ele[0].pt(), MyWeight*scalFac_b);
       t_first_ele_eta->Fill (vect_ele[0].eta(), MyWeight*scalFac_b);
-      t_first_ele_iso->Fill (vect_ele[0].chargedHadronIso + max((vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso()),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
+      t_first_ele_iso->Fill ((vect_ele[0].chargedHadronIso + max(vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso(),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
       if (ee_event) { // temporary !!!
         t_second_ele_pt->Fill (vect_ele[1].pt(), MyWeight*scalFac_b);
         t_second_ele_eta->Fill (vect_ele[1].eta(), MyWeight*scalFac_b);
@@ -2727,7 +2727,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_first_ele_pt->Fill (vect_ele[0].pt(), MyWeight*scalFac_b);
       b_first_ele_eta->Fill (vect_ele[0].eta(), MyWeight*scalFac_b);
-      b_first_ele_iso->Fill (vect_ele[0].chargedHadronIso + max((vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso()),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
+      b_first_ele_iso->Fill ((vect_ele[0].chargedHadronIso + max(vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso(),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
       if (ee_event) { // temporary !!!
         b_second_ele_pt->Fill (vect_ele[1].pt(), MyWeight*scalFac_b);
         b_second_ele_eta->Fill (vect_ele[1].eta(), MyWeight*scalFac_b);
@@ -2736,7 +2736,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_first_ele_pt->Fill (vect_ele[0].pt(), MyWeight*scalFac_b);
       c_first_ele_eta->Fill (vect_ele[0].eta(), MyWeight*scalFac_b);
-      c_first_ele_iso->Fill (vect_ele[0].chargedHadronIso + max((vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso()),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
+      c_first_ele_iso->Fill ((vect_ele[0].chargedHadronIso + max(vect_ele[0].neutralHadronIso() + vect_ele[0].photonIso() - 0.5*vect_ele[0].puChargedHadronIso(),0.0))/vect_ele[0].et(), MyWeight*scalFac_b);
       if (ee_event) { // temporary !!!
         c_second_ele_pt->Fill (vect_ele[1].pt(), MyWeight*scalFac_b);
         c_second_ele_eta->Fill (vect_ele[1].eta(), MyWeight*scalFac_b);
@@ -2760,7 +2760,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     scalFac_b = btagSF(isMC, vect_jets, 0);
     w_first_muon_pt->Fill (vect_muon[0].pt(), MyWeight*scalFac_b);
     w_first_muon_eta->Fill (vect_muon[0].eta(), MyWeight*scalFac_b);
-    w_first_muon_iso->Fill (vect_muon[0].chargedHadronIso + max((vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso()),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
+    w_first_muon_iso->Fill ((vect_muon[0].chargedHadronIso + max(vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso()),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
     if (mm_event) { // temporary !!!
       w_second_muon_pt->Fill (vect_muon[1].pt(), MyWeight*scalFac_b);
       w_second_muon_eta->Fill (vect_muon[1].eta(), MyWeight*scalFac_b);
@@ -2768,7 +2768,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (ist) {
       t_first_muon_pt->Fill (vect_muon[0].pt(), MyWeight*scalFac_b);
       t_first_muon_eta->Fill (vect_muon[0].eta(), MyWeight*scalFac_b);
-      t_first_muon_iso->Fill (vect_muon[0].chargedHadronIso + max((vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso()),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
+      t_first_muon_iso->Fill ((vect_muon[0].chargedHadronIso + max(vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso(),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
       if (mm_event) { // temporary !!!
         t_second_muon_pt->Fill (vect_muon[1].pt(), MyWeight*scalFac_b);
         t_second_muon_eta->Fill (vect_muon[1].eta(), MyWeight*scalFac_b);
@@ -2777,7 +2777,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_first_muon_pt->Fill (vect_muon[0].pt(), MyWeight*scalFac_b);
       b_first_muon_eta->Fill (vect_muon[0].eta(), MyWeight*scalFac_b);
-      b_first_muon_iso->Fill (vect_muon[0].chargedHadronIso + max((vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso()),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
+      b_first_muon_iso->Fill ((vect_muon[0].chargedHadronIso + max(vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso(),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
       if (mm_event) { // temporary !!!
         b_second_muon_pt->Fill (vect_muon[1].pt(), MyWeight*scalFac_b);
         b_second_muon_eta->Fill (vect_muon[1].eta(), MyWeight*scalFac_b);
@@ -2786,7 +2786,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_first_muon_pt->Fill (vect_muon[0].pt(), MyWeight*scalFac_b);
       c_first_muon_eta->Fill (vect_muon[0].eta(), MyWeight*scalFac_b);
-      c_first_muon_iso->Fill (vect_muon[0].chargedHadronIso + max((vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso()),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
+      c_first_muon_iso->Fill ((vect_muon[0].chargedHadronIso + max(vect_muon[0].neutralHadronIso() + vect_muon[0].photonIso() - 0.5*vect_muon[0].puChargedHadronIso(),0.0))/vect_muon[0].pt(), MyWeight*scalFac_b);
       if (mm_event) { // temporary !!!
         c_second_muon_pt->Fill (vect_muon[1].pt(), MyWeight*scalFac_b);
         c_second_muon_eta->Fill (vect_muon[1].eta(), MyWeight*scalFac_b);
