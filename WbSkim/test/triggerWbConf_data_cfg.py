@@ -135,7 +135,7 @@ process.matchedMuons = selectedPatMuons.clone(
 		        'innerTrack.hitPattern.numberOfValidPixelHits > 0 &'
 		        'abs(dB) < 0.2 &'
 		        'numberOfMatchedStations > 1 &'
-		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt < 0.2 &'
+		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt < 0.12 &'
 		        'triggerObjectMatches.size > 0'
 		)
 )
@@ -320,7 +320,7 @@ getattr(process,"patElectrons"+postfix).isolationValues = cms.PSet(
 getattr(process,"pfIsolatedElectrons"+postfix).doDeltaBetaCorrection = True
 getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 0.15
 getattr(process,"pfIsolatedMuons"+postfix).doDeltaBetaCorrection     = True
-getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 0.2
+getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 0.12
 
 getattr(process,"patJets"+postfix).addTagInfos = True
 
