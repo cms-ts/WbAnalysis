@@ -1220,15 +1220,6 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_single_pt_Z_mm_b =  fs->make < TH1F > ("c_single_pt_Z_mm_b",       "c_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
   t_single_pt_Z_mm_b =  fs->make < TH1F > ("t_single_pt_Z_mm_b",       "t_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
 
-  w_single_pt_Z_ee_bb =  fs->make < TH1F > ("w_single_pt_Z_ee_bb",       "w_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
-  b_single_pt_Z_ee_bb =  fs->make < TH1F > ("b_single_pt_Z_ee_bb",       "b_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
-  c_single_pt_Z_ee_bb =  fs->make < TH1F > ("c_single_pt_Z_ee_bb",       "c_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
-  t_single_pt_Z_ee_bb =  fs->make < TH1F > ("t_single_pt_Z_ee_bb",       "t_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
-  w_single_pt_Z_mm_bb =  fs->make < TH1F > ("w_single_pt_Z_mm_bb",       "w_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
-  b_single_pt_Z_mm_bb =  fs->make < TH1F > ("b_single_pt_Z_mm_bb",       "b_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
-  c_single_pt_Z_mm_bb =  fs->make < TH1F > ("c_single_pt_Z_mm_bb",       "c_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
-  t_single_pt_Z_mm_bb =  fs->make < TH1F > ("t_single_pt_Z_mm_bb",       "t_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
-
   //  w_single_pt_Z_em_b =  fs->make < TH1F > ("w_single_pt_Z_em_b",       "w_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
   //  b_single_pt_Z_em_b =  fs->make < TH1F > ("b_single_pt_Z_em_b",       "b_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
   //  c_single_pt_Z_em_b =  fs->make < TH1F > ("c_single_pt_Z_em_b",       "c_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
@@ -2326,39 +2317,23 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       double delta_phi_ee_b = fabs(diele_phi - vect_bjets[0].phi());
       if (delta_phi_ee_b > acos (-1)) delta_phi_ee_b = 2 * acos (-1) - delta_phi_ee_b;
       w_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
-      if (Nj == 1) {
-        w_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
-        w_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
-      }
       if (ist) {
         t_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
         t_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
         t_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
         t_mass_Zj_ee_bb->Fill (zb_ee_mass, MyWeight*scalFac_b);
-	if (Nj == 1) {
-          t_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
-	  t_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
-	}
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
         b_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
         b_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
         b_mass_Zj_ee_bb->Fill (zb_ee_mass, MyWeight*scalFac_b);
-	if (Nj == 1) {
-          b_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
-	  b_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
-	}
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
         c_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
         c_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
         c_mass_Zj_ee_bb->Fill (zb_ee_mass, MyWeight*scalFac_b);
-        if (Nj == 1) {
-          c_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
-	  c_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
-        }
       }
     }
   }
@@ -2572,29 +2547,17 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       double delta_phi_mm_b = fabs(dimuon_phi - vect_bjets[0].phi());
       if (delta_phi_mm_b > acos (-1)) delta_phi_mm_b = 2 * acos (-1) - delta_phi_mm_b;
       w_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
-      if (Nj == 1) {
-        w_single_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
-        w_single_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
-      }
       if (ist) {
         t_mass_mm_bb->Fill (dimuon_mass, MyWeight*scalFac_b);
         t_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
         t_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
         t_mass_Zj_mm_bb->Fill (zb_mm_mass, MyWeight*scalFac_b);
-        if (Nj == 1) {
-          t_single_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
-          t_single_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
-	}
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mass_mm_bb->Fill (dimuon_mass, MyWeight*scalFac_b);
         b_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
         b_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
         b_mass_Zj_mm_bb->Fill (zb_mm_mass, MyWeight*scalFac_b);
-        if (Nj == 1) {
-          b_single_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
-          b_single_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
-	}
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mass_mm_bb->Fill (dimuon_mass, MyWeight*scalFac_b);
