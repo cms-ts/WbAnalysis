@@ -2308,7 +2308,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       }
     }
     if (Nb > 1) {
-      scalFac_bb = btagSF(isMC, vect_jets, 2);
+      scalFac_b = btagSF(isMC, vect_jets, 2);
       w_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
       w_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
       math::XYZTLorentzVector zb_ee_p = vect_jets[0].p4() + z_ee;
