@@ -492,6 +492,16 @@ private:
   TH1F*     c_mass_mm_b;
   TH1F*     t_mass_mm_b;
 
+  TH1F*     w_mass_ee_bb;	// at least one b jet in the event
+  TH1F*     b_mass_ee_bb;
+  TH1F*     c_mass_ee_bb;
+  TH1F*     t_mass_ee_bb;
+
+  TH1F*     w_mass_mm_bb;
+  TH1F*     b_mass_mm_bb;
+  TH1F*     c_mass_mm_bb;
+  TH1F*     t_mass_mm_bb;
+
   //  TH1F*     w_mass_em_b;
   //  TH1F*     b_mass_em_b;
   //  TH1F*     c_mass_em_b;
@@ -552,6 +562,21 @@ private:
   TH1F*     c_mass_Zj_em_b;
   TH1F*     t_mass_Zj_em_b;
 
+  TH1F*     w_mass_Zj_ee_bb;
+  TH1F*     b_mass_Zj_ee_bb;
+  TH1F*     c_mass_Zj_ee_bb;
+  TH1F*     t_mass_Zj_ee_bb;
+  
+  TH1F*     w_mass_Zj_mm_bb;
+  TH1F*     b_mass_Zj_mm_bb;
+  TH1F*     c_mass_Zj_mm_bb;
+  TH1F*     t_mass_Zj_mm_bb;
+
+//  TH1F*     w_mass_Zj_em_bb;
+//  TH1F*     b_mass_Zj_em_bb;
+//  TH1F*     c_mass_Zj_em_bb;
+//  TH1F*     t_mass_Zj_em_bb;
+
   TH1F*     w_pt_Z_ee_b;
   TH1F*     b_pt_Z_ee_b;
   TH1F*     c_pt_Z_ee_b;
@@ -562,10 +587,25 @@ private:
   TH1F*     c_pt_Z_mm_b;
   TH1F*     t_pt_Z_mm_b;
 
-  TH1F*     w_pt_Z_em_b;
-  TH1F*     b_pt_Z_em_b;
-  TH1F*     c_pt_Z_em_b;
-  TH1F*     t_pt_Z_em_b;
+//  TH1F*     w_pt_Z_em_b;
+//  TH1F*     b_pt_Z_em_b;
+//  TH1F*     c_pt_Z_em_b;
+//  TH1F*     t_pt_Z_em_b;
+
+  TH1F*     w_pt_Z_ee_bb;
+  TH1F*     b_pt_Z_ee_bb;
+  TH1F*     c_pt_Z_ee_bb;
+  TH1F*     t_pt_Z_ee_bb;
+  
+  TH1F*     w_pt_Z_mm_bb;
+  TH1F*     b_pt_Z_mm_bb;
+  TH1F*     c_pt_Z_mm_bb;
+  TH1F*     t_pt_Z_mm_bb;
+
+//  TH1F*     w_pt_Z_em_bb;
+//  TH1F*     b_pt_Z_em_bb;
+//  TH1F*     c_pt_Z_em_bb;
+//  TH1F*     t_pt_Z_em_bb;
 
   TH1F*     w_delta_ee;
   TH1F*     b_delta_ee;
@@ -575,6 +615,10 @@ private:
   TH1F*     b_delta_ee_b;
   TH1F*     c_delta_ee_b;
   TH1F*     t_delta_ee_b;
+  TH1F*     w_delta_ee_bb;
+  TH1F*     b_delta_ee_bb;
+  TH1F*     c_delta_ee_bb;
+  TH1F*     t_delta_ee_bb;
 
   TH1F*     w_delta_mm;
   TH1F*     b_delta_mm;
@@ -584,12 +628,10 @@ private:
   TH1F*     b_delta_mm_b;
   TH1F*     c_delta_mm_b;
   TH1F*     t_delta_mm_b;
-
-  //  TH1F*     w_delta_em;
-  //  TH1F*     w_delta_em_b;
-  //  TH1F*     b_delta_em_b;
-  //  TH1F*     c_delta_em_b;
-  //  TH1F*     t_delta_em_b;
+  TH1F*     w_delta_mm_bb;
+  TH1F*     b_delta_mm_bb;
+  TH1F*     c_delta_mm_bb;
+  TH1F*     t_delta_mm_bb;
 
   TH1F*     w_delta_wenuMet;
   TH1F*     b_delta_wenuMet;
@@ -1028,6 +1070,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_mass_Zj_ee_b =      fs->make < TH1F > ("b_mass_Zj_ee_b",    "b_mass_Zj_ee_b", 60, 100., 330.);
   c_mass_Zj_ee_b =      fs->make < TH1F > ("c_mass_Zj_ee_b",    "c_mass_Zj_ee_b", 60, 100., 330.);
   t_mass_Zj_ee_b =      fs->make < TH1F > ("t_mass_Zj_ee_b",    "t_mass_Zj_ee_b", 60, 100., 330.);
+
+  w_mass_Zj_ee_bb =      fs->make < TH1F > ("w_mass_Zj_ee_bb",    "w_mass_Zj_ee_bb", 60, 100., 330.);
+  b_mass_Zj_ee_bb =      fs->make < TH1F > ("b_mass_Zj_ee_bb",    "b_mass_Zj_ee_bb", 60, 100., 330.);
+  c_mass_Zj_ee_bb =      fs->make < TH1F > ("c_mass_Zj_ee_bb",    "c_mass_Zj_ee_bb", 60, 100., 330.);
+  t_mass_Zj_ee_bb =      fs->make < TH1F > ("t_mass_Zj_ee_bb",    "t_mass_Zj_ee_bb", 60, 100., 330.);
   
   w_mass_Zj_mm =        fs->make < TH1F > ("w_mass_Zj_mm",      "w_mass_Zj_mm", 60, 100., 330.);
   b_mass_Zj_mm =        fs->make < TH1F > ("b_mass_Zj_mm",      "b_mass_Zj_mm", 60, 100., 330.);
@@ -1038,6 +1085,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_mass_Zj_mm_b =      fs->make < TH1F > ("b_mass_Zj_mm_b",    "b_mass_Zj_mm_b", 60, 100., 330.);
   c_mass_Zj_mm_b =      fs->make < TH1F > ("c_mass_Zj_mm_b",    "c_mass_Zj_mm_b", 60, 100., 330.);
   t_mass_Zj_mm_b =      fs->make < TH1F > ("t_mass_Zj_mm_b",    "t_mass_Zj_mm_b", 60, 100., 330.);
+
+  w_mass_Zj_mm_bb =      fs->make < TH1F > ("w_mass_Zj_mm_bb",    "w_mass_Zj_mm_bb", 60, 100., 330.);
+  b_mass_Zj_mm_bb =      fs->make < TH1F > ("b_mass_Zj_mm_bb",    "b_mass_Zj_mm_bb", 60, 100., 330.);
+  c_mass_Zj_mm_bb =      fs->make < TH1F > ("c_mass_Zj_mm_bb",    "c_mass_Zj_mm_bb", 60, 100., 330.);
+  t_mass_Zj_mm_bb =      fs->make < TH1F > ("t_mass_Zj_mm_bb",    "t_mass_Zj_mm_bb", 60, 100., 330.);
 
   //  w_mass_Zj_em =        fs->make < TH1F > ("w_mass_Zj_em",      "w_mass_Zj_em", 60, 100., 330.);
   //  b_mass_Zj_em =        fs->make < TH1F > ("b_mass_Zj_em",      "b_mass_Zj_em", 60, 100., 330.);
@@ -1104,6 +1156,15 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mass_mm_b =         fs->make < TH1F > ("c_mass_mm_b",       "c_mass_mm_b;Mass [GeV]", 80, 71., 111.);
   t_mass_mm_b =         fs->make < TH1F > ("t_mass_mm_b",       "t_mass_mm_b;Mass [GeV]", 80, 71., 111.);
 
+  w_mass_ee_bb =         fs->make < TH1F > ("w_mass_ee_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  b_mass_ee_bb =         fs->make < TH1F > ("b_mass_ee_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  c_mass_ee_bb =         fs->make < TH1F > ("c_mass_ee_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  t_mass_ee_bb =         fs->make < TH1F > ("t_mass_ee_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  w_mass_mm_bb =         fs->make < TH1F > ("w_mass_mm_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  b_mass_mm_bb =         fs->make < TH1F > ("b_mass_mm_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  c_mass_mm_bb =         fs->make < TH1F > ("c_mass_mm_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  t_mass_mm_bb =         fs->make < TH1F > ("t_mass_mm_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+
   //  w_mass_em_b =         fs->make < TH1F > ("w_mass_em_b",       "w_mass_em_b;Mass [GeV]", 40, 0., 160.);
   //  b_mass_em_b =         fs->make < TH1F > ("b_mass_em_b",       "b_mass_em_b;Mass [GeV]", 40, 0., 160.);
   //  c_mass_em_b =         fs->make < TH1F > ("c_mass_em_b",       "c_mass_em_b;Mass [GeV]", 40, 0., 160.);
@@ -1136,6 +1197,15 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_pt_Z_mm_b =         fs->make < TH1F > ("c_pt_Z_mm_b",       "c_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
   t_pt_Z_mm_b =         fs->make < TH1F > ("t_pt_Z_mm_b",       "t_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
 
+  w_pt_Z_ee_bb =         fs->make < TH1F > ("w_pt_Z_ee_bb",       "w_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  b_pt_Z_ee_bb =         fs->make < TH1F > ("b_pt_Z_ee_bb",       "b_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  c_pt_Z_ee_bb =         fs->make < TH1F > ("c_pt_Z_ee_bb",       "c_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  t_pt_Z_ee_bb =         fs->make < TH1F > ("t_pt_Z_ee_bb",       "t_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  w_pt_Z_mm_bb =         fs->make < TH1F > ("w_pt_Z_mm_bb",       "w_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+  b_pt_Z_mm_bb =         fs->make < TH1F > ("b_pt_Z_mm_bb",       "b_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+  c_pt_Z_mm_bb =         fs->make < TH1F > ("c_pt_Z_mm_bb",       "c_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+  t_pt_Z_mm_bb =         fs->make < TH1F > ("t_pt_Z_mm_bb",       "t_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+
   //  w_pt_Z_em_b =         fs->make < TH1F > ("w_pt_Z_em_b",       "w_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
   //  b_pt_Z_em_b =         fs->make < TH1F > ("b_pt_Z_em_b",       "b_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
   //  c_pt_Z_em_b =         fs->make < TH1F > ("c_pt_Z_em_b",       "c_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
@@ -1150,6 +1220,15 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_single_pt_Z_mm_b =  fs->make < TH1F > ("c_single_pt_Z_mm_b",       "c_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
   t_single_pt_Z_mm_b =  fs->make < TH1F > ("t_single_pt_Z_mm_b",       "t_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
 
+  w_single_pt_Z_ee_bb =  fs->make < TH1F > ("w_single_pt_Z_ee_bb",       "w_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  b_single_pt_Z_ee_bb =  fs->make < TH1F > ("b_single_pt_Z_ee_bb",       "b_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  c_single_pt_Z_ee_bb =  fs->make < TH1F > ("c_single_pt_Z_ee_bb",       "c_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  t_single_pt_Z_ee_bb =  fs->make < TH1F > ("t_single_pt_Z_ee_bb",       "t_single_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+  w_single_pt_Z_mm_bb =  fs->make < TH1F > ("w_single_pt_Z_mm_bb",       "w_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+  b_single_pt_Z_mm_bb =  fs->make < TH1F > ("b_single_pt_Z_mm_bb",       "b_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+  c_single_pt_Z_mm_bb =  fs->make < TH1F > ("c_single_pt_Z_mm_bb",       "c_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+  t_single_pt_Z_mm_bb =  fs->make < TH1F > ("t_single_pt_Z_mm_bb",       "t_single_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
+
   //  w_single_pt_Z_em_b =  fs->make < TH1F > ("w_single_pt_Z_em_b",       "w_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
   //  b_single_pt_Z_em_b =  fs->make < TH1F > ("b_single_pt_Z_em_b",       "b_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
   //  c_single_pt_Z_em_b =  fs->make < TH1F > ("c_single_pt_Z_em_b",       "c_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
@@ -1163,6 +1242,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_delta_ee_b =        fs->make < TH1F > ("b_delta_phi_ee_b",  "b_delta_phi_ee_b", 12, 0, TMath::Pi ());
   c_delta_ee_b =        fs->make < TH1F > ("c_delta_phi_ee_b",  "c_delta_phi_ee_b", 12, 0, TMath::Pi ());
   t_delta_ee_b =        fs->make < TH1F > ("t_delta_phi_ee_b",  "t_delta_phi_ee_b", 12, 0, TMath::Pi ());
+  w_delta_ee_bb =        fs->make < TH1F > ("w_delta_phi_ee_bb",  "w_delta_phi_ee_bb", 12, 0, TMath::Pi ());  
+  b_delta_ee_bb =        fs->make < TH1F > ("b_delta_phi_ee_bb",  "b_delta_phi_ee_bb", 12, 0, TMath::Pi ());
+  c_delta_ee_bb =        fs->make < TH1F > ("c_delta_phi_ee_bb",  "c_delta_phi_ee_bb", 12, 0, TMath::Pi ());
+  t_delta_ee_bb =        fs->make < TH1F > ("t_delta_phi_ee_bb",  "t_delta_phi_ee_bb", 12, 0, TMath::Pi ());
   w_delta_mm =          fs->make < TH1F > ("w_delta_phi_mm",    "w_delta_phi_mm",   12, 0, TMath::Pi ());
   b_delta_mm =          fs->make < TH1F > ("b_delta_phi_mm",    "b_delta_phi_mm",   12, 0, TMath::Pi ());
   c_delta_mm =          fs->make < TH1F > ("c_delta_phi_mm",    "c_delta_phi_mm",   12, 0, TMath::Pi ());
@@ -1171,6 +1254,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_delta_mm_b =        fs->make < TH1F > ("b_delta_phi_mm_b",  "b_delta_phi_mm_b", 12, 0, TMath::Pi ());
   c_delta_mm_b =        fs->make < TH1F > ("c_delta_phi_mm_b",  "c_delta_phi_mm_b", 12, 0, TMath::Pi ());
   t_delta_mm_b =        fs->make < TH1F > ("t_delta_phi_mm_b",  "t_delta_phi_mm_b", 12, 0, TMath::Pi ());
+  w_delta_mm_bb =        fs->make < TH1F > ("w_delta_phi_mm_bb",  "w_delta_phi_mm_bb", 12, 0, TMath::Pi ());
+  b_delta_mm_bb =        fs->make < TH1F > ("b_delta_phi_mm_bb",  "b_delta_phi_mm_bb", 12, 0, TMath::Pi ());
+  c_delta_mm_bb =        fs->make < TH1F > ("c_delta_phi_mm_bb",  "c_delta_phi_mm_bb", 12, 0, TMath::Pi ());
+  t_delta_mm_bb =        fs->make < TH1F > ("t_delta_phi_mm_bb",  "t_delta_phi_mm_bb", 12, 0, TMath::Pi ());
 
   //  w_delta_em =          fs->make < TH1F > ("w_delta_phi_em",    "w_delta_phi_em", 12, 0, TMath::Pi ());
   //  w_delta_em_b =        fs->make < TH1F > ("w_delta_phi_em_b",  "w_delta_phi_em_b", 12, 0, TMath::Pi ());
@@ -2229,6 +2316,51 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
         }
       }
     }
+    if (Nb > 1) {
+      scalFac_bb = btagSF(isMC, vect_jets, 2);
+      w_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
+      w_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+      math::XYZTLorentzVector zb_ee_p = vect_jets[0].p4() + z_ee;
+      double zb_ee_mass = zb_ee_p.mass();
+      w_mass_Zj_ee_bb->Fill (zb_ee_mass, MyWeight*scalFac_b);
+      double delta_phi_ee_b = fabs(diele_phi - vect_bjets[0].phi());
+      if (delta_phi_ee_b > acos (-1)) delta_phi_ee_b = 2 * acos (-1) - delta_phi_ee_b;
+      w_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+      if (Nj == 1) {
+        w_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+        w_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+      }
+      if (ist) {
+        t_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
+        t_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+        t_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+        t_mass_Zj_ee_bb->Fill (zb_ee_mass, MyWeight*scalFac_b);
+	if (Nj == 1) {
+          t_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+	  t_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+	}
+      }
+      if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
+        b_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
+        b_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+        b_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+        b_mass_Zj_ee_bb->Fill (zb_ee_mass, MyWeight*scalFac_b);
+	if (Nj == 1) {
+          b_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+	  b_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+	}
+      }
+      if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
+        c_mass_ee_bb->Fill (diele_mass, MyWeight*scalFac_b);
+        c_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+        c_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+        c_mass_Zj_ee_bb->Fill (zb_ee_mass, MyWeight*scalFac_b);
+        if (Nj == 1) {
+          c_single_pt_Z_ee_bb->Fill (diele_pt, MyWeight*scalFac_b);
+	  c_single_delta_ee_bb->Fill (delta_phi_ee_b, MyWeight*scalFac_b);
+        }
+      }
+    }
   }
 
 
@@ -2428,6 +2560,47 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
           c_single_pt_Z_mm_b->Fill (dimuon_pt, MyWeight*scalFac_b);
           c_single_delta_mm_b->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
         }
+      }
+    }
+    if (Nb > 1) {
+      scalFac_b = btagSF(isMC, vect_jets, 2);
+      w_mass_mm_bb->Fill (dimuon_mass, MyWeight*scalFac_b);
+      w_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
+      math::XYZTLorentzVector zb_mm_p = vect_jets[0].p4() + z_mm;
+      double zb_mm_mass = zb_mm_p.mass();
+      w_mass_Zj_mm_bb->Fill (zb_mm_mass, MyWeight*scalFac_b);
+      double delta_phi_mm_b = fabs(dimuon_phi - vect_bjets[0].phi());
+      if (delta_phi_mm_b > acos (-1)) delta_phi_mm_b = 2 * acos (-1) - delta_phi_mm_b;
+      w_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
+      if (Nj == 1) {
+        w_single_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
+        w_single_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
+      }
+      if (ist) {
+        t_mass_mm_bb->Fill (dimuon_mass, MyWeight*scalFac_b);
+        t_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
+        t_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
+        t_mass_Zj_mm_bb->Fill (zb_mm_mass, MyWeight*scalFac_b);
+        if (Nj == 1) {
+          t_single_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
+          t_single_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
+	}
+      }
+      if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
+        b_mass_mm_bb->Fill (dimuon_mass, MyWeight*scalFac_b);
+        b_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
+        b_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
+        b_mass_Zj_mm_bb->Fill (zb_mm_mass, MyWeight*scalFac_b);
+        if (Nj == 1) {
+          b_single_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
+          b_single_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
+	}
+      }
+      if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
+        c_mass_mm_bb->Fill (dimuon_mass, MyWeight*scalFac_b);
+        c_pt_Z_mm_bb->Fill (dimuon_pt, MyWeight*scalFac_b);
+        c_delta_mm_bb->Fill (delta_phi_mm_b, MyWeight*scalFac_b);
+        c_mass_Zj_mm_bb->Fill (zb_mm_mass, MyWeight*scalFac_b);
       }
     }
   }
