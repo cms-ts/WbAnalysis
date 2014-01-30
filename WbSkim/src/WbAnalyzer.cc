@@ -1686,7 +1686,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
 
     if (muon->pt()>25 && fabs(muon->eta())<2.1 &&
-	(muon->pfIsolationR04().sumChargedHadronPt() + max(muon->pfIsolationR04().sumNeutralHadronEt() + muon->pfIsolationR04().sumPhotonEt() - 0.5*muon->pfIsolationR04().sumPUPt(),0.0))/muon->pt()<0.12
+	(muon->pfIsolationR04().sumChargedHadronPt() + max(muon->pfIsolationR04().sumNeutralHadronEt() + muon->pfIsolationR04().sumPhotonEt() - 0.5*muon->pfIsolationR04().sumPUPt(),0.0))/muon->pt()<0.12) {
 	//	(muon->chargedHadronIso()+fmax(muon->photonIso()+muon->neutralHadronIso(),0.0))/muon->pt()<0.12) { // temporary Iso cut, to be done in .py
       vect_muon.push_back (*muon);
     }
