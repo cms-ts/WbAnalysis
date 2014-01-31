@@ -1832,6 +1832,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // ++++++++ JETS
 
   vector < pat::Jet > vect_jets;
+  vector < pat::Jet > vect_jets2;
   vector < pat::Jet > vect_bjets;
 
   for (vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
@@ -1900,6 +1901,13 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	//cout << Nb << endl;
         vect_bjets.push_back (jetNew);
       }
+    }
+
+    // Fill vector with forward jets (most likely from single-top):
+    if (fabs(jetNew.eta()) > 2.4 && fabs(jetNew.eta()) < 5.0 && jetNew.pt() > 25) {
+
+      vect_jets2.push_back (jetNew);
+
     }
   }
 
@@ -1999,6 +2007,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   wenu_event = wenu_event && Nb>0 && Nj>1;
   wmnu_event = wmnu_event && Nb>0 && Nj>1;
+
+  wenu_event = wenu_event && !vect_jets2.size()>0;
+  wmnu_event = wmnu_event && !vect_jets2.size()>0;
 
   if (debug && Nj<1) cout << "Warning: 0 Jets in the event!" << endl;
   if (debug && Nb<1) cout << "Warning: 0 b-Jets in the event!" << endl;
