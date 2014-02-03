@@ -21,6 +21,12 @@ process.demoEle = cms.EDProducer('WbAnalyzer',
 	lepton  = cms.untracked.string("electron")
 )
 
+process.demoEleQCD = cms.EDProducer('WbAnalyzer',
+	pileupMC  = cms.untracked.string("S10"),
+	pileupDT  = cms.untracked.string("ee"),
+	lepton  = cms.untracked.string("electronQCD")
+)
+
 process.demoElePum = cms.EDProducer('WbAnalyzer',
 	pileupMC  = cms.untracked.string("S10"),
 	pileupDT  = cms.untracked.string("ee_pum"),
@@ -51,6 +57,12 @@ process.demoMuo = cms.EDProducer('WbAnalyzer',
 	pileupMC = cms.untracked.string("S10"),
 	pileupDT = cms.untracked.string("mm"),
 	lepton  = cms.untracked.string("muon")
+)
+
+process.demoMuoQCD = cms.EDProducer('WbAnalyzer',
+	pileupMC = cms.untracked.string("S10"),
+	pileupDT = cms.untracked.string("mm"),
+	lepton  = cms.untracked.string("muonQCD")
 )
 
 process.demoMuoPum = cms.EDProducer('WbAnalyzer',
