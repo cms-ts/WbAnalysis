@@ -5,7 +5,7 @@
 #QUEUE=normal
 QUEUE=normal_io
 
-VERSION=v01
+VERSION=v02
 CUT=0
 
 DATADIR=/gpfs/grid/srm/cms/store/user/schizzi/grid
