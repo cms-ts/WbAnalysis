@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v01
+VERSION=v02
 
 if [ $# -eq 0 ]; then
   echo 'Usage: merge.sh jobdir [version]'
@@ -22,7 +22,7 @@ fi
 
 cd $CMS_PATH/slc5_amd64_gcc472/cms/cmssw/CMSSW_6_1_1
 eval `scramv1 runtime -sh`
-cd $WORKDIR
+cd -
 
 opts="-T -v 0"
 
@@ -37,6 +37,12 @@ elif [ "$JOBDIR" == "data-all" ]; then
   echo 'Preparing '$WORKDIR/$VERSION/SingleMu_2012_merge.root
   rm -f $WORKDIR/$VERSION/SingleMu_2012_merge.root
   hadd $opts $WORKDIR/$VERSION/SingleMu_2012_merge.root $WORKDIR/$VERSION/SingleMu*_2012*.root
+elif [ "$JOBDIR" == "T-all" ]; then
+  rm -f $WORKDIR/$VERSION/T_merge.root
+  root -b -q hmerge.C\(\"$WORKDIR\",\"T\"\)
+elif [ "$JOBDIR" == "W-all" ]; then
+  rm -f $WORKDIR/$VERSION/W_merge.root
+  root -b -q hmerge.C\(\"$WORKDIR\",\"W\"\)
 else
   echo 'ERROR: jobdir "'$JOBDIR'" does not exist !'
 fi

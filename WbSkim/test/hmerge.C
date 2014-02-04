@@ -1,22 +1,12 @@
 
-#include <string.h>
-#include "TChain.h"
-#include "TFile.h"
-#include "TH1.h"
-#include "TTree.h"
-#include "TKey.h"
-#include "Riostream.h"
-
-#include "LumiInfo_v01.h"
+#include "LumiInfo_v02.h"
 
 TList *FileList;
 TFile *Target;
 
 void hmerge_(TDirectory *target, TList *sourcelist, double crossArray[]);
 
-string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
-
-void hmerge(string title="W") {
+void hmerge(string path=".", string title="W") {
 
   FileList = new TList();
   double crossSections[10];
