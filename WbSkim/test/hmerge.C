@@ -1,12 +1,12 @@
 
-#include "LumiInfo_v02.h"
+#include "LumiInfo_v01.h"
 
 TList *FileList;
 TFile *Target;
 
 void hmerge_(TDirectory *target, TList *sourcelist, double crossArray[]);
 
-void hmerge(string path=".", string title="W") {
+void hmerge(string path=".", string version="v01", string title="W") {
 
   FileList = new TList();
   double crossSections[10];
@@ -94,7 +94,7 @@ void hmerge_( TDirectory *target, TList *sourcelist, double crossArray[] ) {
     if ( obj->IsA()->InheritsFrom( "TH1" ) ) {
       // descendant of TH1 -> merge it
 
-      cout << "Merging histogram " << obj->GetName() << endl;
+      //cout << "Merging histogram " << obj->GetName() << endl;
       TH1 *h1 = (TH1*)obj;
       h1->Sumw2();
 

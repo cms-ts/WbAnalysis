@@ -39,10 +39,10 @@ elif [ "$JOBDIR" == "data-all" ]; then
   hadd $opts $WORKDIR/$VERSION/SingleMu_2012_merge.root $WORKDIR/$VERSION/SingleMu*_2012*.root
 elif [ "$JOBDIR" == "T-all" ]; then
   rm -f $WORKDIR/$VERSION/T_merge.root
-  root -b -q hmerge.C\(\"$WORKDIR\",\"T\"\)
+  root -b -q hmerge.C\(\"$WORKDIR\",\"$VERSION\",\"T\"\)
 elif [ "$JOBDIR" == "W-all" ]; then
   rm -f $WORKDIR/$VERSION/W_merge.root
-  root -b -q hmerge.C\(\"$WORKDIR\",\"W\"\)
+  root -b -q hmerge.C\(\"$WORKDIR\",\"$VERSION\",\"W\"\)
 else
   echo 'ERROR: jobdir "'$JOBDIR'" does not exist !'
 fi
