@@ -12,7 +12,7 @@ eval `scramv1 runtime -sh`
 cd -
 
 i=1
-while [ $i -le 2 ]; do
+while [ $i -le 4 ]; do
 
   root -l -q -b DataMCComp.C+\($d,\"w_MET\",1,$i,0,1\)
   root -l -q -b DataMCComp.C+\($d,\"w_MET_b\",1,$i,0,1\)
@@ -21,7 +21,7 @@ while [ $i -le 2 ]; do
 done
 
 i=1
-while [ $i -le 2 ]; do
+while [ $i -le 4 ]; do
 
   root -l -q -b DataMCComp.C+\($d,\"h_pu_weights\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"h_recoVTX\",1,$i\)
@@ -165,7 +165,7 @@ while [ $i -le 2 ]; do
 done
 
 i=1
-while [ $i -le 2 ]; do
+while [ $i -le 4 ]; do
 
   root -l -q -b DataMCComp.C+\($d,\"w_MET_sign\",1,$i,0,1\)
   root -l -q -b DataMCComp.C+\($d,\"w_MET_sign_b\",1,$i,0,1\)
