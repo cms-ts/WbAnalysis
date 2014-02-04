@@ -1,14 +1,14 @@
 
-#include "LumiInfo_v01.h"
+#include "LumiInfo_v02.h"
 
 void hmerge_test() {
 
-TFile f0("data/v01/Wj.root");
-TFile f1("data/v01/W1j.root");
-TFile f2("data/v01/W2j.root");
-TFile f3("data/v01/W3j.root");
-TFile f4("data/v01/W4j.root");
-TFile f5("data/v01/Wj_merge.root");
+TFile f0(("data/" + version + "/Wj.root").c_str());
+TFile f1(("data/" + version + "/W1j.root").c_str());
+TFile f2(("data/" + version + "/W2j.root").c_str());
+TFile f3(("data/" + version + "/W3j.root").c_str());
+TFile f4(("data/" + version + "/W4j.root").c_str());
+TFile f5(("data/" + version + "/Wj_merge.root").c_str());
 
 f0.cd("demoEle");
 TH1F* h0x = (TH1F*)gDirectory->Get("h_nmult0");
