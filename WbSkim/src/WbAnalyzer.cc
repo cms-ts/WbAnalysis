@@ -117,18 +117,19 @@ private:
       double w=1.0;
       for (unsigned int j=0;j<jets.size();j++) {
         if ((fabs(jets[j].partonFlavour()) == 5 || fabs(jets[j].partonFlavour()) == 4)) {
-          if (i==j) {
-            w = w * BtSF_->Val(jets[j].pt(), jets[j].eta());
-          } else {
+          if (i!=j) {
             w = w * (1.0 - BtSF_->Val(jets[j].pt(), jets[j].eta()));
           }
         } else {
-          if (i==j) {
-            w = w * LtSF_->Val(jets[j].pt(), jets[j].eta());
-          } else {
+          if (i!=j) {
             w = w * (1.0 - LtSF_->Val(jets[j].pt(), jets[j].eta()));
           }
         }
+      }
+      if ((fabs(jets[i].partonFlavour()) == 5 || fabs(jets[i].partonFlavour()) == 4)) {
+        w = w * BtSF_->Val(jets[i].pt(), jets[i].eta());
+      } else {
+        w = w * LtSF_->Val(jets[i].pt(), jets[i].eta());
       }
       w1n = w1n + w;
     }
