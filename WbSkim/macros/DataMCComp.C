@@ -129,6 +129,7 @@ if (irun==99) {            // irun==99 => pur
 	    in5.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
 	  }
 	}
+	if (ilepton==3 || ilepton==4) useFitResults=0;
 	if (useFitResults) {
 	  in4 >> c1_qcd >> ec1_qcd;
 	  in5 >> c2_qcd >> ec2_qcd;
@@ -304,7 +305,7 @@ if (irun==99) {            // irun==99 => pur
 	if (h_mc5) {
 	  h_mc5 -> Sumw2();
 	  h_mc5 -> SetLineColor(kBlack);
-	  h_mc5 -> SetFillColor(kGray-1);
+	  h_mc5 -> SetFillColor(kGreen-3);
 	  //h_mc5 -> SetFillStyle(3004);
 	}
 
@@ -592,19 +593,19 @@ if (irun==99) {            // irun==99 => pur
 	ht->Add(h_mc1);
 
 	THStack *hs = new THStack("hs","");
-	if (h_mc1t) hs->Add(h_mc1t);
 	if (!doBkg) {
 	  if (h_mc5) hs->Add(h_mc5);
-	  hs->Add(h_mc6);
 	  hs->Add(h_mc7);
-	  hs->Add(h_mc8);
 	  hs->Add(h_mc4);
 	  hs->Add(h_mc3);
+	  hs->Add(h_mc6);
+	  hs->Add(h_mc8);
 	  hs->Add(h_mc2);
 	}
-	if (h_mc1b) hs->Add(h_mc1b);
-	if (h_mc1c) hs->Add(h_mc1c);
+	if (h_mc1t) hs->Add(h_mc1t);
 	hs->Add(h_mc1);
+	if (h_mc1c) hs->Add(h_mc1c);
+	if (h_mc1b) hs->Add(h_mc1b);
 
 	TCanvas* c1 = new TCanvas("c", "c", 800, 600);
 	c1->cd();
@@ -657,21 +658,21 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==3) leg->AddEntry(h_data,"W(#rightarrow e)+jets [QCD]","p");
 	if (ilepton==4) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets [QCD]","p");
 
+	if (h_mc1b) leg->AddEntry(h_mc1b,"W+b-jets","f");
+	if (h_mc1c) leg->AddEntry(h_mc1c,"W+c-jets","f");
 	if (h_mc1c && h_mc1b) {
 	  leg->AddEntry(h_mc1,"W+uds-jets","f");
 	} else {
 	  leg->AddEntry(h_mc1,"W+jets","f");
 	}
-	if (h_mc1c) leg->AddEntry(h_mc1c,"W+c-jets","f");
-	if (h_mc1b) leg->AddEntry(h_mc1b,"W+b-jets","f");
 	if (!doBkg) {
 	  if (h_mc1t) leg->AddEntry(h_mc1t,"W(#rightarrow #tau)+jets","f");
 	  leg->AddEntry(h_mc2,"t#bar{t}","f");
+	  leg->AddEntry(h_mc8,"t / #bar{t}", "f");
+	  leg->AddEntry(h_mc6,"WW","f");
 	  leg->AddEntry(h_mc3,"ZZ","f");
 	  leg->AddEntry(h_mc4,"WZ","f");
 	  leg->AddEntry(h_mc7,"Z+jets", "f");
-	  leg->AddEntry(h_mc8,"t / #bar{t}", "f");
-	  leg->AddEntry(h_mc6,"WW","f");
 	  if (h_mc5) leg->AddEntry(h_mc5,"QCD","f");
 	}
 	leg->Draw();
