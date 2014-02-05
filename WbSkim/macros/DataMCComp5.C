@@ -205,8 +205,8 @@ if (irun==99) {            // irun==99 => pur
 //    if (ilepton==1) mc5->cd(("demoEle"+postfix).c_str());
 //    if (ilepton==2) mc5->cd(("demoMuo"+postfix).c_str());
 //    TH1F* h_mc5 = (TH1F*)gDirectory->Get(title.c_str());
-//    if (ilepton==1) mc1->cd(("demoEleQCD"+postfix).c_str());
-//    if (ilepton==2) mc1->cd(("demoMuoQCD"+postfix).c_str());
+//    if (ilepton==1) mc5->cd(("demoEleQCD"+postfix).c_str());
+//    if (ilepton==2) mc5->cd(("demoMuoQCD"+postfix).c_str());
 //    TH1F* h_mc5_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc6->cd(("demoEle"+postfix).c_str());
