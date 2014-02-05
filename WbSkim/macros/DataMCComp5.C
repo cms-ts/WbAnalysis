@@ -444,7 +444,7 @@ if (irun==99) {            // irun==99 => pur
         if (ilepton==1) sprintf(buff, "I_{e} = %5.1f", h_data->Integral(0,h_data->GetNbinsX()+1));
         if (ilepton==2) sprintf(buff, "I_{#mu} = %5.1f", h_data->Integral(0,h_data->GetNbinsX()+1));
         fitLabel->DrawLatex(0.60, 0.63, buff);
-        if (ilepton==1) sprintf(buff, "I_{e} = %5.1f #pm %5.1f", h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1), h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1)*fitter->GetParError(0)/fitter->GetParameter(0));
+        if (ilepton==1) sprintf(buff, "I_{e,QCD} = %5.1f #pm %5.1f", h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1), h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1)*fitter->GetParError(0)/fitter->GetParameter(0));
         if (ilepton==2) sprintf(buff, "I_{#mu,QCD} = %5.1f #pm %5.1f", h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1), h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1)*fitter->GetParError(0)/fitter->GetParameter(0));
         fitLabel->DrawLatex(0.60, 0.58, buff);
       }
