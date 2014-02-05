@@ -1,5 +1,5 @@
 
-#include "LumiInfo_v01.h"
+#include "LumiInfo_v02.h"
 
 TList *FileList;
 TFile *Target;
