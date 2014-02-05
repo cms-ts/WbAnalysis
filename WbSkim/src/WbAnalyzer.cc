@@ -1515,18 +1515,12 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // Get electron collection
   edm::Handle < pat::ElectronCollection > electrons;
   iEvent.getByLabel ("matchedElectrons", electrons);
-  if (lepton_ == "electronQCD") {
-    iEvent.getByLabel ("matchedElectronsQCD", electrons);
-    lepton_ = "electron";
-  }
+  if (lepton_ == "electronQCD") iEvent.getByLabel ("matchedElectronsQCD", electrons);
 
   // Get muon collection
   edm::Handle < pat::MuonCollection > muons;
   iEvent.getByLabel ("matchedMuons", muons);
-  if (lepton_ == "muonQCD") {
-    iEvent.getByLabel ("matchedMuonsQCD", muons);
-    lepton_ = "muon";
-  }
+  if (lepton_ == "muonQCD") iEvent.getByLabel ("matchedMuonsQCD", muons);
 
   // Get jet collection
   edm::Handle < vector < pat::Jet > > jets;
@@ -1748,10 +1742,10 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (vect_ele.size()==1 && vect_muon.size()==0) wenu_event = true;
   if (vect_muon.size()==1 && vect_ele.size()==0) wmnu_event = true;
 
-  wenu_event = wenu_event && (lepton_ == "electron");
-  wmnu_event = wmnu_event && (lepton_ == "muon");
-  ee_event = ee_event && (lepton_ == "electron");
-  mm_event = mm_event && (lepton_ == "muon");
+  wenu_event = wenu_event && (lepton_ == "electron" || lepton_ == "electronQCD");
+  wmnu_event = wmnu_event && (lepton_ == "muon" || lepton_ == "muonQCD");
+  ee_event = ee_event && (lepton_ == "electron" || lepton_ == "electronQCD");
+  mm_event = mm_event && (lepton_ == "muon || lepton_ == "muonQCD"");
 
 
   // +++++++++ SCALE FACTORS:
@@ -2240,7 +2234,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ Zee PLOTS
 
-  if (lepton_=="electron" && iele1!=-1 && Nj > 1 && Nb > 0 && vtx_cut && !met_cut) {
+  if ((lepton_=="electron" || lepton_ == "electronQCD") && iele1!=-1 && Nj > 1 && Nb > 0 && vtx_cut && !met_cut) {
     scalFac_b = btagSF(isMC, vect_jets, 0);
     w_mass_ee_wide->Fill (diele_mass, MyWeight*scalFac_b);
     if (ist) {
@@ -2470,7 +2464,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ Zmm PLOTS
 
-  if (lepton_=="muon" && imuon1!=-1 && Nj > 1 && Nb>0 && vtx_cut && !met_cut) {
+  if ((lepton_=="muon" || lepton_ == "muonQCD") && imuon1!=-1 && Nj > 1 && Nb>0 && vtx_cut && !met_cut) {
     scalFac_b = btagSF(isMC, vect_jets, 0);
     w_mass_mm_wide->Fill (dimuon_mass, MyWeight*scalFac_b);
     if (ist) {
