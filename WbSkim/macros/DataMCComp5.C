@@ -101,40 +101,40 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==1) Lumi2012 = Lumi2012_ele;
       if (ilepton==2) Lumi2012 = Lumi2012_muon;
 
-      double norm1 = ((Lumi2012 * Xsec_dy) / Ngen_dy);
+      double norm1 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
       double norm2 = ((Lumi2012 * Xsec_tt) / Ngen_tt);
       double norm3 = ((Lumi2012 * Xsec_zz) / Ngen_zz);
       double norm4 = ((Lumi2012 * Xsec_wz) / Ngen_wz);
       double norm5 = ((Lumi2012 * Xsec_qcd) / Ngen_qcd);
       double norm6 = ((Lumi2012 * Xsec_ww) / Ngen_ww);
-      double norm7 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
+      double norm7 = ((Lumi2012 * Xsec_dy) / Ngen_dy);
       double norm8 = ((Lumi2012 * Xsec_tbar_t) / Ngen_tbar_t);
 
-      double enorm1 = ((Lumi2012 * eXsec_dy) / Ngen_dy);
+      double enorm1 = ((Lumi2012 * eXsec_wj) / Ngen_wj);
       double enorm2 = ((Lumi2012 * eXsec_tt) / Ngen_tt);
       double enorm3 = ((Lumi2012 * eXsec_zz) / Ngen_zz);
       double enorm4 = ((Lumi2012 * eXsec_wz) / Ngen_wz);
       double enorm5 = ((Lumi2012 * eXsec_qcd) / Ngen_qcd);
       double enorm6 = ((Lumi2012 * eXsec_ww) / Ngen_ww);
-      double enorm7 = ((Lumi2012 * eXsec_wj) / Ngen_wj);
+      double enorm7 = ((Lumi2012 * eXsec_dy) / Ngen_dy);
       double enorm8 = ((Lumi2012 * eXsec_tbar_t) / Ngen_tbar_t);
 
-      double norm1_fit = ((Lumi2012 * Xsec_dy) / Ngen_dy);
+      double norm1_fit = ((Lumi2012 * Xsec_wj) / Ngen_wj);
       double norm2_fit = ((Lumi2012 * Xsec_tt) / Ngen_tt);
       double norm3_fit = ((Lumi2012 * Xsec_zz) / Ngen_zz);
       double norm4_fit = ((Lumi2012 * Xsec_wz) / Ngen_wz);
       double norm5_fit = ((Lumi2012 * Xsec_qcd) / Ngen_qcd);
       double norm6_fit = ((Lumi2012 * Xsec_ww) / Ngen_ww);
-      double norm7_fit = ((Lumi2012 * Xsec_wj) / Ngen_wj);
+      double norm7_fit = ((Lumi2012 * Xsec_dy) / Ngen_dy);
       double norm8_fit = ((Lumi2012 * Xsec_tbar_t) / Ngen_tbar_t);
 
-      double enorm1_fit = ((Lumi2012 * eXsec_dy) / Ngen_dy);
+      double enorm1_fit = ((Lumi2012 * eXsec_wj) / Ngen_wj);
       double enorm2_fit = ((Lumi2012 * eXsec_tt) / Ngen_tt);
       double enorm3_fit = ((Lumi2012 * eXsec_zz) / Ngen_zz);
       double enorm4_fit = ((Lumi2012 * eXsec_wz) / Ngen_wz);
       double enorm5_fit = ((Lumi2012 * eXsec_qcd) / Ngen_qcd);
       double enorm6_fit = ((Lumi2012 * eXsec_ww) / Ngen_ww);
-      double enorm7_fit = ((Lumi2012 * eXsec_wj) / Ngen_wj);
+      double enorm7_fit = ((Lumi2012 * eXsec_dy) / Ngen_dy);
       double enorm8_fit = ((Lumi2012 * eXsec_tbar_t) / Ngen_tbar_t);
 
       if (title.empty()) title = "w_jetmultiplicity";
