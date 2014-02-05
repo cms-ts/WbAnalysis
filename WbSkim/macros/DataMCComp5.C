@@ -345,7 +345,7 @@ if (irun==99) {            // irun==99 => pur
 	fitter->SetFCN(fcn);
 	double arglist[1] = {-1.0};
 	fitter->ExecuteCommand("SET PRINT", arglist, 1);
-	fitter->SetParameter(0, "c(t)", 0.50, 0.01, 0.00, 1.00);
+	fitter->SetParameter(0, "c(QCD)", 1.00, 0.01, 0.00, 100.00);
 	fitter->ExecuteCommand("MIGRAD", arglist, 0);
 	h_data_fit->Scale(fitter->GetParameter(0));
       }
