@@ -1745,7 +1745,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   wenu_event = wenu_event && (lepton_ == "electron" || lepton_ == "electronQCD");
   wmnu_event = wmnu_event && (lepton_ == "muon" || lepton_ == "muonQCD");
   ee_event = ee_event && (lepton_ == "electron" || lepton_ == "electronQCD");
-  mm_event = mm_event && (lepton_ == "muon || lepton_ == "muonQCD"");
+  mm_event = mm_event && (lepton_ == "muon" || lepton_ == "muonQCD");
 
 
   // +++++++++ SCALE FACTORS:
