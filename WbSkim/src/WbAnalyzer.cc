@@ -116,12 +116,10 @@ private:
       }
       double w=1.0;
       for (unsigned int j=0;j<jets.size();j++) {
-        if ((fabs(jets[j].partonFlavour()) == 5 || fabs(jets[j].partonFlavour()) == 4)) {
-          if (i!=j) {
+        if (i!=j) {
+          if ((fabs(jets[j].partonFlavour()) == 5 || fabs(jets[j].partonFlavour()) == 4)) {
             w = w * (1.0 - BtSF_->Val(jets[j].pt(), jets[j].eta()));
-          }
-        } else {
-          if (i!=j) {
+          } else {
             w = w * (1.0 - LtSF_->Val(jets[j].pt(), jets[j].eta()));
           }
         }
@@ -135,9 +133,9 @@ private:
     }
 
     if (k==0) return (1.0-w0n);     // >= 1 b tagged jet
-    if (k==1) return (1.0-w0n);     // == 1 b tagged jet // HACK //
+    if (k==1) return (1.0-w0n);     // == 1 b tagged jet // FIXME //
     if (k==1) return (w1n);         // == 1 b tagged jet
-    if (k==2) return (1.0-w0n-w1n); // >= 2 b tagged jet
+    if (k==2) return (1.0-w0n-w1n); // >= 2 b tagged jets
     if (k==3) return (1.0-w0n-w1n); // FIXME //
     return (0);
 
