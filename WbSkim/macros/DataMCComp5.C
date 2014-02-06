@@ -322,6 +322,17 @@ if (irun==99) {            // irun==99 => pur
       h_data_fit->Add(h_mc2_fit, -1.);
       h_data_fit->Add(h_mc1_fit, -1.);
 
+      for (int i=0; i<=h_data->GetNbinsX()+1; i++) {
+        if (h_data->GetBinContent(i) < 0) {
+          h_data->SetBinContent(i, 0);
+          h_data->SetBinError(i, 0);
+        }
+        if (h_data_fit->GetBinContent(i) < 0) {
+          h_data_fit->SetBinContent(i, 0);
+          h_data_fit->SetBinError(i, 0);
+        }
+      }
+
       TH1F* h_data_fit_raw = (TH1F*)h_data_fit->Clone();
 
       TVirtualFitter::SetDefaultFitter("Minuit2");
