@@ -66,7 +66,7 @@ void hmerge(string path=".", string version="v01", string title="W") {
 
 void hmerge_( TDirectory *target, TList *sourcelist, double crossArray[] ) {
 
-  cout << "Target path: " << target->GetPath() << endl;
+  //cout << "Target path: " << target->GetPath() << endl;
   TString rpath( (char*)strstr( target->GetPath(), ":" ) );
   rpath.Remove( 0, 2 );
 
