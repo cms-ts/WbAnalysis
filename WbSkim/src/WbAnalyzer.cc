@@ -135,9 +135,10 @@ private:
     }
 
     if (k==0) return (1.0-w0n);     // >= 1 b tagged jet
+    if (k==1) return (1.0-w0n);     // == 1 b tagged jet // HACK //
     if (k==1) return (w1n);         // == 1 b tagged jet
     if (k==2) return (1.0-w0n-w1n); // >= 2 b tagged jet
-    if (k==3) return (1.0-w0n-w1n); /// FIXME //
+    if (k==3) return (1.0-w0n-w1n); // FIXME //
     return (0);
 
   };
