@@ -152,7 +152,7 @@ process.matchedMuonsQCD = selectedPatMuons.clone(
 		        'abs(dB) < 0.2 &'
 		        'numberOfMatchedStations > 1 &'
 		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt > 0.2 &'
-		        'triggerObjectMatches.size > 0'
+		        'triggerObjectMatches.size >= 0'
 		)
 )
 
@@ -282,7 +282,7 @@ process.matchedElectronsQCD = selectedPatElectrons.clone(
 			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et > 0.15 &'
 			'passConversionVeto &'
 			'gsfTrack.trackerExpectedHitsInner.numberOfHits <= 1 &'
-			'triggerObjectMatches.size > 0'
+			'triggerObjectMatches.size >= 0'
 		     )
 )
 
@@ -330,9 +330,9 @@ getattr(process,"patElectrons"+postfix).isolationValues = cms.PSet(
         )
 
 getattr(process,"pfIsolatedElectrons"+postfix).doDeltaBetaCorrection = True
-getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 0.15
+getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 999.
 getattr(process,"pfIsolatedMuons"+postfix).doDeltaBetaCorrection     = True
-getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 0.12
+getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 999.
 
 getattr(process,"patJets"+postfix).addTagInfos = True
 
