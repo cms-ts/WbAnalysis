@@ -2032,9 +2032,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) w_eventYields->Fill(3, MyWeight*scalFac_b);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) w_eventYields->Fill(4, MyWeight*scalFac_b);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) w_eventYields->Fill(5, MyWeight*scalFac_b);
-  w_eventYields->Fill(2, MyWeight*scalFac_b);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb>1) w_eventYields->Fill(6, MyWeight*scalFac_b);
-  w_eventYields->Fill(1, MyWeight*scalFac_b);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb==1) w_eventYields->Fill(7, MyWeight*scalFac_b);
 
   // ++++++++ MET PLOTS
