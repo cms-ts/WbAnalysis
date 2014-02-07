@@ -630,6 +630,8 @@ if (irun==99) {            // irun==99 => pur
 	h_data->SetMarkerSize (1.0);
 	//h_data->SetStats(0);
 
+	hs->SetMaximum(1.2*TMath::Max(hs->GetMaximum(),h_data->GetMaximum()));
+
 	TLegend *leg;
 	if (doBkg) {
 	  if (h_mc1c && h_mc1b) {
