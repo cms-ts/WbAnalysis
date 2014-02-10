@@ -1740,10 +1740,10 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (vect_ele.size()==1 && vect_muon.size()==0) wenu_event = true;
   if (vect_muon.size()==1 && vect_ele.size()==0) wmnu_event = true;
 
-  wenu_event = wenu_event && (lepton_ == "electron" || lepton_ == "electronQCD" || lepton_ == "electronTOP");
-  wmnu_event = wmnu_event && (lepton_ == "muon" || lepton_ == "muonQCD" || lepton_ == "muonTOP");
-  ee_event = ee_event && (lepton_ == "electron" || lepton_ == "electronQCD" || lepton_ == "electronTOP");
-  mm_event = mm_event && (lepton_ == "muon" || lepton_ == "muonQCD" || lepton_ == "muonTOP");
+  wenu_event = wenu_event && (lepton_ == "electron" || lepton_ == "electronQCD" || lepton_ == "electronFWD");
+  wmnu_event = wmnu_event && (lepton_ == "muon" || lepton_ == "muonQCD" || lepton_ == "muonFWD");
+  ee_event = ee_event && (lepton_ == "electron" || lepton_ == "electronQCD" || lepton_ == "electronFWD");
+  mm_event = mm_event && (lepton_ == "muon" || lepton_ == "muonQCD" || lepton_ == "muonFWD");
 
 
   // +++++++++ SCALE FACTORS:
@@ -2009,9 +2009,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   wmnu_event = wmnu_event && Nb>0 && Nj>1;
 
   wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_ == "electronQCD")) 
-			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="electronTOP"));
+			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="electronFWD"));
   wmnu_event = wmnu_event && ((vect_jets2.size()==0 && (lepton_=="muon" || lepton_ == "muonQCD")) 
-			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="muonTOP"));
+			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="muonFWD"));
 
   if (debug && Nj<1) cout << "Warning: 0 Jets in the event!" << endl;
   if (debug && Nb<1) cout << "Warning: 0 b-Jets in the event!" << endl;
