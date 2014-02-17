@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v02
+VERSION=v03
 
 if [ $# -eq 0 ]; then
   echo 'Usage: merge.sh jobdir [version]'
@@ -20,7 +20,10 @@ if [ ! -e $WORKDIR/$VERSION ]; then
   exit
 fi
 
-cd $CMS_PATH/slc5_amd64_gcc472/cms/cmssw/CMSSW_6_1_1
+unset PYTHIA8175DATA
+unset G4NEUTRONXS
+
+cd $CMS_PATH/slc6_amd64_gcc472/cms/cmssw/CMSSW_6_2_7
 eval `scramv1 runtime -sh`
 cd - > /dev/null
 
