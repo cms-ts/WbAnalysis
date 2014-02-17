@@ -14,7 +14,7 @@ cd $CMS_PATH/slc6_amd64_gcc472/cms/cmssw/CMSSW_6_2_7
 eval `scramv1 runtime -sh`
 cd -
 
-i=5
+i=1
 while [ $i -le 6 ]; do
 
   root -l -q -b DataMCComp.C+\($d,\"h_pu_weights\",1,$i\)
