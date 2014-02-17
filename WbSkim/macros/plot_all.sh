@@ -14,7 +14,7 @@ cd $CMS_PATH/slc6_amd64_gcc472/cms/cmssw/CMSSW_6_2_7
 eval `scramv1 runtime -sh`
 cd -
 
-i=1
+i=5
 while [ $i -le 6 ]; do
 
   root -l -q -b DataMCComp.C+\($d,\"h_pu_weights\",1,$i\)
@@ -68,6 +68,8 @@ while [ $i -le 6 ]; do
   root -l -q -b DataMCComp.C+\($d,\"w_delta_phi_wenuMet_b\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"w_delta_phi_wmnuMet_b\",1,$i\)
 
+  root -l -q -b DataMCComp.C+\($d,\"w_mass_ee_bb\",1,$i\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mass_mm_bb\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"w_delta_phi_wenuMet_bb\",1,$i\)

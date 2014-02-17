@@ -81,6 +81,8 @@ while [ $i -le 4 ]; do
   root -l -q -b DataMCComp5.C+\($d,\"w_delta_phi_wenuMet_b\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_delta_phi_wmnuMet_b\",1,$i\)
 
+  root -l -q -b DataMCComp5.C+\($d,\"w_mass_ee_bb\",1,$i\)
+  root -l -q -b DataMCComp5.C+\($d,\"w_mass_mm_bb\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_mt_wmnu_bb\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_mt_wenu_bb\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_delta_phi_wenuMet_bb\",1,$i\)
