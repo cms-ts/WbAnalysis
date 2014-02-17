@@ -58,9 +58,9 @@ void hmerge(string path=".", string version="v01", string title="W") {
     crossSections[5] = crossSections[5] / (Xsec_tbar_t / Ngen_tbar_t);
   }
 
-  cout << "going to call merging routine..." << endl;
+  //cout << "going to call merging routine..." << endl;
   hmerge_( Target, FileList, crossSections );
-  cout << "done." << endl;
+  //cout << "done." << endl;
 
 }
 
