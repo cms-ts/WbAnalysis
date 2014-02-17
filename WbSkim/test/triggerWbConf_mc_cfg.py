@@ -383,8 +383,6 @@ process.out.outputCommands += [
 	'keep LHEEventProduct_*_*_*',
 	'keep *_addPileupInfo_*_*',
 	'keep *_matchedElectrons_*_*',
-	'keep *_regressedElectrons_*_*',
-	'keep *_calibratedElectrons_*_*',
 	'keep *_matchedMuons_*_*',
         'keep *_matchedElectronsQCD_*_*',
 	'keep *_matchedMuonsQCD_*_*',

@@ -1513,12 +1513,18 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // Get electron collection
   edm::Handle < pat::ElectronCollection > electrons;
   iEvent.getByLabel ("matchedElectrons", electrons);
-  if (lepton_ == "electronQCD") iEvent.getByLabel ("matchedElectronsQCD", electrons);
+  edm::Handle < pat::ElectronCollection > electronsQCD;
+  iEvent.getByLabel ("matchedElectronsQCD", electronsQCD);
+
+  if (lepton_ == "electronQCD") electrons = electronsQCD;
 
   // Get muon collection
   edm::Handle < pat::MuonCollection > muons;
   iEvent.getByLabel ("matchedMuons", muons);
-  if (lepton_ == "muonQCD") iEvent.getByLabel ("matchedMuonsQCD", muons);
+  edm::Handle < pat::MuonCollection > muonsQCD;
+  iEvent.getByLabel ("matchedMuonsQCD", muonsQCD);
+
+  if (lepton_ == "muonQCD") muons = muonsQCD;
 
   // Get jet collection
   edm::Handle < vector < pat::Jet > > jets;
@@ -1657,13 +1663,18 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // +++++++++ ELECTRONS
 
   vector < pat::Electron > vect_ele;
+  vector < pat::Electron > vect_ele2;
 
   for (pat::ElectronCollection::const_iterator ele = electrons->begin (); ele != electrons->end (); ++ele) {
-
     if (ele->pt()>30 && fabs(ele->eta())<2.1) {
       vect_ele.push_back (*ele);
     }
+  }
 
+  for (pat::ElectronCollection::const_iterator ele = electronsQCD->begin (); ele != electronsQCD->end (); ++ele) {
+    if (fabs(ele->eta())<2.1) {
+      vect_ele2.push_back (*ele);
+    }
   }
 
   // Computing Mt:
@@ -1698,13 +1709,18 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // +++++++++ MUONS
 
   vector < pat::Muon > vect_muon;
+  vector < pat::Muon > vect_muon2;
 
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
-
     if (muon->pt()>25 && fabs(muon->eta())<2.1) {
       vect_muon.push_back (*muon);
     }
+  }
 
+  for (pat::MuonCollection::const_iterator muon = muonsQCD->begin (); muon != muonsQCD->end (); ++muon) {
+    if (fabs(muon->eta())<2.1) {
+      vect_muon2.push_back (*muon);
+    }
   }
 
   // Computing Mt:
@@ -1737,11 +1753,20 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // +++++++++ Decisions:
 
   if (vect_ele.size()==0 && vect_muon.size()==0) {if (debug) cout << "No isolated leptons!!" << endl;}
-  if (vect_ele.size()==1 && vect_muon.size()==0) wenu_event = true;
-  if (vect_muon.size()==1 && vect_ele.size()==0) wmnu_event = true;
 
-  wenu_event = wenu_event && (lepton_ == "electron" || lepton_ == "electronQCD" || lepton_ == "electronFWD");
-  wmnu_event = wmnu_event && (lepton_ == "muon" || lepton_ == "muonQCD" || lepton_ == "muonFWD");
+  if (lepton_ == "electron" || lepton_ == "muon") {
+    if (vect_ele.size()==1 && vect_ele2.size()==0 && vect_muon.size()==0 && vect_muon2.size()==0) wenu_event = true;
+    if (vect_muon.size()==1 && vect_muon2.size()==0 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
+  }
+  if (lepton_ == "electronQCD" || lepton_ == "muonQCD") {
+    if (vect_ele.size()==1 && vect_muon.size()==0 && vect_muon2.size()==0) wenu_event = true;
+    if (vect_muon.size()==1 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
+  }
+  if (lepton_ == "electronFWD" || lepton_ == "muonFWD") {
+    if (vect_ele.size()==1 && vect_ele2.size()==0 && vect_muon.size()==0 && vect_muon2.size()==0) wenu_event = true;
+    if (vect_muon.size()==1 && vect_muon2.size()==0 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
+  }
+
   ee_event = ee_event && (lepton_ == "electron" || lepton_ == "electronQCD" || lepton_ == "electronFWD");
   mm_event = mm_event && (lepton_ == "muon" || lepton_ == "muonQCD" || lepton_ == "muonFWD");
 
