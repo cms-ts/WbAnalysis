@@ -483,6 +483,36 @@ private:
   TH1F*     c_mt_wmnu_bb_wide;
   TH1F*     t_mt_wmnu_bb_wide;
 
+  TH1F*     w_mass_wenu_blepton;	// at least one b jet in the event
+  TH1F*     b_mass_wenu_blepton;
+  TH1F*     c_mass_wenu_blepton;
+  TH1F*     t_mass_wenu_blepton;
+
+  TH1F*     w_mass_wmnu_blepton;
+  TH1F*     b_mass_wmnu_blepton;
+  TH1F*     c_mass_wmnu_blepton;
+  TH1F*     t_mass_wmnu_blepton;
+
+  TH1F*     w_mass_wenu_blepton_b;	// at least one b jet in the event
+  TH1F*     b_mass_wenu_blepton_b;
+  TH1F*     c_mass_wenu_blepton_b;
+  TH1F*     t_mass_wenu_blepton_b;
+
+  TH1F*     w_mass_wmnu_blepton_b;
+  TH1F*     b_mass_wmnu_blepton_b;
+  TH1F*     c_mass_wmnu_blepton_b;
+  TH1F*     t_mass_wmnu_blepton_b;
+
+  TH1F*     w_mass_wenu_blepton_bb;	// at least one b jet in the event
+  TH1F*     b_mass_wenu_blepton_bb;
+  TH1F*     c_mass_wenu_blepton_bb;
+  TH1F*     t_mass_wenu_blepton_bb;
+
+  TH1F*     w_mass_wmnu_blepton_bb;
+  TH1F*     b_mass_wmnu_blepton_bb;
+  TH1F*     c_mass_wmnu_blepton_bb;
+  TH1F*     t_mass_wmnu_blepton_bb;
+
 //  TH1F*     w_mass_em_bb_wide;
 //  TH1F*     b_mass_em_bb_wide;
 //  TH1F*     c_mass_em_bb_wide;
@@ -1064,16 +1094,16 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mt_wmnu_wide =      fs->make < TH1F > ("c_mt_wmnu_wide",    "c_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
   t_mt_wmnu_wide =      fs->make < TH1F > ("t_mt_wmnu_wide",    "t_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
 
-  h_mt_wenu =           fs->make < TH1F > ("h_mt_wenu",         "h_mt_wenu;M_{T} [GeV]", 40, 0., 160.);
-  w_mt_wenu =           fs->make < TH1F > ("w_mt_wenu",         "w_mt_wenu;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wenu =           fs->make < TH1F > ("b_mt_wenu",         "b_mt_wenu;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wenu =           fs->make < TH1F > ("c_mt_wenu",         "c_mt_wenu;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wenu =           fs->make < TH1F > ("t_mt_wenu",         "t_mt_wenu;M_{T} [GeV]", 40, 0., 160.);
-  h_mt_wmnu =           fs->make < TH1F > ("h_mt_wmnu",         "h_mt_wmnu;M_{T} [GeV]", 40, 0., 160.);
-  w_mt_wmnu =           fs->make < TH1F > ("w_mt_wmnu",         "w_mt_wmnu;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wmnu =           fs->make < TH1F > ("b_mt_wmnu",         "b_mt_wmnu;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wmnu =           fs->make < TH1F > ("c_mt_wmnu",         "c_mt_wmnu;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wmnu =           fs->make < TH1F > ("t_mt_wmnu",         "t_mt_wmnu;M_{T} [GeV]", 40, 0., 160.);
+  h_mt_wenu =           fs->make < TH1F > ("h_mt_wenu",         "h_mt_wenu;M_{T} [GeV]", 30, 40., 160.);
+  w_mt_wenu =           fs->make < TH1F > ("w_mt_wenu",         "w_mt_wenu;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wenu =           fs->make < TH1F > ("b_mt_wenu",         "b_mt_wenu;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wenu =           fs->make < TH1F > ("c_mt_wenu",         "c_mt_wenu;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wenu =           fs->make < TH1F > ("t_mt_wenu",         "t_mt_wenu;M_{T} [GeV]", 30, 40., 160.);
+  h_mt_wmnu =           fs->make < TH1F > ("h_mt_wmnu",         "h_mt_wmnu;M_{T} [GeV]", 30, 40., 160.);
+  w_mt_wmnu =           fs->make < TH1F > ("w_mt_wmnu",         "w_mt_wmnu;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wmnu =           fs->make < TH1F > ("b_mt_wmnu",         "b_mt_wmnu;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wmnu =           fs->make < TH1F > ("c_mt_wmnu",         "c_mt_wmnu;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wmnu =           fs->make < TH1F > ("t_mt_wmnu",         "t_mt_wmnu;M_{T} [GeV]", 30, 40., 160.);
 
   w_mass_Zj_ee =        fs->make < TH1F > ("w_mass_Zj_ee",      "w_mass_Zj_ee", 60, 100., 330.);
   b_mass_Zj_ee =        fs->make < TH1F > ("b_mass_Zj_ee",      "b_mass_Zj_ee", 60, 100., 330.);
@@ -1138,10 +1168,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mass_mm_b_wide =    fs->make < TH1F > ("c_mass_mm_b_wide",  "c_mass_mm_b_wide;Mass [GeV]", 40, 50., 200.);
   t_mass_mm_b_wide =    fs->make < TH1F > ("t_mass_mm_b_wide",  "t_mass_mm_b_wide;Mass [GeV]", 40, 50., 200.);
 
-//  w_mass_em_b_wide =    fs->make < TH1F > ("w_mass_em_b_wide",  "w_mass_em_b_wide;Mass [GeV]", 40, 0., 160.);
-//  b_mass_em_b_wide =    fs->make < TH1F > ("b_mass_em_b_wide",  "b_mass_em_b_wide;Mass [GeV]", 40, 0., 160.);
-//  c_mass_em_b_wide =    fs->make < TH1F > ("c_mass_em_b_wide",  "c_mass_em_b_wide;Mass [GeV]", 40, 0., 160.);
-//  t_mass_em_b_wide =    fs->make < TH1F > ("t_mass_em_b_wide",  "t_mass_em_b_wide;Mass [GeV]", 40, 0., 160.);
+//  w_mass_em_b_wide =    fs->make < TH1F > ("w_mass_em_b_wide",  "w_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
+//  b_mass_em_b_wide =    fs->make < TH1F > ("b_mass_em_b_wide",  "b_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
+//  c_mass_em_b_wide =    fs->make < TH1F > ("c_mass_em_b_wide",  "c_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
+//  t_mass_em_b_wide =    fs->make < TH1F > ("t_mass_em_b_wide",  "t_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
 
   w_mt_wenu_b_wide =    fs->make < TH1F > ("w_mt_wenu_b_wide",  "w_mt_wenu_b_wide;M_{T} [GeV]", 40, 0., 160.);
   b_mt_wenu_b_wide =    fs->make < TH1F > ("b_mt_wenu_b_wide",  "b_mt_wenu_b_wide;M_{T} [GeV]", 40, 0., 160.);
@@ -1179,28 +1209,55 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mass_mm_bb =         fs->make < TH1F > ("c_mass_mm_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
   t_mass_mm_bb =         fs->make < TH1F > ("t_mass_mm_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
 
-//  w_mass_em_b =         fs->make < TH1F > ("w_mass_em_b",       "w_mass_em_b;Mass [GeV]", 40, 0., 160.);
-//  b_mass_em_b =         fs->make < TH1F > ("b_mass_em_b",       "b_mass_em_b;Mass [GeV]", 40, 0., 160.);
-//  c_mass_em_b =         fs->make < TH1F > ("c_mass_em_b",       "c_mass_em_b;Mass [GeV]", 40, 0., 160.);
-//  t_mass_em_b =         fs->make < TH1F > ("t_mass_em_b",       "t_mass_em_b;Mass [GeV]", 40, 0., 160.);
+//  w_mass_em_b =         fs->make < TH1F > ("w_mass_em_b",       "w_mass_em_b;Mass [GeV]", 30, 40., 160.);
+//  b_mass_em_b =         fs->make < TH1F > ("b_mass_em_b",       "b_mass_em_b;Mass [GeV]", 30, 40., 160.);
+//  c_mass_em_b =         fs->make < TH1F > ("c_mass_em_b",       "c_mass_em_b;Mass [GeV]", 30, 40., 160.);
+//  t_mass_em_b =         fs->make < TH1F > ("t_mass_em_b",       "t_mass_em_b;Mass [GeV]", 30, 40., 160.);
 
-  w_mt_wenu_b =         fs->make < TH1F > ("w_mt_wenu_b",       "w_mt_wenu_b;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wenu_b =         fs->make < TH1F > ("b_mt_wenu_b",       "b_mt_wenu_b;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wenu_b =         fs->make < TH1F > ("c_mt_wenu_b",       "c_mt_wenu_b;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wenu_b =         fs->make < TH1F > ("t_mt_wenu_b",       "t_mt_wenu_b;M_{T} [GeV]", 40, 0., 160.);
-  w_mt_wmnu_b =         fs->make < TH1F > ("w_mt_wmnu_b",       "w_mt_wmnu_b;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wmnu_b =         fs->make < TH1F > ("b_mt_wmnu_b",       "b_mt_wmnu_b;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wmnu_b =         fs->make < TH1F > ("c_mt_wmnu_b",       "c_mt_wmnu_b;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wmnu_b =         fs->make < TH1F > ("t_mt_wmnu_b",       "t_mt_wmnu_b;M_{T} [GeV]", 40, 0., 160.);
+  w_mt_wenu_b =         fs->make < TH1F > ("w_mt_wenu_b",       "w_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wenu_b =         fs->make < TH1F > ("b_mt_wenu_b",       "b_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wenu_b =         fs->make < TH1F > ("c_mt_wenu_b",       "c_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wenu_b =         fs->make < TH1F > ("t_mt_wenu_b",       "t_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+  w_mt_wmnu_b =         fs->make < TH1F > ("w_mt_wmnu_b",       "w_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wmnu_b =         fs->make < TH1F > ("b_mt_wmnu_b",       "b_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wmnu_b =         fs->make < TH1F > ("c_mt_wmnu_b",       "c_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wmnu_b =         fs->make < TH1F > ("t_mt_wmnu_b",       "t_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
 
-  w_mt_wenu_bb =        fs->make < TH1F > ("w_mt_wenu_bb",      "w_mt_wenu_bb;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wenu_bb =        fs->make < TH1F > ("b_mt_wenu_bb",      "b_mt_wenu_bb;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wenu_bb =        fs->make < TH1F > ("c_mt_wenu_bb",      "c_mt_wenu_bb;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wenu_bb =        fs->make < TH1F > ("t_mt_wenu_bb",      "t_mt_wenu_bb;M_{T} [GeV]", 40, 0., 160.);
-  w_mt_wmnu_bb =        fs->make < TH1F > ("w_mt_wmnu_bb",      "w_mt_wmnu_bb;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wmnu_bb =        fs->make < TH1F > ("b_mt_wmnu_bb",      "b_mt_wmnu_bb;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wmnu_bb =        fs->make < TH1F > ("c_mt_wmnu_bb",      "c_mt_wmnu_bb;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wmnu_bb =        fs->make < TH1F > ("t_mt_wmnu_bb",      "t_mt_wmnu_bb;M_{T} [GeV]", 40, 0., 160.);
+  w_mt_wenu_bb =        fs->make < TH1F > ("w_mt_wenu_bb",      "w_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wenu_bb =        fs->make < TH1F > ("b_mt_wenu_bb",      "b_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wenu_bb =        fs->make < TH1F > ("c_mt_wenu_bb",      "c_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wenu_bb =        fs->make < TH1F > ("t_mt_wenu_bb",      "t_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+  w_mt_wmnu_bb =        fs->make < TH1F > ("w_mt_wmnu_bb",      "w_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wmnu_bb =        fs->make < TH1F > ("b_mt_wmnu_bb",      "b_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wmnu_bb =        fs->make < TH1F > ("c_mt_wmnu_bb",      "c_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wmnu_bb =        fs->make < TH1F > ("t_mt_wmnu_bb",      "t_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+
+  w_mass_wenu_blepton =      fs->make < TH1F > ("w_mass_wenu_blepton",    "w_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
+  b_mass_wenu_blepton =      fs->make < TH1F > ("b_mass_wenu_blepton",    "b_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
+  c_mass_wenu_blepton =      fs->make < TH1F > ("c_mass_wenu_blepton",    "c_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
+  t_mass_wenu_blepton =      fs->make < TH1F > ("t_mass_wenu_blepton",    "t_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
+  w_mass_wmnu_blepton =      fs->make < TH1F > ("w_mass_wmnu_blepton",    "w_mass_wmnu_blepton;M_{T} [GeV]", 50, 0., 250.);
+  b_mass_wmnu_blepton =      fs->make < TH1F > ("b_mass_wmnu_blepton",    "b_mass_wmnu_blepton;M_{T} [GeV]", 50, 0., 250.);
+  c_mass_wmnu_blepton =      fs->make < TH1F > ("c_mass_wmnu_blepton",    "c_mass_wmnu_blepton;M_{T} [GeV]", 50, 0., 250.);
+  t_mass_wmnu_blepton =      fs->make < TH1F > ("t_mass_wmnu_blepton",    "t_mass_wmnu_blepton;M_{T} [GeV]", 50, 0., 250.);
+
+  w_mass_wenu_blepton_b =      fs->make < TH1F > ("w_mass_wenu_blepton_b",    "w_mass_wenu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+  b_mass_wenu_blepton_b =      fs->make < TH1F > ("b_mass_wenu_blepton_b",    "b_mass_wenu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+  c_mass_wenu_blepton_b =      fs->make < TH1F > ("c_mass_wenu_blepton_b",    "c_mass_wenu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+  t_mass_wenu_blepton_b =      fs->make < TH1F > ("t_mass_wenu_blepton_b",    "t_mass_wenu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+  w_mass_wmnu_blepton_b =      fs->make < TH1F > ("w_mass_wmnu_blepton_b",    "w_mass_wmnu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+  b_mass_wmnu_blepton_b =      fs->make < TH1F > ("b_mass_wmnu_blepton_b",    "b_mass_wmnu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+  c_mass_wmnu_blepton_b =      fs->make < TH1F > ("c_mass_wmnu_blepton_b",    "c_mass_wmnu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+  t_mass_wmnu_blepton_b =      fs->make < TH1F > ("t_mass_wmnu_blepton_b",    "t_mass_wmnu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+
+  w_mass_wenu_blepton_bb =      fs->make < TH1F > ("w_mass_wenu_blepton_bb",    "w_mass_wenu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+  b_mass_wenu_blepton_bb =      fs->make < TH1F > ("b_mass_wenu_blepton_bb",    "b_mass_wenu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+  c_mass_wenu_blepton_bb =      fs->make < TH1F > ("c_mass_wenu_blepton_bb",    "c_mass_wenu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+  t_mass_wenu_blepton_bb =      fs->make < TH1F > ("t_mass_wenu_blepton_bb",    "t_mass_wenu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+  w_mass_wmnu_blepton_bb =      fs->make < TH1F > ("w_mass_wmnu_blepton_bb",    "w_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+  b_mass_wmnu_blepton_bb =      fs->make < TH1F > ("b_mass_wmnu_blepton_bb",    "b_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+  c_mass_wmnu_blepton_bb =      fs->make < TH1F > ("c_mass_wmnu_blepton_bb",    "c_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+  t_mass_wmnu_blepton_bb =      fs->make < TH1F > ("t_mass_wmnu_blepton_bb",    "t_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
 
   w_pt_Z_ee_b =         fs->make < TH1F > ("w_pt_Z_ee_b",       "w_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
   b_pt_Z_ee_b =         fs->make < TH1F > ("b_pt_Z_ee_b",       "b_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
@@ -2028,8 +2085,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   //  wenu_event = wenu_event && iflag_ee;
   //  wmnu_event = wmnu_event && iflag_mm;
 
-  wenu_event = wenu_event && Nb>0 && Nj>1;
-  wmnu_event = wmnu_event && Nb>0 && Nj>1;
+  wenu_event = wenu_event && Nb>0 && Nj==2;
+  wmnu_event = wmnu_event && Nb>0 && Nj==2;
 
   wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_=="electronQCD"))
 			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="electronFWD"));
@@ -2205,50 +2262,64 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     h_mt_wenu->Fill (mt_wenu);
     w_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
     w_delta_wenuMet->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+    math::XYZTLorentzVector belectron;
+    belectron = vect_ele[0].p4() + vect_bjets[0].p4();
+    w_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     if (ist) {
       t_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
       t_delta_wenuMet->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+      t_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
       b_delta_wenuMet->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+      b_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
       c_delta_wenuMet->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+      c_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     }
     if (Nb == 1) {
       scalFac_b = btagSF(isMC, vect_bjets, 1);
       w_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
       w_delta_wenuMet_b->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+      w_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
 	t_delta_wenuMet_b->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+	t_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
 	b_delta_wenuMet_b->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+	b_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
 	c_delta_wenuMet_b->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+	c_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
     }
     if (Nb > 1) {
       scalFac_b = btagSF(isMC, vect_bjets, 2);
       w_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
       w_delta_wenuMet_bb->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+      w_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	t_delta_wenuMet_bb->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+	t_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	b_delta_wenuMet_bb->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+	b_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	c_delta_wenuMet_bb->Fill (deltaPhiMetEle, MyWeight*scalFac_b);
+	c_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
     }
   }
@@ -2435,50 +2506,64 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     h_mt_wmnu->Fill (mt_wmnu);
     w_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
     w_delta_wmnuMet->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+    math::XYZTLorentzVector bmuon;
+    bmuon = vect_muon[0].p4() + vect_bjets[0].p4();
+    w_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     if (ist) {
       t_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
       t_delta_wmnuMet->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+      t_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
       b_delta_wmnuMet->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+      b_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
       c_delta_wmnuMet->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+      c_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     }
     if (Nb == 1) {
       scalFac_b = btagSF(isMC, vect_bjets, 1);
       w_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
       w_delta_wmnuMet_b->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+      w_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
 	t_delta_wmnuMet_b->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+	t_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
 	b_delta_wmnuMet_b->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+	b_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
 	c_delta_wmnuMet_b->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+	c_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
     }
     if (Nb > 1) {
       scalFac_b = btagSF(isMC, vect_bjets, 2);
       w_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
       w_delta_wmnuMet_bb->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+      w_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
 	t_delta_wmnuMet_bb->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+	t_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
 	b_delta_wmnuMet_bb->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+	b_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
 	c_delta_wmnuMet_bb->Fill (deltaPhiMetMuo, MyWeight*scalFac_b);
+	c_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
     }
   }
