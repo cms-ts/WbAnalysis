@@ -387,6 +387,11 @@ private:
   TH1F*     c_mt_wmnu_wide;
   TH1F*     t_mt_wmnu_wide;
 
+  TH1F*     w_mt_em_wide;
+  TH1F*     b_mt_em_wide;
+  TH1F*     c_mt_em_wide;
+  TH1F*     t_mt_em_wide;
+
   TH1F*     h_mass_ee;
   TH1F*     w_mass_ee;
   TH1F*     b_mass_ee;
@@ -450,6 +455,11 @@ private:
   TH1F*     c_mt_wmnu_b_wide;
   TH1F*     t_mt_wmnu_b_wide;
 
+  TH1F*     w_mt_em_b_wide;
+  TH1F*     b_mt_em_b_wide;
+  TH1F*     c_mt_em_b_wide;
+  TH1F*     t_mt_em_b_wide;
+
   TH1F*     w_mt_wenu_bb_wide;	// at least one b jet in the event
   TH1F*     b_mt_wenu_bb_wide;
   TH1F*     c_mt_wenu_bb_wide;
@@ -459,6 +469,11 @@ private:
   TH1F*     b_mt_wmnu_bb_wide;
   TH1F*     c_mt_wmnu_bb_wide;
   TH1F*     t_mt_wmnu_bb_wide;
+
+  TH1F*     w_mt_em_bb_wide;
+  TH1F*     b_mt_em_bb_wide;
+  TH1F*     c_mt_em_bb_wide;
+  TH1F*     t_mt_em_bb_wide;
 
   TH1F*     w_mass_wenu_blepton;	// at least one b jet in the event
   TH1F*     b_mass_wenu_blepton;
@@ -1011,6 +1026,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mt_wmnu_wide =      fs->make < TH1F > ("c_mt_wmnu_wide",    "c_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
   t_mt_wmnu_wide =      fs->make < TH1F > ("t_mt_wmnu_wide",    "t_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
 
+  w_mt_em_wide =      fs->make < TH1F > ("w_mt_em_wide",    "w_mt_em_wide;M_{T} [GeV]", 40, 0., 160.);
+  b_mt_em_wide =      fs->make < TH1F > ("b_mt_em_wide",    "b_mt_em_wide;M_{T} [GeV]", 40, 0., 160.);
+  c_mt_em_wide =      fs->make < TH1F > ("c_mt_em_wide",    "c_mt_em_wide;M_{T} [GeV]", 40, 0., 160.);
+  t_mt_em_wide =      fs->make < TH1F > ("t_mt_em_wide",    "t_mt_em_wide;M_{T} [GeV]", 40, 0., 160.);
+
   h_mass_ee =           fs->make < TH1F > ("h_mass_ee",         "h_mass_ee;Mass [GeV]", 80, 71., 111.);
   w_mass_ee =           fs->make < TH1F > ("w_mass_ee",         "w_mass_ee;Mass [GeV]", 80, 71., 111.);
   b_mass_ee =           fs->make < TH1F > ("b_mass_ee",         "b_mass_ee;Mass [GeV]", 80, 71., 111.);
@@ -1074,6 +1094,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mt_wmnu_b_wide =    fs->make < TH1F > ("c_mt_wmnu_b_wide",  "c_mt_wmnu_b_wide;M_{T} [GeV]", 40, 0., 160.);
   t_mt_wmnu_b_wide =    fs->make < TH1F > ("t_mt_wmnu_b_wide",  "t_mt_wmnu_b_wide;M_{T} [GeV]", 40, 0., 160.);
 
+  w_mt_em_b_wide =    fs->make < TH1F > ("w_mt_em_b_wide",  "w_mt_em_b_wide;M_{T} [GeV]", 40, 0., 160.);
+  b_mt_em_b_wide =    fs->make < TH1F > ("b_mt_em_b_wide",  "b_mt_em_b_wide;M_{T} [GeV]", 40, 0., 160.);
+  c_mt_em_b_wide =    fs->make < TH1F > ("c_mt_em_b_wide",  "c_mt_em_b_wide;M_{T} [GeV]", 40, 0., 160.);
+  t_mt_em_b_wide =    fs->make < TH1F > ("t_mt_em_b_wide",  "t_mt_em_b_wide;M_{T} [GeV]", 40, 0., 160.);
+
   w_mt_wenu_bb_wide =   fs->make < TH1F > ("w_mt_wenu_bb_wide", "w_mt_wenu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   b_mt_wenu_bb_wide =   fs->make < TH1F > ("b_mt_wenu_bb_wide", "b_mt_wenu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   c_mt_wenu_bb_wide =   fs->make < TH1F > ("c_mt_wenu_bb_wide", "c_mt_wenu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
@@ -1083,6 +1108,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_mt_wmnu_bb_wide =   fs->make < TH1F > ("b_mt_wmnu_bb_wide", "b_mt_wmnu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   c_mt_wmnu_bb_wide =   fs->make < TH1F > ("c_mt_wmnu_bb_wide", "c_mt_wmnu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   t_mt_wmnu_bb_wide =   fs->make < TH1F > ("t_mt_wmnu_bb_wide", "t_mt_wmnu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
+
+  w_mt_em_bb_wide =   fs->make < TH1F > ("w_mt_em_bb_wide", "w_mt_em_bb_wide;M_{T} [GeV]", 40, 0., 160.);
+  b_mt_em_bb_wide =   fs->make < TH1F > ("b_mt_em_bb_wide", "b_mt_em_bb_wide;M_{T} [GeV]", 40, 0., 160.);
+  c_mt_em_bb_wide =   fs->make < TH1F > ("c_mt_em_bb_wide", "c_mt_em_bb_wide;M_{T} [GeV]", 40, 0., 160.);
+  t_mt_em_bb_wide =   fs->make < TH1F > ("t_mt_em_bb_wide", "t_mt_em_bb_wide;M_{T} [GeV]", 40, 0., 160.);
 
   w_mass_wenu_blepton =      fs->make < TH1F > ("w_mass_wenu_blepton",    "w_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
   b_mass_wenu_blepton =      fs->make < TH1F > ("b_mass_wenu_blepton",    "b_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
