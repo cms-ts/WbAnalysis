@@ -194,8 +194,6 @@ private:
   edm::LumiReWeighting LumiWeights_;
 
   int nprup;
-  TH1F* h_nmult0;
-  TH1F* h_nmult1;
 
   table* ElSF_;
   table* ElSF2_;
@@ -213,11 +211,16 @@ private:
 
    ***************************************************/
 
+  TH1F* h_nmult0;
+  TH1F* h_nmult1;
+
   TH1F*     h_jetmultiplicity;
+
   TH1F*     h_eventYields;
   TH1F*     w_eventYields;
 
   TH1F*     h_pu_weights;
+
   TH1F*     h_tracks;
   TH1F*     w_tracks;
   TH1F*     h_recoVTX;
@@ -309,6 +312,7 @@ private:
   TH1F*     b_second_bjet_eta;
   TH1F*     c_second_bjet_eta;
   TH1F*     t_second_bjet_eta;
+
   TH1F*     w_third_bjet_pt;
   TH1F*     b_third_bjet_pt;
   TH1F*     c_third_bjet_pt;
@@ -373,11 +377,6 @@ private:
   TH1F*     c_mass_mm_wide;
   TH1F*     t_mass_mm_wide;
 
-//  TH1F*     w_mass_em_wide;
-//  TH1F*     b_mass_em_wide;
-//  TH1F*     c_mass_em_wide;
-//  TH1F*     t_mass_em_wide;
-
   TH1F*     w_mt_wenu_wide;
   TH1F*     b_mt_wenu_wide;
   TH1F*     c_mt_wenu_wide;
@@ -400,18 +399,11 @@ private:
   TH1F*     c_mass_mm;
   TH1F*     t_mass_mm;
 
-//  TH1F*     h_mass_em;
-//  TH1F*     w_mass_em;
-//  TH1F*     b_mass_em;
-//  TH1F*     c_mass_em;
-//  TH1F*     t_mass_em;
-
   TH1F*     h_mt_wenu;
   TH1F*     w_mt_wenu;
   TH1F*     b_mt_wenu;
   TH1F*     c_mt_wenu;
   TH1F*     t_mt_wenu;
-
   TH1F*     h_mt_wmnu;
   TH1F*     w_mt_wmnu;
   TH1F*     b_mt_wmnu;
@@ -428,11 +420,6 @@ private:
   TH1F*     c_pt_Z_mm;
   TH1F*     t_pt_Z_mm;
 
-  TH1F*     w_pt_Z_em;
-  TH1F*     b_pt_Z_em;
-  TH1F*     c_pt_Z_em;
-  TH1F*     t_pt_Z_em;
-
   TH1F*     w_single_pt_Z_ee_b;
   TH1F*     b_single_pt_Z_ee_b;
   TH1F*     c_single_pt_Z_ee_b;
@@ -443,11 +430,6 @@ private:
   TH1F*     c_single_pt_Z_mm_b;
   TH1F*     t_single_pt_Z_mm_b;
 
-  TH1F*     w_single_pt_Z_em_b;
-  TH1F*     b_single_pt_Z_em_b;
-  TH1F*     c_single_pt_Z_em_b;
-  TH1F*     t_single_pt_Z_em_b;
-
   TH1F*     w_mass_ee_b_wide;	// at least one b jet in the event
   TH1F*     b_mass_ee_b_wide;
   TH1F*     c_mass_ee_b_wide;
@@ -457,11 +439,6 @@ private:
   TH1F*     b_mass_mm_b_wide;
   TH1F*     c_mass_mm_b_wide;
   TH1F*     t_mass_mm_b_wide;
-
-//  TH1F*     w_mass_em_b_wide;
-//  TH1F*     b_mass_em_b_wide;
-//  TH1F*     c_mass_em_b_wide;
-//  TH1F*     t_mass_em_b_wide;
 
   TH1F*     w_mt_wenu_b_wide;	// at least one b jet in the event
   TH1F*     b_mt_wenu_b_wide;
@@ -513,11 +490,6 @@ private:
   TH1F*     c_mass_wmnu_blepton_bb;
   TH1F*     t_mass_wmnu_blepton_bb;
 
-//  TH1F*     w_mass_em_bb_wide;
-//  TH1F*     b_mass_em_bb_wide;
-//  TH1F*     c_mass_em_bb_wide;
-//  TH1F*     t_mass_em_bb_wide;
-
   TH1F*     w_mass_ee_b;	// at least one b jet in the event
   TH1F*     b_mass_ee_b;
   TH1F*     c_mass_ee_b;
@@ -537,11 +509,6 @@ private:
   TH1F*     b_mass_mm_bb;
   TH1F*     c_mass_mm_bb;
   TH1F*     t_mass_mm_bb;
-
-//  TH1F*     w_mass_em_b;
-//  TH1F*     b_mass_em_b;
-//  TH1F*     c_mass_em_b;
-//  TH1F*     t_mass_em_b;
 
   TH1F*     w_mt_wenu_b;	// at least one b jet in the event
   TH1F*     b_mt_wenu_b;
@@ -563,11 +530,6 @@ private:
   TH1F*     c_mt_wmnu_bb;
   TH1F*     t_mt_wmnu_bb;
 
-//  TH1F*     w_mass_em_bb;
-//  TH1F*     b_mass_em_bb;
-//  TH1F*     c_mass_em_bb;
-//  TH1F*     t_mass_em_bb;
-
   TH1F*     w_mass_Zj_ee;
   TH1F*     b_mass_Zj_ee;
   TH1F*     c_mass_Zj_ee;
@@ -577,11 +539,6 @@ private:
   TH1F*     b_mass_Zj_mm;
   TH1F*     c_mass_Zj_mm;
   TH1F*     t_mass_Zj_mm;
-
-  TH1F*     w_mass_Zj_em;
-  TH1F*     b_mass_Zj_em;
-  TH1F*     c_mass_Zj_em;
-  TH1F*     t_mass_Zj_em;
 
   TH1F*     w_mass_Zj_ee_b;
   TH1F*     b_mass_Zj_ee_b;
@@ -593,11 +550,6 @@ private:
   TH1F*     c_mass_Zj_mm_b;
   TH1F*     t_mass_Zj_mm_b;
 
-  TH1F*     w_mass_Zj_em_b;
-  TH1F*     b_mass_Zj_em_b;
-  TH1F*     c_mass_Zj_em_b;
-  TH1F*     t_mass_Zj_em_b;
-
   TH1F*     w_mass_Zj_ee_bb;
   TH1F*     b_mass_Zj_ee_bb;
   TH1F*     c_mass_Zj_ee_bb;
@@ -607,11 +559,6 @@ private:
   TH1F*     b_mass_Zj_mm_bb;
   TH1F*     c_mass_Zj_mm_bb;
   TH1F*     t_mass_Zj_mm_bb;
-
-//  TH1F*     w_mass_Zj_em_bb;
-//  TH1F*     b_mass_Zj_em_bb;
-//  TH1F*     c_mass_Zj_em_bb;
-//  TH1F*     t_mass_Zj_em_bb;
 
   TH1F*     w_pt_Z_ee_b;
   TH1F*     b_pt_Z_ee_b;
@@ -623,11 +570,6 @@ private:
   TH1F*     c_pt_Z_mm_b;
   TH1F*     t_pt_Z_mm_b;
 
-//  TH1F*     w_pt_Z_em_b;
-//  TH1F*     b_pt_Z_em_b;
-//  TH1F*     c_pt_Z_em_b;
-//  TH1F*     t_pt_Z_em_b;
-
   TH1F*     w_pt_Z_ee_bb;
   TH1F*     b_pt_Z_ee_bb;
   TH1F*     c_pt_Z_ee_bb;
@@ -637,11 +579,6 @@ private:
   TH1F*     b_pt_Z_mm_bb;
   TH1F*     c_pt_Z_mm_bb;
   TH1F*     t_pt_Z_mm_bb;
-
-//  TH1F*     w_pt_Z_em_bb;
-//  TH1F*     b_pt_Z_em_bb;
-//  TH1F*     c_pt_Z_em_bb;
-//  TH1F*     t_pt_Z_em_bb;
 
   TH1F*     w_delta_ee;
   TH1F*     b_delta_ee;
@@ -705,11 +642,6 @@ private:
   TH1F*     c_single_delta_mm_b;
   TH1F*     t_single_delta_mm_b;
 
-//  TH1F*     w_single_delta_em_b;
-//  TH1F*     b_single_delta_em_b;
-//  TH1F*     c_single_delta_em_b;
-//  TH1F*     t_single_delta_em_b;
-
   TH1F*     w_single_delta_wenuMet_b;
   TH1F*     b_single_delta_wenuMet_b;
   TH1F*     c_single_delta_wenuMet_b;
@@ -756,7 +688,7 @@ private:
   TH1F*     c_SVTX_mass_jet;
   TH1F*     t_SVTX_mass_jet;
 
-  TH1F*	    w_SVTX_mass_trk;
+  TH1F*	 w_SVTX_mass_trk;
   TH1F*     b_SVTX_mass_trk;
   TH1F*     c_SVTX_mass_trk;
   TH1F*     t_SVTX_mass_trk;
@@ -922,6 +854,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_jetmultiplicity =   fs->make < TH1F > ("b_jetmultiplicity", "b_jetmultiplicity;N_jets", 8, 0.5, 8.5);
   c_jetmultiplicity =   fs->make < TH1F > ("c_jetmultiplicity", "c_jetmultiplicity;N_jets", 8, 0.5, 8.5);
   t_jetmultiplicity =   fs->make < TH1F > ("t_jetmultiplicity", "t_jetmultiplicity;N_jets", 8, 0.5, 8.5);
+
   w_first_jet_pt =      fs->make < TH1F > ("w_first_jet_pt",    "w_first_jet_pt;P_t [GeV]", 50, 30., 700.);
   b_first_jet_pt =      fs->make < TH1F > ("b_first_jet_pt",    "b_first_jet_pt;P_t [GeV]", 50, 30., 700.);
   c_first_jet_pt =      fs->make < TH1F > ("c_first_jet_pt",    "c_first_jet_pt;P_t [GeV]", 50, 30., 700.);
@@ -976,6 +909,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_bjetmultiplicity =  fs->make < TH1F > ("b_bjetmultiplicity", "b_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
   c_bjetmultiplicity =  fs->make < TH1F > ("c_bjetmultiplicity", "c_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
   t_bjetmultiplicity =  fs->make < TH1F > ("t_bjetmultiplicity", "t_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
+
   w_first_bjet_pt =     fs->make < TH1F > ("w_first_bjet_pt",    "w_first_bjet_pt;P_t [GeV]", 50, 30., 700.);
   b_first_bjet_pt =     fs->make < TH1F > ("b_first_bjet_pt",    "b_first_bjet_pt;P_t [GeV]", 50, 30., 700.);
   c_first_bjet_pt =     fs->make < TH1F > ("c_first_bjet_pt",    "c_first_bjet_pt;P_t [GeV]", 50, 30., 700.);
@@ -984,6 +918,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_first_bjet_eta =    fs->make < TH1F > ("b_first_bjet_eta",   "b_first_bjet_eta;Eta", 16, -2.5, 2.5);
   c_first_bjet_eta =    fs->make < TH1F > ("c_first_bjet_eta",   "c_first_bjet_eta;Eta", 16, -2.5, 2.5);
   t_first_bjet_eta =    fs->make < TH1F > ("t_first_bjet_eta",   "t_first_bjet_eta;Eta", 16, -2.5, 2.5);
+
   w_single_bjet_pt =    fs->make < TH1F > ("w_single_bjet_pt",    "w_single_bjet_pt;P_t [GeV]", 50, 30., 700.);
   b_single_bjet_pt =    fs->make < TH1F > ("b_single_bjet_pt",    "b_single_bjet_pt;P_t [GeV]", 50, 30., 700.);
   c_single_bjet_pt =    fs->make < TH1F > ("c_single_bjet_pt",    "c_single_bjet_pt;P_t [GeV]", 50, 30., 700.);
@@ -992,6 +927,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_single_bjet_eta =   fs->make < TH1F > ("b_single_bjet_eta",   "b_single_bjet_eta;Eta", 16, -2.5, 2.5);
   c_single_bjet_eta =   fs->make < TH1F > ("c_single_bjet_eta",   "c_single_bjet_eta;Eta", 16, -2.5, 2.5);
   t_single_bjet_eta =   fs->make < TH1F > ("t_single_bjet_eta",   "t_single_bjet_eta;Eta", 16, -2.5, 2.5);
+
   w_second_bjet_pt =    fs->make < TH1F > ("w_second_bjet_pt",   "w_second_bjet_pt;P_t [GeV]", 50, 30., 500.);
   b_second_bjet_pt =    fs->make < TH1F > ("b_second_bjet_pt",   "b_second_bjet_pt;P_t [GeV]", 50, 30., 500.);
   c_second_bjet_pt =    fs->make < TH1F > ("c_second_bjet_pt",   "c_second_bjet_pt;P_t [GeV]", 50, 30., 500.);
@@ -1000,6 +936,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_bjet_eta =   fs->make < TH1F > ("b_second_bjet_eta",  "b_second_bjet_eta;Eta", 16, -2.5, 2.5);
   c_second_bjet_eta =   fs->make < TH1F > ("c_second_bjet_eta",  "c_second_bjet_eta;Eta", 16, -2.5, 2.5);
   t_second_bjet_eta =   fs->make < TH1F > ("t_second_bjet_eta",  "t_second_bjet_eta;Eta", 16, -2.5, 2.5);
+
   w_third_bjet_pt =     fs->make < TH1F > ("w_third_bjet_pt",    "w_third_bjet_pt;P_t [GeV]", 50, 30., 200.);
   b_third_bjet_pt =     fs->make < TH1F > ("b_third_bjet_pt",    "b_third_bjet_pt;P_t [GeV]", 50, 30., 200.);
   c_third_bjet_pt =     fs->make < TH1F > ("c_third_bjet_pt",    "c_third_bjet_pt;P_t [GeV]", 50, 30., 200.);
@@ -1058,41 +995,33 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_mass_ee_wide =      fs->make < TH1F > ("b_mass_ee_wide",    "b_mass_ee_wide;Mass [GeV]", 40, 50., 200.);
   c_mass_ee_wide =      fs->make < TH1F > ("c_mass_ee_wide",    "c_mass_ee_wide;Mass [GeV]", 40, 50., 200.);
   t_mass_ee_wide =      fs->make < TH1F > ("t_mass_ee_wide",    "t_mass_ee_wide;Mass [GeV]", 40, 50., 200.);
+
   w_mass_mm_wide =      fs->make < TH1F > ("w_mass_mm_wide",    "w_mass_mm_wide;Mass [GeV]", 40, 50., 200.);
   b_mass_mm_wide =      fs->make < TH1F > ("b_mass_mm_wide",    "b_mass_mm_wide;Mass [GeV]", 40, 50., 200.);
   c_mass_mm_wide =      fs->make < TH1F > ("c_mass_mm_wide",    "c_mass_mm_wide;Mass [GeV]", 40, 50., 200.);
   t_mass_mm_wide =      fs->make < TH1F > ("t_mass_mm_wide",    "t_mass_mm_wide;Mass [GeV]", 40, 50., 200.);
 
-//  w_mass_em_wide =      fs->make < TH1F > ("w_mass_em_wide",    "w_mass_em_wide;Mass [GeV]", 40, 0., 160.);
-//  b_mass_em_wide =      fs->make < TH1F > ("b_mass_em_wide",    "b_mass_em_wide;Mass [GeV]", 40, 0., 160.);
-//  c_mass_em_wide =      fs->make < TH1F > ("c_mass_em_wide",    "c_mass_em_wide;Mass [GeV]", 40, 0., 160.);
-//  t_mass_em_wide =      fs->make < TH1F > ("t_mass_em_wide",    "t_mass_em_wide;Mass [GeV]", 40, 0., 160.);
+  w_mt_wenu_wide =      fs->make < TH1F > ("w_mt_wenu_wide",    "w_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
+  b_mt_wenu_wide =      fs->make < TH1F > ("b_mt_wenu_wide",    "b_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
+  c_mt_wenu_wide =      fs->make < TH1F > ("c_mt_wenu_wide",    "c_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
+  t_mt_wenu_wide =      fs->make < TH1F > ("t_mt_wenu_wide",    "t_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
+
+  w_mt_wmnu_wide =      fs->make < TH1F > ("w_mt_wmnu_wide",    "w_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
+  b_mt_wmnu_wide =      fs->make < TH1F > ("b_mt_wmnu_wide",    "b_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
+  c_mt_wmnu_wide =      fs->make < TH1F > ("c_mt_wmnu_wide",    "c_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
+  t_mt_wmnu_wide =      fs->make < TH1F > ("t_mt_wmnu_wide",    "t_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
 
   h_mass_ee =           fs->make < TH1F > ("h_mass_ee",         "h_mass_ee;Mass [GeV]", 80, 71., 111.);
   w_mass_ee =           fs->make < TH1F > ("w_mass_ee",         "w_mass_ee;Mass [GeV]", 80, 71., 111.);
   b_mass_ee =           fs->make < TH1F > ("b_mass_ee",         "b_mass_ee;Mass [GeV]", 80, 71., 111.);
   c_mass_ee =           fs->make < TH1F > ("c_mass_ee",         "c_mass_ee;Mass [GeV]", 80, 71., 111.);
   t_mass_ee =           fs->make < TH1F > ("t_mass_ee",         "t_mass_ee;Mass [GeV]", 80, 71., 111.);
+
   h_mass_mm =           fs->make < TH1F > ("h_mass_mm",         "h_mass_mm;Mass [GeV]", 80, 71., 111.);
   w_mass_mm =           fs->make < TH1F > ("w_mass_mm",         "w_mass_mm;Mass [GeV]", 80, 71., 111.);
   b_mass_mm =           fs->make < TH1F > ("b_mass_mm",         "b_mass_mm;Mass [GeV]", 80, 71., 111.);
   c_mass_mm =           fs->make < TH1F > ("c_mass_mm",         "c_mass_mm;Mass [GeV]", 80, 71., 111.);
   t_mass_mm =           fs->make < TH1F > ("t_mass_mm",         "t_mass_mm;Mass [GeV]", 80, 71., 111.);
-
-//  h_mass_em =           fs->make < TH1F > ("h_mass_em",         "h_mass_em;Mass [GeV]", 40, 0., 160.);
-//  w_mass_em =           fs->make < TH1F > ("w_mass_em",         "w_mass_em;Mass [GeV]", 40, 0., 160.);
-//  b_mass_em =           fs->make < TH1F > ("b_mass_em",         "b_mass_em;Mass [GeV]", 40, 0., 160.);
-//  c_mass_em =           fs->make < TH1F > ("c_mass_em",         "c_mass_em;Mass [GeV]", 40, 0., 160.);
-//  t_mass_em =           fs->make < TH1F > ("t_mass_em",         "t_mass_em;Mass [GeV]", 40, 0., 160.);
-
-  w_mt_wenu_wide =      fs->make < TH1F > ("w_mt_wenu_wide",    "w_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wenu_wide =      fs->make < TH1F > ("b_mt_wenu_wide",    "b_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wenu_wide =      fs->make < TH1F > ("c_mt_wenu_wide",    "c_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wenu_wide =      fs->make < TH1F > ("t_mt_wenu_wide",    "t_mt_wenu_wide;M_{T} [GeV]", 40, 0., 160.);
-  w_mt_wmnu_wide =      fs->make < TH1F > ("w_mt_wmnu_wide",    "w_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
-  b_mt_wmnu_wide =      fs->make < TH1F > ("b_mt_wmnu_wide",    "b_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
-  c_mt_wmnu_wide =      fs->make < TH1F > ("c_mt_wmnu_wide",    "c_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
-  t_mt_wmnu_wide =      fs->make < TH1F > ("t_mt_wmnu_wide",    "t_mt_wmnu_wide;M_{T} [GeV]", 40, 0., 160.);
 
   h_mt_wenu =           fs->make < TH1F > ("h_mt_wenu",         "h_mt_wenu;M_{T} [GeV]", 30, 40., 160.);
   w_mt_wenu =           fs->make < TH1F > ("w_mt_wenu",         "w_mt_wenu;M_{T} [GeV]", 30, 40., 160.);
@@ -1105,78 +1034,41 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mt_wmnu =           fs->make < TH1F > ("c_mt_wmnu",         "c_mt_wmnu;M_{T} [GeV]", 30, 40., 160.);
   t_mt_wmnu =           fs->make < TH1F > ("t_mt_wmnu",         "t_mt_wmnu;M_{T} [GeV]", 30, 40., 160.);
 
-  w_mass_Zj_ee =        fs->make < TH1F > ("w_mass_Zj_ee",      "w_mass_Zj_ee", 60, 100., 330.);
-  b_mass_Zj_ee =        fs->make < TH1F > ("b_mass_Zj_ee",      "b_mass_Zj_ee", 60, 100., 330.);
-  c_mass_Zj_ee =        fs->make < TH1F > ("c_mass_Zj_ee",      "c_mass_Zj_ee", 60, 100., 330.);
-  t_mass_Zj_ee =        fs->make < TH1F > ("t_mass_Zj_ee",      "t_mass_Zj_ee", 60, 100., 330.);
-
-  w_mass_Zj_ee_b =      fs->make < TH1F > ("w_mass_Zj_ee_b",    "w_mass_Zj_ee_b", 60, 100., 330.);
-  b_mass_Zj_ee_b =      fs->make < TH1F > ("b_mass_Zj_ee_b",    "b_mass_Zj_ee_b", 60, 100., 330.);
-  c_mass_Zj_ee_b =      fs->make < TH1F > ("c_mass_Zj_ee_b",    "c_mass_Zj_ee_b", 60, 100., 330.);
-  t_mass_Zj_ee_b =      fs->make < TH1F > ("t_mass_Zj_ee_b",    "t_mass_Zj_ee_b", 60, 100., 330.);
-
-  w_mass_Zj_ee_bb =      fs->make < TH1F > ("w_mass_Zj_ee_bb",    "w_mass_Zj_ee_bb", 60, 100., 330.);
-  b_mass_Zj_ee_bb =      fs->make < TH1F > ("b_mass_Zj_ee_bb",    "b_mass_Zj_ee_bb", 60, 100., 330.);
-  c_mass_Zj_ee_bb =      fs->make < TH1F > ("c_mass_Zj_ee_bb",    "c_mass_Zj_ee_bb", 60, 100., 330.);
-  t_mass_Zj_ee_bb =      fs->make < TH1F > ("t_mass_Zj_ee_bb",    "t_mass_Zj_ee_bb", 60, 100., 330.);
-
-  w_mass_Zj_mm =        fs->make < TH1F > ("w_mass_Zj_mm",      "w_mass_Zj_mm", 60, 100., 330.);
-  b_mass_Zj_mm =        fs->make < TH1F > ("b_mass_Zj_mm",      "b_mass_Zj_mm", 60, 100., 330.);
-  c_mass_Zj_mm =        fs->make < TH1F > ("c_mass_Zj_mm",      "c_mass_Zj_mm", 60, 100., 330.);
-  t_mass_Zj_mm =        fs->make < TH1F > ("t_mass_Zj_mm",      "t_mass_Zj_mm", 60, 100., 330.);
-
-  w_mass_Zj_mm_b =      fs->make < TH1F > ("w_mass_Zj_mm_b",    "w_mass_Zj_mm_b", 60, 100., 330.);
-  b_mass_Zj_mm_b =      fs->make < TH1F > ("b_mass_Zj_mm_b",    "b_mass_Zj_mm_b", 60, 100., 330.);
-  c_mass_Zj_mm_b =      fs->make < TH1F > ("c_mass_Zj_mm_b",    "c_mass_Zj_mm_b", 60, 100., 330.);
-  t_mass_Zj_mm_b =      fs->make < TH1F > ("t_mass_Zj_mm_b",    "t_mass_Zj_mm_b", 60, 100., 330.);
-
-  w_mass_Zj_mm_bb =      fs->make < TH1F > ("w_mass_Zj_mm_bb",    "w_mass_Zj_mm_bb", 60, 100., 330.);
-  b_mass_Zj_mm_bb =      fs->make < TH1F > ("b_mass_Zj_mm_bb",    "b_mass_Zj_mm_bb", 60, 100., 330.);
-  c_mass_Zj_mm_bb =      fs->make < TH1F > ("c_mass_Zj_mm_bb",    "c_mass_Zj_mm_bb", 60, 100., 330.);
-  t_mass_Zj_mm_bb =      fs->make < TH1F > ("t_mass_Zj_mm_bb",    "t_mass_Zj_mm_bb", 60, 100., 330.);
-
-//  w_mass_Zj_em =        fs->make < TH1F > ("w_mass_Zj_em",      "w_mass_Zj_em", 60, 100., 330.);
-//  b_mass_Zj_em =        fs->make < TH1F > ("b_mass_Zj_em",      "b_mass_Zj_em", 60, 100., 330.);
-//  c_mass_Zj_em =        fs->make < TH1F > ("c_mass_Zj_em",      "c_mass_Zj_em", 60, 100., 330.);
-//  t_mass_Zj_em =        fs->make < TH1F > ("t_mass_Zj_em",      "t_mass_Zj_em", 60, 100., 330.);
-
-//  w_mass_Zj_em_b =      fs->make < TH1F > ("w_mass_Zj_em_b",    "w_mass_Zj_em_b", 60, 100., 330.);
-//  b_mass_Zj_em_b =      fs->make < TH1F > ("b_mass_Zj_em_b",    "b_mass_Zj_em_b", 60, 100., 330.);
-//  c_mass_Zj_em_b =      fs->make < TH1F > ("c_mass_Zj_em_b",    "c_mass_Zj_em_b", 60, 100., 330.);
-//  t_mass_Zj_em_b =      fs->make < TH1F > ("t_mass_Zj_em_b",    "t_mass_Zj_em_b", 60, 100., 330.);
-
   w_pt_Z_ee =           fs->make < TH1F > ("w_pt_Z_ee",         "w_pt_Z_ee;P_t [GeV]", 40, 0., 400.);
   b_pt_Z_ee =           fs->make < TH1F > ("b_pt_Z_ee",         "b_pt_Z_ee;P_t [GeV]", 40, 0., 400.);
   c_pt_Z_ee =           fs->make < TH1F > ("c_pt_Z_ee",         "c_pt_Z_ee;P_t [GeV]", 40, 0., 400.);
   t_pt_Z_ee =           fs->make < TH1F > ("t_pt_Z_ee",         "t_pt_Z_ee;P_t [GeV]", 40, 0., 400.);
+
   w_pt_Z_mm =           fs->make < TH1F > ("w_pt_Z_mm",         "w_pt_Z_mm;P_t [GeV]", 40, 0., 400.);
   b_pt_Z_mm =           fs->make < TH1F > ("b_pt_Z_mm",         "b_pt_Z_mm;P_t [GeV]", 40, 0., 400.);
   c_pt_Z_mm =           fs->make < TH1F > ("c_pt_Z_mm",         "c_pt_Z_mm;P_t [GeV]", 40, 0., 400.);
   t_pt_Z_mm =           fs->make < TH1F > ("t_pt_Z_mm",         "t_pt_Z_mm;P_t [GeV]", 40, 0., 400.);
 
-//  w_pt_Z_em =           fs->make < TH1F > ("w_pt_Z_em",         "w_pt_Z_em;P_t [GeV]", 40, 0., 400.);
-//  b_pt_Z_em =           fs->make < TH1F > ("b_pt_Z_em",         "b_pt_Z_em;P_t [GeV]", 40, 0., 400.);
-//  c_pt_Z_em =           fs->make < TH1F > ("c_pt_Z_em",         "c_pt_Z_em;P_t [GeV]", 40, 0., 400.);
-//  t_pt_Z_em =           fs->make < TH1F > ("t_pt_Z_em",         "t_pt_Z_em;P_t [GeV]", 40, 0., 400.);
+  w_single_pt_Z_ee_b =  fs->make < TH1F > ("w_single_pt_Z_ee_b",       "w_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
+  b_single_pt_Z_ee_b =  fs->make < TH1F > ("b_single_pt_Z_ee_b",       "b_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
+  c_single_pt_Z_ee_b =  fs->make < TH1F > ("c_single_pt_Z_ee_b",       "c_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
+  t_single_pt_Z_ee_b =  fs->make < TH1F > ("t_single_pt_Z_ee_b",       "t_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
+
+  w_single_pt_Z_mm_b =  fs->make < TH1F > ("w_single_pt_Z_mm_b",       "w_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
+  b_single_pt_Z_mm_b =  fs->make < TH1F > ("b_single_pt_Z_mm_b",       "b_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
+  c_single_pt_Z_mm_b =  fs->make < TH1F > ("c_single_pt_Z_mm_b",       "c_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
+  t_single_pt_Z_mm_b =  fs->make < TH1F > ("t_single_pt_Z_mm_b",       "t_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
 
   w_mass_ee_b_wide =    fs->make < TH1F > ("w_mass_ee_b_wide",  "w_mass_ee_b_wide;Mass [GeV]", 40, 50., 200.);
   b_mass_ee_b_wide =    fs->make < TH1F > ("b_mass_ee_b_wide",  "b_mass_ee_b_wide;Mass [GeV]", 40, 50., 200.);
   c_mass_ee_b_wide =    fs->make < TH1F > ("c_mass_ee_b_wide",  "c_mass_ee_b_wide;Mass [GeV]", 40, 50., 200.);
   t_mass_ee_b_wide =    fs->make < TH1F > ("t_mass_ee_b_wide",  "t_mass_ee_b_wide;Mass [GeV]", 40, 50., 200.);
+
   w_mass_mm_b_wide =    fs->make < TH1F > ("w_mass_mm_b_wide",  "w_mass_mm_b_wide;Mass [GeV]", 40, 50., 200.);
   b_mass_mm_b_wide =    fs->make < TH1F > ("b_mass_mm_b_wide",  "b_mass_mm_b_wide;Mass [GeV]", 40, 50., 200.);
   c_mass_mm_b_wide =    fs->make < TH1F > ("c_mass_mm_b_wide",  "c_mass_mm_b_wide;Mass [GeV]", 40, 50., 200.);
   t_mass_mm_b_wide =    fs->make < TH1F > ("t_mass_mm_b_wide",  "t_mass_mm_b_wide;Mass [GeV]", 40, 50., 200.);
 
-//  w_mass_em_b_wide =    fs->make < TH1F > ("w_mass_em_b_wide",  "w_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
-//  b_mass_em_b_wide =    fs->make < TH1F > ("b_mass_em_b_wide",  "b_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
-//  c_mass_em_b_wide =    fs->make < TH1F > ("c_mass_em_b_wide",  "c_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
-//  t_mass_em_b_wide =    fs->make < TH1F > ("t_mass_em_b_wide",  "t_mass_em_b_wide;Mass [GeV]", 30, 40., 160.);
-
   w_mt_wenu_b_wide =    fs->make < TH1F > ("w_mt_wenu_b_wide",  "w_mt_wenu_b_wide;M_{T} [GeV]", 40, 0., 160.);
   b_mt_wenu_b_wide =    fs->make < TH1F > ("b_mt_wenu_b_wide",  "b_mt_wenu_b_wide;M_{T} [GeV]", 40, 0., 160.);
   c_mt_wenu_b_wide =    fs->make < TH1F > ("c_mt_wenu_b_wide",  "c_mt_wenu_b_wide;M_{T} [GeV]", 40, 0., 160.);
   t_mt_wenu_b_wide =    fs->make < TH1F > ("t_mt_wenu_b_wide",  "t_mt_wenu_b_wide;M_{T} [GeV]", 40, 0., 160.);
+
   w_mt_wmnu_b_wide =    fs->make < TH1F > ("w_mt_wmnu_b_wide",  "w_mt_wmnu_b_wide;M_{T} [GeV]", 40, 0., 160.);
   b_mt_wmnu_b_wide =    fs->make < TH1F > ("b_mt_wmnu_b_wide",  "b_mt_wmnu_b_wide;M_{T} [GeV]", 40, 0., 160.);
   c_mt_wmnu_b_wide =    fs->make < TH1F > ("c_mt_wmnu_b_wide",  "c_mt_wmnu_b_wide;M_{T} [GeV]", 40, 0., 160.);
@@ -1186,56 +1078,17 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_mt_wenu_bb_wide =   fs->make < TH1F > ("b_mt_wenu_bb_wide", "b_mt_wenu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   c_mt_wenu_bb_wide =   fs->make < TH1F > ("c_mt_wenu_bb_wide", "c_mt_wenu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   t_mt_wenu_bb_wide =   fs->make < TH1F > ("t_mt_wenu_bb_wide", "t_mt_wenu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
+
   w_mt_wmnu_bb_wide =   fs->make < TH1F > ("w_mt_wmnu_bb_wide", "w_mt_wmnu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   b_mt_wmnu_bb_wide =   fs->make < TH1F > ("b_mt_wmnu_bb_wide", "b_mt_wmnu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   c_mt_wmnu_bb_wide =   fs->make < TH1F > ("c_mt_wmnu_bb_wide", "c_mt_wmnu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
   t_mt_wmnu_bb_wide =   fs->make < TH1F > ("t_mt_wmnu_bb_wide", "t_mt_wmnu_bb_wide;M_{T} [GeV]", 40, 0., 160.);
 
-  w_mass_ee_b =         fs->make < TH1F > ("w_mass_ee_b",       "w_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  b_mass_ee_b =         fs->make < TH1F > ("b_mass_ee_b",       "b_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  c_mass_ee_b =         fs->make < TH1F > ("c_mass_ee_b",       "c_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  t_mass_ee_b =         fs->make < TH1F > ("t_mass_ee_b",       "t_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  w_mass_mm_b =         fs->make < TH1F > ("w_mass_mm_b",       "w_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  b_mass_mm_b =         fs->make < TH1F > ("b_mass_mm_b",       "b_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  c_mass_mm_b =         fs->make < TH1F > ("c_mass_mm_b",       "c_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  t_mass_mm_b =         fs->make < TH1F > ("t_mass_mm_b",       "t_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-
-  w_mass_ee_bb =         fs->make < TH1F > ("w_mass_ee_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  b_mass_ee_bb =         fs->make < TH1F > ("b_mass_ee_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  c_mass_ee_bb =         fs->make < TH1F > ("c_mass_ee_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  t_mass_ee_bb =         fs->make < TH1F > ("t_mass_ee_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  w_mass_mm_bb =         fs->make < TH1F > ("w_mass_mm_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  b_mass_mm_bb =         fs->make < TH1F > ("b_mass_mm_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  c_mass_mm_bb =         fs->make < TH1F > ("c_mass_mm_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  t_mass_mm_bb =         fs->make < TH1F > ("t_mass_mm_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-
-//  w_mass_em_b =         fs->make < TH1F > ("w_mass_em_b",       "w_mass_em_b;Mass [GeV]", 30, 40., 160.);
-//  b_mass_em_b =         fs->make < TH1F > ("b_mass_em_b",       "b_mass_em_b;Mass [GeV]", 30, 40., 160.);
-//  c_mass_em_b =         fs->make < TH1F > ("c_mass_em_b",       "c_mass_em_b;Mass [GeV]", 30, 40., 160.);
-//  t_mass_em_b =         fs->make < TH1F > ("t_mass_em_b",       "t_mass_em_b;Mass [GeV]", 30, 40., 160.);
-
-  w_mt_wenu_b =         fs->make < TH1F > ("w_mt_wenu_b",       "w_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
-  b_mt_wenu_b =         fs->make < TH1F > ("b_mt_wenu_b",       "b_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
-  c_mt_wenu_b =         fs->make < TH1F > ("c_mt_wenu_b",       "c_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
-  t_mt_wenu_b =         fs->make < TH1F > ("t_mt_wenu_b",       "t_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
-  w_mt_wmnu_b =         fs->make < TH1F > ("w_mt_wmnu_b",       "w_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
-  b_mt_wmnu_b =         fs->make < TH1F > ("b_mt_wmnu_b",       "b_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
-  c_mt_wmnu_b =         fs->make < TH1F > ("c_mt_wmnu_b",       "c_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
-  t_mt_wmnu_b =         fs->make < TH1F > ("t_mt_wmnu_b",       "t_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
-
-  w_mt_wenu_bb =        fs->make < TH1F > ("w_mt_wenu_bb",      "w_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
-  b_mt_wenu_bb =        fs->make < TH1F > ("b_mt_wenu_bb",      "b_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
-  c_mt_wenu_bb =        fs->make < TH1F > ("c_mt_wenu_bb",      "c_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
-  t_mt_wenu_bb =        fs->make < TH1F > ("t_mt_wenu_bb",      "t_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
-  w_mt_wmnu_bb =        fs->make < TH1F > ("w_mt_wmnu_bb",      "w_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
-  b_mt_wmnu_bb =        fs->make < TH1F > ("b_mt_wmnu_bb",      "b_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
-  c_mt_wmnu_bb =        fs->make < TH1F > ("c_mt_wmnu_bb",      "c_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
-  t_mt_wmnu_bb =        fs->make < TH1F > ("t_mt_wmnu_bb",      "t_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
-
   w_mass_wenu_blepton =      fs->make < TH1F > ("w_mass_wenu_blepton",    "w_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
   b_mass_wenu_blepton =      fs->make < TH1F > ("b_mass_wenu_blepton",    "b_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
   c_mass_wenu_blepton =      fs->make < TH1F > ("c_mass_wenu_blepton",    "c_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
   t_mass_wenu_blepton =      fs->make < TH1F > ("t_mass_wenu_blepton",    "t_mass_wenu_blepton;M_{T} [GeV]", 50, 0., 250.);
+
   w_mass_wmnu_blepton =      fs->make < TH1F > ("w_mass_wmnu_blepton",    "w_mass_wmnu_blepton;M_{T} [GeV]", 50, 0., 250.);
   b_mass_wmnu_blepton =      fs->make < TH1F > ("b_mass_wmnu_blepton",    "b_mass_wmnu_blepton;M_{T} [GeV]", 50, 0., 250.);
   c_mass_wmnu_blepton =      fs->make < TH1F > ("c_mass_wmnu_blepton",    "c_mass_wmnu_blepton;M_{T} [GeV]", 50, 0., 250.);
@@ -1245,6 +1098,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_mass_wenu_blepton_b =      fs->make < TH1F > ("b_mass_wenu_blepton_b",    "b_mass_wenu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
   c_mass_wenu_blepton_b =      fs->make < TH1F > ("c_mass_wenu_blepton_b",    "c_mass_wenu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
   t_mass_wenu_blepton_b =      fs->make < TH1F > ("t_mass_wenu_blepton_b",    "t_mass_wenu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
+
   w_mass_wmnu_blepton_b =      fs->make < TH1F > ("w_mass_wmnu_blepton_b",    "w_mass_wmnu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
   b_mass_wmnu_blepton_b =      fs->make < TH1F > ("b_mass_wmnu_blepton_b",    "b_mass_wmnu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
   c_mass_wmnu_blepton_b =      fs->make < TH1F > ("c_mass_wmnu_blepton_b",    "c_mass_wmnu_blepton_b;M_{T} [GeV]", 50, 0., 250.);
@@ -1254,15 +1108,87 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_mass_wenu_blepton_bb =      fs->make < TH1F > ("b_mass_wenu_blepton_bb",    "b_mass_wenu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
   c_mass_wenu_blepton_bb =      fs->make < TH1F > ("c_mass_wenu_blepton_bb",    "c_mass_wenu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
   t_mass_wenu_blepton_bb =      fs->make < TH1F > ("t_mass_wenu_blepton_bb",    "t_mass_wenu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
+
   w_mass_wmnu_blepton_bb =      fs->make < TH1F > ("w_mass_wmnu_blepton_bb",    "w_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
   b_mass_wmnu_blepton_bb =      fs->make < TH1F > ("b_mass_wmnu_blepton_bb",    "b_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
   c_mass_wmnu_blepton_bb =      fs->make < TH1F > ("c_mass_wmnu_blepton_bb",    "c_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
   t_mass_wmnu_blepton_bb =      fs->make < TH1F > ("t_mass_wmnu_blepton_bb",    "t_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
 
+  w_mass_ee_b =         fs->make < TH1F > ("w_mass_ee_b",       "w_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+  b_mass_ee_b =         fs->make < TH1F > ("b_mass_ee_b",       "b_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+  c_mass_ee_b =         fs->make < TH1F > ("c_mass_ee_b",       "c_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+  t_mass_ee_b =         fs->make < TH1F > ("t_mass_ee_b",       "t_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+
+  w_mass_mm_b =         fs->make < TH1F > ("w_mass_mm_b",       "w_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+  b_mass_mm_b =         fs->make < TH1F > ("b_mass_mm_b",       "b_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+  c_mass_mm_b =         fs->make < TH1F > ("c_mass_mm_b",       "c_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+  t_mass_mm_b =         fs->make < TH1F > ("t_mass_mm_b",       "t_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+
+  w_mass_ee_bb =         fs->make < TH1F > ("w_mass_ee_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  b_mass_ee_bb =         fs->make < TH1F > ("b_mass_ee_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  c_mass_ee_bb =         fs->make < TH1F > ("c_mass_ee_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  t_mass_ee_bb =         fs->make < TH1F > ("t_mass_ee_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+
+  w_mass_mm_bb =         fs->make < TH1F > ("w_mass_mm_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  b_mass_mm_bb =         fs->make < TH1F > ("b_mass_mm_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  c_mass_mm_bb =         fs->make < TH1F > ("c_mass_mm_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  t_mass_mm_bb =         fs->make < TH1F > ("t_mass_mm_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+
+  w_mt_wenu_b =         fs->make < TH1F > ("w_mt_wenu_b",       "w_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wenu_b =         fs->make < TH1F > ("b_mt_wenu_b",       "b_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wenu_b =         fs->make < TH1F > ("c_mt_wenu_b",       "c_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wenu_b =         fs->make < TH1F > ("t_mt_wenu_b",       "t_mt_wenu_b;M_{T} [GeV]", 30, 40., 160.);
+
+  w_mt_wmnu_b =         fs->make < TH1F > ("w_mt_wmnu_b",       "w_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wmnu_b =         fs->make < TH1F > ("b_mt_wmnu_b",       "b_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wmnu_b =         fs->make < TH1F > ("c_mt_wmnu_b",       "c_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wmnu_b =         fs->make < TH1F > ("t_mt_wmnu_b",       "t_mt_wmnu_b;M_{T} [GeV]", 30, 40., 160.);
+
+  w_mt_wenu_bb =        fs->make < TH1F > ("w_mt_wenu_bb",      "w_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wenu_bb =        fs->make < TH1F > ("b_mt_wenu_bb",      "b_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wenu_bb =        fs->make < TH1F > ("c_mt_wenu_bb",      "c_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wenu_bb =        fs->make < TH1F > ("t_mt_wenu_bb",      "t_mt_wenu_bb;M_{T} [GeV]", 30, 40., 160.);
+
+  w_mt_wmnu_bb =        fs->make < TH1F > ("w_mt_wmnu_bb",      "w_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+  b_mt_wmnu_bb =        fs->make < TH1F > ("b_mt_wmnu_bb",      "b_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+  c_mt_wmnu_bb =        fs->make < TH1F > ("c_mt_wmnu_bb",      "c_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+  t_mt_wmnu_bb =        fs->make < TH1F > ("t_mt_wmnu_bb",      "t_mt_wmnu_bb;M_{T} [GeV]", 30, 40., 160.);
+
+  w_mass_Zj_ee =        fs->make < TH1F > ("w_mass_Zj_ee",      "w_mass_Zj_ee", 60, 100., 330.);
+  b_mass_Zj_ee =        fs->make < TH1F > ("b_mass_Zj_ee",      "b_mass_Zj_ee", 60, 100., 330.);
+  c_mass_Zj_ee =        fs->make < TH1F > ("c_mass_Zj_ee",      "c_mass_Zj_ee", 60, 100., 330.);
+  t_mass_Zj_ee =        fs->make < TH1F > ("t_mass_Zj_ee",      "t_mass_Zj_ee", 60, 100., 330.);
+
+  w_mass_Zj_mm =        fs->make < TH1F > ("w_mass_Zj_mm",      "w_mass_Zj_mm", 60, 100., 330.);
+  b_mass_Zj_mm =        fs->make < TH1F > ("b_mass_Zj_mm",      "b_mass_Zj_mm", 60, 100., 330.);
+  c_mass_Zj_mm =        fs->make < TH1F > ("c_mass_Zj_mm",      "c_mass_Zj_mm", 60, 100., 330.);
+  t_mass_Zj_mm =        fs->make < TH1F > ("t_mass_Zj_mm",      "t_mass_Zj_mm", 60, 100., 330.);
+
+  w_mass_Zj_ee_b =      fs->make < TH1F > ("w_mass_Zj_ee_b",    "w_mass_Zj_ee_b", 60, 100., 330.);
+  b_mass_Zj_ee_b =      fs->make < TH1F > ("b_mass_Zj_ee_b",    "b_mass_Zj_ee_b", 60, 100., 330.);
+  c_mass_Zj_ee_b =      fs->make < TH1F > ("c_mass_Zj_ee_b",    "c_mass_Zj_ee_b", 60, 100., 330.);
+  t_mass_Zj_ee_b =      fs->make < TH1F > ("t_mass_Zj_ee_b",    "t_mass_Zj_ee_b", 60, 100., 330.);
+
+  w_mass_Zj_mm_b =      fs->make < TH1F > ("w_mass_Zj_mm_b",    "w_mass_Zj_mm_b", 60, 100., 330.);
+  b_mass_Zj_mm_b =      fs->make < TH1F > ("b_mass_Zj_mm_b",    "b_mass_Zj_mm_b", 60, 100., 330.);
+  c_mass_Zj_mm_b =      fs->make < TH1F > ("c_mass_Zj_mm_b",    "c_mass_Zj_mm_b", 60, 100., 330.);
+  t_mass_Zj_mm_b =      fs->make < TH1F > ("t_mass_Zj_mm_b",    "t_mass_Zj_mm_b", 60, 100., 330.);
+
+  w_mass_Zj_ee_bb =      fs->make < TH1F > ("w_mass_Zj_ee_bb",    "w_mass_Zj_ee_bb", 60, 100., 330.);
+  b_mass_Zj_ee_bb =      fs->make < TH1F > ("b_mass_Zj_ee_bb",    "b_mass_Zj_ee_bb", 60, 100., 330.);
+  c_mass_Zj_ee_bb =      fs->make < TH1F > ("c_mass_Zj_ee_bb",    "c_mass_Zj_ee_bb", 60, 100., 330.);
+  t_mass_Zj_ee_bb =      fs->make < TH1F > ("t_mass_Zj_ee_bb",    "t_mass_Zj_ee_bb", 60, 100., 330.);
+
+  w_mass_Zj_mm_bb =      fs->make < TH1F > ("w_mass_Zj_mm_bb",    "w_mass_Zj_mm_bb", 60, 100., 330.);
+  b_mass_Zj_mm_bb =      fs->make < TH1F > ("b_mass_Zj_mm_bb",    "b_mass_Zj_mm_bb", 60, 100., 330.);
+  c_mass_Zj_mm_bb =      fs->make < TH1F > ("c_mass_Zj_mm_bb",    "c_mass_Zj_mm_bb", 60, 100., 330.);
+  t_mass_Zj_mm_bb =      fs->make < TH1F > ("t_mass_Zj_mm_bb",    "t_mass_Zj_mm_bb", 60, 100., 330.);
+
   w_pt_Z_ee_b =         fs->make < TH1F > ("w_pt_Z_ee_b",       "w_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
   b_pt_Z_ee_b =         fs->make < TH1F > ("b_pt_Z_ee_b",       "b_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
   c_pt_Z_ee_b =         fs->make < TH1F > ("c_pt_Z_ee_b",       "c_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
   t_pt_Z_ee_b =         fs->make < TH1F > ("t_pt_Z_ee_b",       "t_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
+
   w_pt_Z_mm_b =         fs->make < TH1F > ("w_pt_Z_mm_b",       "w_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
   b_pt_Z_mm_b =         fs->make < TH1F > ("b_pt_Z_mm_b",       "b_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
   c_pt_Z_mm_b =         fs->make < TH1F > ("c_pt_Z_mm_b",       "c_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
@@ -1272,29 +1198,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_pt_Z_ee_bb =         fs->make < TH1F > ("b_pt_Z_ee_bb",       "b_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
   c_pt_Z_ee_bb =         fs->make < TH1F > ("c_pt_Z_ee_bb",       "c_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
   t_pt_Z_ee_bb =         fs->make < TH1F > ("t_pt_Z_ee_bb",       "t_pt_Z_ee_bb;P_t [GeV]", 40, 0., 400.);
+
   w_pt_Z_mm_bb =         fs->make < TH1F > ("w_pt_Z_mm_bb",       "w_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
   b_pt_Z_mm_bb =         fs->make < TH1F > ("b_pt_Z_mm_bb",       "b_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
   c_pt_Z_mm_bb =         fs->make < TH1F > ("c_pt_Z_mm_bb",       "c_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
   t_pt_Z_mm_bb =         fs->make < TH1F > ("t_pt_Z_mm_bb",       "t_pt_Z_mm_bb;P_t [GeV]", 40, 0., 400.);
-
-//  w_pt_Z_em_b =         fs->make < TH1F > ("w_pt_Z_em_b",       "w_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
-//  b_pt_Z_em_b =         fs->make < TH1F > ("b_pt_Z_em_b",       "b_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
-//  c_pt_Z_em_b =         fs->make < TH1F > ("c_pt_Z_em_b",       "c_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
-//  t_pt_Z_em_b =         fs->make < TH1F > ("t_pt_Z_em_b",       "t_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
-
-  w_single_pt_Z_ee_b =  fs->make < TH1F > ("w_single_pt_Z_ee_b",       "w_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
-  b_single_pt_Z_ee_b =  fs->make < TH1F > ("b_single_pt_Z_ee_b",       "b_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
-  c_single_pt_Z_ee_b =  fs->make < TH1F > ("c_single_pt_Z_ee_b",       "c_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
-  t_single_pt_Z_ee_b =  fs->make < TH1F > ("t_single_pt_Z_ee_b",       "t_single_pt_Z_ee_b;P_t [GeV]", 40, 0., 400.);
-  w_single_pt_Z_mm_b =  fs->make < TH1F > ("w_single_pt_Z_mm_b",       "w_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
-  b_single_pt_Z_mm_b =  fs->make < TH1F > ("b_single_pt_Z_mm_b",       "b_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
-  c_single_pt_Z_mm_b =  fs->make < TH1F > ("c_single_pt_Z_mm_b",       "c_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
-  t_single_pt_Z_mm_b =  fs->make < TH1F > ("t_single_pt_Z_mm_b",       "t_single_pt_Z_mm_b;P_t [GeV]", 40, 0., 400.);
-
-//  w_single_pt_Z_em_b =  fs->make < TH1F > ("w_single_pt_Z_em_b",       "w_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
-//  b_single_pt_Z_em_b =  fs->make < TH1F > ("b_single_pt_Z_em_b",       "b_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
-//  c_single_pt_Z_em_b =  fs->make < TH1F > ("c_single_pt_Z_em_b",       "c_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
-//  t_single_pt_Z_em_b =  fs->make < TH1F > ("t_single_pt_Z_em_b",       "t_single_pt_Z_em_b;P_t [GeV]", 40, 0., 400.);
 
   w_delta_ee =          fs->make < TH1F > ("w_delta_phi_ee",    "w_delta_phi_ee",   12, 0, TMath::Pi ());
   b_delta_ee =          fs->make < TH1F > ("b_delta_phi_ee",    "b_delta_phi_ee",   12, 0, TMath::Pi ());
@@ -1308,6 +1216,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_delta_ee_bb =        fs->make < TH1F > ("b_delta_phi_ee_bb",  "b_delta_phi_ee_bb", 12, 0, TMath::Pi ());
   c_delta_ee_bb =        fs->make < TH1F > ("c_delta_phi_ee_bb",  "c_delta_phi_ee_bb", 12, 0, TMath::Pi ());
   t_delta_ee_bb =        fs->make < TH1F > ("t_delta_phi_ee_bb",  "t_delta_phi_ee_bb", 12, 0, TMath::Pi ());
+
   w_delta_mm =          fs->make < TH1F > ("w_delta_phi_mm",    "w_delta_phi_mm",   12, 0, TMath::Pi ());
   b_delta_mm =          fs->make < TH1F > ("b_delta_phi_mm",    "b_delta_phi_mm",   12, 0, TMath::Pi ());
   c_delta_mm =          fs->make < TH1F > ("c_delta_phi_mm",    "c_delta_phi_mm",   12, 0, TMath::Pi ());
@@ -1321,12 +1230,6 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_delta_mm_bb =        fs->make < TH1F > ("c_delta_phi_mm_bb",  "c_delta_phi_mm_bb", 12, 0, TMath::Pi ());
   t_delta_mm_bb =        fs->make < TH1F > ("t_delta_phi_mm_bb",  "t_delta_phi_mm_bb", 12, 0, TMath::Pi ());
 
-//  w_delta_em =          fs->make < TH1F > ("w_delta_phi_em",    "w_delta_phi_em", 12, 0, TMath::Pi ());
-//  w_delta_em_b =        fs->make < TH1F > ("w_delta_phi_em_b",  "w_delta_phi_em_b", 12, 0, TMath::Pi ());
-//  b_delta_em_b =        fs->make < TH1F > ("b_delta_phi_em_b",  "b_delta_phi_em_b", 12, 0, TMath::Pi ());
-//  c_delta_em_b =        fs->make < TH1F > ("c_delta_phi_em_b",  "c_delta_phi_em_b", 12, 0, TMath::Pi ());
-//  t_delta_em_b =        fs->make < TH1F > ("t_delta_phi_em_b",  "t_delta_phi_em_b", 12, 0, TMath::Pi ());
-
   w_delta_wenuMet =          fs->make < TH1F > ("w_delta_phi_wenuMet",     "w_delta_phi_wenuMet",    12, 0, TMath::Pi ());
   b_delta_wenuMet =          fs->make < TH1F > ("b_delta_phi_wenuMet",     "b_delta_phi_wenuMet",    12, 0, TMath::Pi ());
   c_delta_wenuMet =          fs->make < TH1F > ("c_delta_phi_wenuMet",     "c_delta_phi_wenuMet",    12, 0, TMath::Pi ());
@@ -1339,6 +1242,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_delta_wenuMet_bb =       fs->make < TH1F > ("b_delta_phi_wenuMet_bb",  "b_delta_phi_wenuMet_bb", 12, 0, TMath::Pi ());
   c_delta_wenuMet_bb =       fs->make < TH1F > ("c_delta_phi_wenuMet_bb",  "c_delta_phi_wenuMet_bb", 12, 0, TMath::Pi ());
   t_delta_wenuMet_bb =       fs->make < TH1F > ("t_delta_phi_wenuMet_bb",  "t_delta_phi_wenuMet_bb", 12, 0, TMath::Pi ());
+
   w_delta_wmnuMet =          fs->make < TH1F > ("w_delta_phi_wmnuMet",     "w_delta_phi_wmnuMet",    12, 0, TMath::Pi ());
   b_delta_wmnuMet =          fs->make < TH1F > ("b_delta_phi_wmnuMet",     "b_delta_phi_wmnuMet",    12, 0, TMath::Pi ());
   c_delta_wmnuMet =          fs->make < TH1F > ("c_delta_phi_wmnuMet",     "c_delta_phi_wmnuMet",    12, 0, TMath::Pi ());
@@ -1356,20 +1260,17 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_single_delta_ee_b =      fs->make < TH1F > ("b_single_delta_phi_ee_b", "b_single_delta_phi_ee_b", 12, 0, TMath::Pi ());
   c_single_delta_ee_b =      fs->make < TH1F > ("c_single_delta_phi_ee_b", "c_single_delta_phi_ee_b", 12, 0, TMath::Pi ());
   t_single_delta_ee_b =      fs->make < TH1F > ("t_single_delta_phi_ee_b", "t_single_delta_phi_ee_b", 12, 0, TMath::Pi ());
+
   w_single_delta_mm_b =      fs->make < TH1F > ("w_single_delta_phi_mm_b", "w_single_delta_phi_mm_b", 12, 0, TMath::Pi ());
   b_single_delta_mm_b =      fs->make < TH1F > ("b_single_delta_phi_mm_b", "b_single_delta_phi_mm_b", 12, 0, TMath::Pi ());
   c_single_delta_mm_b =      fs->make < TH1F > ("c_single_delta_phi_mm_b", "c_single_delta_phi_mm_b", 12, 0, TMath::Pi ());
   t_single_delta_mm_b =      fs->make < TH1F > ("t_single_delta_phi_mm_b", "t_single_delta_phi_mm_b", 12, 0, TMath::Pi ());
 
-//  w_single_delta_em_b =        fs->make < TH1F > ("w_single_delta_phi_em_b",  "w_single_delta_phi_em_b", 12, 0, TMath::Pi ());
-//  b_single_delta_em_b =        fs->make < TH1F > ("b_single_delta_phi_em_b",  "b_single_delta_phi_em_b", 12, 0, TMath::Pi ());
-//  c_single_delta_em_b =        fs->make < TH1F > ("c_single_delta_phi_em_b",  "c_single_delta_phi_em_b", 12, 0, TMath::Pi ());
-//  t_single_delta_em_b =        fs->make < TH1F > ("t_single_delta_phi_em_b",  "t_single_delta_phi_em_b", 12, 0, TMath::Pi ());
-
   w_single_delta_wenuMet_b =        fs->make < TH1F > ("w_single_delta_phi_wenuMet_b",  "w_single_delta_phi_wenuMet_b", 12, 0, TMath::Pi ());
   b_single_delta_wenuMet_b =        fs->make < TH1F > ("b_single_delta_phi_wenuMet_b",  "b_single_delta_phi_wenuMet_b", 12, 0, TMath::Pi ());
   c_single_delta_wenuMet_b =        fs->make < TH1F > ("c_single_delta_phi_wenuMet_b",  "c_single_delta_phi_wenuMet_b", 12, 0, TMath::Pi ());
   t_single_delta_wenuMet_b =        fs->make < TH1F > ("t_single_delta_phi_wenuMet_b",  "t_single_delta_phi_wenuMet_b", 12, 0, TMath::Pi ());
+
   w_single_delta_wmnuMet_b =        fs->make < TH1F > ("w_single_delta_phi_wmnuMet_b",  "w_single_delta_phi_wmnuMet_b", 12, 0, TMath::Pi ());
   b_single_delta_wmnuMet_b =        fs->make < TH1F > ("b_single_delta_phi_wmnuMet_b",  "b_single_delta_phi_wmnuMet_b", 12, 0, TMath::Pi ());
   c_single_delta_wmnuMet_b =        fs->make < TH1F > ("c_single_delta_phi_wmnuMet_b",  "c_single_delta_phi_wmnuMet_b", 12, 0, TMath::Pi ());
@@ -1379,6 +1280,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_single_delta_wenuMet_bb =       fs->make < TH1F > ("b_single_delta_phi_wenuMet_bb", "b_single_delta_phi_wenuMet_bb", 12, 0, TMath::Pi ());
   c_single_delta_wenuMet_bb =       fs->make < TH1F > ("c_single_delta_phi_wenuMet_bb", "c_single_delta_phi_wenuMet_bb", 12, 0, TMath::Pi ());
   t_single_delta_wenuMet_bb =       fs->make < TH1F > ("t_single_delta_phi_wenuMet_bb", "t_single_delta_phi_wenuMet_bb", 12, 0, TMath::Pi ());
+
   w_single_delta_wmnuMet_bb =       fs->make < TH1F > ("w_single_delta_phi_wmnuMet_bb", "w_single_delta_phi_wmnuMet_bb", 12, 0, TMath::Pi ());
   b_single_delta_wmnuMet_bb =       fs->make < TH1F > ("b_single_delta_phi_wmnuMet_bb", "b_single_delta_phi_wmnuMet_bb", 12, 0, TMath::Pi ());
   c_single_delta_wmnuMet_bb =       fs->make < TH1F > ("c_single_delta_phi_wmnuMet_bb", "c_single_delta_phi_wmnuMet_bb", 12, 0, TMath::Pi ());
@@ -1469,10 +1371,12 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_Ht =                fs->make < TH1F > ("b_Ht",              "b_Ht [GeV]", 50, 30., 1000.);
   c_Ht =                fs->make < TH1F > ("c_Ht",              "c_Ht [GeV]", 50, 30., 1000.);
   t_Ht =                fs->make < TH1F > ("t_Ht",              "t_Ht [GeV]", 50, 30., 1000.);
+
   w_Ht_b =              fs->make < TH1F > ("w_Ht_b",            "w_Ht_b [GeV]", 50, 30., 1000.);
   b_Ht_b =              fs->make < TH1F > ("b_Ht_b",            "b_Ht_b [GeV]", 50, 30., 1000.);
   c_Ht_b =              fs->make < TH1F > ("c_Ht_b",            "c_Ht_b [GeV]", 50, 30., 1000.);
   t_Ht_b =              fs->make < TH1F > ("t_Ht_b",            "t_Ht_b [GeV]", 50, 30., 1000.);
+
   w_Ht_bb =             fs->make < TH1F > ("w_Ht_bb",           "w_Ht_bb [GeV]", 50, 30., 1000.);
   b_Ht_bb =             fs->make < TH1F > ("b_Ht_bb",           "b_Ht_bb [GeV]", 50, 30., 1000.);
   c_Ht_bb =             fs->make < TH1F > ("c_Ht_bb",           "c_Ht_bb [GeV]", 50, 30., 1000.);
@@ -1512,8 +1416,6 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
 
   w_Afb =               fs->make < TH1F > ("b_asymmetry",       "b_asymmetry", 10, -1, 1);
 
-  h_JEC_uncert =        fs->make < TH1F > ("JEC uncert", "JEC uncert", 10, -0.5, 0.5);
-
   h_scaleFactor_first_ele =   fs->make < TH1F > ("h_scaleFactor_first_ele",   "h_scaleFactor_first_ele", 50, 0.95, 1.05);
   b_scaleFactor_first_ele =   fs->make < TH1F > ("b_scaleFactor_first_ele",   "b_scaleFactor_first_ele", 50, 0.95, 1.05);
   h_scaleFactor_first_muon =  fs->make < TH1F > ("h_scaleFactor_first_muon",  "h_scaleFactor_first_muon", 50, 0.95, 1.05);
@@ -1522,6 +1424,8 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_scaleFactor_second_ele =  fs->make < TH1F > ("b_scaleFactor_second_ele",  "b_scaleFactor_second_ele", 50, 0.95, 1.05);
   h_scaleFactor_second_muon = fs->make < TH1F > ("h_scaleFactor_second_muon", "h_scaleFactor_second_muon", 50, 0.95, 1.05);
   b_scaleFactor_second_muon = fs->make < TH1F > ("b_scaleFactor_second_muon", "b_scaleFactor_second_muon", 50, 0.95, 1.05);
+
+  h_JEC_uncert =        fs->make < TH1F > ("JEC uncert", "JEC uncert", 10, -0.5, 0.5);
 
   produces<std::vector<double>>("myEventWeight");
 
