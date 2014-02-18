@@ -98,8 +98,8 @@ if (irun==99) {            // irun==99 => pur
 
       double Lumi2012=0;
       
-      if (ilepton==1||ilepton==3) Lumi2012 = Lumi2012_ele;
-      if (ilepton==2||ilepton==4) Lumi2012 = Lumi2012_muon;
+      if (ilepton==1||ilepton==3||ilepton==5) Lumi2012 = Lumi2012_ele;
+      if (ilepton==2||ilepton==4||ilepton==6) Lumi2012 = Lumi2012_muon;
 
       double norm1 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
       double norm2 = ((Lumi2012 * Xsec_tt) / Ngen_tt);
@@ -139,20 +139,20 @@ if (irun==99) {            // irun==99 => pur
 
       if (title.empty()) title = "w_jetmultiplicity";
 
-      if (ilepton==1||ilepton==3) {
+      if (ilepton==1||ilepton==3||ilepton==5) {
         if (title.find("muon")!=string::npos) return;
 	if (title.find("mm")!=string::npos) return;
 	if (title.find("wmnu")!=string::npos) return;
       }
-      if (ilepton==2||ilepton==4) {
+      if (ilepton==2||ilepton==4||ilepton==6) {
 	if (title.find("ele")!=string::npos) return;
 	if (title.find("ee")!=string::npos) return;
 	if (title.find("wenu")!=string::npos) return;
       }
 
       TFile *data=0;
-      if (ilepton==1||ilepton==3) data = TFile::Open((path + "/" + version + "/" + "SingleElectron_2012_merge.root").c_str());
-      if (ilepton==2||ilepton==4) data = TFile::Open((path + "/" + version + "/" + "SingleMu_2012_merge.root").c_str());
+      if (ilepton==1||ilepton==3||ilepton=5) data = TFile::Open((path + "/" + version + "/" + "SingleElectron_2012_merge.root").c_str());
+      if (ilepton==2||ilepton==4||ilepton=6) data = TFile::Open((path + "/" + version + "/" + "SingleMu_2012_merge.root").c_str());
 
       TFile *data_fit=data;
 
@@ -171,49 +171,63 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==2) data->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) data->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) data->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) data->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) data->cd(("demoMuoTOP"+postfix).c_str());
       h_data = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) data_fit->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) data_fit->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) data_fit->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) data_fit->cd(("demoMuoQCD"+postfix).c_str());
       h_data_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc1->cd(("demoEle"+postfix).c_str());
       if (ilepton==2) mc1->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) mc1->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) mc1->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) mc1->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) mc1->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc1 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) mc1->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) mc1->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc1->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc1->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc1_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc2->cd(("demoEle"+postfix).c_str());
       if (ilepton==2) mc2->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) mc2->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) mc2->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) mc2->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) mc2->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc2 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) mc2->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) mc2->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc2->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc2->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc2_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
       
       if (ilepton==1) mc3->cd(("demoEle"+postfix).c_str());
       if (ilepton==2) mc3->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) mc3->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) mc3->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) mc3->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) mc3->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc3 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) mc3->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) mc3->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc3->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc3->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc3_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc4->cd(("demoEle"+postfix).c_str());
       if (ilepton==2) mc4->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) mc4->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) mc4->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) mc4->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) mc4->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc4 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) mc4->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) mc4->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc4->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc4->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc4_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
 //    if (ilepton==1) mc5->cd(("demoEle"+postfix).c_str());
 //    if (ilepton==2) mc5->cd(("demoMuo"+postfix).c_str());
+//    if (ilepton==3) mc5->cd(("demoEleFWD"+postfix).c_str());
+//    if (ilepton==4) mc5->cd(("demoMuoFWD"+postfix).c_str());
+//    if (ilepton==5) mc5->cd(("demoEleTOP"+postfix).c_str());
+//    if (ilepton==6) mc5->cd(("demoMuoTOP"+postfix).c_str());
 //    TH1F* h_mc5 = (TH1F*)gDirectory->Get(title.c_str());
 //    if (ilepton==1) mc5->cd(("demoEleQCD"+postfix).c_str());
 //    if (ilepton==2) mc5->cd(("demoMuoQCD"+postfix).c_str());
@@ -223,27 +237,33 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==2) mc6->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) mc6->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) mc6->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) mc6->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) mc6->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc6 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) mc6->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) mc6->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc6->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc6->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc6_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc7->cd(("demoEle"+postfix).c_str());
       if (ilepton==2) mc7->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) mc7->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) mc7->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) mc7->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) mc7->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc7 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) mc7->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) mc7->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc7->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc7->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc7_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc8->cd(("demoEle"+postfix).c_str());
       if (ilepton==2) mc8->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) mc8->cd(("demoEleFWD"+postfix).c_str());
       if (ilepton==4) mc8->cd(("demoMuoFWD"+postfix).c_str());
+      if (ilepton==5) mc8->cd(("demoEleTOP"+postfix).c_str());
+      if (ilepton==6) mc8->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc8 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3) mc8->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4) mc8->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc8->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc8->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc8_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       h_data->Sumw2();
@@ -453,9 +473,11 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets","p");
 	if (ilepton==3) leg->AddEntry(h_data,"W(#rightarrow e)+jets FWD","p");
 	if (ilepton==4) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets FWD","p");
+	if (ilepton==5) leg->AddEntry(h_data,"W(#rightarrow e)+jets TOP","p");
+	if (ilepton==6) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets TOP","p");
 
-	if (ilepton==1||ilepton==3) leg->AddEntry(h_data_fit,"W(#rightarrow e)+jets [QCD]","l");
-	if (ilepton==2||ilepton==4) leg->AddEntry(h_data_fit,"W(#rightarrow #mu)+jets [QCD]","l");
+	if (ilepton==1||ilepton==3||ilepton==5) leg->AddEntry(h_data_fit,"W(#rightarrow e)+jets [QCD]","l");
+	if (ilepton==2||ilepton==4||ilepton==6) leg->AddEntry(h_data_fit,"W(#rightarrow #mu)+jets [QCD]","l");
 
 	leg->Draw();
 
@@ -474,9 +496,11 @@ if (irun==99) {            // irun==99 => pur
         if (ilepton==2) sprintf(buff, "I_{#mu} = %5.1f", h_data->Integral(0,h_data->GetNbinsX()+1));
         if (ilepton==3) sprintf(buff, "I_{e,FWD} = %5.1f", h_data->Integral(0,h_data->GetNbinsX()+1));
         if (ilepton==4) sprintf(buff, "I_{#mu,FWD} = %5.1f", h_data->Integral(0,h_data->GetNbinsX()+1));
+        if (ilepton==5) sprintf(buff, "I_{e,TOP} = %5.1f", h_data->Integral(0,h_data->GetNbinsX()+1));
+        if (ilepton==6) sprintf(buff, "I_{#mu,TOP} = %5.1f", h_data->Integral(0,h_data->GetNbinsX()+1));
         fitLabel->DrawLatex(0.60, 0.63, buff);
-        if (ilepton==1||ilepton==3) sprintf(buff, "I_{e,QCD} = %5.1f #pm %5.1f", h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1), h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1)*fitter->GetParError(0)/fitter->GetParameter(0));
-        if (ilepton==2||ilepton==4) sprintf(buff, "I_{#mu,QCD} = %5.1f #pm %5.1f", h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1), h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1)*fitter->GetParError(0)/fitter->GetParameter(0));
+        if (ilepton==1||ilepton==3||ilepton==5) sprintf(buff, "I_{e,QCD} = %5.1f #pm %5.1f", h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1), h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1)*fitter->GetParError(0)/fitter->GetParameter(0));
+        if (ilepton==2||ilepton==4||ilepton==6) sprintf(buff, "I_{#mu,QCD} = %5.1f #pm %5.1f", h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1), h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1)*fitter->GetParError(0)/fitter->GetParameter(0));
         fitLabel->DrawLatex(0.60, 0.58, buff);
       }
 
@@ -522,6 +546,26 @@ if (irun==99) {            // irun==99 => pur
             f.Close();
 	  }
 	  if (doFit) out.open((path + "/muonsFWD/" + version + "/" + subdir + "/qcd_sub/" + title + ".dat").c_str());
+        }
+        if (ilepton==5) {
+          gSystem->mkdir((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/").c_str(), kTRUE);
+          if (c1) c1->SaveAs((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + title + ".pdf").c_str());
+	  if (doFit==0) {
+	    TFile f((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + title + ".root").c_str(),"RECREATE");
+            h_data_fit_raw->Write(title.c_str());
+            f.Close();
+	  }
+	  if (doFit) out.open((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + title + ".dat").c_str());
+        }
+        if (ilepton==6) {
+          gSystem->mkdir((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/").c_str(), kTRUE);
+          if (c1) c1->SaveAs((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + title + ".pdf").c_str());
+	  if (doFit==0) {
+	    TFile f((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + title + ".root").c_str(),"RECREATE");
+            h_data_fit_raw->Write(title.c_str());
+            f.Close();
+	  }
+	  if (doFit) out.open((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + title + ".dat").c_str());
         }
 	if (doFit==1) {
 	  out << fitter->GetParameter(0) << " " << fitter->GetParError(0) << endl;

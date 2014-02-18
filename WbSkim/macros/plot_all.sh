@@ -15,7 +15,7 @@ eval `scramv1 runtime -sh`
 cd -
 
 i=1
-while [ $i -le 6 ]; do
+while [ $i -le 8 ]; do
 
   root -l -q -b DataMCComp.C+\($d,\"h_pu_weights\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"h_recoVTX\",1,$i\)
