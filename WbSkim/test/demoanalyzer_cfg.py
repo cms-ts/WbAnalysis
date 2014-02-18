@@ -33,6 +33,12 @@ process.demoEleFWD = cms.EDProducer('WbAnalyzer',
 	lepton  = cms.untracked.string("electronFWD")
 )
 
+process.demoEleTOP = cms.EDProducer('WbAnalyzer',
+	pileupMC  = cms.untracked.string("S10"),
+	pileupDT  = cms.untracked.string("ee"),
+	lepton  = cms.untracked.string("electronTOP")
+)
+
 process.demoElePum = cms.EDProducer('WbAnalyzer',
 	pileupMC  = cms.untracked.string("S10"),
 	pileupDT  = cms.untracked.string("ee_pum"),
@@ -75,6 +81,12 @@ process.demoMuoFWD = cms.EDProducer('WbAnalyzer',
 	pileupMC = cms.untracked.string("S10"),
 	pileupDT = cms.untracked.string("mm"),
 	lepton  = cms.untracked.string("muonFWD")
+)
+
+process.demoMuoTOP = cms.EDProducer('WbAnalyzer',
+	pileupMC = cms.untracked.string("S10"),
+	pileupDT = cms.untracked.string("mm"),
+	lepton  = cms.untracked.string("muonTOP")
 )
 
 process.demoMuoPum = cms.EDProducer('WbAnalyzer',
@@ -176,5 +188,5 @@ process.demoMuoJerDown = cms.EDProducer('WbAnalyzer',
 process.TFileService = cms.Service("TFileService",
 	fileName = cms.string('WbTree.root')
 )
-process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD)
+process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoEleTOP*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD*process.demoMuoTOP)
 #process.p = cms.Path(process.demoEle*process.demoElePum*process.demoElePup*process.demoEleUp*process.demoEleDown*process.demoMuo*process.demoMuoPum*process.demoMuoPup*process.demoMuoUp*process.demoMuoDown*process.demoEleBtag*process.demoMuoBtag*process.demoElePur*process.demoMuoPur*process.demoEleDR*process.demoMuoDR*process.demoEleJerUp*process.demoEleJerDown*process.demoMuoJerUp*process.demoMuoJerDown)
