@@ -1849,7 +1849,40 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
     jetNew.setP4(jetNew_p4);
 
-    if (fabs(jetNew.eta()) < 2.4 && jetNew.pt() > 25) {
+    // Jet-Lepton DR
+
+    double etaj = jetNew.eta();
+    double phij = jetNew.phi();
+
+    double delta_eta1 = -999.;
+    double delta_phi1 = -999.;
+    double delta_eta2 = -999.;
+    double delta_phi2 = -999.;
+
+    if (wenu_event || ee_event) {
+      delta_eta1 = vect_ele[0].eta() - etaj;
+      delta_phi1 = fabs(vect_ele[0].phi() - phij);
+    }
+    if (wmnu_event || mm_event) {
+      delta_eta1 = vect_muon[0].eta() - etaj;
+      delta_phi1 = fabs(vect_muon[0].phi() - phij);
+    }
+    if (delta_phi1 > acos(-1)) delta_phi1 = 2*acos(-1) - delta_phi1;
+    
+    if (ee_event) {
+      delta_eta2 = vect_ele[1].eta() - etaj;
+      delta_phi2 = fabs(vect_ele[1].phi() - phij);
+    }
+    if (mm_event) {
+      delta_eta2 = vect_muon[1].eta() - etaj;
+      delta_phi2 = fabs(vect_muon[1].phi() - phij);
+    }
+    if (delta_phi2 > acos(-1)) delta_phi2 = 2*acos(-1) - delta_phi2;
+    
+    double deltaR_jl1 = sqrt(pow(delta_eta1,2) + pow(delta_phi1,2));
+    double deltaR_jl2 = sqrt(pow(delta_eta2,2) + pow(delta_phi2,2));    
+
+    if (fabs(jetNew.eta()) < 2.4 && jetNew.pt() > 25 && deltaR_jl1 > 0.5 && deltaR_jl2 > 0.5) {
 
       ++Nj;
 
