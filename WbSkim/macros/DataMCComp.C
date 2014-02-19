@@ -135,9 +135,9 @@ if (irun==99) {            // irun==99 => pur
 	}
 	if (ilepton==7) {
 	  if (useFitResults) {
-	    in4.open((path + "/electronsQCD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in5.open((path + "/electronsQCD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in6.open((path + "/electronsQCD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in4.open((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
@@ -156,9 +156,9 @@ if (irun==99) {            // irun==99 => pur
 	}
 	if (ilepton==8) {
 	  if (useFitResults) {
-	    in4.open((path + "/muonsQCD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
-	    in5.open((path + "/muonsQCD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
-	    in6.open((path + "/muonsQCD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in4.open((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==3 || ilepton==4) useFitResults=0;
