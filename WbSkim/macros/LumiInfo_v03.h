@@ -27,37 +27,37 @@ double eXsec_tt = 0.07*Xsec_tt;
 //////////////////////// TBarToLeptons_t
 
 double Ngen_tbar_t = 1711403;
-double Xsec_tbar_t = 30.7; // NLO
+double Xsec_tbar_t = 30.7*0.324; // NLO
 double eXsec_tbar_t = 0;
 
 //////////////////////// TToLeptons_t
 
 double Ngen_t_t = 3915598;
-double Xsec_t_t = 56.4; // NLO
+double Xsec_t_t = 56.4*0.324; // NLO
 double eXsec_t_t = 0;
 
 //////////////////////// TBarToLeptons_s
 
 double Ngen_tbar_s = 1999667;
-double Xsec_tbar_s = 1.76; // NLO
+double Xsec_tbar_s = 1.76*0.324; // NLO
 double eXsec_tbar_s = 0;
 
 //////////////////////// TToLeptons_s
 
 double Ngen_t_s = 3932710;
-double Xsec_t_s = 3.97; // NLO
+double Xsec_t_s = 3.97*0.324; // NLO
 double eXsec_t_s = 0;
 
 //////////////////////// TBarToThadWlep_tW
 
 double Ngen_tbar_tw = 1492919;
-double Xsec_tbar_tw = 11.1; // NLO
+double Xsec_tbar_tw = 11.1*0.324; // NLO
 double eXsec_tbar_tw = 0;
 
 //////////////////////// TToThadWlep_tW
 
 double Ngen_t_tw = 1457622;
-double Xsec_t_tw = 11.1; // NLO
+double Xsec_t_tw = 11.1*0.324; // NLO
 double eXsec_t_tw = 0;
 
 //////////////////////// ZZ
