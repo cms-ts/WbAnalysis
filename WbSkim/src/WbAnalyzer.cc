@@ -219,6 +219,8 @@ private:
   TH1F*     h_eventYields;
   TH1F*     w_eventYields;
 
+  TH1F*     h_trgMatch;
+
   TH1F*     h_pu_weights;
 
   TH1F*     h_tracks;
@@ -840,6 +842,8 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
 
   h_eventYields =   fs->make < TH1F > ("h_eventYields", "h_eventYields;selection", 8, 0.5, 8.5);
   w_eventYields =   fs->make < TH1F > ("w_eventYields", "w_eventYields;selection", 8, 0.5, 8.5);
+
+  h_trgMatch =   fs->make < TH1F > ("h_trgMatch", "h_trgMatch;selection", 8, -0.5, 7.5);
 
   h_pu_weights =        fs->make < TH1F > ("h_pu_weights",      "h_pu_weights;PU weight", 10, 0, 10);
 
@@ -1621,10 +1625,12 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   vector < pat::Electron > vect_ele;
   vector < pat::Electron > vect_ele2;
+  int ntrgMatches = 0;
 
   for (pat::ElectronCollection::const_iterator ele = electrons->begin (); ele != electrons->end (); ++ele) {
     if (ele->pt()>30 && fabs(ele->eta())<2.1) {
       vect_ele.push_back (*ele);
+      if (ele->triggerObjectMatches().size()>0) ntrgMatches++;
     }
   }
 
@@ -2066,6 +2072,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) w_eventYields->Fill(5, MyWeight*scalFac_b);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb>1) w_eventYields->Fill(6, MyWeight*scalFac_b);
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb==1) w_eventYields->Fill(7, MyWeight*scalFac_b);
+
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) h_eventYields->Fill(ntrgMatches);
 
   // ++++++++ MET PLOTS
 
