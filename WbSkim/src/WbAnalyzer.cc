@@ -1253,6 +1253,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_delta_wmnu_b =        fs->make < TH1F > ("b_delta_wmnu_b",   "b_delta_wmnu_b",  12, 0, TMath::Pi ());
   c_delta_wmnu_b =        fs->make < TH1F > ("c_delta_wmnu_b",   "c_delta_wmnu_b",  12, 0, TMath::Pi ());
   t_delta_wmnu_b =        fs->make < TH1F > ("t_delta_wmnu_b",   "t_delta_wmnu_b",  12, 0, TMath::Pi ());
+  w_delta_wmnu_bb =       fs->make < TH1F > ("w_delta_wmnu_bb",  "w_delta_wmnu_bb", 12, 0, TMath::Pi ());
+  b_delta_wmnu_bb =       fs->make < TH1F > ("b_delta_wmnu_bb",  "b_delta_wmnu_bb", 12, 0, TMath::Pi ());
+  c_delta_wmnu_bb =       fs->make < TH1F > ("c_delta_wmnu_bb",  "c_delta_wmnu_bb", 12, 0, TMath::Pi ());
+  t_delta_wmnu_bb =       fs->make < TH1F > ("t_delta_wmnu_bb",  "t_delta_wmnu_bb", 12, 0, TMath::Pi ());
   w_delta_wmnu_2b =       fs->make < TH1F > ("w_delta_wmnu_2b",  "w_delta_wmnu_2b", 12, 0, TMath::Pi ());
   b_delta_wmnu_2b =       fs->make < TH1F > ("b_delta_wmnu_2b",  "b_delta_wmnu_2b", 12, 0, TMath::Pi ());
   c_delta_wmnu_2b =       fs->make < TH1F > ("c_delta_wmnu_2b",  "c_delta_wmnu_2b", 12, 0, TMath::Pi ());
@@ -1704,6 +1708,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // +++++++++ Decisions:
 
+  if (debug) cout << "Decisions..." << endl;
+
   if (vect_ele.size()==0 && vect_muon.size()==0) {if (debug) cout << "No isolated leptons!!" << endl;}
 
   if (lepton_ == "electron" || lepton_ == "muon") {
@@ -1809,6 +1815,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
    bool met_cut = mets->empty() ? true : (*mets)[0].significance() < 30.;
 
   // ++++++++ JETS
+  if (debug) cout << "Jets..." << endl;
 
   vector < pat::Jet > vect_jets;
   vector < pat::Jet > vect_jets2;
@@ -1859,24 +1866,36 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     double delta_eta2 = -999.;
     double delta_phi2 = -999.;
 
-    if (wenu_event || ee_event) {
+    if (wenu_event) {
       delta_eta1 = vect_ele[0].eta() - etaj;
       delta_phi1 = fabs(vect_ele[0].phi() - phij);
     }
-    if (wmnu_event || mm_event) {
+    if (wmnu_event) {
       delta_eta1 = vect_muon[0].eta() - etaj;
       delta_phi1 = fabs(vect_muon[0].phi() - phij);
     }
-    if (delta_phi1 > acos(-1)) delta_phi1 = 2*acos(-1) - delta_phi1;
-    
+
+    if (wenu_event && wmnu_event) {
+      delta_eta1 = vect_ele[0].eta() - etaj;
+      delta_phi1 = fabs(vect_ele[0].phi() - phij);
+      delta_eta2 = vect_muon[0].eta() - etaj;
+      delta_phi2 = fabs(vect_muon[0].phi() - phij);
+    }
+   
     if (ee_event) {
+      delta_eta1 = vect_ele[0].eta() - etaj;
+      delta_phi1 = fabs(vect_ele[0].phi() - phij);
       delta_eta2 = vect_ele[1].eta() - etaj;
       delta_phi2 = fabs(vect_ele[1].phi() - phij);
     }
     if (mm_event) {
+      delta_eta1 = vect_muon[0].eta() - etaj;
+      delta_phi1 = fabs(vect_muon[0].phi() - phij);
       delta_eta2 = vect_muon[1].eta() - etaj;
       delta_phi2 = fabs(vect_muon[1].phi() - phij);
     }
+
+    if (delta_phi1 > acos(-1)) delta_phi1 = 2*acos(-1) - delta_phi1;
     if (delta_phi2 > acos(-1)) delta_phi2 = 2*acos(-1) - delta_phi2;
     
     double deltaR_jl1 = sqrt(pow(delta_eta1,2) + pow(delta_phi1,2));
@@ -2029,6 +2048,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (debug && Nb<1) cout << "Warning: 0 b-Jets in the event!" << endl;
 
   // ++++++++ EVENT YIELDS:
+  if (debug) cout << "Start filling plots..." << endl;
 
   h_eventYields->Fill(1);
   if (wenu_event || wmnu_event) h_eventYields->Fill(2);
