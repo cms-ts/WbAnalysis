@@ -28,7 +28,7 @@ i=$((i+1))
 done
 
 i=1
-while [ $i -le 4 ]; do
+while [ $i -le 6 ]; do
 
   root -l -q -b DataMCComp5.C+\($d,\"h_pu_weights\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"h_recoVTX\",1,$i\)
