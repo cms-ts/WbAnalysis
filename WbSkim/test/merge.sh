@@ -20,6 +20,8 @@ if [ ! -e $WORKDIR/$VERSION ]; then
   exit
 fi
 
+export ROOT_HIST=0
+
 unset PYTHIA8175DATA
 unset G4NEUTRONXS
 
