@@ -2045,9 +2045,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   wenu_event = wenu_event && Nb>0 && Nj==2;
   wmnu_event = wmnu_event && Nb>0 && Nj==2;
 
-  wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_=="electronQCD"))
+  wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_=="electronQCD" || lepton_=="electronTOP"))
 			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="electronFWD"));
-  wmnu_event = wmnu_event && ((vect_jets2.size()==0 && (lepton_=="muon" || lepton_=="muonQCD"))
+  wmnu_event = wmnu_event && ((vect_jets2.size()==0 && (lepton_=="muon" || lepton_=="muonQCD" || lepton_=="muonTOP"))
 			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="muonFWD"));
 
   if (debug && Nj<1) cout << "Warning: 0 Jets in the event!" << endl;
