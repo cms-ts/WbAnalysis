@@ -2280,16 +2280,19 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (ist) {
         t_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	t_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+	t_delta_wenu_2b->Fill (delta_phi_ebjbj, MyWeight*scalFac_b);
 	t_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	b_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+	b_delta_wenu_2b->Fill (delta_phi_ebjbj, MyWeight*scalFac_b);
 	b_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	c_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+	c_delta_wenu_2b->Fill (delta_phi_ebjbj, MyWeight*scalFac_b);
 	c_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
     }
@@ -2534,17 +2537,17 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       w_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
-
+	t_delta_wmnu_2b->Fill (delta_phi_mbjbj, MyWeight*scalFac_b);
 	t_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
-
+	b_delta_wmnu_2b->Fill (delta_phi_mbjbj, MyWeight*scalFac_b);
 	b_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
-
+	c_delta_wmnu_2b->Fill (delta_phi_mbjbj, MyWeight*scalFac_b);
 	c_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
     }
