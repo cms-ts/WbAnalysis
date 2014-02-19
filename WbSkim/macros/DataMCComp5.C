@@ -151,8 +151,8 @@ if (irun==99) {            // irun==99 => pur
       }
 
       TFile *data=0;
-      if (ilepton==1||ilepton==3||ilepton=5) data = TFile::Open((path + "/" + version + "/" + "SingleElectron_2012_merge.root").c_str());
-      if (ilepton==2||ilepton==4||ilepton=6) data = TFile::Open((path + "/" + version + "/" + "SingleMu_2012_merge.root").c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) data = TFile::Open((path + "/" + version + "/" + "SingleElectron_2012_merge.root").c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) data = TFile::Open((path + "/" + version + "/" + "SingleMu_2012_merge.root").c_str());
 
       TFile *data_fit=data;
 
