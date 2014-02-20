@@ -1766,7 +1766,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   int ntrgMatchesMuo=0;
 
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
-    if (muon->pt()>25 && fabs(muon->eta())<2.1) {
+    if (muon->pt()>30 && fabs(muon->eta())<2.1) {
       if (muon->triggerObjectMatches().size()>0) vect_muon.push_back (*muon);
       if (muon->triggerObjectMatches().size()>0) ntrgMatchesMuo++;
     }
