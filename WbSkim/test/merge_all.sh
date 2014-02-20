@@ -37,10 +37,10 @@ fi
 ./merge.sh W2j $VERSION
 ./merge.sh W3j $VERSION
 ./merge.sh W4j $VERSION
-./merge.sh WW $VERSION
 
 ./merge.sh W-all $VERSION
 
+./merge.sh WW $VERSION
 ./merge.sh ZZ $VERSION
 
 exit
