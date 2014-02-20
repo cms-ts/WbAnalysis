@@ -1719,7 +1719,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   for (pat::ElectronCollection::const_iterator ele = electrons->begin (); ele != electrons->end (); ++ele) {
     if (ele->pt()>30 && fabs(ele->eta())<2.1) {
-      vect_ele.push_back (*ele);
+      if (ele->triggerObjectMatches().size()>0) vect_ele.push_back (*ele);
       if (ele->triggerObjectMatches().size()>0) ntrgMatchesEle++;
     }
   }
@@ -1767,7 +1767,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
     if (muon->pt()>25 && fabs(muon->eta())<2.1) {
-      vect_muon.push_back (*muon);
+      if (muon->triggerObjectMatches().size()>0) vect_muon.push_back (*muon);
       if (muon->triggerObjectMatches().size()>0) ntrgMatchesMuo++;
     }
   }
