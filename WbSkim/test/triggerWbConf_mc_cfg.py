@@ -127,7 +127,7 @@ process.matchedMuons0 = cms.EDProducer("MuScleFitPATMuonCorrector",
 process.matchedMuons = selectedPatMuons.clone(
 		src = cms.InputTag('matchedMuons0'),
 		cut = cms.string(
-		        'pt > 25 & abs(eta) < 2.4 &'
+		        'pt > 10 & abs(eta) < 2.4 &'
 		        'isGlobalMuon & isPFMuon &'
 		        'globalTrack.normalizedChi2 < 10 &'
 		        'track.hitPattern.trackerLayersWithMeasurement > 5 &'
@@ -136,14 +136,14 @@ process.matchedMuons = selectedPatMuons.clone(
 		        'abs(dB) < 0.2 &'
 		        'numberOfMatchedStations > 1 &'
 		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt < 0.12 &'
-		        'triggerObjectMatches.size > 0'
+		        'triggerObjectMatches.size >= 0'
 		)
 )
 
 process.matchedMuonsQCD = selectedPatMuons.clone(
 		src = cms.InputTag('matchedMuons0'),
 		cut = cms.string(
-		        'pt > 25 & abs(eta) < 2.4 &'
+		        'pt > 10 & abs(eta) < 2.4 &'
 		        'isGlobalMuon & isPFMuon &'
 		        'globalTrack.normalizedChi2 < 10 &'
 		        'track.hitPattern.trackerLayersWithMeasurement > 5 &'
@@ -151,7 +151,7 @@ process.matchedMuonsQCD = selectedPatMuons.clone(
 		        'innerTrack.hitPattern.numberOfValidPixelHits > 0 &'
 		        'abs(dB) < 0.2 &'
 		        'numberOfMatchedStations > 1 &'
-		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt > 0.2 &'
+		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt > 0.12 &'
 		        'triggerObjectMatches.size >= 0'
 		)
 )
@@ -256,7 +256,7 @@ process.matchedElectrons = selectedPatElectrons.clone(
 			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et < 0.15 &'
 			'passConversionVeto &'
 			'gsfTrack.trackerExpectedHitsInner.numberOfHits <= 1 &'
-			'triggerObjectMatches.size > 0'
+			'triggerObjectMatches.size >= 0'
 		     )
 )
 
@@ -329,9 +329,9 @@ getattr(process,"patElectrons"+postfix).isolationValues = cms.PSet(
         pfPhotons = cms.InputTag('elPFIsoValueGamma03PFId'+postfix)
         )
 
-getattr(process,"pfIsolatedElectrons"+postfix).doDeltaBetaCorrection = True
+getattr(process,"pfIsolatedElectrons"+postfix).doDeltaBetaCorrection = False
 getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 999.
-getattr(process,"pfIsolatedMuons"+postfix).doDeltaBetaCorrection     = True
+getattr(process,"pfIsolatedMuons"+postfix).doDeltaBetaCorrection = False
 getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 999.
 
 getattr(process,"patJets"+postfix).addTagInfos = True

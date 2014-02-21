@@ -139,6 +139,20 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
 
    if (jets->size()==0) return false;
 
+   bool hasEle=false;
+
+   for (pat::ElectronCollection::const_iterator ele = electrons->begin (); ele != electrons->end (); ++ele) {
+     if (ele->triggerObjectMatches().size()>0) hasEle=true;
+   }
+   
+   bool hasMuo=false;
+   
+   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
+     if (muon->triggerObjectMatches().size()>0) hasMuo=true;
+   }
+
+   if (!hasEle && !hasMuo) return false;
+
    for (std::vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
 
      if (fabs(jet->eta())<2.5) {
