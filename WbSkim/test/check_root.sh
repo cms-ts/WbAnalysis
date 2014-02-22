@@ -19,7 +19,7 @@ if [ ! -z "$2" ]; then
   USER=$2
 fi
 
-DIR=/gpfs/cms/users/schizzi/work/Wbb2012/test/data/$VERSION/
+DIR=/gpfs/cms/users/schizzi/Wbb2012/test/data/$VERSION/
 
 [ "$USER" == "dellaric" ] && DIR=/gpfs/cms/users/schizzi/Wbb2012/test/GDR/data/$VERSION/
 
