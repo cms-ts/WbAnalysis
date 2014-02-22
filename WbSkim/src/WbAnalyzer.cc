@@ -1564,18 +1564,14 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // Get electron collection
   edm::Handle < pat::ElectronCollection > electrons;
   iEvent.getByLabel ("matchedElectrons", electrons);
-  edm::Handle < pat::ElectronCollection > electronsQCD;
-  iEvent.getByLabel ("matchedElectronsQCD", electronsQCD);
 
-  if (lepton_ == "electronQCD") electrons = electronsQCD;
+  if (lepton_ == "electronQCD") iEvent.getByLabel ("matchedElectronsQCD", electrons);
 
   // Get muon collection
   edm::Handle < pat::MuonCollection > muons;
   iEvent.getByLabel ("matchedMuons", muons);
-  edm::Handle < pat::MuonCollection > muonsQCD;
-  iEvent.getByLabel ("matchedMuonsQCD", muonsQCD);
 
-  if (lepton_ == "muonQCD") muons = muonsQCD;
+  if (lepton_ == "muonQCD") iEvent.getByLabel ("matchedMuonsQCD", muons);
 
   // Get jet collection
   edm::Handle < vector < pat::Jet > > jets;
@@ -1718,20 +1714,16 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   int ntrgMatchesEle = 0;
 
   for (pat::ElectronCollection::const_iterator ele = electrons->begin (); ele != electrons->end (); ++ele) {
-    if (ele->pt()>30 && fabs(ele->eta())<2.1) {
-      if (lepton_ == "electronQCD") {
+    if (ele->triggerObjectMatches().size()>0 || lepton_ == "electronQCD") {
+      if (ele->pt()>30 && fabs(ele->eta())<2.1) {
         vect_ele.push_back (*ele);
-      } else {
-        if (ele->triggerObjectMatches().size()>0) vect_ele.push_back (*ele);
       }
-      if (ele->triggerObjectMatches().size()>0) ntrgMatchesEle++;
+    } else {
+      if (fabs(ele->eta())<2.1) {
+        vect_ele2.push_back (*ele);
+      }
     }
-  }
-
-  for (pat::ElectronCollection::const_iterator ele = electronsQCD->begin (); ele != electronsQCD->end (); ++ele) {
-    if (fabs(ele->eta())<2.1) {
-      vect_ele2.push_back (*ele);
-    }
+    if (ele->triggerObjectMatches().size()>0) ntrgMatchesEle++;
   }
 
   // Computing Mt:
@@ -1770,20 +1762,16 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   int ntrgMatchesMuo=0;
 
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
-    if (muon->pt()>30 && fabs(muon->eta())<2.1) {
-      if (lepton_ == "muonQCD") {
+    if (muon->triggerObjectMatches().size()>0 || lepton_ == "muonQCD") {
+      if (muon->pt()>30 && fabs(muon->eta())<2.1) {
         vect_muon.push_back (*muon);
-      } else {
-        if (muon->triggerObjectMatches().size()>0) vect_muon.push_back (*muon);
       }
-      if (muon->triggerObjectMatches().size()>0) ntrgMatchesMuo++;
+    } else {
+      if (fabs(muon->eta())<2.1) {
+        vect_muon2.push_back (*muon);
+      }
     }
-  }
-
-  for (pat::MuonCollection::const_iterator muon = muonsQCD->begin (); muon != muonsQCD->end (); ++muon) {
-    if (fabs(muon->eta())<2.1) {
-      vect_muon2.push_back (*muon);
-    }
+    if (muon->triggerObjectMatches().size()>0) ntrgMatchesMuo++;
   }
 
   // Computing Mt:
