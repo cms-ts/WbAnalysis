@@ -52,7 +52,7 @@ EfficiencyBinningSpecificationMC = cms.PSet(
     UnbinnedVariables = cms.vstring("mass"),
     BinnedVariables = cms.PSet(
         probe_et = cms.vdouble( 10, 15, 20, 30, 40, 50, 1000 ),
-        probe_eta = cms.vdouble( -2.5, -2.0, -1.566, -1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5 )
+        probe_eta = cms.vdouble( -2.5, -2.0, -1.566, -1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5 ),
         mcTrue = cms.vstring("true")
         ),
     BinToPDFmap = cms.vstring()  
