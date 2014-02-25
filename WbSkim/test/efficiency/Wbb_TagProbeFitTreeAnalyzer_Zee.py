@@ -19,7 +19,7 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 
 isMC = True
 
-InputFileName = "SingleElectron_2012A_22Jan13.root"
+InputFileName = "SingleElectron_2012_merge.root"
 OutputFilePrefix = "efficiency-data-"
 
 if isMC:
