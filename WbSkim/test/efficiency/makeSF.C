@@ -62,9 +62,9 @@ void makeSF() {
                  << std::setw(5) << hsf->GetYaxis()->GetBinLowEdge(j)
 		 << std::setw(7) << hsf->GetYaxis()->GetBinUpEdge (j)
                  << std::setprecision(4)
-		 << std::setw(8) << hsf->GetBinContent(i,j)
-                 << std::setw(8) << hsf->GetBinError(i,j)
-		 << std::setw(8) << hsf->GetBinError(i,j) << endl;
+		 << std::setw(10) << hsf->GetBinContent(i,j)
+                 << std::setw(10) << hsf->GetBinError(i,j)
+		 << std::setw(10) << hsf->GetBinError(i,j) << endl;
     }
   }
   textfileMC.close();
@@ -82,9 +82,9 @@ void makeSF() {
                  << std::setw(5) << hsf->GetYaxis()->GetBinLowEdge(j)
 		 << std::setw(7) << hsf->GetYaxis()->GetBinUpEdge (j)
                  << std::setprecision(4)
-		 << std::setw(8) << hsf->GetBinContent(i,j)
-                 << std::setw(8) << hsf->GetBinError(i,j)
-		 << std::setw(8) << hsf->GetBinError(i,j) << endl;
+		 << std::setw(10) << hsf->GetBinContent(i,j)
+                 << std::setw(10) << hsf->GetBinError(i,j)
+		 << std::setw(10) << hsf->GetBinError(i,j) << endl;
     }
   }
   textfileSF.close();
