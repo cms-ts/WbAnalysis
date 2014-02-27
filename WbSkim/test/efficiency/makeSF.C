@@ -35,15 +35,15 @@ void makeSF() {
     for (int j = 1; j<=hdata->GetNbinsY(); j++) {
       textfileData << std::fixed
 		 << std::setprecision(4)
-		 << std::setw(7) << hsf->GetXaxis()->GetBinLowEdge(i)
-		 << std::setw(8) << hsf->GetXaxis()->GetBinUpEdge (i)
+		 << std::setw(7) << hdata->GetXaxis()->GetBinLowEdge(i)
+		 << std::setw(9) << hdata->GetXaxis()->GetBinUpEdge (i)
 	         << std::setprecision(1)
-                 << std::setw(5) << hsf->GetYaxis()->GetBinLowEdge(j)
-		 << std::setw(7) << hsf->GetYaxis()->GetBinUpEdge (j)
+                 << std::setw(6) << hdata->GetYaxis()->GetBinLowEdge(j)
+		 << std::setw(8) << hdata->GetYaxis()->GetBinUpEdge (j)
                  << std::setprecision(4)
-		 << std::setw(8) << hsf->GetBinContent(i,j)
-                 << std::setw(8) << hsf->GetBinError(i,j)
-		 << std::setw(8) << hsf->GetBinError(i,j) << endl;
+		 << std::setw(9) << hdata->GetBinContent(i,j)
+                 << std::setw(9) << hdata->GetBinError(i,j)
+		 << std::setw(9) << hdata->GetBinError(i,j) << endl;
     }
   }
   textfileData.close();
@@ -56,15 +56,15 @@ void makeSF() {
     for (int j = 1; j<=hmc->GetNbinsY(); j++) {
       textfileMC << std::fixed
 		 << std::setprecision(4)
-		 << std::setw(7) << hsf->GetXaxis()->GetBinLowEdge(i)
-		 << std::setw(8) << hsf->GetXaxis()->GetBinUpEdge (i)
+		 << std::setw(7) << hmc->GetXaxis()->GetBinLowEdge(i)
+		 << std::setw(9) << hmc->GetXaxis()->GetBinUpEdge (i)
 	         << std::setprecision(1)
-                 << std::setw(5) << hsf->GetYaxis()->GetBinLowEdge(j)
-		 << std::setw(7) << hsf->GetYaxis()->GetBinUpEdge (j)
+                 << std::setw(6) << hmc->GetYaxis()->GetBinLowEdge(j)
+		 << std::setw(8) << hmc->GetYaxis()->GetBinUpEdge (j)
                  << std::setprecision(4)
-		 << std::setw(10) << hsf->GetBinContent(i,j)
-                 << std::setw(10) << hsf->GetBinError(i,j)
-		 << std::setw(10) << hsf->GetBinError(i,j) << endl;
+		 << std::setw(9) << hmc->GetBinContent(i,j)
+                 << std::setw(9) << hmc->GetBinError(i,j)
+		 << std::setw(9) << hmc->GetBinError(i,j) << endl;
     }
   }
   textfileMC.close();
@@ -77,14 +77,14 @@ void makeSF() {
       textfileSF << std::fixed
 		 << std::setprecision(4)
 		 << std::setw(7) << hsf->GetXaxis()->GetBinLowEdge(i)
-		 << std::setw(8) << hsf->GetXaxis()->GetBinUpEdge (i)
+		 << std::setw(9) << hsf->GetXaxis()->GetBinUpEdge (i)
 	         << std::setprecision(1)
-                 << std::setw(5) << hsf->GetYaxis()->GetBinLowEdge(j)
-		 << std::setw(7) << hsf->GetYaxis()->GetBinUpEdge (j)
+                 << std::setw(6) << hsf->GetYaxis()->GetBinLowEdge(j)
+		 << std::setw(8) << hsf->GetYaxis()->GetBinUpEdge (j)
                  << std::setprecision(4)
-		 << std::setw(10) << hsf->GetBinContent(i,j)
-                 << std::setw(10) << hsf->GetBinError(i,j)
-		 << std::setw(10) << hsf->GetBinError(i,j) << endl;
+		 << std::setw(9) << hsf->GetBinContent(i,j)
+                 << std::setw(9) << hsf->GetBinError(i,j)
+		 << std::setw(9) << hsf->GetBinError(i,j) << endl;
     }
   }
   textfileSF.close();
