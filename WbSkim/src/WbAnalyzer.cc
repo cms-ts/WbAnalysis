@@ -951,10 +951,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_first_jet_eta =     fs->make < TH1F > ("b_first_jet_eta",   "b_first_jet_eta;Eta", 50, -2.5, 2.5);
   c_first_jet_eta =     fs->make < TH1F > ("c_first_jet_eta",   "c_first_jet_eta;Eta", 50, -2.5, 2.5);
   t_first_jet_eta =     fs->make < TH1F > ("t_first_jet_eta",   "t_first_jet_eta;Eta", 50, -2.5, 2.5);
-  w_first_jet_mass =      fs->make < TH1F > ("w_first_jet_mass",    "w_first_jet_mass;Mass [GeV]", 50, 0., 200.);
-  b_first_jet_mass =      fs->make < TH1F > ("b_first_jet_mass",    "b_first_jet_mass;Mass [GeV]", 50, 0., 200.);
-  c_first_jet_mass =      fs->make < TH1F > ("c_first_jet_mass",    "c_first_jet_mass;Mass [GeV]", 50, 0., 200.);
-  t_first_jet_mass =      fs->make < TH1F > ("t_first_jet_mass",    "t_first_jet_mass;Mass [GeV]", 50, 0., 200.);
+  w_first_jet_mass =      fs->make < TH1F > ("w_first_jet_mass",    "w_first_jet_mass;Mass [GeV]", 50, 0., 75.);
+  b_first_jet_mass =      fs->make < TH1F > ("b_first_jet_mass",    "b_first_jet_mass;Mass [GeV]", 50, 0., 75.);
+  c_first_jet_mass =      fs->make < TH1F > ("c_first_jet_mass",    "c_first_jet_mass;Mass [GeV]", 50, 0., 75.);
+  t_first_jet_mass =      fs->make < TH1F > ("t_first_jet_mass",    "t_first_jet_mass;Mass [GeV]", 50, 0., 75.);
   w_second_jet_pt =     fs->make < TH1F > ("w_second_jet_pt",   "w_second_jet_pt;P_t [GeV]", 50, 0., 250.);
   b_second_jet_pt =     fs->make < TH1F > ("b_second_jet_pt",   "b_second_jet_pt;P_t [GeV]", 50, 0., 250.);
   c_second_jet_pt =     fs->make < TH1F > ("c_second_jet_pt",   "c_second_jet_pt;P_t [GeV]", 50, 0., 250.);
@@ -963,10 +963,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_jet_eta =    fs->make < TH1F > ("b_second_jet_eta",  "b_second_jet_eta;Eta", 50, -2.5, 2.5);
   c_second_jet_eta =    fs->make < TH1F > ("c_second_jet_eta",  "c_second_jet_eta;Eta", 50, -2.5, 2.5);
   t_second_jet_eta =    fs->make < TH1F > ("t_second_jet_eta",  "t_second_jet_eta;Eta", 50, -2.5, 2.5);
-  w_second_jet_mass =      fs->make < TH1F > ("w_second_jet_mass",    "w_second_jet_mass;Mass [GeV]", 50, 0., 200.);
-  b_second_jet_mass =      fs->make < TH1F > ("b_second_jet_mass",    "b_second_jet_mass;Mass [GeV]", 50, 0., 200.);
-  c_second_jet_mass =      fs->make < TH1F > ("c_second_jet_mass",    "c_second_jet_mass;Mass [GeV]", 50, 0., 200.);
-  t_second_jet_mass =      fs->make < TH1F > ("t_second_jet_mass",    "t_second_jet_mass;Mass [GeV]", 50, 0., 200.);
+  w_second_jet_mass =      fs->make < TH1F > ("w_second_jet_mass",    "w_second_jet_mass;Mass [GeV]", 50, 0., 75.);
+  b_second_jet_mass =      fs->make < TH1F > ("b_second_jet_mass",    "b_second_jet_mass;Mass [GeV]", 50, 0., 75.);
+  c_second_jet_mass =      fs->make < TH1F > ("c_second_jet_mass",    "c_second_jet_mass;Mass [GeV]", 50, 0., 75.);
+  t_second_jet_mass =      fs->make < TH1F > ("t_second_jet_mass",    "t_second_jet_mass;Mass [GeV]", 50, 0., 75.);
   w_third_jet_pt =      fs->make < TH1F > ("w_third_jet_pt",    "w_third_jet_pt;P_t [GeV]", 50, 0., 150.);
   b_third_jet_pt =      fs->make < TH1F > ("b_third_jet_pt",    "b_third_jet_pt;P_t [GeV]", 50, 0., 150.);
   c_third_jet_pt =      fs->make < TH1F > ("c_third_jet_pt",    "c_third_jet_pt;P_t [GeV]", 50, 0., 150.);
@@ -975,10 +975,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_third_jet_eta =     fs->make < TH1F > ("b_third_jet_eta",   "b_third_jet_eta;Eta", 50, -2.5, 2.5);
   c_third_jet_eta =     fs->make < TH1F > ("c_third_jet_eta",   "c_third_jet_eta;Eta", 50, -2.5, 2.5);
   t_third_jet_eta =     fs->make < TH1F > ("t_third_jet_eta",   "t_third_jet_eta;Eta", 50, -2.5, 2.5);
-  w_third_jet_mass =      fs->make < TH1F > ("w_third_jet_mass",    "w_third_jet_mass;Mass [GeV]", 50, 0., 200.);
-  b_third_jet_mass =      fs->make < TH1F > ("b_third_jet_mass",    "b_third_jet_mass;Mass [GeV]", 50, 0., 200.);
-  c_third_jet_mass =      fs->make < TH1F > ("c_third_jet_mass",    "c_third_jet_mass;Mass [GeV]", 50, 0., 200.);
-  t_third_jet_mass =      fs->make < TH1F > ("t_third_jet_mass",    "t_third_jet_mass;Mass [GeV]", 50, 0., 200.);
+  w_third_jet_mass =      fs->make < TH1F > ("w_third_jet_mass",    "w_third_jet_mass;Mass [GeV]", 50, 0., 75.);
+  b_third_jet_mass =      fs->make < TH1F > ("b_third_jet_mass",    "b_third_jet_mass;Mass [GeV]", 50, 0., 75.);
+  c_third_jet_mass =      fs->make < TH1F > ("c_third_jet_mass",    "c_third_jet_mass;Mass [GeV]", 50, 0., 75.);
+  t_third_jet_mass =      fs->make < TH1F > ("t_third_jet_mass",    "t_third_jet_mass;Mass [GeV]", 50, 0., 75.);
 
   w_first_jet_pt_b =    fs->make < TH1F > ("w_first_jet_pt_b",   "w_first_jet_pt_b;P_t [GeV]", 70, 0., 350.);
   b_first_jet_pt_b =    fs->make < TH1F > ("b_first_jet_pt_b",   "b_first_jet_pt_b;P_t [GeV]", 70, 0., 350.);
@@ -988,10 +988,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_first_jet_eta_b =   fs->make < TH1F > ("b_first_jet_eta_b",  "b_first_jet_eta_b;Eta", 50, -2.5, 2.5);
   c_first_jet_eta_b =   fs->make < TH1F > ("c_first_jet_eta_b",  "c_first_jet_eta_b;Eta", 50, -2.5, 2.5);
   t_first_jet_eta_b =   fs->make < TH1F > ("t_first_jet_eta_b",  "t_first_jet_eta_b;Eta", 50, -2.5, 2.5);
-  w_first_jet_mass_b =      fs->make < TH1F > ("w_first_jet_mass_b",    "w_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  b_first_jet_mass_b =      fs->make < TH1F > ("b_first_jet_mass_b",    "b_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  c_first_jet_mass_b =      fs->make < TH1F > ("c_first_jet_mass_b",    "c_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  t_first_jet_mass_b =      fs->make < TH1F > ("t_first_jet_mass_b",    "t_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  w_first_jet_mass_b =      fs->make < TH1F > ("w_first_jet_mass_b",    "w_first_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  b_first_jet_mass_b =      fs->make < TH1F > ("b_first_jet_mass_b",    "b_first_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  c_first_jet_mass_b =      fs->make < TH1F > ("c_first_jet_mass_b",    "c_first_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  t_first_jet_mass_b =      fs->make < TH1F > ("t_first_jet_mass_b",    "t_first_jet_mass_b;Mass [GeV]", 50, 0., 75.);
   w_second_jet_pt_b =   fs->make < TH1F > ("w_second_jet_pt_b",  "w_second_jet_pt_b;P_t [GeV]", 50, 0., 250.);
   b_second_jet_pt_b =   fs->make < TH1F > ("b_second_jet_pt_b",  "b_second_jet_pt_b;P_t [GeV]", 50, 0., 250.);
   c_second_jet_pt_b =   fs->make < TH1F > ("c_second_jet_pt_b",  "c_second_jet_pt_b;P_t [GeV]", 50, 0., 250.);
@@ -1000,10 +1000,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_jet_eta_b =  fs->make < TH1F > ("b_second_jet_eta_b", "b_second_jet_eta_b;Eta", 50, -2.5, 2.5);
   c_second_jet_eta_b =  fs->make < TH1F > ("c_second_jet_eta_b", "c_second_jet_eta_b;Eta", 50, -2.5, 2.5);
   t_second_jet_eta_b =  fs->make < TH1F > ("t_second_jet_eta_b", "t_second_jet_eta_b;Eta", 50, -2.5, 2.5);
-  w_second_jet_mass_b =      fs->make < TH1F > ("w_second_jet_mass_b",    "w_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  b_second_jet_mass_b =      fs->make < TH1F > ("b_second_jet_mass_b",    "b_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  c_second_jet_mass_b =      fs->make < TH1F > ("c_second_jet_mass_b",    "c_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  t_second_jet_mass_b =      fs->make < TH1F > ("t_second_jet_mass_b",    "t_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  w_second_jet_mass_b =      fs->make < TH1F > ("w_second_jet_mass_b",    "w_second_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  b_second_jet_mass_b =      fs->make < TH1F > ("b_second_jet_mass_b",    "b_second_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  c_second_jet_mass_b =      fs->make < TH1F > ("c_second_jet_mass_b",    "c_second_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  t_second_jet_mass_b =      fs->make < TH1F > ("t_second_jet_mass_b",    "t_second_jet_mass_b;Mass [GeV]", 50, 0., 75.);
   w_third_jet_pt_b =    fs->make < TH1F > ("w_third_jet_pt_b",   "w_third_jet_pt_b;P_t [GeV]", 50, 0., 150.);
   b_third_jet_pt_b =    fs->make < TH1F > ("b_third_jet_pt_b",   "b_third_jet_pt_b;P_t [GeV]", 50, 0., 150.);
   c_third_jet_pt_b =    fs->make < TH1F > ("c_third_jet_pt_b",   "c_third_jet_pt_b;P_t [GeV]", 50, 0., 150.);
@@ -1012,10 +1012,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_third_jet_eta_b =   fs->make < TH1F > ("b_third_jet_eta_b",  "b_third_jet_eta_b;Eta", 50, -2.5, 2.5);
   c_third_jet_eta_b =   fs->make < TH1F > ("c_third_jet_eta_b",  "c_third_jet_eta_b;Eta", 50, -2.5, 2.5);
   t_third_jet_eta_b =   fs->make < TH1F > ("t_third_jet_eta_b",  "t_third_jet_eta_b;Eta", 50, -2.5, 2.5);
-  w_third_jet_mass_b =      fs->make < TH1F > ("w_third_jet_mass_b",    "w_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  b_third_jet_mass_b =      fs->make < TH1F > ("b_third_jet_mass_b",    "b_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  c_third_jet_mass_b =      fs->make < TH1F > ("c_third_jet_mass_b",    "c_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
-  t_third_jet_mass_b =      fs->make < TH1F > ("t_third_jet_mass_b",    "t_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  w_third_jet_mass_b =      fs->make < TH1F > ("w_third_jet_mass_b",    "w_third_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  b_third_jet_mass_b =      fs->make < TH1F > ("b_third_jet_mass_b",    "b_third_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  c_third_jet_mass_b =      fs->make < TH1F > ("c_third_jet_mass_b",    "c_third_jet_mass_b;Mass [GeV]", 50, 0., 75.);
+  t_third_jet_mass_b =      fs->make < TH1F > ("t_third_jet_mass_b",    "t_third_jet_mass_b;Mass [GeV]", 50, 0., 75.);
 
   w_bjetmultiplicity =  fs->make < TH1F > ("w_bjetmultiplicity", "w_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
   b_bjetmultiplicity =  fs->make < TH1F > ("b_bjetmultiplicity", "b_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
@@ -1030,10 +1030,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_first_bjet_eta =    fs->make < TH1F > ("b_first_bjet_eta",   "b_first_bjet_eta;Eta", 50, -2.5, 2.5);
   c_first_bjet_eta =    fs->make < TH1F > ("c_first_bjet_eta",   "c_first_bjet_eta;Eta", 50, -2.5, 2.5);
   t_first_bjet_eta =    fs->make < TH1F > ("t_first_bjet_eta",   "t_first_bjet_eta;Eta", 50, -2.5, 2.5);
-  w_first_bjet_mass =      fs->make < TH1F > ("w_first_bjet_mass",    "w_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  b_first_bjet_mass =      fs->make < TH1F > ("b_first_bjet_mass",    "b_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  c_first_bjet_mass =      fs->make < TH1F > ("c_first_bjet_mass",    "c_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  t_first_bjet_mass =      fs->make < TH1F > ("t_first_bjet_mass",    "t_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  w_first_bjet_mass =      fs->make < TH1F > ("w_first_bjet_mass",    "w_first_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  b_first_bjet_mass =      fs->make < TH1F > ("b_first_bjet_mass",    "b_first_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  c_first_bjet_mass =      fs->make < TH1F > ("c_first_bjet_mass",    "c_first_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  t_first_bjet_mass =      fs->make < TH1F > ("t_first_bjet_mass",    "t_first_bjet_mass;Mass [GeV]", 50, 0., 75.);
 
   w_single_bjet_pt =    fs->make < TH1F > ("w_single_bjet_pt",    "w_single_bjet_pt;P_t [GeV]", 70, 0., 350.);
   b_single_bjet_pt =    fs->make < TH1F > ("b_single_bjet_pt",    "b_single_bjet_pt;P_t [GeV]", 70, 0., 350.);
@@ -1043,10 +1043,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_single_bjet_eta =   fs->make < TH1F > ("b_single_bjet_eta",   "b_single_bjet_eta;Eta", 50, -2.5, 2.5);
   c_single_bjet_eta =   fs->make < TH1F > ("c_single_bjet_eta",   "c_single_bjet_eta;Eta", 50, -2.5, 2.5);
   t_single_bjet_eta =   fs->make < TH1F > ("t_single_bjet_eta",   "t_single_bjet_eta;Eta", 50, -2.5, 2.5);
-  w_single_bjet_mass =      fs->make < TH1F > ("w_single_bjet_mass",    "w_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  b_single_bjet_mass =      fs->make < TH1F > ("b_single_bjet_mass",    "b_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  c_single_bjet_mass =      fs->make < TH1F > ("c_single_bjet_mass",    "c_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  t_single_bjet_mass =      fs->make < TH1F > ("t_single_bjet_mass",    "t_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  w_single_bjet_mass =      fs->make < TH1F > ("w_single_bjet_mass",    "w_single_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  b_single_bjet_mass =      fs->make < TH1F > ("b_single_bjet_mass",    "b_single_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  c_single_bjet_mass =      fs->make < TH1F > ("c_single_bjet_mass",    "c_single_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  t_single_bjet_mass =      fs->make < TH1F > ("t_single_bjet_mass",    "t_single_bjet_mass;Mass [GeV]", 50, 0., 75.);
 
   w_second_bjet_pt =    fs->make < TH1F > ("w_second_bjet_pt",   "w_second_bjet_pt;P_t [GeV]", 50, 0., 250.);
   b_second_bjet_pt =    fs->make < TH1F > ("b_second_bjet_pt",   "b_second_bjet_pt;P_t [GeV]", 50, 0., 250.);
@@ -1056,10 +1056,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_bjet_eta =   fs->make < TH1F > ("b_second_bjet_eta",  "b_second_bjet_eta;Eta", 50, -2.5, 2.5);
   c_second_bjet_eta =   fs->make < TH1F > ("c_second_bjet_eta",  "c_second_bjet_eta;Eta", 50, -2.5, 2.5);
   t_second_bjet_eta =   fs->make < TH1F > ("t_second_bjet_eta",  "t_second_bjet_eta;Eta", 50, -2.5, 2.5);
-  w_second_bjet_mass =      fs->make < TH1F > ("w_second_bjet_mass",    "w_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  b_second_bjet_mass =      fs->make < TH1F > ("b_second_bjet_mass",    "b_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  c_second_bjet_mass =      fs->make < TH1F > ("c_second_bjet_mass",    "c_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  t_second_bjet_mass =      fs->make < TH1F > ("t_second_bjet_mass",    "t_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  w_second_bjet_mass =      fs->make < TH1F > ("w_second_bjet_mass",    "w_second_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  b_second_bjet_mass =      fs->make < TH1F > ("b_second_bjet_mass",    "b_second_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  c_second_bjet_mass =      fs->make < TH1F > ("c_second_bjet_mass",    "c_second_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  t_second_bjet_mass =      fs->make < TH1F > ("t_second_bjet_mass",    "t_second_bjet_mass;Mass [GeV]", 50, 0., 75.);
 
   w_third_bjet_pt =     fs->make < TH1F > ("w_third_bjet_pt",    "w_third_bjet_pt;P_t [GeV]", 50, 0., 150.);
   b_third_bjet_pt =     fs->make < TH1F > ("b_third_bjet_pt",    "b_third_bjet_pt;P_t [GeV]", 50, 0., 150.);
@@ -1069,10 +1069,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_third_bjet_eta =    fs->make < TH1F > ("b_third_bjet_eta",   "b_third_bjet_eta;Eta", 50, -2.5, 2.5);
   c_third_bjet_eta =    fs->make < TH1F > ("c_third_bjet_eta",   "c_third_bjet_eta;Eta", 50, -2.5, 2.5);
   t_third_bjet_eta =    fs->make < TH1F > ("t_third_bjet_eta",   "t_third_bjet_eta;Eta", 50, -2.5, 2.5);
-  w_third_bjet_mass =      fs->make < TH1F > ("w_third_bjet_mass",    "w_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  b_third_bjet_mass =      fs->make < TH1F > ("b_third_bjet_mass",    "b_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  c_third_bjet_mass =      fs->make < TH1F > ("c_third_bjet_mass",    "c_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
-  t_third_bjet_mass =      fs->make < TH1F > ("t_third_bjet_mass",    "t_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  w_third_bjet_mass =      fs->make < TH1F > ("w_third_bjet_mass",    "w_third_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  b_third_bjet_mass =      fs->make < TH1F > ("b_third_bjet_mass",    "b_third_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  c_third_bjet_mass =      fs->make < TH1F > ("c_third_bjet_mass",    "c_third_bjet_mass;Mass [GeV]", 50, 0., 75.);
+  t_third_bjet_mass =      fs->make < TH1F > ("t_third_bjet_mass",    "t_third_bjet_mass;Mass [GeV]", 50, 0., 75.);
 
   w_first_ele_pt =      fs->make < TH1F > ("w_first_ele_pt",     "w_first_ele_pt;P_t [GeV]", 50, 0., 250.);
   w_first_ele_pt_b =    fs->make < TH1F > ("w_first_ele_pt_b",   "w_first_ele_pt_b;P_t [GeV]", 50, 0., 250.);
