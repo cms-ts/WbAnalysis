@@ -242,6 +242,10 @@ private:
   TH1F*     b_first_jet_eta;
   TH1F*     c_first_jet_eta;
   TH1F*     t_first_jet_eta;
+  TH1F*     w_first_jet_mass;
+  TH1F*     b_first_jet_mass;
+  TH1F*     c_first_jet_mass;
+  TH1F*     t_first_jet_mass;
   TH1F*     w_second_jet_pt;
   TH1F*     b_second_jet_pt;
   TH1F*     c_second_jet_pt;
@@ -250,6 +254,10 @@ private:
   TH1F*     b_second_jet_eta;
   TH1F*     c_second_jet_eta;
   TH1F*     t_second_jet_eta;
+  TH1F*     w_second_jet_mass;
+  TH1F*     b_second_jet_mass;
+  TH1F*     c_second_jet_mass;
+  TH1F*     t_second_jet_mass;
   TH1F*     w_third_jet_pt;
   TH1F*     b_third_jet_pt;
   TH1F*     c_third_jet_pt;
@@ -258,6 +266,10 @@ private:
   TH1F*     b_third_jet_eta;
   TH1F*     c_third_jet_eta;
   TH1F*     t_third_jet_eta;
+  TH1F*     w_third_jet_mass;
+  TH1F*     b_third_jet_mass;
+  TH1F*     c_third_jet_mass;
+  TH1F*     t_third_jet_mass;
 
   TH1F*     w_first_jet_pt_b;	// leading jet with at least one b jet in the event
   TH1F*     b_first_jet_pt_b;
@@ -267,6 +279,10 @@ private:
   TH1F*     b_first_jet_eta_b;
   TH1F*     c_first_jet_eta_b;
   TH1F*     t_first_jet_eta_b;
+  TH1F*     w_first_jet_mass_b;
+  TH1F*     b_first_jet_mass_b;
+  TH1F*     c_first_jet_mass_b;
+  TH1F*     t_first_jet_mass_b;
   TH1F*     w_second_jet_pt_b;
   TH1F*     b_second_jet_pt_b;
   TH1F*     c_second_jet_pt_b;
@@ -275,6 +291,10 @@ private:
   TH1F*     b_second_jet_eta_b;
   TH1F*     c_second_jet_eta_b;
   TH1F*     t_second_jet_eta_b;
+  TH1F*     w_second_jet_mass_b;
+  TH1F*     b_second_jet_mass_b;
+  TH1F*     c_second_jet_mass_b;
+  TH1F*     t_second_jet_mass_b;
   TH1F*     w_third_jet_pt_b;
   TH1F*     b_third_jet_pt_b;
   TH1F*     c_third_jet_pt_b;
@@ -283,6 +303,10 @@ private:
   TH1F*     b_third_jet_eta_b;
   TH1F*     c_third_jet_eta_b;
   TH1F*     t_third_jet_eta_b;
+  TH1F*     w_third_jet_mass_b;
+  TH1F*     b_third_jet_mass_b;
+  TH1F*     c_third_jet_mass_b;
+  TH1F*     t_third_jet_mass_b;
 
   TH1F*     w_bjetmultiplicity;
   TH1F*     b_bjetmultiplicity;
@@ -297,6 +321,10 @@ private:
   TH1F*     b_first_bjet_eta;
   TH1F*     c_first_bjet_eta;
   TH1F*     t_first_bjet_eta;
+  TH1F*     w_first_bjet_mass;
+  TH1F*     b_first_bjet_mass;
+  TH1F*     c_first_bjet_mass;
+  TH1F*     t_first_bjet_mass;
 
   TH1F*     w_single_bjet_pt;	// only 1 b jet
   TH1F*     b_single_bjet_pt;
@@ -306,6 +334,10 @@ private:
   TH1F*     b_single_bjet_eta;
   TH1F*     c_single_bjet_eta;
   TH1F*     t_single_bjet_eta;
+  TH1F*     w_single_bjet_mass;
+  TH1F*     b_single_bjet_mass;
+  TH1F*     c_single_bjet_mass;
+  TH1F*     t_single_bjet_mass;
 
   TH1F*     w_second_bjet_pt;
   TH1F*     b_second_bjet_pt;
@@ -315,6 +347,10 @@ private:
   TH1F*     b_second_bjet_eta;
   TH1F*     c_second_bjet_eta;
   TH1F*     t_second_bjet_eta;
+  TH1F*     w_second_bjet_mass;
+  TH1F*     b_second_bjet_mass;
+  TH1F*     c_second_bjet_mass;
+  TH1F*     t_second_bjet_mass;
 
   TH1F*     w_third_bjet_pt;
   TH1F*     b_third_bjet_pt;
@@ -324,6 +360,10 @@ private:
   TH1F*     b_third_bjet_eta;
   TH1F*     c_third_bjet_eta;
   TH1F*     t_third_bjet_eta;
+  TH1F*     w_third_bjet_mass;
+  TH1F*     b_third_bjet_mass;
+  TH1F*     c_third_bjet_mass;
+  TH1F*     t_third_bjet_mass;
 
   TH1F*     w_first_ele_pt;
   TH1F*     w_first_ele_pt_b;
@@ -911,6 +951,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_first_jet_eta =     fs->make < TH1F > ("b_first_jet_eta",   "b_first_jet_eta;Eta", 50, -2.5, 2.5);
   c_first_jet_eta =     fs->make < TH1F > ("c_first_jet_eta",   "c_first_jet_eta;Eta", 50, -2.5, 2.5);
   t_first_jet_eta =     fs->make < TH1F > ("t_first_jet_eta",   "t_first_jet_eta;Eta", 50, -2.5, 2.5);
+  w_first_jet_mass =      fs->make < TH1F > ("w_first_jet_mass",    "w_first_jet_mass;Mass [GeV]", 50, 0., 200.);
+  b_first_jet_mass =      fs->make < TH1F > ("b_first_jet_mass",    "b_first_jet_mass;Mass [GeV]", 50, 0., 200.);
+  c_first_jet_mass =      fs->make < TH1F > ("c_first_jet_mass",    "c_first_jet_mass;Mass [GeV]", 50, 0., 200.);
+  t_first_jet_mass =      fs->make < TH1F > ("t_first_jet_mass",    "t_first_jet_mass;Mass [GeV]", 50, 0., 200.);
   w_second_jet_pt =     fs->make < TH1F > ("w_second_jet_pt",   "w_second_jet_pt;P_t [GeV]", 50, 0., 250.);
   b_second_jet_pt =     fs->make < TH1F > ("b_second_jet_pt",   "b_second_jet_pt;P_t [GeV]", 50, 0., 250.);
   c_second_jet_pt =     fs->make < TH1F > ("c_second_jet_pt",   "c_second_jet_pt;P_t [GeV]", 50, 0., 250.);
@@ -919,6 +963,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_jet_eta =    fs->make < TH1F > ("b_second_jet_eta",  "b_second_jet_eta;Eta", 50, -2.5, 2.5);
   c_second_jet_eta =    fs->make < TH1F > ("c_second_jet_eta",  "c_second_jet_eta;Eta", 50, -2.5, 2.5);
   t_second_jet_eta =    fs->make < TH1F > ("t_second_jet_eta",  "t_second_jet_eta;Eta", 50, -2.5, 2.5);
+  w_second_jet_mass =      fs->make < TH1F > ("w_second_jet_mass",    "w_second_jet_mass;Mass [GeV]", 50, 0., 200.);
+  b_second_jet_mass =      fs->make < TH1F > ("b_second_jet_mass",    "b_second_jet_mass;Mass [GeV]", 50, 0., 200.);
+  c_second_jet_mass =      fs->make < TH1F > ("c_second_jet_mass",    "c_second_jet_mass;Mass [GeV]", 50, 0., 200.);
+  t_second_jet_mass =      fs->make < TH1F > ("t_second_jet_mass",    "t_second_jet_mass;Mass [GeV]", 50, 0., 200.);
   w_third_jet_pt =      fs->make < TH1F > ("w_third_jet_pt",    "w_third_jet_pt;P_t [GeV]", 50, 0., 150.);
   b_third_jet_pt =      fs->make < TH1F > ("b_third_jet_pt",    "b_third_jet_pt;P_t [GeV]", 50, 0., 150.);
   c_third_jet_pt =      fs->make < TH1F > ("c_third_jet_pt",    "c_third_jet_pt;P_t [GeV]", 50, 0., 150.);
@@ -927,6 +975,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_third_jet_eta =     fs->make < TH1F > ("b_third_jet_eta",   "b_third_jet_eta;Eta", 50, -2.5, 2.5);
   c_third_jet_eta =     fs->make < TH1F > ("c_third_jet_eta",   "c_third_jet_eta;Eta", 50, -2.5, 2.5);
   t_third_jet_eta =     fs->make < TH1F > ("t_third_jet_eta",   "t_third_jet_eta;Eta", 50, -2.5, 2.5);
+  w_third_jet_mass =      fs->make < TH1F > ("w_third_jet_mass",    "w_third_jet_mass;Mass [GeV]", 50, 0., 200.);
+  b_third_jet_mass =      fs->make < TH1F > ("b_third_jet_mass",    "b_third_jet_mass;Mass [GeV]", 50, 0., 200.);
+  c_third_jet_mass =      fs->make < TH1F > ("c_third_jet_mass",    "c_third_jet_mass;Mass [GeV]", 50, 0., 200.);
+  t_third_jet_mass =      fs->make < TH1F > ("t_third_jet_mass",    "t_third_jet_mass;Mass [GeV]", 50, 0., 200.);
 
   w_first_jet_pt_b =    fs->make < TH1F > ("w_first_jet_pt_b",   "w_first_jet_pt_b;P_t [GeV]", 70, 0., 350.);
   b_first_jet_pt_b =    fs->make < TH1F > ("b_first_jet_pt_b",   "b_first_jet_pt_b;P_t [GeV]", 70, 0., 350.);
@@ -936,6 +988,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_first_jet_eta_b =   fs->make < TH1F > ("b_first_jet_eta_b",  "b_first_jet_eta_b;Eta", 50, -2.5, 2.5);
   c_first_jet_eta_b =   fs->make < TH1F > ("c_first_jet_eta_b",  "c_first_jet_eta_b;Eta", 50, -2.5, 2.5);
   t_first_jet_eta_b =   fs->make < TH1F > ("t_first_jet_eta_b",  "t_first_jet_eta_b;Eta", 50, -2.5, 2.5);
+  w_first_jet_mass_b =      fs->make < TH1F > ("w_first_jet_mass_b",    "w_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  b_first_jet_mass_b =      fs->make < TH1F > ("b_first_jet_mass_b",    "b_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  c_first_jet_mass_b =      fs->make < TH1F > ("c_first_jet_mass_b",    "c_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  t_first_jet_mass_b =      fs->make < TH1F > ("t_first_jet_mass_b",    "t_first_jet_mass_b;Mass [GeV]", 50, 0., 200.);
   w_second_jet_pt_b =   fs->make < TH1F > ("w_second_jet_pt_b",  "w_second_jet_pt_b;P_t [GeV]", 50, 0., 250.);
   b_second_jet_pt_b =   fs->make < TH1F > ("b_second_jet_pt_b",  "b_second_jet_pt_b;P_t [GeV]", 50, 0., 250.);
   c_second_jet_pt_b =   fs->make < TH1F > ("c_second_jet_pt_b",  "c_second_jet_pt_b;P_t [GeV]", 50, 0., 250.);
@@ -944,6 +1000,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_jet_eta_b =  fs->make < TH1F > ("b_second_jet_eta_b", "b_second_jet_eta_b;Eta", 50, -2.5, 2.5);
   c_second_jet_eta_b =  fs->make < TH1F > ("c_second_jet_eta_b", "c_second_jet_eta_b;Eta", 50, -2.5, 2.5);
   t_second_jet_eta_b =  fs->make < TH1F > ("t_second_jet_eta_b", "t_second_jet_eta_b;Eta", 50, -2.5, 2.5);
+  w_second_jet_mass_b =      fs->make < TH1F > ("w_second_jet_mass_b",    "w_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  b_second_jet_mass_b =      fs->make < TH1F > ("b_second_jet_mass_b",    "b_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  c_second_jet_mass_b =      fs->make < TH1F > ("c_second_jet_mass_b",    "c_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  t_second_jet_mass_b =      fs->make < TH1F > ("t_second_jet_mass_b",    "t_second_jet_mass_b;Mass [GeV]", 50, 0., 200.);
   w_third_jet_pt_b =    fs->make < TH1F > ("w_third_jet_pt_b",   "w_third_jet_pt_b;P_t [GeV]", 50, 0., 150.);
   b_third_jet_pt_b =    fs->make < TH1F > ("b_third_jet_pt_b",   "b_third_jet_pt_b;P_t [GeV]", 50, 0., 150.);
   c_third_jet_pt_b =    fs->make < TH1F > ("c_third_jet_pt_b",   "c_third_jet_pt_b;P_t [GeV]", 50, 0., 150.);
@@ -952,6 +1012,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_third_jet_eta_b =   fs->make < TH1F > ("b_third_jet_eta_b",  "b_third_jet_eta_b;Eta", 50, -2.5, 2.5);
   c_third_jet_eta_b =   fs->make < TH1F > ("c_third_jet_eta_b",  "c_third_jet_eta_b;Eta", 50, -2.5, 2.5);
   t_third_jet_eta_b =   fs->make < TH1F > ("t_third_jet_eta_b",  "t_third_jet_eta_b;Eta", 50, -2.5, 2.5);
+  w_third_jet_mass_b =      fs->make < TH1F > ("w_third_jet_mass_b",    "w_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  b_third_jet_mass_b =      fs->make < TH1F > ("b_third_jet_mass_b",    "b_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  c_third_jet_mass_b =      fs->make < TH1F > ("c_third_jet_mass_b",    "c_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
+  t_third_jet_mass_b =      fs->make < TH1F > ("t_third_jet_mass_b",    "t_third_jet_mass_b;Mass [GeV]", 50, 0., 200.);
 
   w_bjetmultiplicity =  fs->make < TH1F > ("w_bjetmultiplicity", "w_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
   b_bjetmultiplicity =  fs->make < TH1F > ("b_bjetmultiplicity", "b_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
@@ -966,6 +1030,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_first_bjet_eta =    fs->make < TH1F > ("b_first_bjet_eta",   "b_first_bjet_eta;Eta", 50, -2.5, 2.5);
   c_first_bjet_eta =    fs->make < TH1F > ("c_first_bjet_eta",   "c_first_bjet_eta;Eta", 50, -2.5, 2.5);
   t_first_bjet_eta =    fs->make < TH1F > ("t_first_bjet_eta",   "t_first_bjet_eta;Eta", 50, -2.5, 2.5);
+  w_first_bjet_mass =      fs->make < TH1F > ("w_first_bjet_mass",    "w_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  b_first_bjet_mass =      fs->make < TH1F > ("b_first_bjet_mass",    "b_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  c_first_bjet_mass =      fs->make < TH1F > ("c_first_bjet_mass",    "c_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  t_first_bjet_mass =      fs->make < TH1F > ("t_first_bjet_mass",    "t_first_bjet_mass;Mass [GeV]", 50, 0., 200.);
 
   w_single_bjet_pt =    fs->make < TH1F > ("w_single_bjet_pt",    "w_single_bjet_pt;P_t [GeV]", 70, 0., 350.);
   b_single_bjet_pt =    fs->make < TH1F > ("b_single_bjet_pt",    "b_single_bjet_pt;P_t [GeV]", 70, 0., 350.);
@@ -975,6 +1043,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_single_bjet_eta =   fs->make < TH1F > ("b_single_bjet_eta",   "b_single_bjet_eta;Eta", 50, -2.5, 2.5);
   c_single_bjet_eta =   fs->make < TH1F > ("c_single_bjet_eta",   "c_single_bjet_eta;Eta", 50, -2.5, 2.5);
   t_single_bjet_eta =   fs->make < TH1F > ("t_single_bjet_eta",   "t_single_bjet_eta;Eta", 50, -2.5, 2.5);
+  w_single_bjet_mass =      fs->make < TH1F > ("w_single_bjet_mass",    "w_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  b_single_bjet_mass =      fs->make < TH1F > ("b_single_bjet_mass",    "b_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  c_single_bjet_mass =      fs->make < TH1F > ("c_single_bjet_mass",    "c_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  t_single_bjet_mass =      fs->make < TH1F > ("t_single_bjet_mass",    "t_single_bjet_mass;Mass [GeV]", 50, 0., 200.);
 
   w_second_bjet_pt =    fs->make < TH1F > ("w_second_bjet_pt",   "w_second_bjet_pt;P_t [GeV]", 50, 0., 250.);
   b_second_bjet_pt =    fs->make < TH1F > ("b_second_bjet_pt",   "b_second_bjet_pt;P_t [GeV]", 50, 0., 250.);
@@ -984,6 +1056,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_second_bjet_eta =   fs->make < TH1F > ("b_second_bjet_eta",  "b_second_bjet_eta;Eta", 50, -2.5, 2.5);
   c_second_bjet_eta =   fs->make < TH1F > ("c_second_bjet_eta",  "c_second_bjet_eta;Eta", 50, -2.5, 2.5);
   t_second_bjet_eta =   fs->make < TH1F > ("t_second_bjet_eta",  "t_second_bjet_eta;Eta", 50, -2.5, 2.5);
+  w_second_bjet_mass =      fs->make < TH1F > ("w_second_bjet_mass",    "w_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  b_second_bjet_mass =      fs->make < TH1F > ("b_second_bjet_mass",    "b_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  c_second_bjet_mass =      fs->make < TH1F > ("c_second_bjet_mass",    "c_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  t_second_bjet_mass =      fs->make < TH1F > ("t_second_bjet_mass",    "t_second_bjet_mass;Mass [GeV]", 50, 0., 200.);
 
   w_third_bjet_pt =     fs->make < TH1F > ("w_third_bjet_pt",    "w_third_bjet_pt;P_t [GeV]", 50, 0., 150.);
   b_third_bjet_pt =     fs->make < TH1F > ("b_third_bjet_pt",    "b_third_bjet_pt;P_t [GeV]", 50, 0., 150.);
@@ -993,6 +1069,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_third_bjet_eta =    fs->make < TH1F > ("b_third_bjet_eta",   "b_third_bjet_eta;Eta", 50, -2.5, 2.5);
   c_third_bjet_eta =    fs->make < TH1F > ("c_third_bjet_eta",   "c_third_bjet_eta;Eta", 50, -2.5, 2.5);
   t_third_bjet_eta =    fs->make < TH1F > ("t_third_bjet_eta",   "t_third_bjet_eta;Eta", 50, -2.5, 2.5);
+  w_third_bjet_mass =      fs->make < TH1F > ("w_third_bjet_mass",    "w_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  b_third_bjet_mass =      fs->make < TH1F > ("b_third_bjet_mass",    "b_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  c_third_bjet_mass =      fs->make < TH1F > ("c_third_bjet_mass",    "c_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
+  t_third_bjet_mass =      fs->make < TH1F > ("t_third_bjet_mass",    "t_third_bjet_mass;Mass [GeV]", 50, 0., 200.);
 
   w_first_ele_pt =      fs->make < TH1F > ("w_first_ele_pt",     "w_first_ele_pt;P_t [GeV]", 50, 0., 250.);
   w_first_ele_pt_b =    fs->make < TH1F > ("w_first_ele_pt_b",   "w_first_ele_pt_b;P_t [GeV]", 50, 0., 250.);
@@ -3160,54 +3240,66 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     w_jetmultiplicity->Fill (Nj, MyWeight*scalFac_b);
     w_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
     w_first_jet_eta->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+    w_first_jet_mass->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
     if (ist) {
       t_jetmultiplicity->Fill (Nj, MyWeight*scalFac_b);
       t_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
       t_first_jet_eta->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+      t_first_jet_mass->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_jetmultiplicity->Fill (Nj, MyWeight*scalFac_b);
       b_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
       b_first_jet_eta->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+      b_first_jet_mass->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_jetmultiplicity->Fill (Nj, MyWeight*scalFac_b);
       c_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
       c_first_jet_eta->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+      c_first_jet_mass->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
     }
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
     w_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
     w_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+    w_second_jet_mass->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
     if (ist) {
       t_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
       t_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+      t_second_jet_mass->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[1].partonFlavour()) == 5) {
       b_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
       b_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+      b_second_jet_mass->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[1].partonFlavour()) == 4) {
       c_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
       c_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+      c_second_jet_mass->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
     }
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && Nj > 2 && vtx_cut) {
     w_third_jet_pt->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
     w_third_jet_eta->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+    w_third_jet_mass->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
     if (ist) {
       t_third_jet_pt->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
       t_third_jet_eta->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+      t_third_jet_mass->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[2].partonFlavour()) == 5) {
       b_third_jet_pt->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
       b_third_jet_eta->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+      b_third_jet_mass->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[2].partonFlavour()) == 4) {
       c_third_jet_pt->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
       c_third_jet_eta->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+      c_third_jet_mass->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
     }
   }
 
@@ -3218,28 +3310,36 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     w_bjetmultiplicity->Fill (Nb, MyWeight*scalFac_b);
     w_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
     w_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+    w_first_jet_mass_b->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
     w_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
     w_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+    w_first_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     if (ist) {
       t_bjetmultiplicity->Fill (Nb, MyWeight*scalFac_b);
       t_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
       t_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+      t_first_jet_mass_b->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
       t_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
       t_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+      t_first_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
       b_bjetmultiplicity->Fill (Nb, MyWeight*scalFac_b);
       b_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
       b_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+      b_first_jet_mass_b->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
       b_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
       b_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+      b_first_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
       c_bjetmultiplicity->Fill (Nb, MyWeight*scalFac_b);
       c_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
       c_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
+      c_first_jet_mass_b->Fill (vect_jets[0].mass(), MyWeight*scalFac_b);
       c_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
       c_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+      c_first_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     }
   }
 
@@ -3247,25 +3347,33 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     scalFac_b = btagSF(isMC, vect_bjets, 2);
     w_second_jet_pt_b->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
     w_second_jet_eta_b->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+    w_second_jet_mass_b->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
     w_second_bjet_pt->Fill (vect_bjets[1].pt(), MyWeight*scalFac_b);
     w_second_bjet_eta->Fill (vect_bjets[1].eta(), MyWeight*scalFac_b);
+    w_second_bjet_mass->Fill (vect_bjets[1].mass(), MyWeight*scalFac_b);
     if (ist) {
       t_second_jet_pt_b->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
       t_second_jet_eta_b->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+      t_second_jet_mass_b->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
       t_second_bjet_pt->Fill (vect_bjets[1].pt(), MyWeight*scalFac_b);
       t_second_bjet_eta->Fill (vect_bjets[1].eta(), MyWeight*scalFac_b);
+      t_second_bjet_mass->Fill (vect_bjets[1].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[1].partonFlavour()) == 5) {
       b_second_jet_pt_b->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
       b_second_jet_eta_b->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+      b_second_jet_mass_b->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
       b_second_bjet_pt->Fill (vect_bjets[1].pt(), MyWeight*scalFac_b);
       b_second_bjet_eta->Fill (vect_bjets[1].eta(), MyWeight*scalFac_b);
+      b_second_bjet_mass->Fill (vect_bjets[1].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[1].partonFlavour()) == 4) {
       c_second_jet_pt_b->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
       c_second_jet_eta_b->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
+      c_second_jet_mass_b->Fill (vect_jets[1].mass(), MyWeight*scalFac_b);
       c_second_bjet_pt->Fill (vect_bjets[1].pt(), MyWeight*scalFac_b);
       c_second_bjet_eta->Fill (vect_bjets[1].eta(), MyWeight*scalFac_b);
+      c_second_bjet_mass->Fill (vect_bjets[1].mass(), MyWeight*scalFac_b);
     }
   }
 
@@ -3273,25 +3381,33 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     scalFac_b = btagSF(isMC, vect_bjets, 3);
     w_third_jet_pt_b->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
     w_third_jet_eta_b->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+    w_third_jet_mass_b->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
     w_third_bjet_pt->Fill (vect_bjets[2].pt(), MyWeight*scalFac_b);
     w_third_bjet_eta->Fill (vect_bjets[2].eta(), MyWeight*scalFac_b);
+    w_third_bjet_mass->Fill (vect_bjets[2].mass(), MyWeight*scalFac_b);
     if (ist) {
       t_third_jet_pt_b->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
       t_third_jet_eta_b->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+      t_third_jet_mass_b->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
       t_third_bjet_pt->Fill (vect_bjets[2].pt(), MyWeight*scalFac_b);
       t_third_bjet_eta->Fill (vect_bjets[2].eta(), MyWeight*scalFac_b);
+      t_third_bjet_mass->Fill (vect_bjets[2].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[2].partonFlavour()) == 5) {
       b_third_jet_pt_b->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
       b_third_jet_eta_b->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+      b_third_jet_mass_b->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
       b_third_bjet_pt->Fill (vect_bjets[2].pt(), MyWeight*scalFac_b);
       b_third_bjet_eta->Fill (vect_bjets[2].eta(), MyWeight*scalFac_b);
+      b_third_bjet_mass->Fill (vect_bjets[2].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[2].partonFlavour()) == 4) {
       c_third_jet_pt_b->Fill (vect_jets[2].pt(), MyWeight*scalFac_b);
       c_third_jet_eta_b->Fill (vect_jets[2].eta(), MyWeight*scalFac_b);
+      c_third_jet_mass_b->Fill (vect_jets[2].mass(), MyWeight*scalFac_b);
       c_third_bjet_pt->Fill (vect_bjets[2].pt(), MyWeight*scalFac_b);
       c_third_bjet_eta->Fill (vect_bjets[2].eta(), MyWeight*scalFac_b);
+      c_third_bjet_mass->Fill (vect_bjets[2].mass(), MyWeight*scalFac_b);
     }
   }
 
@@ -3301,17 +3417,21 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     scalFac_b = btagSF(isMC, vect_bjets, 1);
     w_single_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
     w_single_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+    w_single_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     if (ist) {
       t_single_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
       t_single_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+      t_single_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
       b_single_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
       b_single_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+      b_single_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
       c_single_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight*scalFac_b);
       c_single_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight*scalFac_b);
+      c_single_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight*scalFac_b);
     }
   }
 
