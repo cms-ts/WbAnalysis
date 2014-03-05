@@ -151,7 +151,7 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
      if (muon->triggerObjectMatches().size()>0) hasMuo=true;
    }
 
-   if (!hasEle && !hasMuo) return false;
+   if (!hasEle && !hasMuo && electronsQCD->size()==0 && muonsQCD->size()==0) return false;
 
    for (std::vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
 
