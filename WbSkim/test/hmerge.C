@@ -1,5 +1,5 @@
 
-#include "LumiInfo_v02.h"
+#include "LumiInfo_v03.h"
 
 TList *FileList;
 TFile *Target;
@@ -11,14 +11,23 @@ void hmerge(string path=".", string version="v01", string title="W") {
   FileList = new TList();
   double crossSections[10];
 
-  if (title=="W") {
-    Target = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str(), "RECREATE");
-
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "Wj.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "W1j.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "W2j.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "W3j.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "W4j.root").c_str()));
+  if (title=="W"||title=="W_patgen") {
+    if (title=="W") {
+      Target = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str(), "RECREATE");
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "Wj.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W1j.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W2j.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W3j.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W4j.root").c_str()));
+    }
+    if (title=="W_patgen") {
+      Target = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str(), "RECREATE");
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "Wj_patgen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W1j_patgen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W2j_patgen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W3j_patgen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W4j_patgen.root").c_str()));
+    }
 
     crossSections[0] = (Xsec_wj / Ngen_wj);
     crossSections[1] = (Xsec_w1j / Ngen_w1j) * (Xsec_wj / 30400.);
@@ -35,7 +44,6 @@ void hmerge(string path=".", string version="v01", string title="W") {
 
   if (title=="T") {
     Target = TFile::Open((path + "/" + version + "/" + "T_merge.root").c_str(), "RECREATE");
-
     FileList->Add(TFile::Open((path + "/" + version + "/" + "TBarToLeptons_t.root").c_str()));
     FileList->Add(TFile::Open((path + "/" + version + "/" + "TBarToLeptons_s.root").c_str()));
     FileList->Add(TFile::Open((path + "/" + version + "/" + "TToLeptons_t.root").c_str()));
