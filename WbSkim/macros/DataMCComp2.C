@@ -17,6 +17,9 @@ int useFitResults=1;  // use fit results for c_b, c_c, c_uds, c_t, c_qcd
 int useEleMuo = 0; // use MC or fit results for c_t
 //int useEleMuo = 1; // use e-mu fit results for c_t
 
+//int drawInclusive = 0; // do not plot the "inclusive" histogram
+int drawInclusive = 1; // do plot the "inclusive" histogram
+
 string subdir="0";
 string postfix="";
 if (irun==1) {             // irun==1 => JEC Up
@@ -219,10 +222,12 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==1) {
 	  if (title.find("muon")!=string::npos) return;
 	  if (title.find("mm")!=string::npos) return;
+	  if (title.find("wmnu")!=string::npos) return;
 	}
 	if (ilepton==2) {
 	  if (title.find("ele")!=string::npos) return;
 	  if (title.find("ee")!=string::npos) return;
+	  if (title.find("wenu")!=string::npos) return;
 	}
 
 	TFile *data=0;
@@ -264,6 +269,7 @@ if (irun==99) {            // irun==99 => pur
 	if (unfold==0) {
 	  h_data = (TH1F*)gDirectory->Get(title.c_str());
 	  h_data_b = (TH1F*)gDirectory->Get(title_b.c_str());
+	  if (!h_data_b) h_data_b = (TH1F*)h_data->Clone(); // protect against null pointers!
 	}
 	if (unfold==1) {
           if (ilepton==1) {
@@ -672,31 +678,31 @@ if (irun==99) {            // irun==99 => pur
 	h_mc1->SetLineWidth(2);
 	h_mc1->SetMarkerColor(kRed);
 	h_mc1->SetFillColor(kRed);
-	h_mc1->Draw("E5SAME");
+	if (drawInclusive) h_mc1->Draw("E5SAME");
 	TH1F* tmp3 = (TH1F*)h_mc1->Clone();
 	if (title.find("_pt")!=string::npos || title.find("_Ht")!=string::npos) {
 	  if (tmp3->GetMinimum()==0) tmp3->GetXaxis()->SetRangeUser(0, tmp3->GetBinCenter(tmp3->GetMinimumBin()-1));
 	}
 	tmp3->SetFillColor(0);
-	tmp3->DrawClone("HISTLSAME");
+	if (drawInclusive) tmp3->DrawClone("HISTLSAME");
 
 	h_mcg->SetLineColor(kGreen+2);
 	h_mcg->SetLineWidth(2);
 	h_mcg->SetMarkerColor(kGreen+2);
 	h_mcg->SetFillColor(kGreen+2);
-	h_mcg->Draw("E5SAME");
+	if (drawInclusive) h_mcg->Draw("E5SAME");
 	TH1F* tmp4 = (TH1F*)h_mcg->Clone();
 	if (title.find("_pt")!=string::npos || title.find("_Ht")!=string::npos) {
 	  if (tmp4->GetMinimum()==0) tmp4->GetXaxis()->SetRangeUser(0, tmp4->GetBinCenter(tmp4->GetMinimumBin()-1));
 	}
 	tmp4->SetFillColor(0);
-	tmp4->DrawClone("HISTLSAME");
+	if (drawInclusive) tmp4->DrawClone("HISTLSAME");
 
 	h_data->SetMarkerColor(kBlack);
 	h_data->SetLineColor(kBlack);
 	h_data->SetMarkerStyle(20);
 	h_data->SetMarkerSize (0.7);
-	h_data->Draw("EPX0SAME");
+	if (drawInclusive) h_data->Draw("EPX0SAME");
 
 	if (ilepton==1) {
 	  leg->AddEntry(h_data,"W(#rightarrow e) DATA","p");
@@ -758,7 +764,7 @@ if (irun==99) {            // irun==99 => pur
 	}
 
 	g_M2->SetMarkerStyle(20);
-	g_M2->Draw("EP0SAME");
+	if (drawInclusive) g_M2->Draw("EP0SAME");
 
 	TLine *OLine2 = new TLine(h_M->GetXaxis()->GetXmin(),1.,h_M->GetXaxis()->GetXmax(),1.);
 	OLine2->SetLineColor(kGreen+2);
