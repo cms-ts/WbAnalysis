@@ -88,8 +88,8 @@ if (irun==99) {            // irun==99 => pur
           if (title.find("ee")!=string::npos) return;
         }
 
-	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "DYJetsToLL_gen.root").c_str());
-	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "DYJetsToLL_gen.root").c_str());
+	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 
 /* efficiency:  e_Z / e_Zb = e_Z / e_Z_1 * e_Z_b */
 
