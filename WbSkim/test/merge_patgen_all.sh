@@ -12,6 +12,6 @@ fi
 ./merge.sh W3j_patgen $VERSION
 ./merge.sh W4j_patgen $VERSION
 
-./merge.sh W_patgen-all $VERSION
+./merge.sh Wj_patgen-all $VERSION
 
 exit
