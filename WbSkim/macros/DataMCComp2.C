@@ -159,9 +159,9 @@ if (irun==99) {            // irun==99 => pur
 	      in6.open((path + "/muons/" + version + "/" + subdir + "/ttbar_sub/" + "w_mass_mm_wide_doFit" + ".dat").c_str());
 	      in7.open((path + "/muons/" + version + "/" + subdir + "/ttbar_sub/" + "w_mass_mm_b_wide_doFit" + ".dat").c_str());
 	    }
-	    in8.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in9.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in10.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in10.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	in1 >> e_Z >> ee_Z;
