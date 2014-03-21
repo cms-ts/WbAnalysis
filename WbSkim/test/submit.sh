@@ -45,7 +45,7 @@ else
 fi
 
 find $DATADIR/$VERSION/$JOBDIR -maxdepth 1 -name '*.root' | \
-xargs -n 50 \
+xargs -n 100 \
 bsub -q $QUEUE -J $JOBDIR -e /dev/null -o /dev/null $WORKDIR/job.sh $CUT
 
 exit
