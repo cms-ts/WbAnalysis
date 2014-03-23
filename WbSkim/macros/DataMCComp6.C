@@ -175,10 +175,10 @@ if (irun==99) {            // irun==99 => pur
         leg->SetFillColor(0);
         leg->SetFillStyle(0);
 
-        leg->AddEntry(h_data_ee,"W(#rightarrow e) DATA","p");
-        leg->AddEntry(h_data_ee_b,"W(#rightarrow e)+b DATA","p");
-        leg->AddEntry(h_data_mm,"W(#rightarrow #mu) DATA","p");
-        leg->AddEntry(h_data_mm_b,"W(#rightarrow #mu)+b DATA","p");
+        leg->AddEntry(h_data_ee,"W(#rightarrow e#nu) DATA","p");
+        leg->AddEntry(h_data_ee_b,"W(#rightarrow e#nu)+b DATA","p");
+        leg->AddEntry(h_data_mm,"W(#rightarrow #mu#nu) DATA","p");
+        leg->AddEntry(h_data_mm_b,"W(#rightarrow #mu#nu)+b DATA","p");
 
         leg->Draw();
 

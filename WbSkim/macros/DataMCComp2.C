@@ -705,16 +705,16 @@ if (irun==99) {            // irun==99 => pur
 	if (drawInclusive) h_data->Draw("EPX0SAME");
 
 	if (ilepton==1) {
-	  leg->AddEntry(h_data,"W(#rightarrow e) DATA","p");
-	  leg->AddEntry(h_data_b,"W(#rightarrow e)+b DATA","p");
-	  //leg->AddEntry(h_mc1,"W(#rightarrow e) MC","l");
-	  leg->AddEntry(h_mcg,"W(#rightarrow e) MadGraph","l");
+	  leg->AddEntry(h_data,"W(#rightarrow e#nu) DATA","p");
+	  leg->AddEntry(h_data_b,"W(#rightarrow e#nu)+b DATA","p");
+	  //leg->AddEntry(h_mc1,"W(#rightarrow e#nu) MC","l");
+	  leg->AddEntry(h_mcg,"W(#rightarrow e#nu) MadGraph","l");
 	}
 	if (ilepton==2){
-	  leg->AddEntry(h_data,"W(#rightarrow #mu) DATA","p");
-	  leg->AddEntry(h_data_b,"W(#rightarrow #mu)+b DATA","p");
-	  //leg->AddEntry(h_mc1,"W(#rightarrow #mu) MC","l");
-	  leg->AddEntry(h_mcg,"W(#rightarrow #mu) MadGraph","l");
+	  leg->AddEntry(h_data,"W(#rightarrow #mu#nu) DATA","p");
+	  leg->AddEntry(h_data_b,"W(#rightarrow #mu#nu)+b DATA","p");
+	  //leg->AddEntry(h_mc1,"W(#rightarrow #mu#nu) MC","l");
+	  leg->AddEntry(h_mcg,"W(#rightarrow #mu#nu) MadGraph","l");
 	}
 
 	leg->Draw();

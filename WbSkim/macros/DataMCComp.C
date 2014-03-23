@@ -728,14 +728,14 @@ if (irun==99) {            // irun==99 => pur
 	leg->SetFillColor(0);
 	leg->SetFillStyle(0);
 
-	if (ilepton==1) leg->AddEntry(h_data,"W(#rightarrow e)+jets","p");
-	if (ilepton==2) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets","p");
-	if (ilepton==3) leg->AddEntry(h_data,"W(#rightarrow e)+jets [QCD]","p");
-	if (ilepton==4) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets [QCD]","p");
-	if (ilepton==5) leg->AddEntry(h_data,"W(#rightarrow e)+jets [FWD]","p");
-	if (ilepton==6) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets [FWD]","p");
-	if (ilepton==7) leg->AddEntry(h_data,"W(#rightarrow e)+jets [TOP]","p");
-	if (ilepton==8) leg->AddEntry(h_data,"W(#rightarrow #mu)+jets [TOP]","p");
+	if (ilepton==1) leg->AddEntry(h_data,"W(#rightarrow e#nu)+jets","p");
+	if (ilepton==2) leg->AddEntry(h_data,"W(#rightarrow #mu#nu)+jets","p");
+	if (ilepton==3) leg->AddEntry(h_data,"W(#rightarrow e#nu)+jets [QCD]","p");
+	if (ilepton==4) leg->AddEntry(h_data,"W(#rightarrow #mu#nu)+jets [QCD]","p");
+	if (ilepton==5) leg->AddEntry(h_data,"W(#rightarrow e#nu)+jets [FWD]","p");
+	if (ilepton==6) leg->AddEntry(h_data,"W(#rightarrow #mu#nu)+jets [FWD]","p");
+	if (ilepton==7) leg->AddEntry(h_data,"W(#rightarrow e#nu)+jets [TOP]","p");
+	if (ilepton==8) leg->AddEntry(h_data,"W(#rightarrow #mu#nu)+jets [TOP]","p");
 
 	if (h_mc1b) leg->AddEntry(h_mc1b,"W+b-jets","f");
 	if (h_mc1c) leg->AddEntry(h_mc1c,"W+c-jets","f");
@@ -745,7 +745,7 @@ if (irun==99) {            // irun==99 => pur
 	  leg->AddEntry(h_mc1,"W+jets","f");
 	}
 	if (!doBkg) {
-	  if (h_mc1t) leg->AddEntry(h_mc1t,"W(#rightarrow #tau)+jets","f");
+	  if (h_mc1t) leg->AddEntry(h_mc1t,"W(#rightarrow #tau#nu)+jets","f");
 	  leg->AddEntry(h_mc2,"t#bar{t}","f");
 	  leg->AddEntry(h_mc8,"t / #bar{t}", "f");
 	  leg->AddEntry(h_mc6,"WW","f");
