@@ -89,6 +89,13 @@ if (irun==99) {            // irun==99 => pur
           title_mm_b = title_mm_b + "_mm";
         }
 
+        if (title=="w_mt") {
+	  title_ee = title_ee + "_wenu";
+	  title_ee_b = title_ee_b + "_wenu";
+	  title_mm = title_mm + "_wmnu";
+	  title_mm_b = title_mm_b + "_wmnu";
+	}
+
         if (title.find("_bjet_")!=string::npos) {
           title_ee.erase(title_ee.find("_bjet_")+1, 1);
           title_mm.erase(title_mm.find("_bjet_")+1, 1);
@@ -97,8 +104,10 @@ if (irun==99) {            // irun==99 => pur
           title_mm_b = title_mm + "_b";
         }
 
-        TFile f_ee((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_ee + "_unfolding.root").c_str());
-        TFile f_ee_b((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_ee_b + "_unfolding.root").c_str());
+        //TFile f_ee((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_ee + "_unfolding.root").c_str());
+        //TFile f_ee_b((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_ee_b + "_unfolding.root").c_str());
+        TFile f_ee((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_ee_b + "_xsecs.root").c_str());
+        TFile f_ee_b((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_ee_b + "_xsecs.root").c_str());
         TH1F* h_data_ee = (TH1F*)f_ee.Get(title_ee.c_str())->Clone();
         TH1F* h_data_ee_b = (TH1F*)f_ee_b.Get(title_ee_b.c_str())->Clone();
         h_data_ee->SetDirectory(0);
@@ -106,8 +115,10 @@ if (irun==99) {            // irun==99 => pur
         f_ee.Close();
         f_ee_b.Close();
 
-        TFile f_mm((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_mm + "_unfolding.root").c_str());
-        TFile f_mm_b((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_mm_b + "_unfolding.root").c_str());
+        //TFile f_mm((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_mm + "_unfolding.root").c_str());
+        //TFile f_mm_b((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_mm_b + "_unfolding.root").c_str());
+        TFile f_mm((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_mm_b + "_xsecs.root").c_str());
+        TFile f_mm_b((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_mm_b + "_xsecs.root").c_str());
         TH1F* h_data_mm = (TH1F*)f_mm.Get(title_mm.c_str())->Clone();
         TH1F* h_data_mm_b = (TH1F*)f_mm_b.Get(title_mm_b.c_str())->Clone();
         h_data_mm->SetDirectory(0);
@@ -220,8 +231,10 @@ if (irun==99) {            // irun==99 => pur
         c1->cd();
 
 	if (plot) {
-          gSystem->mkdir((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/").c_str(), kTRUE);
-          c1->SaveAs((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/" + title + "_xsecs_unfolding.pdf").c_str());
+          //gSystem->mkdir((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/").c_str(), kTRUE);
+          //c1->SaveAs((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/" + title + "_xsecs_unfolding.pdf").c_str());
+          gSystem->mkdir((path + "/combined/" + version + "/" + subdir + "/xsecs/").c_str(), kTRUE);
+          c1->SaveAs((path + "/combined/" + version + "/" + subdir + "/xsecs/" + title + "_xsecs.pdf").c_str());
 	}
 
 }

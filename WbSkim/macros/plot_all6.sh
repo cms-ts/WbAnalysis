@@ -14,8 +14,7 @@ cd $CMS_PATH/slc6_amd64_gcc472/cms/cmssw/CMSSW_6_2_7
 eval `scramv1 runtime -sh`
 cd -
 
-root -l -q -b DataMCComp6.C+\($d,\"w_mt_wenu\",1\)
-root -l -q -b DataMCComp6.C+\($d,\"w_mt_wmnu\",1\)
+root -l -q -b DataMCComp6.C+\($d,\"w_mt\",1\)
 
 root -l -q -b DataMCComp6.C+\($d,\"w_first_jet_pt\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_first_jet_eta\",1\)
