@@ -287,7 +287,6 @@ process.demoMuoDumpJerUp = cms.EDAnalyzer('WbDumper',
 process.demoMuoDumpJerDown = cms.EDAnalyzer('WbDumper',
         lepton       = cms.untracked.string("muon"),
         JER     = cms.untracked.double(-1)
-
 )
 
 
