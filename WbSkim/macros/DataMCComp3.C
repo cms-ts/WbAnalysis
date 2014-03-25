@@ -82,10 +82,12 @@ if (irun==99) {            // irun==99 => pur
         if (ilepton==1) {
           if (title.find("muon")!=string::npos) return;
           if (title.find("mm")!=string::npos) return;
+          if (title.find("wmnu")!=string::npos) return;
         }
         if (ilepton==2) {
           if (title.find("ele")!=string::npos) return;
           if (title.find("ee")!=string::npos) return;
+          if (title.find("wenu")!=string::npos) return;
         }
 
 	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
