@@ -7,7 +7,7 @@ QUEUE=normal_io
 
 VERSION=v03
 
-DATADIR=DATADIR=/gpfs/grid/srm/cms/store/user/schizzi/grid
+DATADIR=/gpfs/grid/srm/cms/store/user/schizzi/grid
 
 WORKDIR=/gpfs/cms/users/schizzi/Wbb2012/test
 
