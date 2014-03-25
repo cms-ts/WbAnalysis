@@ -397,30 +397,16 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myBJets2( new std::vector<math::XYZTLorentzVector> );
   std::auto_ptr<std::vector<double>> myBDeltaPhi( new std::vector<double> );
 
-  //  bool wenu_event = false;
-  //  bool wmnu_event = false;
-  bool ee_event = false;
-  bool mm_event = false;
+  bool wenu_event = false;
+  bool wmnu_event = false;
   bool ist = false;
 
-  bool b_selection = true;
+  //  bool b_selection = true;
 
   int Nj = 0;
   int Nj2 = 0;
   int Nb = 0;
   int Nb2 = 0;
-
-  double diele_mass = 0;
-  double diele_phi = 0;
-  double diele_pt = 0;
-  double diele_y = 0;
-  double diele_eta = 0;
-
-  double dimuon_mass = 0;
-  double dimuon_phi = 0;
-  double dimuon_pt = 0;
-  double dimuon_y = 0;
-  double dimuon_eta = 0;
 
   double MyWeight = 1;
 
@@ -432,19 +418,13 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   };
 
   struct pt_and_particles ele_dres;
-  struct pt_and_particles pos_dres;
   vector<unsigned int> ele_photons;
-  vector<unsigned int> pos_photons;
 
   struct pt_and_particles mu_dres;
-  struct pt_and_particles antimu_dres;
   vector<unsigned int> mu_photons;
-  vector<unsigned int> antimu_photons;
 
   double lepton1_eta = -9999;
   double lepton1_phi = -9999;
-  double lepton2_eta = -9999;
-  double lepton2_phi = -9999;
 
   // ++++++ Pile-Up
 
@@ -510,6 +490,19 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   }
 
+  // +++++++++ MET
+
+  TLorentzVector met;
+  met.SetPtEtaPhiM(0.,0.,0.,0.);
+
+  for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
+    if ((fabs(itgen->pdgId())==12 || fabs(itgen->pdgId())==14 || fabs(itgen->pdgId())==16) && itgen->status()==1) { // loop over gen electrons
+      TLorentzVector temp_neutrino;
+      temp_neutrino.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
+      met += temp_neutrino;
+    }
+  }
+
   // +++++++++ ELECTRONS
 
   //vector < unsigned int > lepton_photon;
@@ -522,15 +515,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
     if (fabs(itgen->pdgId())==11 && itgen->status()==1) { // loop over gen electrons
       ele_photons.clear();
-      pos_photons.clear();
       TLorentzVector ele;
       ele.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
 
-      if (itgen->pdgId()==11) {
-      	ele_photons.push_back(index_ele);
-      } else {
-	pos_photons.push_back(index_ele);
-      }
+      ele_photons.push_back(index_ele);
 
       unsigned int index_gamma=0;
       // Loop over photons: FSR dressing for electrons
@@ -542,55 +530,42 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	  if (deltaPhi_eg > acos(-1)) deltaPhi_eg= 2*acos(-1) - deltaPhi_eg;
 	  double deltaR_eg = sqrt( deltaPhi_eg*deltaPhi_eg + pow(fabs(gam.Eta()-itgen->eta()),2));
 	  if (deltaR_eg< 0.1) {
-	    if (itgen->pdgId()==11) {
-	    	ele_photons.push_back(index_gamma);
-	    } else {
-		pos_photons.push_back(index_gamma);
-	    }
+	    ele_photons.push_back(index_gamma);
 	    ele += gam;
 	  }
 	}
 	index_gamma++;
       }
-      if (ele.Pt()>20 && fabs(ele.Eta())<2.4) {
-	if (itgen->pdgId()==11) { // e' un elettrone
-		if (ele_dres.lepton_photon.empty()) {
-			ele_dres.p_part = ele;
-			ele_dres.lepton_photon = ele_photons;
-        	} else {
-			if (ele.Pt()>ele_dres.p_part.Pt()) {
-				ele_dres.p_part = ele;
-				ele_dres.lepton_photon = ele_photons;
-			}
-		}
-      	} else { // e' un positrone
-		if (pos_dres.lepton_photon.empty()) {
-			pos_dres.p_part = ele;
-			pos_dres.lepton_photon = pos_photons;
-		} else {
-			if (ele.Pt()>pos_dres.p_part.Pt()) {
-				pos_dres.p_part = ele;
-				pos_dres.lepton_photon = pos_photons;
-			}
-		}
+
+      if (ele.Pt()>30. && fabs(ele.Eta())<2.1) {
+	if (ele_dres.lepton_photon.empty()) {
+	  ele_dres.p_part = ele;
+	  ele_dres.lepton_photon = ele_photons;
+	} else {
+	  if (ele.Pt()>ele_dres.p_part.Pt()) {
+	    ele_dres.p_part = ele;
+	    ele_dres.lepton_photon = ele_photons;
+	  }
 	}
       }
+
     }
     index_ele++;
   }
 
-  TLorentzVector z_ee;
-
-  if ( !ele_dres.lepton_photon.empty() && !pos_dres.lepton_photon.empty() ) {
-        vect_ele.push_back(ele_dres.p_part);
-        vect_ele.push_back(pos_dres.p_part);
-  	z_ee = ele_dres.p_part + pos_dres.p_part;
-  	diele_mass = z_ee.M();
-  	diele_pt =   z_ee.Pt();
-	diele_phi =  z_ee.Phi();
-        diele_y = z_ee.Rapidity();
-        diele_eta = z_ee.Eta();
-	if (diele_mass>71 && diele_mass<111) ee_event = true;
+  // Computing Mt:
+  double op_met = met.Pt();
+  double elept = 0.;
+  double deltaPhiMetEle = 0.;
+  double mt_wenu = 0.;
+  bool mt_cut_wenu = false;
+  if ( !ele_dres.lepton_photon.empty() ) {
+    vect_ele.push_back(ele_dres.p_part);
+    elept = vect_ele[0].Pt();
+    if (op_met>0. && elept>0.) deltaPhiMetEle = fabs(vect_ele[0].Phi() - met.Phi());
+    if (deltaPhiMetEle > acos(-1)) deltaPhiMetEle = 2*acos(-1) - deltaPhiMetEle;
+    mt_wenu = sqrt(2*elept*op_met*(1-TMath::Cos(deltaPhiMetEle)));
+    mt_cut_wenu = mt_wenu > 45.;
   }
 
   // +++++++++ MUONS
@@ -601,15 +576,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
     if (fabs(itgen->pdgId())==13 && itgen->status()==1) { // loop over gen muons
       mu_photons.clear();
-      antimu_photons.clear();
       TLorentzVector muon;
       muon.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
 
-      if (itgen->pdgId()==13) {
-        mu_photons.push_back(index_mu);
-      } else {
-        antimu_photons.push_back(index_mu);
-      }
+      mu_photons.push_back(index_mu);
 
       // Loop over photons: FSR dressing for muons
       unsigned int index_gammamu = 0;
@@ -621,69 +591,55 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	  if (deltaPhi_mg > acos(-1)) deltaPhi_mg= 2*acos(-1) - deltaPhi_mg;
 	  double deltaR_mg = sqrt( deltaPhi_mg*deltaPhi_mg + pow(fabs(gam.Eta()-itgen->eta()),2));
 	  if (deltaR_mg< 0.1) {
-	    if (itgen->pdgId()==13) {
-                mu_photons.push_back(index_gammamu);
-	    } else {
-                antimu_photons.push_back(index_gammamu);
-	    }
+	    mu_photons.push_back(index_gammamu);
 	    muon += gam;
 	  }
         }
 	index_gammamu++;
       }
-      if (muon.Pt()>20 && fabs(muon.Eta())<2.4) {
-        if (itgen->pdgId()==13) { // e' un muone
-                if (mu_dres.lepton_photon.empty()) {
-                        mu_dres.p_part = muon;
-                        mu_dres.lepton_photon = mu_photons;
-                } else {
-                        if (muon.Pt()>mu_dres.p_part.Pt()) {
-                                mu_dres.p_part = muon;
-                                mu_dres.lepton_photon = mu_photons;
-                        }
-                }
-        } else { // e' un antimuone
-                if (antimu_dres.lepton_photon.empty()) {
-                        antimu_dres.p_part = muon;
-                        antimu_dres.lepton_photon = antimu_photons;
-                } else {
-                        if (muon.Pt()>antimu_dres.p_part.Pt()) {
-                                antimu_dres.p_part = muon;
-                                antimu_dres.lepton_photon = antimu_photons;
-                        }
-                }
-        }
+      if (muon.Pt()>25. && fabs(muon.Eta())<2.1) {
+	if (mu_dres.lepton_photon.empty()) {
+	  mu_dres.p_part = muon;
+	  mu_dres.lepton_photon = mu_photons;
+	} else {
+	  if (muon.Pt()>mu_dres.p_part.Pt()) {
+	    mu_dres.p_part = muon;
+	    mu_dres.lepton_photon = mu_photons;
+	  }
+	}
       }
     }
     index_mu++;
   }
 
-  TLorentzVector z_mm;
-
-  if ( !mu_dres.lepton_photon.empty() && !antimu_dres.lepton_photon.empty() ) {
-        vect_muon.push_back(mu_dres.p_part);
-        vect_muon.push_back(antimu_dres.p_part);
-        z_mm = mu_dres.p_part + antimu_dres.p_part;
-        dimuon_mass = z_mm.M();
-        dimuon_pt =   z_mm.Pt();
-        dimuon_phi =  z_mm.Phi();
-        dimuon_y = z_mm.Rapidity();
-        dimuon_eta = z_mm.Eta();
-        if (dimuon_mass>71 && dimuon_mass<111) mm_event = true;
+  // Computing Mt:
+  op_met = met.Pt();
+  double muopt = 0.;
+  double deltaPhiMetMuo = 0.;
+  double mt_wmnu = 0.;
+  bool mt_cut_wmnu = false;
+  if ( !mu_dres.lepton_photon.empty() ) {
+    vect_muon.push_back(mu_dres.p_part);
+    muopt = vect_muon[0].Pt();
+    if (op_met>0. && muopt>0.) deltaPhiMetMuo = fabs(vect_muon[0].Phi() - met.Phi());
+    if (deltaPhiMetMuo > acos(-1)) deltaPhiMetMuo = 2*acos(-1) - deltaPhiMetMuo;
+    mt_wmnu = sqrt(2*muopt*op_met*(1-TMath::Cos(deltaPhiMetMuo)));
+    mt_cut_wmnu = mt_wmnu > 45.;
   }
 
-  if (ee_event) {
+  // +++++++++ Decisions:
+
+  wenu_event = (lepton_ == "electron") && mt_cut_wenu && index_ele==1; // cut over lepton multiplicity to be checked!
+  wmnu_event = (lepton_ == "muon") && mt_cut_wmnu && index_mu==1; // cut over lepton multiplicity to be checked!
+
+  if (wenu_event) {
     lepton1_eta = ele_dres.p_part.Eta();
-    lepton2_eta = pos_dres.p_part.Eta();
     lepton1_phi = ele_dres.p_part.Phi();
-    lepton2_phi = pos_dres.p_part.Phi();
    }
 
-  if (mm_event) {
+  if (wmnu_event) {
     lepton1_eta = mu_dres.p_part.Eta();
-    lepton2_eta = antimu_dres.p_part.Eta();
     lepton1_phi = mu_dres.p_part.Phi();
-    lepton2_phi = antimu_dres.p_part.Phi();
    }
 
   vector<reco::GenParticle> part_jets;
@@ -714,16 +670,16 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   vector<unsigned int> canc_part;
 
-  if (ee_event) {
+  if (wenu_event) {
 	canc_part = ele_dres.lepton_photon;
-	for (unsigned int i =0; i < pos_dres.lepton_photon.size(); i++)
-		canc_part.push_back(pos_dres.lepton_photon.at(i));
+	//	for (unsigned int i =0; i < pos_dres.lepton_photon.size(); i++)
+	//		canc_part.push_back(pos_dres.lepton_photon.at(i));
   }
 
-  if (mm_event) {
+  if (wmnu_event) {
 	canc_part = mu_dres.lepton_photon;
-        for (unsigned int l = 0; l < antimu_dres.lepton_photon.size(); l++)
-		canc_part.push_back(antimu_dres.lepton_photon.at(l));
+	//        for (unsigned int l = 0; l < antimu_dres.lepton_photon.size(); l++)
+	//		canc_part.push_back(antimu_dres.lepton_photon.at(l));
   }
 
   if (!neutrino.empty()) {
@@ -775,14 +731,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
           double delta_eta1 = lepton1_eta - etaj;
           double delta_phi1 = fabs(lepton1_phi - phij);
           if (delta_phi1 > acos(-1)) delta_phi1 = 2*acos(-1) - delta_phi1;
-          double delta_eta2 = lepton2_eta - etaj;
-          double delta_phi2 = fabs(lepton2_phi - phij);
-          if (delta_phi2 > acos(-1)) delta_phi2 = 2*acos(-1) - delta_phi2;
 
           double deltaR_jl1 = sqrt(pow(delta_eta1,2) + pow(delta_phi1,2));
-          double deltaR_jl2 = sqrt(pow(delta_eta2,2) + pow(delta_phi2,2));
 	  
-	  if (deltaR_jl1 > 0.5 && deltaR_jl2 > 0.5 && (ee_event || mm_event)) { 
+	  if (deltaR_jl1 > 0.5 && (wenu_event || wmnu_event)) { 
 	    Nj++;
             vect_jets.push_back(jets[i]);
             Ht = Ht + jets[i].perp();
@@ -838,13 +790,13 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     }  
   }  
 
-  if (Nb != 1 && numB_ == 1) {
-    b_selection = false;
-  }
-
-  if (Nb < 2 && numB_ == 2) {
-    b_selection = false;
-  }
+//  if (Nb != 1 && numB_ == 1) {
+//    b_selection = false;
+//  }
+//
+//  if (Nb < 2 && numB_ == 2) {
+//    b_selection = false;
+//  }
 
   for(unsigned int k = 0; k < vect_jets2.size() ; k++) {
     Bjet2_found = false;
@@ -885,7 +837,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   std::sort( vect_bjets.begin(), vect_bjets.end(), order_jets() );
   std::sort( vect_bjets2.begin(), vect_bjets2.end(), order_jets() );
 
-  double delta_phi_2b = 0;
+  //  double delta_phi_2b = 0;
 
   for (std::vector <reco::GenParticle>::const_iterator thepart = genPart->begin(); thepart != genPart->end(); thepart++) {
     if (thepart->pdgId()==23) {
@@ -897,311 +849,312 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     }
   }
 
-  ee_event = ee_event && (lepton_ == "electron") && !ist;
-  mm_event = mm_event && (lepton_ == "muon") && !ist;
-
-  double delta_phi_eeb = 0;
-  double delta_eta_eeb = 0;
-  double DR_eeb = 0;
-  double DR_eeb_min = 999;
-  double DR_eeb_max = -1;
-  double A_eeb = 0;
-
-  double delta_phi_mmb = 0;
-  double delta_eta_mmb = 0;
-  double DR_mmb = 0;
-  double DR_mmb_min = 999;
-  double DR_mmb_max = -1;
-  double A_mmb = 0;
-
-  double bb_mass = 0;
-  double eebb_mass = 0;
-  double mmbb_mass = 0;
-
-  if (Nb > 1) {
-      delta_phi_2b = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
-      if (delta_phi_2b > acos(-1)) delta_phi_2b = 2 * acos(-1) - delta_phi_2b;
-      math::XYZTLorentzVector bb(vect_bjets[0].px() + vect_bjets[1].px() , vect_bjets[0].py() + vect_bjets[1].py() , vect_bjets[0].pz() + vect_bjets[1].pz() , vect_bjets[0].e() + vect_bjets[1].e());
-      bb_mass = bb.mass();
-      if (ee_event) {
-        math::XYZTLorentzVector eebb(bb.Px() + z_ee.Px() , bb.Py() + z_ee.Py() , bb.Pz() + z_ee.Pz() , bb.E() + z_ee.E());
-        eebb_mass = eebb.mass();
-      }
-      if (mm_event) {
-        math::XYZTLorentzVector mmbb(bb.Px() + z_mm.Px() , bb.Py() + z_mm.Py() , bb.Pz() + z_mm.Pz() , bb.E() + z_mm.E());
-        mmbb_mass = mmbb.mass();
-      }
-      for (unsigned int i=0; i<vect_bjets.size(); i++) {
-        if (ee_event) {
-  	  delta_phi_eeb = fabs(diele_phi - vect_bjets[i].phi());
-          if (delta_phi_eeb > acos(-1)) delta_phi_eeb = 2 * acos(-1) - delta_phi_eeb;
-      	  delta_eta_eeb = fabs(diele_eta - vect_bjets[i].eta());
-          DR_eeb = TMath::Sqrt(delta_phi_eeb*delta_phi_eeb + delta_eta_eeb*delta_eta_eeb);
-          if (DR_eeb <= DR_eeb_min) DR_eeb_min = DR_eeb;
-          if (DR_eeb >= DR_eeb_max) DR_eeb_max = DR_eeb;
-        }
-        if (mm_event) {
-	  delta_phi_mmb = fabs(dimuon_phi - vect_bjets[i].phi());
-          if (delta_phi_mmb > acos(-1)) delta_phi_mmb = 2 * acos(-1) - delta_phi_mmb;
-      	  delta_eta_mmb = fabs(dimuon_eta - vect_bjets[i].eta());
-          DR_mmb = TMath::Sqrt(delta_phi_mmb*delta_phi_mmb + delta_eta_mmb*delta_eta_mmb);
-          if (DR_mmb <= DR_mmb_min) DR_mmb_min = DR_mmb;
-          if (DR_mmb >= DR_mmb_max) DR_mmb_max = DR_mmb;
-        }
-      }
-      A_eeb = (DR_eeb_max - DR_eeb_min)/(DR_eeb_min + DR_eeb_max);
-      A_mmb = (DR_mmb_max - DR_mmb_min)/(DR_mmb_min + DR_mmb_max);
-  }
-
-  //Phi*
-  double DEta_ee = 999;
-  double DPhi_ee = 999;
-  double Phi_star_ee = 999;
-  double DEta_mm = 999;
-  double DPhi_mm = 999;
-  double Phi_star_mm = 999;
-
-  if (ee_event){
-    DEta_ee = lepton1_eta - lepton2_eta;
-    DPhi_ee = fabs(lepton1_phi - lepton2_phi);
-    if (DPhi_ee > acos(-1)) DPhi_ee = 2 * acos(-1) - DPhi_ee;
-    Phi_star_ee = tan( (acos(-1) - DPhi_ee) / 2 ) * sqrt( 1 - ( tanh( DEta_ee / 2 ) )*( tanh( DEta_ee / 2 ) ) );   
-  }
-  if (mm_event){
-    DEta_mm = lepton1_eta - lepton2_eta; 
-    DPhi_mm = fabs(lepton1_phi - lepton2_phi);
-    if (DPhi_mm > acos(-1)) DPhi_mm = 2 * acos(-1) - DPhi_mm;
-    Phi_star_mm = tan( (acos(-1) - DPhi_mm) / 2 ) * sqrt( 1 - ( tanh( DEta_mm / 2 ) )*( tanh( DEta_mm / 2 ) ) );   
-  }
-
-  if (ee_event && Nj > 0) {
-    w_first_ele_pt->Fill (ele_dres.p_part.Pt(), MyWeight);
-    w_second_ele_pt->Fill (pos_dres.p_part.Pt(), MyWeight);
-    w_mass_ee->Fill(diele_mass, MyWeight);
-    w_pt_Z_ee->Fill(diele_pt, MyWeight);
-    w_y_Z_ee->Fill(diele_y, MyWeight);
-    w_Phi_star_ee->Fill (Phi_star_ee, MyWeight);
-    double delta_phi_ee = fabs(diele_phi - vect_jets[0].phi_std());
-    if (delta_phi_ee > acos (-1)) delta_phi_ee = 2 * acos (-1) - delta_phi_ee;
-    w_delta_ee->Fill(delta_phi_ee, MyWeight);
-    math::XYZTLorentzVector zj_ee_p(vect_jets[0].px()+z_ee.Px(), vect_jets[0].py()+z_ee.Py(), vect_jets[0].pz()+z_ee.Pz(), vect_jets[0].e()+z_ee.E());
-    double zj_ee_mass = zj_ee_p.mass();
-    w_mass_Zj_ee->Fill (zj_ee_mass, MyWeight);
-  }
-
-  if (mm_event && Nj > 0) {
-    w_first_muon_pt->Fill (mu_dres.p_part.Pt(), MyWeight);
-    w_second_muon_pt->Fill (antimu_dres.p_part.Pt(), MyWeight);
-    w_mass_mm->Fill(dimuon_mass, MyWeight);
-    w_pt_Z_mm->Fill(dimuon_pt, MyWeight);
-    w_y_Z_mm->Fill(dimuon_y, MyWeight);
-    w_Phi_star_mm->Fill (Phi_star_mm, MyWeight);
-    double delta_phi_mm = fabs(dimuon_phi - vect_jets[0].phi_std());
-    if (delta_phi_mm > acos (-1)) delta_phi_mm = 2 * acos (-1) - delta_phi_mm;
-    w_delta_mm->Fill(delta_phi_mm, MyWeight);
-    math::XYZTLorentzVector zj_mm_p(vect_jets[0].px()+z_mm.Px(), vect_jets[0].py()+z_mm.Py(), vect_jets[0].pz()+z_mm.Pz(), vect_jets[0].e()+z_mm.E());
-    double zj_mm_mass = zj_mm_p.mass();
-    w_mass_Zj_mm->Fill (zj_mm_mass, MyWeight);
-  }
-
-  if ((ee_event || mm_event) && Nj > 0) {
-    w_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight);
-    w_first_jet_eta->Fill (vect_jets[0].eta(), MyWeight);
-    w_jetmultiplicity->Fill (vect_jets.size(), MyWeight);
-    w_Ht->Fill (Ht, MyWeight);
-  }
-
-  if (ee_event && Nb > 0 && Nj > 0 && b_selection) {
-    w_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
-    w_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
-    w_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight);
-    w_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight);
-    w_pt_Z_ee_b->Fill (diele_pt, MyWeight);
-    w_y_Z_ee_b->Fill (diele_y, MyWeight);
-    w_Phi_star_ee_b->Fill (Phi_star_ee, MyWeight);
-    w_mass_ee_b->Fill (diele_mass, MyWeight);
-    math::XYZTLorentzVector zb_ee_p(vect_bjets[0].px()+z_ee.Px(), vect_bjets[0].py()+z_ee.Py(), vect_bjets[0].pz()+z_ee.Pz(), vect_bjets[0].e()+z_ee.E());
-    double zb_ee_mass = zb_ee_p.mass();
-    w_mass_Zj_ee_b->Fill (zb_ee_mass, MyWeight);
-  }
-
-  if (mm_event && Nb > 0 && Nj > 0 && b_selection) {
-    w_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
-    w_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
-    w_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight);
-    w_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight);
-    w_pt_Z_mm_b->Fill (dimuon_pt, MyWeight);
-    w_y_Z_mm_b->Fill (dimuon_y, MyWeight);
-    w_Phi_star_mm_b->Fill (Phi_star_mm, MyWeight);
-    w_mass_mm_b->Fill (dimuon_mass, MyWeight);
-    math::XYZTLorentzVector zb_mm_p(vect_bjets[0].px()+z_mm.Px(), vect_bjets[0].py()+z_mm.Py(), vect_bjets[0].pz()+z_mm.Pz(), vect_bjets[0].e()+z_mm.E());
-    double zb_mm_mass = zb_mm_p.mass();
-    w_mass_Zj_mm_b->Fill (zb_mm_mass, MyWeight);
-  }
-
-  if ((ee_event || mm_event) && Nb > 0 && Nj > 0 && b_selection) {
-    w_bjetmultiplicity->Fill (Nb, MyWeight);
-    w_Ht_b->Fill (Ht, MyWeight);
-    if (Nb > 1) {
-      w_delta_phi_2b->Fill (delta_phi_2b, MyWeight);
-    }
-  }
-
-  if (ee_event && Nb > 0 && Nj > 0 && b_selection) {
-    double delta_phi_ee_b = fabs(diele_phi - vect_bjets[0].phi_std());
-    if (delta_phi_ee_b > acos (-1)) delta_phi_ee_b = 2 * acos (-1) - delta_phi_ee_b;
-    w_delta_ee_b->Fill(delta_phi_ee_b, MyWeight);
-    if (Nj == 1) {
-      w_single_delta_ee_b->Fill (delta_phi_ee_b, MyWeight);
-      w_single_pt_Z_ee_b->Fill (diele_pt, MyWeight);
-    }
-  }
-  if (mm_event && Nb > 0 && Nj > 0 && b_selection) {
-    double delta_phi_mm_b = fabs(dimuon_phi - vect_bjets[0].phi_std());
-    if (delta_phi_mm_b > acos (-1)) delta_phi_mm_b = 2 * acos (-1) - delta_phi_mm_b;
-    w_delta_mm_b->Fill(delta_phi_mm_b, MyWeight);
-    if (Nj == 1) {
-      w_single_delta_mm_b->Fill (delta_phi_mm_b, MyWeight);
-      w_single_pt_Z_mm_b->Fill (dimuon_pt, MyWeight);
-    }
-  }
-
-  if ((ee_event || mm_event) && Nb > 0 && Nj == 1 && b_selection) {
-    w_single_Ht_b->Fill (Ht, MyWeight);
-    w_single_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
-    w_single_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
-  }
-  
-  if (Nj > 0 && Nb > 1 && b_selection) {
-    w_bb_mass->Fill (bb_mass, MyWeight);
-    if (ee_event) {
-      w_DR_eeb_min->Fill (DR_eeb_min, MyWeight);
-      w_DR_eeb_max->Fill (DR_eeb_max, MyWeight);
-      w_A_eeb->Fill (A_eeb, MyWeight);
-      w_eebb_mass->Fill (eebb_mass, MyWeight);
-    } 
-    if (mm_event) {
-      w_DR_mmb_min->Fill (DR_mmb_min, MyWeight);
-      w_DR_mmb_max->Fill (DR_mmb_max, MyWeight);
-      w_A_mmb->Fill (A_mmb, MyWeight);
-      w_mmbb_mass->Fill (mmbb_mass, MyWeight);
-    }
-  }
-  
-
-  // ++++++++ OUTPUT COLLECTIONS
-
-  if ((ee_event || mm_event) && Nj2 > 0) {
-     myEventWeight->push_back(MyWeight);
-  }
-
-  if (ee_event && Nj > 0) {
-    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E()));
-    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[1].Px(),vect_ele[1].Py(),vect_ele[1].Pz(),vect_ele[1].E()));
-    myPtZ->push_back(diele_pt);
-    myYZ->push_back(diele_y);
-    if (Nb > 0 && b_selection) {
-      myPtZb->push_back(diele_pt);
-      myYZb->push_back(diele_y);
-    }
-  }
-
-  if (mm_event && Nj > 0) {
-    myMuons->push_back(math::XYZTLorentzVector(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E()));
-    myMuons->push_back(math::XYZTLorentzVector(vect_muon[1].Px(),vect_muon[1].Py(),vect_muon[1].Pz(),vect_muon[1].E()));
-    myPtZ->push_back(dimuon_pt);
-    myYZ->push_back(dimuon_y);
-    if (Nb > 0 && b_selection) {
-      myPtZb->push_back(dimuon_pt);
-      myYZb->push_back(dimuon_y);
-    }
-  }
-
-  if (ee_event || mm_event) {
-    for (unsigned int i=0; i<vect_jets.size(); ++i) {
-      myJets->push_back(math::XYZTLorentzVector(vect_jets[i].px(),vect_jets[i].py(),vect_jets[i].pz(),vect_jets[i].e()));
-    }
-    for (unsigned int i=0; i<vect_bjets.size(); ++i) {
-      myBJets->push_back(math::XYZTLorentzVector(vect_bjets[i].px(),vect_bjets[i].py(),vect_bjets[i].pz(),vect_bjets[i].e()));
-    }
-  }
-
-  if (ee_event || mm_event) {
-    for (unsigned int i=0; i<vect_jets2.size(); ++i) {
-      myJets2->push_back(math::XYZTLorentzVector(vect_jets2[i].px(),vect_jets2[i].py(),vect_jets2[i].pz(),vect_jets2[i].e()));
-    }
-    for (unsigned int i=0; i<vect_bjets2.size(); ++i) {
-      myBJets2->push_back(math::XYZTLorentzVector(vect_bjets2[i].px(),vect_bjets2[i].py(),vect_bjets2[i].pz(),vect_bjets2[i].e()));
-    }
-  }
-
-  if ((ee_event || mm_event) && Nj > 0) {
-    myHt->push_back(Ht);
-    if (Nb > 0 && b_selection) {
-      myHtb->push_back(Ht);
-    }
-  }
-
-  if (ee_event && Nj > 0) {
-    double delta_phi_ee = fabs(diele_phi - vect_jets[0].phi_std());
-    if (delta_phi_ee > acos (-1)) delta_phi_ee = 2 * acos (-1) - delta_phi_ee;
-    myDeltaPhi->push_back(delta_phi_ee);
-    math::XYZTLorentzVector zj_ee_p(vect_jets[0].px()+z_ee.Px(), vect_jets[0].py()+z_ee.Py(), vect_jets[0].pz()+z_ee.Pz(), vect_jets[0].e()+z_ee.E());
-    double zj_ee_mass = zj_ee_p.mass();
-    myMassZj->push_back(zj_ee_mass);
-    if (Nb > 0 && b_selection) {
-      double delta_phi_ee_b = fabs(diele_phi - vect_bjets[0].phi_std());
-      if (delta_phi_ee_b > acos (-1)) delta_phi_ee_b = 2 * acos (-1) - delta_phi_ee_b;
-      myBDeltaPhi->push_back(delta_phi_ee_b);
-      math::XYZTLorentzVector zb_ee_p(vect_bjets[0].px()+z_ee.Px(), vect_bjets[0].py()+z_ee.Py(), vect_bjets[0].pz()+z_ee.Pz(), vect_bjets[0].e()+z_ee.E());
-      double zb_ee_mass = zb_ee_p.mass();
-      myMassZb->push_back(zb_ee_mass);
-    }
-  }
-
-  if (mm_event && Nj > 0) {
-    double delta_phi_mm = fabs(dimuon_phi - vect_jets[0].phi_std());
-    if (delta_phi_mm > acos (-1)) delta_phi_mm = 2 * acos (-1) - delta_phi_mm;
-    myDeltaPhi->push_back(delta_phi_mm);
-    math::XYZTLorentzVector zj_mm_p(vect_jets[0].px()+z_mm.Px(), vect_jets[0].py()+z_mm.Py(), vect_jets[0].pz()+z_mm.Pz(), vect_jets[0].e()+z_mm.E());
-    double zj_mm_mass = zj_mm_p.mass();
-    myMassZj->push_back(zj_mm_mass);
-    if (Nb > 0 && b_selection) {
-      double delta_phi_mm_b = fabs(dimuon_phi - vect_bjets[0].phi_std());
-      if (delta_phi_mm_b > acos (-1)) delta_phi_mm_b = 2 * acos (-1) - delta_phi_mm_b;
-      myBDeltaPhi->push_back(delta_phi_mm_b);
-      math::XYZTLorentzVector zb_mm_p(vect_bjets[0].px()+z_mm.Px(), vect_bjets[0].py()+z_mm.Py(), vect_bjets[0].pz()+z_mm.Pz(), vect_bjets[0].e()+z_mm.E());
-      double zb_mm_mass = zb_mm_p.mass();
-      myMassZb->push_back(zb_mm_mass);
-    }
-  }
-
-  iEvent.put( myEventWeight, "myEventWeight" );
-
-  iEvent.put( myElectrons, "myElectrons" );
-  iEvent.put( myMuons, "myMuons" );
-
-  iEvent.put( myPtZ, "myPtZ" );
-  iEvent.put( myPtZb, "myPtZb" );
-  
-  iEvent.put( myYZ,  "myYZ" );
-  iEvent.put( myYZb, "myYZb" );
-
-  iEvent.put( myMassZj, "myMassZj" );
-  iEvent.put( myMassZb, "myMassZb" );
-
-  iEvent.put( myJets, "myJets" );
-  iEvent.put( myJets2, "myJets2" );
-
-  iEvent.put( myDeltaPhi, "myDeltaPhi" );
-
-  iEvent.put( myHt, "myHt" );
-  iEvent.put( myHtb, "myHtb" );
-
-  iEvent.put( myBJets, "myBJets" );
-  iEvent.put( myBJets2, "myBJets2" );
-
-  iEvent.put( myBDeltaPhi, "myBDeltaPhi" );
+  wenu_event = wenu_event && !ist;
+  wmnu_event = wmnu_event && !ist;
+//
+//  double delta_phi_eeb = 0;
+//  double delta_eta_eeb = 0;
+//  double DR_eeb = 0;
+//  double DR_eeb_min = 999;
+//  double DR_eeb_max = -1;
+//  double A_eeb = 0;
+//
+//  double delta_phi_mmb = 0;
+//  double delta_eta_mmb = 0;
+//  double DR_mmb = 0;
+//  double DR_mmb_min = 999;
+//  double DR_mmb_max = -1;
+//  double A_mmb = 0;
+//
+//  double bb_mass = 0;
+//  double eebb_mass = 0;
+//  double mmbb_mass = 0;
+//
+//  if (Nb > 1) {
+//      delta_phi_2b = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
+//      if (delta_phi_2b > acos(-1)) delta_phi_2b = 2 * acos(-1) - delta_phi_2b;
+//      math::XYZTLorentzVector bb(vect_bjets[0].px() + vect_bjets[1].px() , vect_bjets[0].py() + vect_bjets[1].py() , vect_bjets[0].pz() + vect_bjets[1].pz() , vect_bjets[0].e() + vect_bjets[1].e());
+//      bb_mass = bb.mass();
+//      if (ee_event) {
+//        math::XYZTLorentzVector eebb(bb.Px() + z_ee.Px() , bb.Py() + z_ee.Py() , bb.Pz() + z_ee.Pz() , bb.E() + z_ee.E());
+//        eebb_mass = eebb.mass();
+//      }
+//      if (mm_event) {
+//        math::XYZTLorentzVector mmbb(bb.Px() + z_mm.Px() , bb.Py() + z_mm.Py() , bb.Pz() + z_mm.Pz() , bb.E() + z_mm.E());
+//        mmbb_mass = mmbb.mass();
+//      }
+//      for (unsigned int i=0; i<vect_bjets.size(); i++) {
+//        if (ee_event) {
+//  	  delta_phi_eeb = fabs(diele_phi - vect_bjets[i].phi());
+//          if (delta_phi_eeb > acos(-1)) delta_phi_eeb = 2 * acos(-1) - delta_phi_eeb;
+//      	  delta_eta_eeb = fabs(diele_eta - vect_bjets[i].eta());
+//          DR_eeb = TMath::Sqrt(delta_phi_eeb*delta_phi_eeb + delta_eta_eeb*delta_eta_eeb);
+//          if (DR_eeb <= DR_eeb_min) DR_eeb_min = DR_eeb;
+//          if (DR_eeb >= DR_eeb_max) DR_eeb_max = DR_eeb;
+//        }
+//        if (mm_event) {
+//	  delta_phi_mmb = fabs(dimuon_phi - vect_bjets[i].phi());
+//          if (delta_phi_mmb > acos(-1)) delta_phi_mmb = 2 * acos(-1) - delta_phi_mmb;
+//      	  delta_eta_mmb = fabs(dimuon_eta - vect_bjets[i].eta());
+//          DR_mmb = TMath::Sqrt(delta_phi_mmb*delta_phi_mmb + delta_eta_mmb*delta_eta_mmb);
+//          if (DR_mmb <= DR_mmb_min) DR_mmb_min = DR_mmb;
+//          if (DR_mmb >= DR_mmb_max) DR_mmb_max = DR_mmb;
+//        }
+//      }
+//      A_eeb = (DR_eeb_max - DR_eeb_min)/(DR_eeb_min + DR_eeb_max);
+//      A_mmb = (DR_mmb_max - DR_mmb_min)/(DR_mmb_min + DR_mmb_max);
+//  }
+//
+//  //Phi*
+//  double DEta_ee = 999;
+//  double DPhi_ee = 999;
+//  double Phi_star_ee = 999;
+//  double DEta_mm = 999;
+//  double DPhi_mm = 999;
+//  double Phi_star_mm = 999;
+//
+//  if (ee_event){
+//    DEta_ee = lepton1_eta - lepton2_eta;
+//    DPhi_ee = fabs(lepton1_phi - lepton2_phi);
+//    if (DPhi_ee > acos(-1)) DPhi_ee = 2 * acos(-1) - DPhi_ee;
+//    Phi_star_ee = tan( (acos(-1) - DPhi_ee) / 2 ) * sqrt( 1 - ( tanh( DEta_ee / 2 ) )*( tanh( DEta_ee / 2 ) ) );   
+//  }
+//  if (mm_event){
+//    DEta_mm = lepton1_eta - lepton2_eta; 
+//    DPhi_mm = fabs(lepton1_phi - lepton2_phi);
+//    if (DPhi_mm > acos(-1)) DPhi_mm = 2 * acos(-1) - DPhi_mm;
+//    Phi_star_mm = tan( (acos(-1) - DPhi_mm) / 2 ) * sqrt( 1 - ( tanh( DEta_mm / 2 ) )*( tanh( DEta_mm / 2 ) ) );   
+//  }
+//
+//  if (ee_event && Nj > 0) {
+//    w_first_ele_pt->Fill (ele_dres.p_part.Pt(), MyWeight);
+//    w_second_ele_pt->Fill (pos_dres.p_part.Pt(), MyWeight);
+//    w_mass_ee->Fill(diele_mass, MyWeight);
+//    w_pt_Z_ee->Fill(diele_pt, MyWeight);
+//    w_y_Z_ee->Fill(diele_y, MyWeight);
+//    w_Phi_star_ee->Fill (Phi_star_ee, MyWeight);
+//    double delta_phi_ee = fabs(diele_phi - vect_jets[0].phi_std());
+//    if (delta_phi_ee > acos (-1)) delta_phi_ee = 2 * acos (-1) - delta_phi_ee;
+//    w_delta_ee->Fill(delta_phi_ee, MyWeight);
+//    math::XYZTLorentzVector zj_ee_p(vect_jets[0].px()+z_ee.Px(), vect_jets[0].py()+z_ee.Py(), vect_jets[0].pz()+z_ee.Pz(), vect_jets[0].e()+z_ee.E());
+//    double zj_ee_mass = zj_ee_p.mass();
+//    w_mass_Zj_ee->Fill (zj_ee_mass, MyWeight);
+//  }
+//
+//  if (mm_event && Nj > 0) {
+//    w_first_muon_pt->Fill (mu_dres.p_part.Pt(), MyWeight);
+//    w_second_muon_pt->Fill (antimu_dres.p_part.Pt(), MyWeight);
+//    w_mass_mm->Fill(dimuon_mass, MyWeight);
+//    w_pt_Z_mm->Fill(dimuon_pt, MyWeight);
+//    w_y_Z_mm->Fill(dimuon_y, MyWeight);
+//    w_Phi_star_mm->Fill (Phi_star_mm, MyWeight);
+//    double delta_phi_mm = fabs(dimuon_phi - vect_jets[0].phi_std());
+//    if (delta_phi_mm > acos (-1)) delta_phi_mm = 2 * acos (-1) - delta_phi_mm;
+//    w_delta_mm->Fill(delta_phi_mm, MyWeight);
+//    math::XYZTLorentzVector zj_mm_p(vect_jets[0].px()+z_mm.Px(), vect_jets[0].py()+z_mm.Py(), vect_jets[0].pz()+z_mm.Pz(), vect_jets[0].e()+z_mm.E());
+//    double zj_mm_mass = zj_mm_p.mass();
+//    w_mass_Zj_mm->Fill (zj_mm_mass, MyWeight);
+//  }
+//
+//  if ((ee_event || mm_event) && Nj > 0) {
+//    w_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight);
+//    w_first_jet_eta->Fill (vect_jets[0].eta(), MyWeight);
+//    w_jetmultiplicity->Fill (vect_jets.size(), MyWeight);
+//    w_Ht->Fill (Ht, MyWeight);
+//  }
+//
+//  if (ee_event && Nb > 0 && Nj > 0 && b_selection) {
+//    w_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
+//    w_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
+//    w_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight);
+//    w_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight);
+//    w_pt_Z_ee_b->Fill (diele_pt, MyWeight);
+//    w_y_Z_ee_b->Fill (diele_y, MyWeight);
+//    w_Phi_star_ee_b->Fill (Phi_star_ee, MyWeight);
+//    w_mass_ee_b->Fill (diele_mass, MyWeight);
+//    math::XYZTLorentzVector zb_ee_p(vect_bjets[0].px()+z_ee.Px(), vect_bjets[0].py()+z_ee.Py(), vect_bjets[0].pz()+z_ee.Pz(), vect_bjets[0].e()+z_ee.E());
+//    double zb_ee_mass = zb_ee_p.mass();
+//    w_mass_Zj_ee_b->Fill (zb_ee_mass, MyWeight);
+//  }
+//
+//  if (mm_event && Nb > 0 && Nj > 0 && b_selection) {
+//    w_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
+//    w_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
+//    w_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight);
+//    w_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight);
+//    w_pt_Z_mm_b->Fill (dimuon_pt, MyWeight);
+//    w_y_Z_mm_b->Fill (dimuon_y, MyWeight);
+//    w_Phi_star_mm_b->Fill (Phi_star_mm, MyWeight);
+//    w_mass_mm_b->Fill (dimuon_mass, MyWeight);
+//    math::XYZTLorentzVector zb_mm_p(vect_bjets[0].px()+z_mm.Px(), vect_bjets[0].py()+z_mm.Py(), vect_bjets[0].pz()+z_mm.Pz(), vect_bjets[0].e()+z_mm.E());
+//    double zb_mm_mass = zb_mm_p.mass();
+//    w_mass_Zj_mm_b->Fill (zb_mm_mass, MyWeight);
+//  }
+//
+//  if ((ee_event || mm_event) && Nb > 0 && Nj > 0 && b_selection) {
+//    w_bjetmultiplicity->Fill (Nb, MyWeight);
+//    w_Ht_b->Fill (Ht, MyWeight);
+//    if (Nb > 1) {
+//      w_delta_phi_2b->Fill (delta_phi_2b, MyWeight);
+//    }
+//  }
+//
+//  if (ee_event && Nb > 0 && Nj > 0 && b_selection) {
+//    double delta_phi_ee_b = fabs(diele_phi - vect_bjets[0].phi_std());
+//    if (delta_phi_ee_b > acos (-1)) delta_phi_ee_b = 2 * acos (-1) - delta_phi_ee_b;
+//    w_delta_ee_b->Fill(delta_phi_ee_b, MyWeight);
+//    if (Nj == 1) {
+//      w_single_delta_ee_b->Fill (delta_phi_ee_b, MyWeight);
+//      w_single_pt_Z_ee_b->Fill (diele_pt, MyWeight);
+//    }
+//  }
+//  if (mm_event && Nb > 0 && Nj > 0 && b_selection) {
+//    double delta_phi_mm_b = fabs(dimuon_phi - vect_bjets[0].phi_std());
+//    if (delta_phi_mm_b > acos (-1)) delta_phi_mm_b = 2 * acos (-1) - delta_phi_mm_b;
+//    w_delta_mm_b->Fill(delta_phi_mm_b, MyWeight);
+//    if (Nj == 1) {
+//      w_single_delta_mm_b->Fill (delta_phi_mm_b, MyWeight);
+//      w_single_pt_Z_mm_b->Fill (dimuon_pt, MyWeight);
+//    }
+//  }
+//
+//  if ((ee_event || mm_event) && Nb > 0 && Nj == 1 && b_selection) {
+//    w_single_Ht_b->Fill (Ht, MyWeight);
+//    w_single_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
+//    w_single_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
+//  }
+//  
+//  if (Nj > 0 && Nb > 1 && b_selection) {
+//    w_bb_mass->Fill (bb_mass, MyWeight);
+//    if (ee_event) {
+//      w_DR_eeb_min->Fill (DR_eeb_min, MyWeight);
+//      w_DR_eeb_max->Fill (DR_eeb_max, MyWeight);
+//      w_A_eeb->Fill (A_eeb, MyWeight);
+//      w_eebb_mass->Fill (eebb_mass, MyWeight);
+//    } 
+//    if (mm_event) {
+//      w_DR_mmb_min->Fill (DR_mmb_min, MyWeight);
+//      w_DR_mmb_max->Fill (DR_mmb_max, MyWeight);
+//      w_A_mmb->Fill (A_mmb, MyWeight);
+//      w_mmbb_mass->Fill (mmbb_mass, MyWeight);
+//    }
+//  }
+//  
+//
+//  // ++++++++ OUTPUT COLLECTIONS
+//
+//  if ((ee_event || mm_event) && Nj2 > 0) {
+//     myEventWeight->push_back(MyWeight);
+//  }
+//
+//  if (ee_event && Nj > 0) {
+//    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E()));
+//    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[1].Px(),vect_ele[1].Py(),vect_ele[1].Pz(),vect_ele[1].E()));
+//    myPtZ->push_back(diele_pt);
+//    myYZ->push_back(diele_y);
+//    if (Nb > 0 && b_selection) {
+//      myPtZb->push_back(diele_pt);
+//      myYZb->push_back(diele_y);
+//    }
+//  }
+//
+//  if (mm_event && Nj > 0) {
+//    myMuons->push_back(math::XYZTLorentzVector(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E()));
+//    myMuons->push_back(math::XYZTLorentzVector(vect_muon[1].Px(),vect_muon[1].Py(),vect_muon[1].Pz(),vect_muon[1].E()));
+//    myPtZ->push_back(dimuon_pt);
+//    myYZ->push_back(dimuon_y);
+//    if (Nb > 0 && b_selection) {
+//      myPtZb->push_back(dimuon_pt);
+//      myYZb->push_back(dimuon_y);
+//    }
+//  }
+//
+//  if (ee_event || mm_event) {
+//    for (unsigned int i=0; i<vect_jets.size(); ++i) {
+//      myJets->push_back(math::XYZTLorentzVector(vect_jets[i].px(),vect_jets[i].py(),vect_jets[i].pz(),vect_jets[i].e()));
+//    }
+//    for (unsigned int i=0; i<vect_bjets.size(); ++i) {
+//      myBJets->push_back(math::XYZTLorentzVector(vect_bjets[i].px(),vect_bjets[i].py(),vect_bjets[i].pz(),vect_bjets[i].e()));
+//    }
+//  }
+//
+//  if (ee_event || mm_event) {
+//    for (unsigned int i=0; i<vect_jets2.size(); ++i) {
+//      myJets2->push_back(math::XYZTLorentzVector(vect_jets2[i].px(),vect_jets2[i].py(),vect_jets2[i].pz(),vect_jets2[i].e()));
+//    }
+//    for (unsigned int i=0; i<vect_bjets2.size(); ++i) {
+//      myBJets2->push_back(math::XYZTLorentzVector(vect_bjets2[i].px(),vect_bjets2[i].py(),vect_bjets2[i].pz(),vect_bjets2[i].e()));
+//    }
+//  }
+//
+//  if ((ee_event || mm_event) && Nj > 0) {
+//    myHt->push_back(Ht);
+//    if (Nb > 0 && b_selection) {
+//      myHtb->push_back(Ht);
+//    }
+//  }
+//
+//  if (ee_event && Nj > 0) {
+//    double delta_phi_ee = fabs(diele_phi - vect_jets[0].phi_std());
+//    if (delta_phi_ee > acos (-1)) delta_phi_ee = 2 * acos (-1) - delta_phi_ee;
+//    myDeltaPhi->push_back(delta_phi_ee);
+//    math::XYZTLorentzVector zj_ee_p(vect_jets[0].px()+z_ee.Px(), vect_jets[0].py()+z_ee.Py(), vect_jets[0].pz()+z_ee.Pz(), vect_jets[0].e()+z_ee.E());
+//    double zj_ee_mass = zj_ee_p.mass();
+//    myMassZj->push_back(zj_ee_mass);
+//    if (Nb > 0 && b_selection) {
+//      double delta_phi_ee_b = fabs(diele_phi - vect_bjets[0].phi_std());
+//      if (delta_phi_ee_b > acos (-1)) delta_phi_ee_b = 2 * acos (-1) - delta_phi_ee_b;
+//      myBDeltaPhi->push_back(delta_phi_ee_b);
+//      math::XYZTLorentzVector zb_ee_p(vect_bjets[0].px()+z_ee.Px(), vect_bjets[0].py()+z_ee.Py(), vect_bjets[0].pz()+z_ee.Pz(), vect_bjets[0].e()+z_ee.E());
+//      double zb_ee_mass = zb_ee_p.mass();
+//      myMassZb->push_back(zb_ee_mass);
+//    }
+//  }
+//
+//  if (mm_event && Nj > 0) {
+//    double delta_phi_mm = fabs(dimuon_phi - vect_jets[0].phi_std());
+//    if (delta_phi_mm > acos (-1)) delta_phi_mm = 2 * acos (-1) - delta_phi_mm;
+//    myDeltaPhi->push_back(delta_phi_mm);
+//    math::XYZTLorentzVector zj_mm_p(vect_jets[0].px()+z_mm.Px(), vect_jets[0].py()+z_mm.Py(), vect_jets[0].pz()+z_mm.Pz(), vect_jets[0].e()+z_mm.E());
+//    double zj_mm_mass = zj_mm_p.mass();
+//    myMassZj->push_back(zj_mm_mass);
+//    if (Nb > 0 && b_selection) {
+//      double delta_phi_mm_b = fabs(dimuon_phi - vect_bjets[0].phi_std());
+//      if (delta_phi_mm_b > acos (-1)) delta_phi_mm_b = 2 * acos (-1) - delta_phi_mm_b;
+//      myBDeltaPhi->push_back(delta_phi_mm_b);
+//      math::XYZTLorentzVector zb_mm_p(vect_bjets[0].px()+z_mm.Px(), vect_bjets[0].py()+z_mm.Py(), vect_bjets[0].pz()+z_mm.Pz(), vect_bjets[0].e()+z_mm.E());
+//      double zb_mm_mass = zb_mm_p.mass();
+//      myMassZb->push_back(zb_mm_mass);
+//    }
+//  }
+//
+//  iEvent.put( myEventWeight, "myEventWeight" );
+//
+//  iEvent.put( myElectrons, "myElectrons" );
+//  iEvent.put( myMuons, "myMuons" );
+//
+//  iEvent.put( myPtZ, "myPtZ" );
+//  iEvent.put( myPtZb, "myPtZb" );
+//  
+//  iEvent.put( myYZ,  "myYZ" );
+//  iEvent.put( myYZb, "myYZb" );
+//
+//  iEvent.put( myMassZj, "myMassZj" );
+//  iEvent.put( myMassZb, "myMassZb" );
+//
+//  iEvent.put( myJets, "myJets" );
+//  iEvent.put( myJets2, "myJets2" );
+//
+//  iEvent.put( myDeltaPhi, "myDeltaPhi" );
+//
+//  iEvent.put( myHt, "myHt" );
+//  iEvent.put( myHtb, "myHtb" );
+//
+//  iEvent.put( myBJets, "myBJets" );
+//  iEvent.put( myBJets2, "myBJets2" );
+//
+//
+//  iEvent.put( myBDeltaPhi, "myBDeltaPhi" );
 
 }
 
