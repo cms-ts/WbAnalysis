@@ -51,6 +51,9 @@ elif [ "$JOBDIR" == "W-all" ]; then
 elif [ "$JOBDIR" == "Wj_patgen-all" ]; then
   rm -f $WORKDIR/$VERSION/W_patgen_merge.root
   root -l -q -b hmerge.C\(\"$WORKDIR\",\"$VERSION\",\"W_patgen\"\)
+elif [ "$JOBDIR" == "Wj_gen-all" ]; then
+  rm -f $WORKDIR/$VERSION/W_gen_merge.root
+  root -l -q -b hmerge.C\(\"$WORKDIR\",\"$VERSION\",\"W_gen\"\)
 else
   echo 'ERROR: jobdir "'$JOBDIR'" does not exist !'
 fi

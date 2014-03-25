@@ -11,7 +11,7 @@ void hmerge(string path=".", string version="v01", string title="W") {
   FileList = new TList();
   double crossSections[10];
 
-  if (title=="W"||title=="W_patgen") {
+  if (title=="W"||title=="W_patgen"||title=="W_gen") {
     if (title=="W") {
       Target = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str(), "RECREATE");
       FileList->Add(TFile::Open((path + "/" + version + "/" + "Wj.root").c_str()));
@@ -27,6 +27,14 @@ void hmerge(string path=".", string version="v01", string title="W") {
       FileList->Add(TFile::Open((path + "/" + version + "/" + "W2j_patgen.root").c_str()));
       FileList->Add(TFile::Open((path + "/" + version + "/" + "W3j_patgen.root").c_str()));
       FileList->Add(TFile::Open((path + "/" + version + "/" + "W4j_patgen.root").c_str()));
+    }
+    if (title=="W_gen") {
+      Target = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str(), "RECREATE");
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "Wj_gen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W1j_gen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W2j_gen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W3j_gen.root").c_str()));
+      FileList->Add(TFile::Open((path + "/" + version + "/" + "W4j_gen.root").c_str()));
     }
 
     crossSections[0] = (Xsec_wj / Ngen_wj);
