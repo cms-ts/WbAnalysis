@@ -398,7 +398,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   using namespace edm;
   using namespace std;
 
- edm::Handle<vector<reco::GenParticle> > genPart;
+  edm::Handle<vector<reco::GenParticle> > genPart;
   iEvent.getByLabel ("genParticles", genPart);
 
   std::auto_ptr<std::vector<double>> myEventWeight( new std::vector<double> );
@@ -538,6 +538,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   vector <reco::GenParticle> part_vect;
 
   unsigned int index_ele=0;
+  unsigned int index_goodele=0;
 
   vector < TLorentzVector > vect_ele;
 
@@ -567,6 +568,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       }
 
       if (ele.Pt()>30. && fabs(ele.Eta())<2.1) {
+	index_goodele++;
 	if (ele_dres.lepton_photon.empty()) {
 	  ele_dres.p_part = ele;
 	  ele_dres.lepton_photon = ele_photons;
@@ -601,6 +603,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   vector < TLorentzVector > vect_muon;
   unsigned int index_mu = 0;
+  unsigned int index_goodmu = 0;
 
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
     if (fabs(itgen->pdgId())==13 && itgen->status()==1) { // loop over gen muons
@@ -627,6 +630,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	index_gammamu++;
       }
       if (muon.Pt()>25. && fabs(muon.Eta())<2.1) {
+	index_goodmu++;
 	if (mu_dres.lepton_photon.empty()) {
 	  mu_dres.p_part = muon;
 	  mu_dres.lepton_photon = mu_photons;
@@ -658,8 +662,8 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   // +++++++++ Decisions:
 
-  wenu_event = (lepton_ == "electron") && index_ele==1; // cut over lepton multiplicity to be checked!
-  wmnu_event = (lepton_ == "muon") && index_mu==1; // cut over lepton multiplicity to be checked!
+  wenu_event = (lepton_ == "electron") && index_goodele==1; // cut over lepton multiplicity to be checked!
+  wmnu_event = (lepton_ == "muon") && index_goodmu==1; // cut over lepton multiplicity to be checked!
 
   if (wenu_event) {
     lepton1_eta = ele_dres.p_part.Eta();
@@ -744,6 +748,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	pseudoJet.set_user_index(l);
 	vecs.push_back(pseudoJet);
   }
+
 
   // ++++++++ JETS
 
@@ -876,8 +881,9 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     }
   }
 
-  wenu_event = wenu_event && !ist && Nj==2;
-  wmnu_event = wmnu_event && !ist && Nj==2;
+  wenu_event = wenu_event && !ist && Nj==2 && Nb>0;
+  wmnu_event = wmnu_event && !ist && Nj==2 && Nb>0;
+
 
   // ++++++++ WeNu PLOTS
 
@@ -957,6 +963,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       //      w_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight);
     }
   }
+
 
   // ++++++++ JETS PLOTS
 
