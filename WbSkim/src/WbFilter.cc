@@ -17,7 +17,6 @@
 //
 //
 
-
 // system include files
 #include <memory>
 #include <string>
@@ -56,24 +55,26 @@
 // class declaration
 //
 
-
-
 class WbFilter : public edm::EDFilter {
-   public:
-      explicit WbFilter(const edm::ParameterSet&);
-      ~WbFilter();
 
-   private:
-      virtual void beginJob() ;
-      virtual bool filter(edm::Event&, const edm::EventSetup&);
-      virtual void endJob() ;
+public:
+
+  explicit WbFilter(const edm::ParameterSet&);
+  ~WbFilter();
+
+private:
+  virtual void beginJob() ;
+  virtual bool filter(edm::Event&, const edm::EventSetup&);
+  virtual void endJob() ;
       
-      virtual bool beginRun(edm::Run&, edm::EventSetup const&);
-      virtual bool endRun(edm::Run&, edm::EventSetup const&);
-      virtual bool beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
-      virtual bool endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
+  virtual bool beginRun(edm::Run&, edm::EventSetup const&);
+  virtual bool endRun(edm::Run&, edm::EventSetup const&);
+  virtual bool beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
+  virtual bool endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
 
-      // ----------member data ---------------------------
+  // ----------member data ---------------------------
+
+  int count_;
 
 //
 // constants, enums and typedefs
@@ -91,19 +92,18 @@ class WbFilter : public edm::EDFilter {
 };
 
 WbFilter::WbFilter(const edm::ParameterSet& iConfig) {
-   //now do what ever initialization is needed
+
+  count_ = 0;
 
 }
 
 
 WbFilter::~WbFilter() {
-
  
    // do anything here that needs to be done at desctruction time
    // (e.g. close files, deallocate resources etc.)
 
 }
-
 
 //
 // member functions
@@ -111,6 +111,7 @@ WbFilter::~WbFilter() {
 
 // ------------ method called on each new Event  ------------
 bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
+
    using namespace edm;
 
    // get electron collection
@@ -152,6 +153,14 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
    }
 
    if (!hasEle && !hasMuo && electronsQCD->size()==0 && muonsQCD->size()==0) return false;
+
+   ++count_;
+
+   int prescaleFactorEle=1;
+   if (electronsQCD->size()!=0 && count_%prescaleFactorEle!=0) return false;
+
+   int prescaleFactorMuo=20;
+   if (muonsQCD->size()!=0 && count_%prescaleFactorMuo!=0) return false;
 
    for (std::vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
 
