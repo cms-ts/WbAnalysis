@@ -305,13 +305,10 @@ if (irun==99) {            // irun==99 => pur
 	TH1F* h_mc1c_b = (TH1F*)gDirectory->Get(("c"+title_b.substr(1)).c_str());
 	TH1F* h_mc1t_b = (TH1F*)gDirectory->Get(("t"+title_b.substr(1)).c_str());
 
-	//if (ilepton==1) mcg->cd("demoEleGen");
-	//if (ilepton==2) mcg->cd("demoMuoGen");
-	//TH1F* h_mcg = (TH1F*)gDirectory->Get(title.c_str());
-	//TH1F* h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
-
-	TH1F* h_mcg = (TH1F*)h_mc1->Clone();
-	TH1F* h_mcg_b = (TH1F*)h_mc1b_b->Clone();
+	if (ilepton==1) mcg->cd("demoEleGen");
+	if (ilepton==2) mcg->cd("demoMuoGen");
+	TH1F* h_mcg = (TH1F*)gDirectory->Get(title.c_str());
+	TH1F* h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
 
 	if (ilepton==1) mc2->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2) mc2->cd(("demoMuo"+postfix).c_str());
