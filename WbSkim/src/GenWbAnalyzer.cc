@@ -629,7 +629,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
         }
 	index_gammamu++;
       }
-      if (muon.Pt()>25. && fabs(muon.Eta())<2.1) {
+      if (muon.Pt()>30. && fabs(muon.Eta())<2.1) {
 	index_goodmu++;
 	if (mu_dres.lepton_photon.empty()) {
 	  mu_dres.p_part = muon;
@@ -761,7 +761,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	double phij = jets[i].phi();
 	double ptj = jets[i].perp();
 	       
-	if (fabs(etaj) < 2.4 && ptj > 30) {
+	if (fabs(etaj) < 2.4 && ptj > 25) {
           double delta_eta1 = lepton1_eta - etaj;
           double delta_phi1 = fabs(lepton1_phi - phij);
           if (delta_phi1 > acos(-1)) delta_phi1 = 2*acos(-1) - delta_phi1;
