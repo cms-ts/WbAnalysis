@@ -585,7 +585,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   }
 
   // Computing Mt:
-  double op_met = met.Pt();
+  double op_met = met.Et();
   double elept = 0.;
   double deltaPhiMetEle = 0.;
   double mt_wenu = 0.;
@@ -646,7 +646,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   }
 
   // Computing Mt:
-  op_met = met.Pt();
+  op_met = met.Et();
   double muopt = 0.;
   double deltaPhiMetMuo = 0.;
   double mt_wmnu = 0.;
@@ -901,9 +901,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     double DR_ebj = TMath::Sqrt(delta_phi_ebj*delta_phi_ebj + delta_eta_ebj*delta_eta_ebj);
     w_delta_wenu_b->Fill (delta_phi_ebj, MyWeight);
     w_deltaR_wenu_b->Fill (DR_ebj, MyWeight);
-//    math::XYZTLorentzVector belectron;
-//    belectron = vect_ele[0].p4() + vect_bjets[0].p4();
-//    w_mass_wenu_blepton->Fill(belectron.mass(), MyWeight);
+    TLorentzVector belectron(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E());
+    TLorentzVector belectron2(vect_bjets[0].px(),vect_bjets[0].py(),vect_bjets[0].pz(),vect_bjets[0].E());
+    belectron += belectron2;
+    w_mass_wenu_blepton->Fill(belectron.M(), MyWeight);
     if (Nb == 1) {
       w_mt_wenu_b->Fill (mt_wenu, MyWeight);
       w_single_delta_wenu_b->Fill (delta_phi_ebj, MyWeight);
@@ -941,9 +942,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     double DR_mbj = TMath::Sqrt(delta_phi_mbj*delta_phi_mbj + delta_eta_mbj*delta_eta_mbj);
     w_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight);
     w_deltaR_wmnu_b->Fill (DR_mbj, MyWeight);
-//    math::XYZTLorentzVector bmuon;
-//    bmuon = vect_muon[0].p4() + vect_bjets[0].p4();
-//    w_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight);
+    TLorentzVector bmuon(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E());
+    TLorentzVector bmuon2(vect_bjets[0].px(),vect_bjets[0].py(),vect_bjets[0].pz(),vect_bjets[0].E());
+    bmuon += bmuon2;
+    w_mass_wmnu_blepton->Fill(bmuon.M(), MyWeight);
     if (Nb == 1) {
       w_mt_wmnu_b->Fill (mt_wmnu, MyWeight);
       w_single_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight);
