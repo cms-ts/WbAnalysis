@@ -872,7 +872,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   std::sort( vect_bjets2.begin(), vect_bjets2.end(), order_jets() );
 
   for (std::vector <reco::GenParticle>::const_iterator thepart = genPart->begin(); thepart != genPart->end(); thepart++) {
-    if (thepart->pdgId()==23) {
+    if (thepart->pdgId()==24) {
       for (UInt_t i=0; i<thepart->numberOfDaughters(); i++){
         if (abs(thepart->daughter(i)->pdgId())==15 && thepart->daughter(i)->status()==3){
           ist = true;
