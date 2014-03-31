@@ -93,11 +93,11 @@ if (irun==99) {            // irun==99 => pur
 	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 
-/* efficiency:  e_Z / e_Zb = e_Z / e_Z_1 * e_Z_b */
+/* efficiency:  e_W / e_Zb = e_W / e_W_1 * e_W_b */
 
-int itype = 0; // e_Z and e_Zb = e_Z_1 * e_Z_b
-//int itype = 1; // e_Z_1
-//int itype = 2; // e_Z_b
+int itype = 0; // e_W and e_Wb = e_W_1 * e_W_b
+//int itype = 1; // e_W_1
+//int itype = 2; // e_W_b
 
 	string title_b = title;
 
@@ -178,9 +178,9 @@ int itype = 0; // e_Z and e_Zb = e_Z_1 * e_Z_b
 	h_reco->GetXaxis()->SetLabelSize(0.04);
 	h_reco->GetXaxis()->SetTitleFont(42);
 	if (title_b == title) {
-	  h_reco->GetYaxis()->SetTitle("#epsilon = N_{Z}^{RECO} / N_{Z}^{GEN}");
+	  h_reco->GetYaxis()->SetTitle("#epsilon = N_{W}^{RECO} / N_{W}^{GEN}");
 	} else {
-	  h_reco->GetYaxis()->SetTitle("#epsilon = N_{Z+b}^{RECO} / N_{Z+b}^{GEN}");
+	  h_reco->GetYaxis()->SetTitle("#epsilon = N_{W+b}^{RECO} / N_{W+b}^{GEN}");
 	}
 	h_reco->GetYaxis()->SetNdivisions(505);
 	h_reco->GetYaxis()->SetTitleSize(0.04);

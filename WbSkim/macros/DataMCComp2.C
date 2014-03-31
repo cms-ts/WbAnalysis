@@ -101,10 +101,10 @@ if (irun==99) {            // irun==99 => pur
 
 	/* efficiency */
 
-	double e_Z=1.0;
-	double ee_Z=0.0;
-	double e_Zb=1.0;
-	double ee_Zb=0.0;
+	double e_W=1.0;
+	double ee_W=0.0;
+	double e_Wb=1.0;
+	double ee_Wb=0.0;
 
 	/* purity */
 
@@ -164,8 +164,8 @@ if (irun==99) {            // irun==99 => pur
 	    in10.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
-	in1 >> e_Z >> ee_Z;
-	in2 >> e_Zb >> ee_Zb;
+	in1 >> e_W >> ee_W;
+	in2 >> e_Wb >> ee_Wb;
 	in1.close();
 	in2.close();
 	if (useFitResults) {
@@ -552,11 +552,11 @@ if (irun==99) {            // irun==99 => pur
 
 	if (useBinnedEfficiency==0) {
 	  if (unfold==0) {
-	    h_data->Scale(1./e_Z);
-	    h_data_b->Scale(1./e_Zb);
+	    h_data->Scale(1./e_W);
+	    h_data_b->Scale(1./e_Wb);
 	  }
-	  h_mc1->Scale(1./e_Z);
-	  h_mc1b_b->Scale(1./e_Zb);
+	  h_mc1->Scale(1./e_W);
+	  h_mc1b_b->Scale(1./e_Wb);
 	}
 
 	if (useBinnedEfficiency==1) {
