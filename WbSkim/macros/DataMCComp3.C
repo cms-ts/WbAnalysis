@@ -101,10 +101,8 @@ int itype = 0; // e_W and e_Wb = e_W_1 * e_W_b
 
 	string title_b = title;
 
-	if (title.find("_b")!=string::npos) {
-	  if (itype==0) title_b = "b"+title.substr(1);
-	  if (itype==2) title_b = "b"+title.substr(1);
-	}
+	if (itype==0) title_b = "b"+title.substr(1);
+	if (itype==2) title_b = "b"+title.substr(1);
 
 	if (ilepton==1&&itype==0) mc1->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2&&itype==0) mc1->cd(("demoMuo"+postfix).c_str());
