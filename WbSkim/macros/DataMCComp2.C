@@ -92,8 +92,8 @@ if (irun==99) {            // irun==99 => pur
 }
 
 	if (gROOT->GetVersionInt() >= 53401) {
-	  gROOT->GetColor(kRed)->SetAlpha(0.5);
-	  //gROOT->GetColor(kRed)->SetAlpha(0.0);
+	  //gROOT->GetColor(kRed)->SetAlpha(0.5);
+	  gROOT->GetColor(kRed)->SetAlpha(0.0);
 	  gROOT->GetColor(kGreen+2)->SetAlpha(0.5);
 	  gROOT->GetColor(kMagenta-6)->SetAlpha(0.5);
 	  gROOT->GetColor(kBlue-4)->SetAlpha(0.5);
