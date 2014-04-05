@@ -8,8 +8,8 @@ string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
 void DataMCComp2(int irun=0, string title="", int plot=0, int ilepton=1, int unfold=0) {
 
-int useBinnedEfficiency=0; // use average efficiencies
-//int useBinnedEfficiency=1; // use bin-by-bin efficiencies
+//int useBinnedEfficiency=0; // use average efficiencies
+int useBinnedEfficiency=1; // use bin-by-bin efficiencies
 
 //int useFitResults=0; // use MC predictions for c_b, c_c, c_uds, c_t, c_qcd
 int useFitResults=1;  // use fit results for c_b, c_c, c_uds, c_t, c_qcd
@@ -92,8 +92,8 @@ if (irun==99) {            // irun==99 => pur
 }
 
 	if (gROOT->GetVersionInt() >= 53401) {
-	  //gROOT->GetColor(kRed)->SetAlpha(0.5);
-	  gROOT->GetColor(kRed)->SetAlpha(0.0);
+	  gROOT->GetColor(kRed)->SetAlpha(0.5);
+	  //gROOT->GetColor(kRed)->SetAlpha(0.0);
 	  gROOT->GetColor(kGreen+2)->SetAlpha(0.5);
 	  gROOT->GetColor(kMagenta-6)->SetAlpha(0.5);
 	  gROOT->GetColor(kBlue-4)->SetAlpha(0.5);
@@ -299,6 +299,8 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==1) mc1->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2) mc1->cd(("demoMuo"+postfix).c_str());
 	TH1F* h_mc1 = (TH1F*)gDirectory->Get(title.c_str());
+	TH1F* h_mc1b = (TH1F*)gDirectory->Get(("b"+title.substr(1)).c_str());
+	TH1F* h_mc1c = (TH1F*)gDirectory->Get(("c"+title.substr(1)).c_str());
 	TH1F* h_mc1t = (TH1F*)gDirectory->Get(("t"+title.substr(1)).c_str());
 	TH1F* h_mc1_b = (TH1F*)gDirectory->Get(title_b.c_str());
 	TH1F* h_mc1b_b = (TH1F*)gDirectory->Get(("b"+title_b.substr(1)).c_str());
@@ -388,6 +390,8 @@ if (irun==99) {            // irun==99 => pur
 
 	h_mc1->Sumw2();
 	if (h_mc1t) h_mc1t->Sumw2();
+	if (h_mc1b) h_mc1b->Sumw2();
+	if (h_mc1c) h_mc1c->Sumw2();
 	h_mcg->Sumw2();
 	h_mc2->Sumw2();
 	h_mc3->Sumw2();
@@ -423,6 +427,8 @@ if (irun==99) {            // irun==99 => pur
 
 	h_mc1->Scale(norm1);
 	if (h_mc1t) h_mc1t->Scale(norm1);
+	if (h_mc1b) h_mc1b->Scale(norm1);
+	if (h_mc1c) h_mc1c->Scale(norm1);
 	h_mcg->Scale(norm1);
 	h_mc2->Scale(norm2);
 	h_mc3->Scale(norm3);
@@ -473,6 +479,8 @@ if (irun==99) {            // irun==99 => pur
 	  for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
 	    h_mc1->SetBinError(i, 1.1*h_mc1->GetBinError(i));
 	    if (h_mc1t) h_mc1t->SetBinError(i, 1.1*h_mc1t->GetBinError(i));
+	    if (h_mc1b) h_mc1b->SetBinError(i, 1.1*h_mc1b->GetBinError(i));
+	    if (h_mc1c) h_mc1c->SetBinError(i, 1.1*h_mc1c->GetBinError(i));
 	    h_mc1_b->SetBinError(i, 1.1*h_mc1_b->GetBinError(i));
 	    if (h_mc1b_b) h_mc1b_b->SetBinError(i, 1.1*h_mc1b_b->GetBinError(i));
 	    if (h_mc1c_b) h_mc1c_b->SetBinError(i, 1.1*h_mc1c_b->GetBinError(i));
@@ -514,6 +522,18 @@ if (irun==99) {            // irun==99 => pur
 	  h_data_b->Add(h_mc1t_b, -1.);
 	}
 
+	TH1F *h_mc1uds = (TH1F*)h_mc1->Clone("h_mc1uds");
+	if (h_mc1b) h_mc1uds->Add(h_mc1b, -1);
+	if (h_mc1c) h_mc1uds->Add(h_mc1c, -1);
+	if (h_mc1t) h_mc1uds->Add(h_mc1t, -1);
+	for (int i=0; i<=h_mc1uds->GetNbinsX()+1; i++) {
+	  float e = TMath::Power(h_mc1uds->GetBinError(i),2);
+	  if (h_mc1b) e = e - TMath::Power(h_mc1b->GetBinError(i),2);
+	  if (h_mc1c) e = e - TMath::Power(h_mc1c->GetBinError(i),2);
+	  if (h_mc1t) e = e - TMath::Power(h_mc1t->GetBinError(i),2);
+	  h_mc1uds->SetBinError(i, TMath::Sqrt(e));
+	}
+
 	TH1F *h_mc1uds_b = (TH1F*)h_mc1_b->Clone("h_mc1uds_b");
 	if (h_mc1b_b) h_mc1uds_b->Add(h_mc1b_b, -1);
 	if (h_mc1c_b) h_mc1uds_b->Add(h_mc1c_b, -1);
@@ -524,6 +544,23 @@ if (irun==99) {            // irun==99 => pur
 	  if (h_mc1c_b) e = e - TMath::Power(h_mc1c_b->GetBinError(i),2);
 	  if (h_mc1t_b) e = e - TMath::Power(h_mc1t_b->GetBinError(i),2);
 	  h_mc1uds_b->SetBinError(i, TMath::Sqrt(e));
+	}
+
+	if (h_mc1uds) {
+	  h_mc1uds->Scale(c_uds);
+	  if (irun==6) h_mc1uds->Scale((c_uds+ec_uds)/c_uds);
+	}
+	if (h_mc1b) {
+	  h_mc1b->Scale(c_b);
+	  if (irun==6) h_mc1b->Scale((c_b+ec_b)/c_b);
+	}
+	if (h_mc1c) {
+	  h_mc1c->Scale(c_c);
+	  if (irun==6) h_mc1c->Scale((c_c+ec_c)/c_c);
+        }
+	if (unfold==0) {
+	  h_data->Add(h_mc1c, -1.);
+	  h_data->Add(h_mc1uds, -1.);
 	}
 
 	if (h_mc1uds_b) {
@@ -555,7 +592,7 @@ if (irun==99) {            // irun==99 => pur
 	    h_data->Scale(1./e_W);
 	    h_data_b->Scale(1./e_Wb);
 	  }
-	  h_mc1->Scale(1./e_W);
+	  h_mc1b->Scale(1./e_W);
 	  h_mc1b_b->Scale(1./e_Wb);
 	}
 
@@ -573,7 +610,7 @@ if (irun==99) {            // irun==99 => pur
 	      h_data->Divide(h);
 	      h_data_b->Divide(h_b);
 	    }
-	    h_mc1->Divide(h);
+	    h_mc1b->Divide(h);
 	    h_mc1b_b->Divide(h_b);
           }
 	  if (ilepton==2) {
@@ -589,14 +626,14 @@ if (irun==99) {            // irun==99 => pur
 	      h_data->Divide(h);
 	      h_data_b->Divide(h_b);
 	    }
-	    h_mc1->Divide(h);
+	    h_mc1b->Divide(h);
 	    h_mc1b_b->Divide(h_b);
           }
 	}
 
 	h_data->Scale(1./Lumi2012, "width");
 	h_data_b->Scale(1./Lumi2012, "width");
-	h_mc1->Scale(1./Lumi2012, "width");
+	h_mc1b->Scale(1./Lumi2012, "width");
 	h_mc1b_b->Scale(1./Lumi2012, "width");
 
 	h_mcg->Scale(1./Lumi2012, "width");
@@ -671,12 +708,12 @@ if (irun==99) {            // irun==99 => pur
 
 	h_data_b->Draw("EPX0SAME");
 
-	h_mc1->SetLineColor(kRed);
-	h_mc1->SetLineWidth(2);
-	h_mc1->SetMarkerColor(kRed);
-	h_mc1->SetFillColor(kRed);
-	if (drawInclusive) h_mc1->Draw("E5SAME");
-	TH1F* tmp3 = (TH1F*)h_mc1->Clone();
+	h_mc1b->SetLineColor(kRed);
+	h_mc1b->SetLineWidth(2);
+	h_mc1b->SetMarkerColor(kRed);
+	h_mc1b->SetFillColor(kRed);
+	if (drawInclusive) h_mc1b->Draw("E5SAME");
+	TH1F* tmp3 = (TH1F*)h_mc1b->Clone();
 	if (title.find("_pt")!=string::npos || title.find("_Ht")!=string::npos) {
 	  if (tmp3->GetMinimum()==0) tmp3->GetXaxis()->SetRangeUser(0, tmp3->GetBinCenter(tmp3->GetMinimumBin()-1));
 	}
@@ -826,7 +863,7 @@ if (irun==99) {            // irun==99 => pur
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
 	    out << h_data_b->Integral(0, h_data_b->GetNbinsX()+1, "width") << endl;
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
-	    out << h_mc1->Integral(0, h_mc1->GetNbinsX()+1, "width") << endl;
+	    out << h_mc1b->Integral(0, h_mc1b->GetNbinsX()+1, "width") << endl;
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
 	    out << h_mc1b_b->Integral(0, h_mc1b_b->GetNbinsX()+1, "width") << endl;
 	    out.close();
@@ -848,7 +885,7 @@ if (irun==99) {            // irun==99 => pur
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
 	    out << h_data_b->Integral(0, h_data_b->GetNbinsX()+1, "width") << endl;
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
-	    out << h_mc1->Integral(0, h_mc1->GetNbinsX()+1, "width") << endl;
+	    out << h_mc1b->Integral(0, h_mc1b->GetNbinsX()+1, "width") << endl;
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
 	    out << h_mc1b_b->Integral(0, h_mc1b_b->GetNbinsX()+1, "width") << endl;
 	    out.close();
