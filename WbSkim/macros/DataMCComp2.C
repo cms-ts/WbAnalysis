@@ -689,7 +689,8 @@ if (irun==99) {            // irun==99 => pur
 
 	h_mc1b_b->SetMaximum(4*h_data->GetMaximum());
 	h_mc1b_b->SetMinimum(TMath::Max(0.002,0.25*h_data_b->GetBinContent(h_data_b->GetMinimumBin())));
-	if (title.find("w_mt")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b->GetBinContent(h_data_b->GetMinimumBin())));
+	if (title.find("_mt")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b->GetBinContent(h_data_b->GetMinimumBin())));
+	if (title.find("_pt")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.000002,0.25*h_data_b->GetBinContent(h_data_b->GetMinimumBin())));
 
 	h_mc1b_b->Draw("E5");
 	TH1F* tmp1 = (TH1F*)h_mc1b_b->Clone();
