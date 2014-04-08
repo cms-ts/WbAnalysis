@@ -677,8 +677,8 @@ process.p = cms.Path(
 #   process.demoEleDR *
 #   process.demoEleJerUp * process.demoEleJerDown *
    process.demoMuo *
-   process.demoMuoQCD * process.demoMuoFWD * process.demoMuoTOP
-   process.demoMuoBtag *
+   process.demoMuoQCD * process.demoMuoFWD * process.demoMuoTOP *
+   process.demoMuoBtag
 #   process.demoMuoPum * process.demoMuoPup *
 #   process.demoMuoUp * process.demoMuoDown *
 #   process.demoMuoPur *
