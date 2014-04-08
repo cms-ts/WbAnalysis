@@ -317,10 +317,27 @@ getattr(process,"patElectrons"+postfix).isolationValues = cms.PSet(
         pfPhotons = cms.InputTag('elPFIsoValueGamma03PFId'+postfix)
         )
 
-getattr(process,"pfIsolatedElectrons"+postfix).doDeltaBetaCorrection = False
-getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 999.
-getattr(process,"pfIsolatedMuons"+postfix).doDeltaBetaCorrection = False
-getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 999.
+getattr(process,"pfIsolatedElectrons"+postfix).doDeltaBetaCorrection = True
+getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 0.15
+getattr(process,"pfIsolatedMuons"+postfix).doDeltaBetaCorrection = True
+getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 0.12
+
+setattr(process,"pfQcdElectrons"+postfix, getattr(process,"pfIsolatedElectrons"+postfix).clone())
+setattr(process,"pfQcdMuons"+postfix, getattr(process,"pfIsolatedMuons"+postfix).clone())
+
+getattr(process,"pfQcdElectrons"+postfix).doDeltaBetaCorrection = False
+getattr(process,"pfQcdElectrons"+postfix).isolationCut = 999.
+getattr(process,"pfQcdMuons"+postfix).doDeltaBetaCorrection = False
+getattr(process,"pfQcdMuons"+postfix).isolationCut = 999.
+
+setattr(process,"qcdPatElectrons"+postfix, getattr(process,"patElectrons"+postfix).clone())
+setattr(process,"qcdPatMuons"+postfix, getattr(process,"patMuons"+postfix).clone())
+
+getattr(process,"qcdPatElectrons"+postfix).pfElectronSource = cms.InputTag('pfQcdElectrons'+postfix)
+getattr(process,"qcdPatMuons"+postfix).pfMuonSource = cms.InputTag('pfQcdMuons'+postfix)
+
+process.matchedElectronsQCD.src = cms.InputTag('qcdPatElectrons'+postfix)
+process.matchedMuonsQCD.src = cms.InputTag('qcdPatMuons'+postfix)
 
 getattr(process,"patJets"+postfix).addTagInfos = True
 
@@ -347,12 +364,16 @@ process.p = cms.Path(
    process.selectedPatMuonsTriggerMatch *
    process.matchedMuons0 *
    process.matchedMuons *
+   process.pfQcdMuonsPFlow *
+   process.qcdPatMuonsPFlow *
    process.matchedMuonsQCD *
    process.selectedTriggeredPatElectrons *
    process.selectedPatElectronsTriggerMatch *
    process.regressedElectrons *
    process.calibratedElectrons *
    process.matchedElectrons *
+   process.pfQcdElectronsPFlow *
+   process.qcdPatElectronsPFlow *
    process.matchedElectronsQCD *
    process.MyProcess
    #process.dump
