@@ -157,10 +157,10 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
    ++count_;
 
    int prescaleFactorEle=1;
-   if (electronsQCD->size()!=0 && count_%prescaleFactorEle!=0) return false;
+   if (!hasEle && electronsQCD->size()!=0 && count_%prescaleFactorEle!=0) return false;
 
    int prescaleFactorMuo=20;
-   if (muonsQCD->size()!=0 && count_%prescaleFactorMuo!=0) return false;
+   if (!hasMuo && muonsQCD->size()!=0 && count_%prescaleFactorMuo!=0) return false;
 
    for (std::vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
 
