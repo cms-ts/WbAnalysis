@@ -1794,15 +1794,37 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   int ntrgMatchesEle = 0;
 
   for (pat::ElectronCollection::const_iterator ele = electrons->begin (); ele != electrons->end (); ++ele) {
-    if (ele->triggerObjectMatches().size()>0 || lepton_ == "electronQCD") {
-      if (ele->pt()>30 && fabs(ele->eta())<2.1) {
-        vect_ele.push_back (*ele);
+
+    if ( lepton_ != "electronQCD" ) {
+      if (ele->pt()>30. &&
+	  ((fabs(ele->superCluster()->eta())<=1.442 &&
+	    fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.004 &&
+	    fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.03 &&
+	    ele->sigmaIetaIeta()<0.01 &&
+	    ele->hadronicOverEm()<0.12) ||
+	   (fabs(ele->superCluster()->eta())>=1.566 && fabs(ele->eta())<2.1 &&
+	    fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.005 &&
+	    fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.02 &&
+	    ele->sigmaIetaIeta()<0.03 &&
+	    ele->hadronicOverEm()<0.10)) &&
+	  fabs(ele->dB())<0.02 &&
+	  fabs(1./ele->ecalEnergy() - ele->eSuperClusterOverP()/ele->ecalEnergy())<0.05 &&
+	  (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() < 0.10 &&
+	  ele->passConversionVeto() &&
+	  ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits() < 1 &&
+	  ele->triggerObjectMatches().size()>0) {
+	vect_ele.push_back (*ele);
+      } else {
+	vect_ele2.push_back (*ele);
       }
     } else {
-      if (fabs(ele->eta())<2.1) {
-        vect_ele2.push_back (*ele);
+      if (ele->pt()>30 && fabs(ele->eta())<2.1) {
+        vect_ele.push_back (*ele);
+      } else {
+	vect_ele2.push_back (*ele);
       }
     }
+    
     if (ele->triggerObjectMatches().size()>0) ntrgMatchesEle++;
   }
 
@@ -1842,15 +1864,22 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   int ntrgMatchesMuo=0;
 
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
-    if (muon->triggerObjectMatches().size()>0 || lepton_ == "muonQCD") {
-      if (muon->pt()>30 && fabs(muon->eta())<2.1) {
-        vect_muon.push_back (*muon);
+
+    if ( lepton_ != "muonQCD" ) {
+      if (muon->triggerObjectMatches().size()>0 &&
+	  muon->pt()>30 && fabs(muon->eta())<2.1) {
+	vect_muon.push_back (*muon);
+      } else {
+	vect_muon2.push_back (*muon);
       }
     } else {
-      if (fabs(muon->eta())<2.1) {
-        vect_muon2.push_back (*muon);
+      if (muon->pt()>30 && fabs(muon->eta())<2.1) {
+        vect_muon.push_back (*muon);
+      } else {
+	vect_muon2.push_back (*muon);
       }
     }
+
     if (muon->triggerObjectMatches().size()>0) ntrgMatchesMuo++;
   }
 
@@ -2194,7 +2223,6 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       }
     }
   }
-  //cout << "DR(e;j) ="<<DR_ej<<"   "<<"DR(m;j) ="<<DR_mj<< endl;
 
   if (Nb > 0 && pcut_) {
     double discrBJP = vect_bjets[0].bDiscriminator("jetBProbabilityBJetTags");
@@ -2216,9 +2244,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   }
 
   wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_=="electronQCD" || lepton_=="electronTOP"))
-			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="electronFWD"));
+  			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="electronFWD"));
   wmnu_event = wmnu_event && ((vect_jets2.size()==0 && (lepton_=="muon" || lepton_=="muonQCD" || lepton_=="muonTOP"))
-			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="muonFWD"));
+  			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="muonFWD"));
 
   if (debug && Nj<1) cout << "Warning: 0 Jets in the event!" << endl;
   if (debug && Nb<1) cout << "Warning: 0 b-Jets in the event!" << endl;

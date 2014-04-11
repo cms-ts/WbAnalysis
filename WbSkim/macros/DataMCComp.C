@@ -118,12 +118,32 @@ if (irun==99) {            // irun==99 => pur
 	double c3_qcd=1.0;
 	double ec3_qcd=0.0;
 
+	double c1_t=1.0;
+	double ec1_t=0.0;
+	double c2_t=1.0;
+	double ec2_t=0.0;
+	double c3_t=1.0;
+	double ec3_t=0.0;
+
+	if (doFit==1) {
+	  if (title=="w_mt_wenu_wide") { useFitResults=0; }
+	  if (title=="w_mt_wenu_b_wide") { useFitResults=0; }
+	  if (title=="w_mt_wenu_bb_wide") { useFitResults=0; }
+	  if (title=="w_mt_wmnu_wide") { useFitResults=0; }
+	  if (title=="w_mt_wmnu_b_wide") { useFitResults=0; }
+	  if (title=="w_mt_wmnu_bb_wide") { useFitResults=0; }
+	}
+
 	ifstream in4, in5, in6;
+	ifstream in7, in8, in9;
 	if (ilepton==1) {
 	  if (useFitResults) {
 	    in4.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
 	    in5.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==5) {
@@ -131,6 +151,9 @@ if (irun==99) {            // irun==99 => pur
 	    in4.open((path + "/electronsFWD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
 	    in5.open((path + "/electronsFWD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/electronsFWD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==7) {
@@ -138,6 +161,9 @@ if (irun==99) {            // irun==99 => pur
 	    in4.open((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
 	    in5.open((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/electronsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
@@ -145,6 +171,9 @@ if (irun==99) {            // irun==99 => pur
 	    in4.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
 	    in5.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==6) {
@@ -152,6 +181,9 @@ if (irun==99) {            // irun==99 => pur
 	    in4.open((path + "/muonsFWD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
 	    in5.open((path + "/muonsFWD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/muonsFWD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==8) {
@@ -159,6 +191,9 @@ if (irun==99) {            // irun==99 => pur
 	    in4.open((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
 	    in5.open((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/muonsTOP/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==3 || ilepton==4) useFitResults=0;
@@ -166,9 +201,15 @@ if (irun==99) {            // irun==99 => pur
 	  in4 >> c1_qcd >> ec1_qcd;
 	  in5 >> c2_qcd >> ec2_qcd;
 	  in6 >> c3_qcd >> ec3_qcd;
+	  in7 >> c1_t >> ec1_t;
+	  in8 >> c2_t >> ec2_t;
+	  in9 >> c3_t >> ec3_t;
 	  in4.close();
 	  in5.close();
 	  in6.close();
+	  in7.close();
+	  in8.close();
+	  in9.close();
 	}
 
 	double Lumi2012=0;
@@ -420,13 +461,19 @@ if (irun==99) {            // irun==99 => pur
 	if (useFitResults) {
 	  if (title.find("_b")==string::npos) {
 	    h_mc5->Scale(c1_qcd);
+	    h_mc2->Scale(c1_t);
 	    if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+	    if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
 	  } else if (title.find("_b")!=string::npos && title.find("_bb")==string::npos) {
 	    h_mc5->Scale(c2_qcd);
+	    h_mc2->Scale(c2_t);
 	    if (irun==5) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+	    if (irun==5) h_mc2->Scale((c2_t+ec2_t)/c2_t);
 	  } else if (title.find("_bb")!=string::npos) {
 	    h_mc5->Scale(c3_qcd);
+	    h_mc2->Scale(c3_t);
 	    if (irun==5) h_mc5->Scale((c3_qcd+ec3_qcd)/c3_qcd);
+	    if (irun==5) h_mc2->Scale((c3_t+ec3_t)/c3_t);
 	  }
 	}
 

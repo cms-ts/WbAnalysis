@@ -587,7 +587,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	  }
 	}
       } else {
-	if (ele.Pt()>30. && fabs(ele.Eta())<2.1) index_ele2++;
+	if (ele.Pt()>10. && fabs(ele.Eta())<2.4) index_ele2++;
       }
     }
     index_ele++;
@@ -655,7 +655,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	  }
 	}
       } else {
-	if (muon.Pt()>10. && fabs(muon.Eta())<2.1) index_mu2++;
+	if (muon.Pt()>10. && fabs(muon.Eta())<2.4) index_mu2++;
       }
     }
     index_mu++;
