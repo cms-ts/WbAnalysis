@@ -74,7 +74,8 @@ private:
 
   // ----------member data ---------------------------
 
-  int count_;
+  int countEle_;
+  int countMuo_;
 
 //
 // constants, enums and typedefs
@@ -93,7 +94,8 @@ private:
 
 WbFilter::WbFilter(const edm::ParameterSet& iConfig) {
 
-  count_ = 0;
+  countEle_ = 0;
+  countMuo_ = 0;
 
 }
 
@@ -152,15 +154,23 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
      if (muon->triggerObjectMatches().size()>0) hasMuo=true;
    }
 
-   if (!hasEle && !hasMuo && electronsQCD->size()==0 && muonsQCD->size()==0) return false;
+   if (!hasEle && !hasMuo) {
 
-   ++count_;
+     if (electronsQCD->size()==0 && muonsQCD->size()==0) return false;
 
-   int prescaleFactorEle=1;
-   if (!hasEle && electronsQCD->size()!=0 && count_%prescaleFactorEle!=0) return false;
+     int prescaleFactorEle=1;
+     if (electronsQCD->size()!=0) {
+       ++countEle_;
+       if (countEle_%prescaleFactorEle!=0) return false;
+     }
 
-   int prescaleFactorMuo=20;
-   if (!hasMuo && muonsQCD->size()!=0 && count_%prescaleFactorMuo!=0) return false;
+     int prescaleFactorMuo=20;
+     if (muonsQCD->size()!=0) {
+       ++countMuo_;
+       if (countMuo_%prescaleFactorMuo!=0) return false;
+     }
+
+   }
 
    for (std::vector < pat::Jet >::const_iterator jet = jets->begin(); jet != jets->end(); ++jet) {
 
