@@ -1939,7 +1939,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   if (isMC) {
     if (wenu_event) {
-      scalFac_first_e  =  ElSF_->Val (vect_ele[0].pt(), vect_ele[0].eta());  // HLT SC: to be fixed!
+      scalFac_first_e  =  ElSF2_->Val (vect_ele[0].pt(), vect_ele[0].eta());  // HLT SC: to be fixed!
       MyWeight = MyWeight * scalFac_first_e;
     }
     if (wmnu_event) {
