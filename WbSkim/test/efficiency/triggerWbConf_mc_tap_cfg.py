@@ -410,28 +410,50 @@ process.PassingWP80 = cms.EDFilter("PATElectronRefSelector",
     cut = cms.string("")
 )
 
-process.PassingHLT = process.PassingWP80.clone()
+process.PassingWP70 = process.PassingWP80.clone()
+process.PassingWP70.cut = cms.string(
+			'(('
+			 'abs(superCluster.eta) < 1.442 &'
+			 'abs(deltaEtaSuperClusterTrackAtVtx) < 0.004 &'
+			 'abs(deltaPhiSuperClusterTrackAtVtx) < 0.03 &'
+			 'sigmaIetaIeta < 0.01 &'
+			 'hadronicOverEm < 0.12'
+			')|('
+			 'abs(superCluster.eta) > 1.566 & abs(superCluster.eta) < 2.5 &'
+			 'abs(deltaEtaSuperClusterTrackAtVtx) < 0.005 &'
+			 'abs(deltaPhiSuperClusterTrackAtVtx) < 0.02 &'
+			 'sigmaIetaIeta < 0.03 &'
+			 'hadronicOverEm < 0.10'
+			')) &'
+			'abs(dB) < 0.02 &'
+			'abs(1./ecalEnergy - eSuperClusterOverP/ecalEnergy) < 0.05 &'
+			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et < 0.10 &'
+			'passConversionVeto &'
+			'gsfTrack.trackerExpectedHitsInner.numberOfHits <= 0'
+)
+
+process.PassingHLT = process.PassingWP70.clone()
 process.PassingHLT.cut = cms.string(
-    #process.PassingWP80.cut.value() +
     "triggerObjectMatches.size > 0"
 )
 
 #  Tag & probe selection ######
 process.tagHLT = cms.EDProducer("CandViewShallowCloneCombiner",
-    decay = cms.string("PassingWP80 PassingWP80"), # charge coniugate states are implied
+    decay = cms.string("PassingWP70 PassingWP70"), # charge coniugate states are implied
     checkCharge = cms.bool(False),                           
     cut   = cms.string("40 < mass < 1000"),
 )
 
 process.allTagsAndProbes = cms.Sequence(
     process.PassingWP80 +
+    process.PassingWP70 +
     process.PassingHLT +
     process.tagHLT
 )
 
-process.McMatchWP80 = cms.EDProducer("MCTruthDeltaRMatcherNew",
+process.McMatchWP70 = cms.EDProducer("MCTruthDeltaRMatcherNew",
     matchPDGId = cms.vint32(11),
-    src = cms.InputTag("PassingWP80"),
+    src = cms.InputTag("PassingWP70"),
     distMin = cms.double(0.3),
     matched = cms.InputTag("genParticles"),
     checkCharge = cms.bool(True)
@@ -444,13 +466,13 @@ process.McMatchHLT = cms.EDProducer("MCTruthDeltaRMatcherNew",
     checkCharge = cms.bool(True)
 )
 process.mc_sequence = cms.Sequence(
-   process.McMatchWP80
+   process.McMatchWP70
 )
 
 if MC_flag:
     HLTmcTruthCommonStuff = cms.PSet(
         isMC = cms.bool(MC_flag),
-        tagMatches = cms.InputTag("McMatchWP80"),
+        tagMatches = cms.InputTag("McMatchWP70"),
         motherPdgId = cms.vint32(22,23),
         makeMCUnbiasTree = cms.bool(MC_flag),
         checkMotherInUnbiasEff = cms.bool(MC_flag),
@@ -469,7 +491,7 @@ else:
         isMC = cms.bool(False)
     )
 
-process.WP80ToHLT = cms.EDAnalyzer("TagProbeFitTreeProducer",
+process.WP70ToHLT = cms.EDAnalyzer("TagProbeFitTreeProducer",
     HLTmcTruthCommonStuff,                                
     variables = cms.PSet(
       probe_patEle_eta = cms.string("eta"),
@@ -491,12 +513,12 @@ process.WP80ToHLT = cms.EDAnalyzer("TagProbeFitTreeProducer",
     flags = cms.PSet( 
         probe_passingHLT = cms.InputTag("PassingHLT")        
     ),
-    probeMatches = cms.InputTag("McMatchWP80"),
-    allProbes = cms.InputTag("PassingWP80")
+    probeMatches = cms.InputTag("McMatchWP70"),
+    allProbes = cms.InputTag("PassingWP70")
 )
 
 process.tree_sequence = cms.Sequence(
-    process.WP80ToHLT
+    process.WP70ToHLT
 )    
 
 if MC_flag:
