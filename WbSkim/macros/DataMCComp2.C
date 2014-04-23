@@ -1,6 +1,6 @@
 #include "DataMCComp.h"
 #include "LumiLabel.C"
-#include "LumiInfo_v03.h"
+#include "LumiInfo_v08.h"
 
 #include "fixrange.C"
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v03
+VERSION=v08
 
 if [ ! -z "$1" ]; then
   VERSION=$1
