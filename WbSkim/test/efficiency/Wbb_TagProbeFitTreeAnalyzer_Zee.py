@@ -19,11 +19,11 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 
 isMC = True
 
-InputFileName = "SingleElectron_2012_merge.root"
+InputFileName = "SingleElectron_2012_tap_merge.root"
 OutputFilePrefix = "efficiency-data-"
 
 if isMC:
-    InputFileName = "DYJetsToLL.root"
+    InputFileName = "DYJetsToLL_tap.root"
     OutputFilePrefix = "efficiency-mc-"
 
 ################################################
@@ -77,14 +77,14 @@ EfficiencyBinningSpecificationMC = cms.PSet(
 ####### Efficiency  measurement
 ############################################################################################
     
-process.WP80toHLT = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
+process.WP70toHLT = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
      # IO parameters:
      InputFileNames = cms.vstring(InputFileName),
-     InputDirectoryName = cms.string("WP80ToHLT"),
+     InputDirectoryName = cms.string("WP70ToHLT"),
      InputTreeName = cms.string("fitter_tree"),
-     OutputFileName = cms.string(OutputFilePrefix+"WP80toHLT.root"),
+     OutputFileName = cms.string(OutputFilePrefix+"WP70toHLT.root"),
      #numbrer of CPUs to use for fitting
-     NumCPU = cms.uint32(1),
+     NumCPU = cms.uint32(8),
      # specifies wether to save the RooWorkspace containing the data for each bin and
      # the pdf object with the initial and final state snapshots
      SaveWorkspace = cms.bool(True),
@@ -138,6 +138,6 @@ process.WP80toHLT = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
 )
 
 process.fit = cms.Path(
-    process.WP80toHLT
+    process.WP70toHLT
 )
 

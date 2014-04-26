@@ -3,7 +3,7 @@
 void makeSF() {
 
   string pathFileData ="efficiency-data-WP80toHLT.root";
-  string pathFileMC   ="efficiency-mc-WP80toHLT.root";
+  string pathFileMC   ="efficiency-mc-WP70toHLT.root";
   
   TFile *histodata = TFile::Open (pathFileData.c_str ());
   histodata->cd ("WP80ToHLT/HLT_Ele27_WP80/fit_eff_plots");
@@ -11,7 +11,7 @@ void makeSF() {
   gDirectory->GetObject ("probe_patEle_eta_probe_patEle_et_PLOT", dataEff);
 
   TFile *histomc = TFile::Open (pathFileMC.c_str ());
-  histomc->cd ("WP80ToHLT/HLT_Ele27_WP80/fit_eff_plots");
+  histomc->cd ("WP70ToHLT/HLT_Ele27_WP80/fit_eff_plots");
   TCanvas *mcEff;
   gDirectory->GetObject ("probe_patEle_eta_probe_patEle_et_PLOT", mcEff);
   
