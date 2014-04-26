@@ -197,6 +197,7 @@ private:
 
   table* ElSF_;
   table* ElSF2_;
+  table* ElSF3_;
   table* MuSF_;
   table* MuSF2_;
   table* MuSF3_;
@@ -1939,26 +1940,25 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   if (isMC) {
     if (wenu_event) {
-      scalFac_first_e  =  ElSF2_->Val (vect_ele[0].pt(), vect_ele[0].eta());  // HLT SC: to be fixed!
+      scalFac_first_e = ElSF2_->Val (vect_ele[0].pt(), vect_ele[0].eta()) * ElSF3_->Val (vect_ele[0].pt(), vect_ele[0].eta());
       MyWeight = MyWeight * scalFac_first_e;
     }
     if (wmnu_event) {
-      scalFac_first_m  = MuSF_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF2_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF3_->Val (vect_muon[0].pt(), vect_muon[0].eta());
+      scalFac_first_m = MuSF_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF2_->Val (vect_muon[0].pt(), vect_muon[0].eta()) * MuSF3_->Val (vect_muon[0].pt(), vect_muon[0].eta());
       MyWeight = MyWeight * scalFac_first_m;
     }
   }
 
   if (isMC) {
     if (ee_event) {
-      scalFac_first_e  =  ElSF_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta());
-      scalFac_second_e =  ElSF_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta());
+      scalFac_first_e  = ElSF2_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta()) * ElSF3_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta());
+      scalFac_second_e = ElSF2_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta()) * ElSF3_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta());
       MyWeight = MyWeight * scalFac_first_e * scalFac_second_e;
     }
     if (mm_event) {
       scalFac_first_m  = MuSF_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta()) * MuSF2_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta()) * MuSF3_->Val (vect_muon[imuon0].pt(), vect_muon[imuon0].eta());
-      scalFac_second_m = MuSF2_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta()) * MuSF3_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta());
+      scalFac_second_m = MuSF_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta()) * MuSF2_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta()) * MuSF3_->Val (vect_muon[imuon1].pt(), vect_muon[imuon1].eta());
       MyWeight = MyWeight * scalFac_first_m * scalFac_second_m;
-
     }
   }
 
@@ -3613,6 +3613,7 @@ void WbAnalyzer::beginJob () {
 
   ElSF_  = new table(path_ + "/" + "ele_eff.txt");
   ElSF2_ = new table(path_ + "/" + "ele_eff2.txt");
+  ElSF3_ = new table(path_ + "/" + "ele_eff3.txt");
   MuSF_  = new table(path_ + "/" + "muon_sc_hlt.txt");
   MuSF2_ = new table(path_ + "/" + "muon_sc_id.txt");
   MuSF3_ = new table(path_ + "/" + "muon_sc_iso.txt");
@@ -3627,6 +3628,7 @@ void WbAnalyzer::endJob () {
 
   delete ElSF_;
   delete ElSF2_;
+  delete ElSF3_;
   delete MuSF_;
   delete MuSF2_;
   delete MuSF3_;
