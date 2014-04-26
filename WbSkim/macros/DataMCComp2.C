@@ -8,8 +8,8 @@ string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
 void DataMCComp2(int irun=0, string title="", int plot=0, int ilepton=1, int unfold=0) {
 
-//int useBinnedEfficiency=0; // use average efficiencies
-int useBinnedEfficiency=1; // use bin-by-bin efficiencies
+int useBinnedEfficiency=0; // use average efficiencies
+//int useBinnedEfficiency=1; // use bin-by-bin efficiencies
 
 //int useFitResults=0; // use MC predictions for c_b, c_c, c_uds, c_t, c_qcd
 int useFitResults=1;  // use fit results for c_b, c_c, c_uds, c_t, c_qcd
@@ -133,62 +133,54 @@ if (irun==99) {            // irun==99 => pur
 	double c3_qcd=1.0;
 	double ec3_qcd=0.0;
 
-	ifstream in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11;
+	ifstream in1, in2, in3, in4, in5, in6, in7, in8, in9;
 	if (ilepton==1) {
-	  in1.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + "w_first_jet_eta" + "_efficiency.dat").c_str());
-	  in2.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + "w_first_bjet_eta" + "_efficiency.dat").c_str());
 	  if (useFitResults) {
-	    in3.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
-	    in4.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_MET_doFit" + ".dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_MET_b_doFit" + ".dat").c_str());
-	    in6.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in7.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in8.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
-	    in9.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in10.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in11.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in1.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	    in2.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_MET_doFit" + ".dat").c_str());
+	    in3.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_MET_b_doFit" + ".dat").c_str());
+	    in4.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
-	  in1.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + "w_first_jet_eta" + "_efficiency.dat").c_str());
-	  in2.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + "w_first_bjet_eta" + "_efficiency.dat").c_str());
 	  if (useFitResults) {
-	    in3.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
-	    in4.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_MET_doFit" + ".dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_MET_b_doFit" + ".dat").c_str());
-	    in6.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
-	    in7.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
-	    in8.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
-	    in9.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
-	    in10.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
-	    in11.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in1.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	    in2.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_MET_doFit" + ".dat").c_str());
+	    in3.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_MET_b_doFit" + ".dat").c_str());
+	    in4.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in8.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in9.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
-	in1 >> e_W >> ee_W;
-	in2 >> e_Wb >> ee_Wb;
-	in1.close();
-	in2.close();
 	if (useFitResults) {
-	  in3 >> c_uds >> ec_uds;
-	  in3 >> c_b >> ec_b;
-	  in3 >> c_c >> ec_c;
+	  in1 >> c_uds >> ec_uds;
+	  in1 >> c_b >> ec_b;
+	  in1 >> c_c >> ec_c;
+	  in1.close();
+	  in2 >> c1_t >> ec1_t;
+	  in3 >> c2_t >> ec2_t;
+	  in2.close();
 	  in3.close();
 	  in4 >> c1_t >> ec1_t;
 	  in5 >> c2_t >> ec2_t;
+	  in6 >> c3_t >> ec3_t;
 	  in4.close();
 	  in5.close();
-	  in6 >> c1_t >> ec1_t;
-	  in7 >> c2_t >> ec2_t;
-	  in8 >> c3_t >> ec3_t;
 	  in6.close();
+	  in7 >> c1_qcd >> ec1_qcd;
+	  in8 >> c2_qcd >> ec2_qcd;
+	  in9 >> c3_qcd >> ec3_qcd;
 	  in7.close();
 	  in8.close();
-	  in9 >> c1_qcd >> ec1_qcd;
-	  in10 >> c2_qcd >> ec2_qcd;
-	  in11 >> c3_qcd >> ec3_qcd;
 	  in9.close();
-	  in10.close();
-	  in11.close();
 	}
 
 	double Lumi2012=0;
@@ -588,6 +580,21 @@ if (irun==99) {            // irun==99 => pur
 	}
 
 	if (useBinnedEfficiency==0) {
+	  ifstream in10, in11;
+	  if (ilepton==1) {
+	    in10.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
+	    in11.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
+	  }
+	  if (ilepton==2) {
+	    in10.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
+	    in11.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
+	  }
+	  in10 >> e_W >> ee_W;
+	  in11 >> e_Wb >> ee_Wb;
+	  in10.close();
+	  in11.close();
+	  e_W = e_W>0 ? e_W : 1;
+	  e_Wb = e_Wb>0 ? e_Wb : 1;
 	  if (unfold==0) {
 	    h_data->Scale(1./e_W);
 	    h_data_b->Scale(1./e_Wb);
