@@ -2,7 +2,7 @@
 
 void makeSF() {
 
-  string pathFileData ="efficiency-data-WP80toHLT.root";
+  string pathFileData ="efficiency-data-WP70toHLT.root";
   string pathFileMC   ="efficiency-mc-WP70toHLT.root";
   
   TFile *histodata = TFile::Open (pathFileData.c_str ());
