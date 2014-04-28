@@ -197,7 +197,6 @@ private:
 
   table* ElSF_;
   table* ElSF2_;
-  table* ElSF3_;
   table* MuSF_;
   table* MuSF2_;
   table* MuSF3_;
@@ -1940,7 +1939,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   if (isMC) {
     if (wenu_event) {
-      scalFac_first_e = ElSF2_->Val (vect_ele[0].pt(), vect_ele[0].eta()) * ElSF3_->Val (vect_ele[0].pt(), vect_ele[0].eta());
+      scalFac_first_e = ElSF_->Val (vect_ele[0].pt(), vect_ele[0].eta()) * ElSF2_->Val (vect_ele[0].pt(), vect_ele[0].eta());
       MyWeight = MyWeight * scalFac_first_e;
     }
     if (wmnu_event) {
@@ -1951,8 +1950,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   if (isMC) {
     if (ee_event) {
-      scalFac_first_e  = ElSF2_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta()) * ElSF3_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta());
-      scalFac_second_e = ElSF2_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta()) * ElSF3_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta());
+      scalFac_first_e  = ElSF_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta()) * ElSF2_->Val (vect_ele[iele0].pt(), vect_ele[iele0].eta());
+      scalFac_second_e = ElSF_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta()) * ElSF2_->Val (vect_ele[iele1].pt(), vect_ele[iele1].eta());
       MyWeight = MyWeight * scalFac_first_e * scalFac_second_e;
     }
     if (mm_event) {
@@ -3611,9 +3610,8 @@ void WbAnalyzer::beginJob () {
   jetCorrectionUncertainty_ = new JetCorrectionUncertainty(path_ + "/" + "Summer13_V4_DATA_Uncertainty_AK5PFchs.txt");
   LumiWeights_ = edm::LumiReWeighting(path_ + "/" + "pileup_" + pileupMC_ + ".root", path_ + "/" + "pileup_2012_" + pileupDT_ + ".root", "pileup", "pileup");
 
-  ElSF_  = new table(path_ + "/" + "ele_eff.txt");
-  ElSF2_ = new table(path_ + "/" + "ele_eff2.txt");
-  ElSF3_ = new table(path_ + "/" + "ele_eff3.txt");
+  ElSF_  = new table(path_ + "/" + "ele_sc_id_iso.txt");
+  ElSF2_ = new table(path_ + "/" + "ele_sc_hlt.txt");
   MuSF_  = new table(path_ + "/" + "muon_sc_hlt.txt");
   MuSF2_ = new table(path_ + "/" + "muon_sc_id.txt");
   MuSF3_ = new table(path_ + "/" + "muon_sc_iso.txt");
@@ -3628,7 +3626,6 @@ void WbAnalyzer::endJob () {
 
   delete ElSF_;
   delete ElSF2_;
-  delete ElSF3_;
   delete MuSF_;
   delete MuSF2_;
   delete MuSF3_;
