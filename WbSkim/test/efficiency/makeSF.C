@@ -34,12 +34,12 @@ void makeSF() {
   for (int i = 1; i<=hdata->GetNbinsX(); i++) {
     for (int j = 1; j<=hdata->GetNbinsY(); j++) {
       textfileData << std::fixed
-		 << std::setprecision(4)
-		 << std::setw(7) << hdata->GetXaxis()->GetBinLowEdge(i)
-		 << std::setw(9) << hdata->GetXaxis()->GetBinUpEdge (i)
 	         << std::setprecision(1)
                  << std::setw(6) << hdata->GetYaxis()->GetBinLowEdge(j)
 		 << std::setw(8) << hdata->GetYaxis()->GetBinUpEdge (j)
+		 << std::setprecision(4)
+		 << std::setw(7) << hdata->GetXaxis()->GetBinLowEdge(i)
+		 << std::setw(9) << hdata->GetXaxis()->GetBinUpEdge (i)
                  << std::setprecision(4)
 		 << std::setw(9) << hdata->GetBinContent(i,j)
                  << std::setw(9) << hdata->GetBinError(i,j)
@@ -55,12 +55,12 @@ void makeSF() {
   for (int i = 1; i<=hmc->GetNbinsX(); i++) {
     for (int j = 1; j<=hmc->GetNbinsY(); j++) {
       textfileMC << std::fixed
-		 << std::setprecision(4)
-		 << std::setw(7) << hmc->GetXaxis()->GetBinLowEdge(i)
-		 << std::setw(9) << hmc->GetXaxis()->GetBinUpEdge (i)
 	         << std::setprecision(1)
                  << std::setw(6) << hmc->GetYaxis()->GetBinLowEdge(j)
 		 << std::setw(8) << hmc->GetYaxis()->GetBinUpEdge (j)
+		 << std::setprecision(4)
+		 << std::setw(7) << hmc->GetXaxis()->GetBinLowEdge(i)
+		 << std::setw(9) << hmc->GetXaxis()->GetBinUpEdge (i)
                  << std::setprecision(4)
 		 << std::setw(9) << hmc->GetBinContent(i,j)
                  << std::setw(9) << hmc->GetBinError(i,j)
@@ -75,12 +75,12 @@ void makeSF() {
   for (int i = 1; i<=hsf->GetNbinsX(); i++) {
     for (int j = 1; j<=hsf->GetNbinsY(); j++) {
       textfileSF << std::fixed
-		 << std::setprecision(4)
-		 << std::setw(7) << hsf->GetXaxis()->GetBinLowEdge(i)
-		 << std::setw(9) << hsf->GetXaxis()->GetBinUpEdge (i)
 	         << std::setprecision(1)
                  << std::setw(6) << hsf->GetYaxis()->GetBinLowEdge(j)
 		 << std::setw(8) << hsf->GetYaxis()->GetBinUpEdge (j)
+		 << std::setprecision(4)
+		 << std::setw(7) << hsf->GetXaxis()->GetBinLowEdge(i)
+		 << std::setw(9) << hsf->GetXaxis()->GetBinUpEdge (i)
                  << std::setprecision(4)
 		 << std::setw(9) << hsf->GetBinContent(i,j)
                  << std::setw(9) << hsf->GetBinError(i,j)
