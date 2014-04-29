@@ -3478,22 +3478,22 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   }
 
   if (wenu_event && mt_cut_wenu && vtx_cut) {
-    h_scaleFactor_first_ele->Fill (scalFac_first_e, MyWeight / (scalFac_first_e * scalFac_second_e));
-    h_scaleFactor_second_ele->Fill (scalFac_second_e, MyWeight / (scalFac_first_e * scalFac_second_e));
+    h_scaleFactor_first_ele->Fill (scalFac_first_e);
+    h_scaleFactor_second_ele->Fill (scalFac_second_e);
     if (Nb == 1) {
       if (isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
-        b_scaleFactor_first_ele->Fill (scalFac_first_e, MyWeight / (scalFac_first_e * scalFac_second_e));
-        b_scaleFactor_second_ele->Fill (scalFac_second_e, MyWeight / (scalFac_first_e * scalFac_second_e));
+        b_scaleFactor_first_ele->Fill (scalFac_first_e);
+        b_scaleFactor_second_ele->Fill (scalFac_second_e);
       }
     }
   }
   if (wmnu_event && mt_cut_wmnu && vtx_cut) {
-    h_scaleFactor_first_muon->Fill (scalFac_first_m, MyWeight / (scalFac_first_m * scalFac_second_m));
-    h_scaleFactor_second_muon->Fill (scalFac_second_m, MyWeight / (scalFac_first_m * scalFac_second_m));
+    h_scaleFactor_first_muon->Fill (scalFac_first_m);
+    h_scaleFactor_second_muon->Fill (scalFac_second_m);
     if (Nb == 1) {
       if (isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
-        b_scaleFactor_first_muon->Fill (scalFac_first_m, MyWeight / (scalFac_first_m * scalFac_second_m));
-        b_scaleFactor_second_muon->Fill (scalFac_second_m, MyWeight / (scalFac_first_m * scalFac_second_m));
+        b_scaleFactor_first_muon->Fill (scalFac_first_m);
+        b_scaleFactor_second_muon->Fill (scalFac_second_m);
       }
     }
   }
