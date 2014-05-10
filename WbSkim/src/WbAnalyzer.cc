@@ -1818,7 +1818,22 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	vect_ele2.push_back (*ele);
       }
     } else {
-      if (ele->pt()>30 && fabs(ele->eta())<2.1) {
+      if (ele->pt()>30 &&
+	  ((fabs(ele->superCluster()->eta())<=1.442 &&
+	    fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.004 &&
+	    fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.03 &&
+	    ele->sigmaIetaIeta()<0.01 &&
+	    ele->hadronicOverEm()<0.12) ||
+	   (fabs(ele->superCluster()->eta())>=1.566 && fabs(ele->eta())<2.1 &&
+	    fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.005 &&
+	    fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.02 &&
+	    ele->sigmaIetaIeta()<0.03 &&
+	    ele->hadronicOverEm()<0.10)) &&
+	  fabs(ele->dB())<0.02 &&
+	  fabs(1./ele->ecalEnergy() - ele->eSuperClusterOverP()/ele->ecalEnergy())<0.05 &&
+	  (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() >= 0.15 &&
+	  ele->passConversionVeto() &&
+	  ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits() < 1) {
         vect_ele.push_back (*ele);
       } else {
 	vect_ele2.push_back (*ele);
