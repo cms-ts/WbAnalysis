@@ -1882,6 +1882,14 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
     if ( lepton_ != "muonQCD" ) {
       if (muon->pt()>30 && fabs(muon->eta())<2.1 &&
+	  muon->isGlobalMuon() && muon->isPFMuon() &&
+	  muon->globalTrack()->normalizedChi2() < 10 &&
+	  muon->track()->hitPattern().trackerLayersWithMeasurement() > 5 &&
+	  muon->globalTrack()->hitPattern().numberOfValidMuonHits() > 0 &&
+	  muon->innerTrack()->hitPattern().numberOfValidPixelHits() > 0 &&
+	  fabs(muon->dB()) < 0.2 &&
+	  muon->numberOfMatchedStations() > 1 &&
+	  (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() < 0.12 &&
 	  muon->triggerObjectMatches().size()>0) {
 	vect_muon.push_back (*muon);
       } else {
