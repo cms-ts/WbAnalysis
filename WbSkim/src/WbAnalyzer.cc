@@ -1866,8 +1866,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
 
     if ( lepton_ != "muonQCD" ) {
-      if (muon->triggerObjectMatches().size()>0 &&
-	  muon->pt()>30 && fabs(muon->eta())<2.1) {
+      if (muon->pt()>30 && fabs(muon->eta())<2.1 &&
+	  muon->triggerObjectMatches().size()>0) {
 	vect_muon.push_back (*muon);
       } else {
 	vect_muon2.push_back (*muon);
