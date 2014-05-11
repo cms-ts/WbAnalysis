@@ -1831,7 +1831,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	    ele->hadronicOverEm()<0.10)) &&
 	  fabs(ele->dB())<0.02 &&
 	  fabs(1./ele->ecalEnergy() - ele->eSuperClusterOverP()/ele->ecalEnergy())<0.05 &&
-	  (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() >= 0.15 &&
+	  (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() >= 0.10 &&
 	  ele->passConversionVeto() &&
 	  ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits() < 1) {
         vect_ele.push_back (*ele);
@@ -1904,7 +1904,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	  muon->innerTrack()->hitPattern().numberOfValidPixelHits() > 0 &&
 	  fabs(muon->dB()) < 0.2 &&
 	  muon->numberOfMatchedStations() > 1 &&
-	  (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() > 0.20) {
+	  (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() >= 0.12) {
         vect_muon.push_back (*muon);
       } else {
 	vect_muon2.push_back (*muon);
