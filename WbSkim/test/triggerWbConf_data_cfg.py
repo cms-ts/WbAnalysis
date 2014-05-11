@@ -108,10 +108,10 @@ process.goodJets = selectedPatJets.clone(
 			'numberOfDaughters > 1 &'
 			'neutralHadronEnergyFraction < 0.99 &'
 			'neutralEmEnergyFraction < 0.99 &'
-			'(abs(eta) <= 2.4 &'
+			'((abs(eta) <= 2.4 &'
 			'chargedEmEnergyFraction < 0.99 &'
 			'chargedHadronEnergyFraction > 0 &'
-			'chargedMultiplicity > 0) | (2.4 < abs(eta) < 5.0)'
+			'chargedMultiplicity > 0) | (2.4 < abs(eta) < 5.0))'
 		)
 )
 
