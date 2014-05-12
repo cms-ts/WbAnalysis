@@ -178,8 +178,7 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
 	 muon->innerTrack()->hitPattern().numberOfValidPixelHits() > 0 &&
 	 fabs(muon->dB()) < 0.2 &&
 	 muon->numberOfMatchedStations() > 1 &&
-	 (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() < 0.12
-	 ) {
+	 (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() < 0.12) {
        hasMuo=true;
      }
    }

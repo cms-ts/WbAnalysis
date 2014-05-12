@@ -1839,8 +1839,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	vect_ele2.push_back (*ele);
       }
     }
-    
     if (ele->triggerObjectMatches().size()>0) ntrgMatchesEle++;
+
   }
 
   // Computing Mt:
@@ -1863,7 +1863,6 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   math::XYZTLorentzVector z_ee;
 
   if (iele1!=-1) {
-
     z_ee = vect_ele[iele0].p4() + vect_ele[iele1].p4();
     diele_mass = z_ee.mass();
     diele_pt = z_ee.pt();
@@ -1910,8 +1909,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	vect_muon2.push_back (*muon);
       }
     }
-
     if (muon->triggerObjectMatches().size()>0) ntrgMatchesMuo++;
+
   }
 
   // Computing Mt:
