@@ -145,15 +145,45 @@ bool WbFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
    bool hasEle=false;
 
    for (pat::ElectronCollection::const_iterator ele = electrons->begin (); ele != electrons->end (); ++ele) {
-     if (ele->triggerObjectMatches().size()>0) hasEle=true;
+     if (ele->pt()>30. &&
+	 ((fabs(ele->superCluster()->eta())<=1.442 &&
+	   fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.004 &&
+	   fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.03 &&
+	   ele->sigmaIetaIeta()<0.01 &&
+	   ele->hadronicOverEm()<0.12) ||
+	  (fabs(ele->superCluster()->eta())>=1.566 && fabs(ele->eta())<2.1 &&
+	   fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.005 &&
+	   fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.02 &&
+	   ele->sigmaIetaIeta()<0.03 &&
+	   ele->hadronicOverEm()<0.10)) &&
+	 fabs(ele->dB())<0.02 &&
+	 fabs(1./ele->ecalEnergy() - ele->eSuperClusterOverP()/ele->ecalEnergy())<0.05 &&
+	 (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() < 0.10 &&
+	 ele->passConversionVeto() &&
+	 ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits() < 1 &&
+	 ele->triggerObjectMatches().size()>0) {
+       hasEle=true;
+     }
    }
    
    bool hasMuo=false;
    
    for (pat::MuonCollection::const_iterator muon = muons->begin (); muon != muons->end (); ++muon) {
-     if (muon->triggerObjectMatches().size()>0) hasMuo=true;
+     if (muon->triggerObjectMatches().size()>0 &&
+	 muon->pt()>30 && fabs(muon->eta())<2.1 &&
+	 muon->isGlobalMuon() && muon->isPFMuon() &&
+	 muon->globalTrack()->normalizedChi2() < 10 &&
+	 muon->track()->hitPattern().trackerLayersWithMeasurement() > 5 &&
+	 muon->globalTrack()->hitPattern().numberOfValidMuonHits() > 0 &&
+	 muon->innerTrack()->hitPattern().numberOfValidPixelHits() > 0 &&
+	 fabs(muon->dB()) < 0.2 &&
+	 muon->numberOfMatchedStations() > 1 &&
+	 (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() < 0.12
+	 ) {
+       hasMuo=true;
+     }
    }
-
+   
    if (!hasEle && !hasMuo) {
 
      if (electronsQCD->size()==0 && muonsQCD->size()==0) return false;
