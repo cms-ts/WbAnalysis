@@ -19,6 +19,10 @@ while [ $i -le 2 ]; do
 
   root -l -q -b DataMCComp2.C+\($d,\"w_mt_wenu\",1,$i\)
   root -l -q -b DataMCComp2.C+\($d,\"w_mt_wmnu\",1,$i\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_delta_wenu\",1,$i\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_delta_wmnu\",1,$i\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_deltaR_wenu\",1,$i\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_deltaR_wmnu\",1,$i\)
 
   root -l -q -b DataMCComp2.C+\($d,\"w_first_jet_pt\",1,$i\)
   root -l -q -b DataMCComp2.C+\($d,\"w_first_jet_eta\",1,$i\)
