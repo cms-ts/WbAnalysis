@@ -529,7 +529,8 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   met.SetPtEtaPhiM(0.,0.,0.,0.);
 
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
-    if ((fabs(itgen->pdgId())==12 || fabs(itgen->pdgId())==14 || fabs(itgen->pdgId())==16) && itgen->status()==1) { // loop over gen electrons
+    if ((fabs(itgen->pdgId())==12 || fabs(itgen->pdgId())==14 || fabs(itgen->pdgId())==16) && 
+	itgen->status()==1 && fabs(itgen->eta())<5.0) { // loop over gen electrons
       TLorentzVector temp_neutrino;
       temp_neutrino.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
       met += temp_neutrino;
@@ -894,8 +895,8 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     }
   }
 
-  wenu_event = wenu_event && !ist && Nj>1 && Nb>0 && Nj2==0;
-  wmnu_event = wmnu_event && !ist && Nj>1 && Nb>0 && Nj2==0;
+  wenu_event = wenu_event && !ist && Nj==2 && Nb>0 && Nj2==0;
+  wmnu_event = wmnu_event && !ist && Nj==2 && Nb>0 && Nj2==0;
 
 
   // ++++++++ EVENT YIELDS:
