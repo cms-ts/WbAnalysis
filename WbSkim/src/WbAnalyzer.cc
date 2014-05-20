@@ -1861,7 +1861,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	    ele->hadronicOverEm()<0.10)) &&
 	  fabs(ele->dB())<0.02 &&
 	  fabs(1./ele->ecalEnergy() - ele->eSuperClusterOverP()/ele->ecalEnergy())<0.05 &&
-	  (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() >= 0.10 &&
+	  (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() >= 0.15 &&
 	  ele->passConversionVeto() &&
 	  ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits() < 1) {
         vect_ele.push_back (*ele);
@@ -1933,7 +1933,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	  muon->innerTrack()->hitPattern().numberOfValidPixelHits() > 0 &&
 	  fabs(muon->dB()) < 0.2 &&
 	  muon->numberOfMatchedStations() > 1 &&
-	  (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() >= 0.12) {
+	  (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() >= 0.20) {
         vect_muon.push_back (*muon);
       } else {
 	vect_muon2.push_back (*muon);
@@ -1980,8 +1980,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (vect_muon.size()==1 && vect_muon2.size()==0 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
   }
   if (lepton_ == "electronQCD" || lepton_ == "muonQCD") {
-    if (vect_ele.size()==1 && vect_muon.size()==0 && vect_muon2.size()==0) wenu_event = true;
-    if (vect_muon.size()==1 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
+    if (vect_ele.size()==1 && vect_ele2.size()==0 && vect_muon.size()==0 && vect_muon2.size()==0) wenu_event = true;
+    if (vect_muon.size()==1 && vect_muon2.size()==0 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
   }
   if (lepton_ == "electronFWD" || lepton_ == "muonFWD") {
     if (vect_ele.size()==1 && vect_ele2.size()==0 && vect_muon.size()==0 && vect_muon2.size()==0) wenu_event = true;
@@ -2197,7 +2197,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
 
     // Fill vector with forward jets (most likely from single-top):
-    if (fabs(jetNew.eta()) > 2.4 && fabs(jetNew.eta()) < 5.0 && jetNew.pt() > 25) {
+    if (fabs(jetNew.eta()) >= 2.4 && fabs(jetNew.eta()) < 5.0 && jetNew.pt() > 25) {
 
       vect_jets2.push_back (jetNew);
 
@@ -2303,9 +2303,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   }
 
   wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_=="electronQCD" || lepton_=="electronTOP"))
-  			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="electronFWD"));
+  			      || (vect_jets2.size()==1 && Nb==1 && lepton_=="electronFWD"));
   wmnu_event = wmnu_event && ((vect_jets2.size()==0 && (lepton_=="muon" || lepton_=="muonQCD" || lepton_=="muonTOP"))
-  			      || (vect_jets2.size()>0 && Nb==1 && lepton_=="muonFWD"));
+  			      || (vect_jets2.size()==1 && Nb==1 && lepton_=="muonFWD"));
 
   if (debug && Nj<1) cout << "Warning: 0 Jets in the event!" << endl;
   if (debug && Nb<1) cout << "Warning: 0 b-Jets in the event!" << endl;
