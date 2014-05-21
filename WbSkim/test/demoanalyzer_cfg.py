@@ -188,5 +188,4 @@ process.demoMuoJerDown = cms.EDProducer('WbAnalyzer',
 process.TFileService = cms.Service("TFileService",
 	fileName = cms.string('WbTree.root')
 )
-process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoEleTOP*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD*process.demoMuoTOP)
-#process.p = cms.Path(process.demoEle*process.demoElePum*process.demoElePup*process.demoEleUp*process.demoEleDown*process.demoMuo*process.demoMuoPum*process.demoMuoPup*process.demoMuoUp*process.demoMuoDown*process.demoEleBtag*process.demoMuoBtag*process.demoElePur*process.demoMuoPur*process.demoEleDR*process.demoMuoDR*process.demoEleJerUp*process.demoEleJerDown*process.demoMuoJerUp*process.demoMuoJerDown)
+process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoEleTOP*process.demoElePum*process.demoElePup*process.demoEleUp*process.demoEleDown*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD*process.demoMuoTOP*process.demoMuoPum*process.demoMuoPup*process.demoMuoUp*process.demoMuoDown*process.demoEleBtag*process.demoMuoBtag*process.demoElePur*process.demoMuoPur*process.demoEleDR*process.demoMuoDR*process.demoEleJerUp*process.demoEleJerDown*process.demoMuoJerUp*process.demoMuoJerDown)
