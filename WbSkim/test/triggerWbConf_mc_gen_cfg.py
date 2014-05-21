@@ -493,6 +493,7 @@ process.demoMuoBtag = cms.EDProducer('WbAnalyzer',
 	usePartonFlavour = cms.untracked.bool(True)
 )
 process.demoElePur = cms.EDProducer('WbAnalyzer',
+	path = cms.untracked.string("."),
         pileupMC  = cms.untracked.string("S10"),
         pileupDT  = cms.untracked.string("ee"),
         lepton  = cms.untracked.string("electron"),
