@@ -23,9 +23,6 @@ root -l -q -b DataMCComp6.C+\($d,\"w_first_jet_mass\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_jet_pt\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_jet_eta\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_jet_mass\",1\)
-root -l -q -b DataMCComp6.C+\($d,\"w_third_jet_pt\",1\)
-root -l -q -b DataMCComp6.C+\($d,\"w_third_jet_eta\",1\)
-root -l -q -b DataMCComp6.C+\($d,\"w_third_jet_mass\",1\)
 
 root -l -q -b DataMCComp6.C+\($d,\"w_first_bjet_pt\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_first_bjet_eta\",1\)
@@ -33,8 +30,5 @@ root -l -q -b DataMCComp6.C+\($d,\"w_first_bjet_mass\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_bjet_pt\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_bjet_eta\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_bjet_mass\",1\)
-root -l -q -b DataMCComp6.C+\($d,\"w_third_bjet_pt\",1\)
-root -l -q -b DataMCComp6.C+\($d,\"w_third_bjet_eta\",1\)
-root -l -q -b DataMCComp6.C+\($d,\"w_third_bjet_mass\",1\)
 
 exit
