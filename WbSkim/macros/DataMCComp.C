@@ -109,6 +109,9 @@ if (irun==99) {            // irun==99 => pur
   postfix="Pur";
 }
 
+// skip QCD, TOP, FWD samples
+if (ilepton>=3 && ilepton<=8) postfix="";
+
 	/* QCD background */
 
 	double c1_qcd=1.0;

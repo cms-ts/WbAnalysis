@@ -96,6 +96,9 @@ if (irun==99) {            // irun==99 => pur
   postfix="Pur";
 }
 
+// skip TOP, FWD samples (for QCD, see inline below)
+if (ilepton>=3 && ilepton<=6) postfix="";
+
       double Lumi2012=0;
       
       if (ilepton==1||ilepton==3||ilepton==5) Lumi2012 = Lumi2012_ele;
@@ -164,9 +167,9 @@ if (irun==99) {            // irun==99 => pur
       TFile *mc6 = TFile::Open((path + "/" + version + "/" + "WW.root").c_str());
       TFile *mc7 = TFile::Open((path + "/" + version + "/" + "DYJetsToLL.root").c_str());
       TFile *mc8 = TFile::Open((path + "/" + version + "/" + "T_merge.root").c_str());
-			       
+
       string title_fit = title;
- 
+
       if (ilepton==1) data->cd(("demoEle"+postfix).c_str());
       if (ilepton==2) data->cd(("demoMuo"+postfix).c_str());
       if (ilepton==3) data->cd(("demoEleFWD"+postfix).c_str());
@@ -174,8 +177,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) data->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) data->cd(("demoMuoTOP"+postfix).c_str());
       h_data = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) data_fit->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) data_fit->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) data_fit->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) data_fit->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) data_fit->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) data_fit->cd("demoMuoQCD");
       h_data_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc1->cd(("demoEle"+postfix).c_str());
@@ -185,8 +190,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) mc1->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc1->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc1 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc1->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) mc1->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) mc1->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) mc1->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc1->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) mc1->cd("demoMuoQCD");
       TH1F* h_mc1_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc2->cd(("demoEle"+postfix).c_str());
@@ -196,8 +203,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) mc2->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc2->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc2 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc2->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) mc2->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) mc2->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) mc2->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc2->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) mc2->cd("demoMuoQCD");
       TH1F* h_mc2_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
       
       if (ilepton==1) mc3->cd(("demoEle"+postfix).c_str());
@@ -207,8 +216,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) mc3->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc3->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc3 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc3->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) mc3->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) mc3->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) mc3->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc3->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) mc3->cd("demoMuoQCD");
       TH1F* h_mc3_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc4->cd(("demoEle"+postfix).c_str());
@@ -218,8 +229,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) mc4->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc4->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc4 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc4->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) mc4->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) mc4->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) mc4->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc4->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) mc4->cd("demoMuoQCD");
       TH1F* h_mc4_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
 //    if (ilepton==1) mc5->cd(("demoEle"+postfix).c_str());
@@ -229,8 +242,10 @@ if (irun==99) {            // irun==99 => pur
 //    if (ilepton==5) mc5->cd(("demoEleTOP"+postfix).c_str());
 //    if (ilepton==6) mc5->cd(("demoMuoTOP"+postfix).c_str());
 //    TH1F* h_mc5 = (TH1F*)gDirectory->Get(title.c_str());
-//    if (ilepton==1) mc5->cd(("demoEleQCD"+postfix).c_str());
-//    if (ilepton==2) mc5->cd(("demoMuoQCD"+postfix).c_str());
+//    //if (ilepton==1) mc5->cd(("demoEleQCD"+postfix).c_str());
+//    //if (ilepton==2) mc5->cd(("demoMuoQCD"+postfix).c_str());
+//    if (ilepton==1) mc5->cd("demoEleQCD");
+//    if (ilepton==2) mc5->cd("demoMuoQCD");
 //    TH1F* h_mc5_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc6->cd(("demoEle"+postfix).c_str());
@@ -240,8 +255,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) mc6->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc6->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc6 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc6->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) mc6->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) mc6->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) mc6->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc6->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) mc6->cd("demoMuoQCD");
       TH1F* h_mc6_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc7->cd(("demoEle"+postfix).c_str());
@@ -251,8 +268,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) mc7->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc7->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc7 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc7->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) mc7->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) mc7->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) mc7->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc7->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) mc7->cd("demoMuoQCD");
       TH1F* h_mc7_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc8->cd(("demoEle"+postfix).c_str());
@@ -262,8 +281,10 @@ if (irun==99) {            // irun==99 => pur
       if (ilepton==5) mc8->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc8->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc8 = (TH1F*)gDirectory->Get(title.c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc8->cd(("demoEleQCD"+postfix).c_str());
-      if (ilepton==2||ilepton==4||ilepton==6) mc8->cd(("demoMuoQCD"+postfix).c_str());
+      //if (ilepton==1||ilepton==3||ilepton==5) mc8->cd(("demoEleQCD"+postfix).c_str());
+      //if (ilepton==2||ilepton==4||ilepton==6) mc8->cd(("demoMuoQCD"+postfix).c_str());
+      if (ilepton==1||ilepton==3||ilepton==5) mc8->cd("demoEleQCD");
+      if (ilepton==2||ilepton==4||ilepton==6) mc8->cd("demoMuoQCD");
       TH1F* h_mc8_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       h_data->Sumw2();
