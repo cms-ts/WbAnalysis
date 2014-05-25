@@ -958,6 +958,8 @@ string subdir="0";
 
 	  h_mcg_b->SetMaximum(4*h_data_tot->GetMaximum());
 	  h_mcg_b->SetMinimum(TMath::Max(0.002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
+	  if (title.find("_mt")!=string::npos) h_mcg_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
+	  if (title.find("_pt")!=string::npos) h_mcg_b->SetMinimum(TMath::Max(0.000002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 
 	  h_mcg_b->Draw("E5");
 	  TH1F* tmp2 = (TH1F*)h_mcg_b->Clone();

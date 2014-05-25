@@ -688,6 +688,8 @@ string subdir="0";
 
 	  h_mc1b_b->SetMaximum(4*h_data_tot->GetMaximum());
 	  h_mc1b_b->SetMinimum(TMath::Max(0.002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
+	  if (title.find("_mt")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
+	  if (title.find("_pt")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.000002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 
 	  h_mc1b_b->Draw("E5");
 	  TH1F* tmp1 = (TH1F*)h_mc1b_b->Clone();
@@ -732,8 +734,8 @@ string subdir="0";
 	  tmp4->SetFillColor(0);
 	  if (drawInclusive) tmp4->DrawClone("HISTLSAME");
 
-	  h_data_tot->SetMarkerColor(kRed);
-	  h_data_tot->SetLineColor(kRed);
+	  h_data_tot->SetMarkerColor(kRed+1);
+	  h_data_tot->SetLineColor(kRed+1);
 	  h_data_tot->SetMarkerStyle(20);
 	  h_data_tot->SetMarkerSize (0.7);
 	  h_data_stat->SetLineColor(kBlack);
