@@ -12,7 +12,7 @@ TH1F* read(string subdir, string title, int ilepton) {
 // to be removed when using unfolded data
   string title_tmp = title;
   if (title_tmp.find("_bjet_")==string::npos) {
-    title_tmp = title_tmp + "_b";
+    if (title_tmp.find("_b")==string::npos) title_tmp = title_tmp + "_b";
   }
   if (ilepton==1) {
     //file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/unfolding/" + title + "_unfolding.root").c_str());
@@ -122,8 +122,7 @@ string subdir="0";
 	if (title.find("_bjet_")!=string::npos) {
 	  title.erase(title.find("_bjet_")+1, 1);
 	} else {
-// to be restored when using unfolded data
-//	  title_b = title + "_b";
+	  title_b = title + "_b";
         }
 
 	TH1F* h_data;
