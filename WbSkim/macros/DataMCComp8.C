@@ -109,8 +109,8 @@ string subdir="0";
 	  w_data[i] = read(subdir, title, i+1);
 	  w_data_b[i] = read(subdir, title_b, i+1);
 // to be restored when using unfolded data
-	  //w_data[i]->Scale(1./Lumi2012, "width");
-	  //w_data_b[i]->Scale(1./Lumi2012, "width");
+//	  w_data[i]->Scale(1./Lumi2012, "width");
+//	  w_data_b[i]->Scale(1./Lumi2012, "width");
 	  if (isratio==1) {
 	    w_data_b[i]->Divide(w_data[i]);
 	    w_data_b[i]->Scale(100.);

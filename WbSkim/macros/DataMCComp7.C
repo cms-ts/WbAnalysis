@@ -216,12 +216,12 @@ string subdir="0";
         }
 
 // to be restored when using unfolded data
-	//h_data->Scale(1./Lumi2012, "width");
-	//h_data_b->Scale(1./Lumi2012, "width");
-	for (int i=0;i<NMAX;i++) {
-	  if (h_data_scan[i]) h_data_scan[i]->Scale(1./Lumi2012, "width");
-	  if (h_data_b_scan[i]) h_data_b_scan[i]->Scale(1./Lumi2012, "width");
-	}
+//	h_data->Scale(1./Lumi2012, "width");
+//	h_data_b->Scale(1./Lumi2012, "width");
+//	for (int i=0;i<NMAX;i++) {
+//	  if (h_data_scan[i]) h_data_scan[i]->Scale(1./Lumi2012, "width");
+//	  if (h_data_b_scan[i]) h_data_b_scan[i]->Scale(1./Lumi2012, "width");
+//	}
 	h_mc1->Scale(1./Lumi2012, "width");
 	h_mc1b_b->Scale(1./Lumi2012, "width");
 	if (isratio==1) {
