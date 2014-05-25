@@ -9,13 +9,18 @@ string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 TH1F* read(string subdir, string title, int ilepton) {
   TH1F* hist;
   TFile* file=0;
+// to be removed when using unfolded data
+  string title_tmp = title;
+  if (title_tmp.find("_bjet_")==string::npos) {
+    title_tmp = title_tmp + "_b";
+  }
   if (ilepton==1) {
     //file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/unfolding/" + title + "_unfolding.root").c_str());
-    file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/xsecs/" + title + "_xsecs.root").c_str());
+    file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/xsecs/" + title_tmp + "_xsecs.root").c_str());
   }
   if (ilepton==2) {
     //file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/unfolding/" + title + "_unfolding.root").c_str());
-    file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/xsecs/" + title + "_xsecs.root").c_str());
+    file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/xsecs/" + title_tmp + "_xsecs.root").c_str());
   }
   hist = (TH1F*)gDirectory->Get(title.c_str())->Clone();
   hist->SetDirectory(0);
@@ -117,11 +122,9 @@ string subdir="0";
 	if (title.find("_bjet_")!=string::npos) {
 	  title.erase(title.find("_bjet_")+1, 1);
 	} else {
-	  title_b = title + "_b";
+// to be restored when using unfolded data
+//	  title_b = title + "_b";
         }
-// FIXME
-	title = title + "_b";
-// FIXME
 
 	TH1F* h_data;
 	TH1F* h_data_b;
@@ -634,7 +637,8 @@ string subdir="0";
 	}
 
 	TPad *pad1 = new TPad("pad1","pad1",0,0.3,1,1);
-	pad1->SetBottomMargin(0.001);
+	pad1->SetTopMargin(0.115);
+	pad1->SetBottomMargin(0.0001);
 	pad1->Draw();
 	pad1->cd();
 
