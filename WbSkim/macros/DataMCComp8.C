@@ -19,11 +19,16 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
     if (title=="w_mass_Zj_b") title_tmp="w_mass_Zj_ee_b";
     if (title=="w_mt") title_tmp="w_mt_wenu";
     if (title=="w_mt_b") title_tmp="w_mt_wenu_b";
+// to be removed when using unfolded data
+    string title_tmp2 = title_tmp;
+    if (title_tmp2.find("_bjet_")==string::npos) {
+      if (title_tmp2.find("_b")==string::npos) title_tmp2 = title_tmp2 + "_b";
+    }
     if (file) {
       file->cd("demoEleGen");
     } else {
       //file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/unfolding/" + title_tmp + "_unfolding.root").c_str());
-      file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/xsecs/" + title_tmp + "_xsecs.root").c_str());
+      file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
     }
   }
   if (ilepton==2) {
@@ -35,11 +40,16 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
     if (title=="w_mass_Zj_b") title_tmp="w_mass_Zj_mm_b";
     if (title=="w_mt") title_tmp="w_mt_wmnu";
     if (title=="w_mt_b") title_tmp="w_mt_wmnu_b";
+// to be removed when using unfolded data
+    string title_tmp2 = title_tmp;
+    if (title_tmp2.find("_bjet_")==string::npos) {
+      if (title_tmp2.find("_b")==string::npos) title_tmp2 = title_tmp2 + "_b";
+    }
     if (file) {
       file->cd("demoMuoGen");
     } else {
       //file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/unfolding/" + title_tmp + "_unfolding.root").c_str());
-      file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/xsecs/" + title_tmp + "_xsecs.root").c_str());
+      file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
     }
   }
   hist = (TH1F*)gDirectory->Get(title_tmp.c_str())->Clone();
@@ -99,9 +109,6 @@ string subdir="0";
 	} else {
 	  title_b = title + "_b";
 	}
-// FIXME
-	title = title + "_b";
-// FIXME
 
 	TH1F* w_data[2];
 	TH1F* w_data_b[2];
@@ -907,6 +914,7 @@ string subdir="0";
 	}
 
 	TPad *pad1 = new TPad("pad1","pad1",0,0.3,1,1);
+	pad1->SetTopMargin(0.115);
 	pad1->SetBottomMargin(0.001);
 	pad1->Draw();
 	pad1->cd();
