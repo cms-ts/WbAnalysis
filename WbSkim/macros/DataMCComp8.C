@@ -986,8 +986,8 @@ string subdir="0";
 	  tmp4->SetFillColor(0);
 	  if (drawInclusive) tmp4->DrawClone("HISTLSAME");
 
-	  h_data_tot->SetMarkerColor(kRed);
-	  h_data_tot->SetLineColor(kRed);
+	  h_data_tot->SetMarkerColor(kRed+1);
+	  h_data_tot->SetLineColor(kRed+1);
 	  h_data_tot->SetMarkerStyle(20);
 	  h_data_tot->SetMarkerSize (0.7);
 	  h_data_stat->SetLineColor(kBlack);
