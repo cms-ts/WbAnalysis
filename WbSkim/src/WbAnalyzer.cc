@@ -865,6 +865,11 @@ private:
   TH1F*     b_MET;
   TH1F*     c_MET;
   TH1F*     t_MET;
+  TH1F*     h_MET_phi;
+  TH1F*     w_MET_phi;
+  TH1F*     b_MET_phi;
+  TH1F*     c_MET_phi;
+  TH1F*     t_MET_phi;
   TH1F*     w_MET_sign;
   TH1F*     b_MET_sign;
   TH1F*     c_MET_sign;
@@ -875,6 +880,11 @@ private:
   TH1F*     b_MET_b;
   TH1F*     c_MET_b;
   TH1F*     t_MET_b;
+  TH1F*     h_MET_phi_b;
+  TH1F*     w_MET_phi_b;
+  TH1F*     b_MET_phi_b;
+  TH1F*     c_MET_phi_b;
+  TH1F*     t_MET_phi_b;
   TH1F*     w_MET_sign_b;
   TH1F*     b_MET_sign_b;
   TH1F*     c_MET_sign_b;
@@ -885,6 +895,11 @@ private:
   TH1F*     b_MET_bb;
   TH1F*     c_MET_bb;
   TH1F*     t_MET_bb;
+  TH1F*     h_MET_phi_bb;
+  TH1F*     w_MET_phi_bb;
+  TH1F*     b_MET_phi_bb;
+  TH1F*     c_MET_phi_bb;
+  TH1F*     t_MET_phi_bb;
   TH1F*     w_MET_sign_bb;
   TH1F*     b_MET_sign_bb;
   TH1F*     c_MET_sign_bb;
@@ -1589,6 +1604,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_MET =               fs->make < TH1F > ("b_MET",             "b_MET;MET [GeV]", 50, 0., 200.);
   c_MET =               fs->make < TH1F > ("c_MET",             "c_MET;MET [GeV]", 50, 0., 200.);
   t_MET =               fs->make < TH1F > ("t_MET",             "t_MET;MET [GeV]", 50, 0., 200.);
+  h_MET_phi =               fs->make < TH1F > ("h_MET_phi",             "h_MET_phi;MET phi", 24, 0, TMath::Pi ());
+  w_MET_phi =               fs->make < TH1F > ("w_MET_phi",             "w_MET_phi;MET phi", 24, 0, TMath::Pi ());
+  b_MET_phi =               fs->make < TH1F > ("b_MET_phi",             "b_MET_phi;MET phi", 24, 0, TMath::Pi ());
+  c_MET_phi =               fs->make < TH1F > ("c_MET_phi",             "c_MET_phi;MET phi", 24, 0, TMath::Pi ());
+  t_MET_phi =               fs->make < TH1F > ("t_MET_phi",             "t_MET_phi;MET phi", 24, 0, TMath::Pi ());
   w_MET_sign = 	        fs->make < TH1F > ("w_MET_sign",        "w_MET_sign;MET significance [GeV]", 50, 0., 100.);
   b_MET_sign = 	        fs->make < TH1F > ("b_MET_sign",        "b_MET_sign;MET significance [GeV]", 50, 0., 100.);
   c_MET_sign = 	        fs->make < TH1F > ("c_MET_sign",        "c_MET_sign;MET significance [GeV]", 50, 0., 100.);
@@ -1599,6 +1619,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_MET_b =             fs->make < TH1F > ("b_MET_b",         "b_MET_b;MET [GeV]", 50, 0., 200.);
   c_MET_b =             fs->make < TH1F > ("c_MET_b",         "c_MET_b;MET [GeV]", 50, 0., 200.);
   t_MET_b =             fs->make < TH1F > ("t_MET_b",         "t_MET_b;MET [GeV]", 50, 0., 200.);
+  h_MET_phi_b =             fs->make < TH1F > ("h_MET_phi_b",         "h_MET_phi_b;MET phi", 24, 0, TMath::Pi ());
+  w_MET_phi_b =             fs->make < TH1F > ("w_MET_phi_b",         "w_MET_phi_b;MET phi", 24, 0, TMath::Pi ());
+  b_MET_phi_b =             fs->make < TH1F > ("b_MET_phi_b",         "b_MET_phi_b;MET phi", 24, 0, TMath::Pi ());
+  c_MET_phi_b =             fs->make < TH1F > ("c_MET_phi_b",         "c_MET_phi_b;MET phi", 24, 0, TMath::Pi ());
+  t_MET_phi_b =             fs->make < TH1F > ("t_MET_phi_b",         "t_MET_phi_b;MET phi", 24, 0, TMath::Pi ());
   w_MET_sign_b = 	fs->make < TH1F > ("w_MET_sign_b",    "w_MET_sign_b;MET significance [GeV]", 50, 0., 100.);
   b_MET_sign_b = 	fs->make < TH1F > ("b_MET_sign_b",    "b_MET_sign_b;MET significance [GeV]", 50, 0., 100.);
   c_MET_sign_b = 	fs->make < TH1F > ("c_MET_sign_b",    "c_MET_sign_b;MET significance [GeV]", 50, 0., 100.);
@@ -1609,6 +1634,11 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_MET_bb =            fs->make < TH1F > ("b_MET_bb",         "b_MET_bb;MET [GeV]", 50, 0., 200.);
   c_MET_bb =            fs->make < TH1F > ("c_MET_bb",         "c_MET_bb;MET [GeV]", 50, 0., 200.);
   t_MET_bb =            fs->make < TH1F > ("t_MET_bb",         "t_MET_bb;MET [GeV]", 50, 0., 200.);
+  h_MET_phi_bb =            fs->make < TH1F > ("h_MET_phi_bb",         "h_MET_phi_bb;MET phi", 24, 0, TMath::Pi ());
+  w_MET_phi_bb =            fs->make < TH1F > ("w_MET_phi_bb",         "w_MET_phi_bb;MET phi", 24, 0, TMath::Pi ());
+  b_MET_phi_bb =            fs->make < TH1F > ("b_MET_phi_bb",         "b_MET_phi_bb;MET phi", 24, 0, TMath::Pi ());
+  c_MET_phi_bb =            fs->make < TH1F > ("c_MET_phi_bb",         "c_MET_phi_bb;MET phi", 24, 0, TMath::Pi ());
+  t_MET_phi_bb =            fs->make < TH1F > ("t_MET_phi_bb",         "t_MET_phi_bb;MET phi", 24, 0, TMath::Pi ());
   w_MET_sign_bb = 	fs->make < TH1F > ("w_MET_sign_bb",    "w_MET_sign_bb;MET significance [GeV]", 50, 0., 100.);
   b_MET_sign_bb = 	fs->make < TH1F > ("b_MET_sign_bb",    "b_MET_sign_bb;MET significance [GeV]", 50, 0., 100.);
   c_MET_sign_bb = 	fs->make < TH1F > ("c_MET_sign_bb",    "c_MET_sign_bb;MET significance [GeV]", 50, 0., 100.);
@@ -2339,34 +2369,44 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     scalFac_b = btagSF(isMC, vect_bjets, 1);
     h_MET->Fill (mets->empty() ? 0 : (*mets)[0].et());
     w_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+    h_MET_phi->Fill (mets->empty() ? 0 : (*mets)[0].phi());
+    w_MET_phi->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
     w_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     if (ist) {
       t_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      t_MET_phi->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
       t_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      b_MET_phi->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
       b_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_MET->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      c_MET_phi->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
       c_MET_sign->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
     }
     if (Nb == 1) {
       scalFac_b = btagSF(isMC, vect_bjets, 1);
       h_MET_b->Fill (mets->empty() ? 0 : (*mets)[0].et());
       w_MET_b->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      h_MET_phi_b->Fill (mets->empty() ? 0 : (*mets)[0].phi());
+      w_MET_phi_b->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
       w_MET_sign_b->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       if (ist) {
 	t_MET_b->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+	t_MET_phi_b->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
 	t_MET_sign_b->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_MET_b->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+        b_MET_phi_b->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
         b_MET_sign_b->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_MET_b->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+        c_MET_phi_b->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
         c_MET_sign_b->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       }
     }
@@ -2374,17 +2414,22 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       scalFac_b = btagSF(isMC, vect_bjets, 2);
       h_MET_bb->Fill (mets->empty() ? 0 : (*mets)[0].et());
       w_MET_bb->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+      h_MET_phi_bb->Fill (mets->empty() ? 0 : (*mets)[0].phi());
+      w_MET_phi_bb->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
       w_MET_sign_bb->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       if (ist) {
 	t_MET_bb->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+	t_MET_phi_bb->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
 	t_MET_sign_bb->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 5) {
         b_MET_bb->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+        b_MET_phi_bb->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
         b_MET_sign_bb->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_bjets[0].partonFlavour()) == 4) {
         c_MET_bb->Fill (mets->empty() ? 0 : (*mets)[0].et(), MyWeight*scalFac_b);
+        c_MET_phi_bb->Fill (mets->empty() ? 0 : (*mets)[0].phi(), MyWeight*scalFac_b);
         c_MET_sign_bb->Fill (mets->empty() ? 0 : (*mets)[0].significance(), MyWeight*scalFac_b);
       }
     }
