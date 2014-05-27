@@ -74,6 +74,8 @@ double calc(int iflag, double cont1, double cont2, double stat1, double stat2, d
     }
   }
 
+  if (TMath::IsNaN(val)) val = 0.0;
+
   return val;
 }
 
@@ -962,6 +964,7 @@ string subdir="0";
 	  h_mcg_b->SetMinimum(TMath::Max(0.002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 	  if (title.find("_mt")!=string::npos) h_mcg_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 	  if (title.find("_pt")!=string::npos) h_mcg_b->SetMinimum(TMath::Max(0.000002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
+	  if (title.find("_mass")!=string::npos) h_mcg_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 
 	  h_mcg_b->Draw("E5");
 	  TH1F* tmp2 = (TH1F*)h_mcg_b->Clone();
