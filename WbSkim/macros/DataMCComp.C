@@ -698,6 +698,34 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	  h_mc_fit1->Scale(fitter->GetParameter(1));
 	  h_mc_fit2->Scale(fitter->GetParameter(2));
 	}
+	if (doFit==4) {
+	  h_data_fit = (TH1F*)h_data->Clone("h_data_fit");
+	  if (!doBkg) {
+	    h_data_fit->Add(h_mc8, -1.);
+	    h_data_fit->Add(h_mc7, -1.);
+	    h_data_fit->Add(h_mc6, -1.);
+	    if (h_mc5) h_data_fit->Add(h_mc5, -1.);
+	    h_data_fit->Add(h_mc4, -1.);
+	    h_data_fit->Add(h_mc3, -1.);
+	    h_data_fit->Add(h_mc2, -1.);
+	    h_data_fit->Add(h_mc1t, -1.);
+	  }
+	  h_mc_fit0 = h_mc1;
+	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, 1.);
+	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, 1.);
+	  h_mc_fit1 = h_mc2;
+	  fitter = TVirtualFitter::Fitter(0, 1);
+	  fitter->SetFCN(fcn);
+	  double arglist[1] = {-1.0};
+	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
+	  fitter->SetParameter(0, "c(W+jets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
+	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, -1.);
+	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, -1.);
+	  h_mc_fit0->Scale(fitter->GetParameter(0));
+	  if (h_mc1b) h_mc1b->Scale(fitter->GetParameter(0));
+	  if (h_mc1c) h_mc1c->Scale(fitter->GetParameter(0));
+	}
 
 	TH1F *ht = (TH1F*)h_mc1->Clone("ht");
 	ht->Reset();
@@ -942,6 +970,10 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	    sprintf(buff, "f_{c}   = %4.1f #pm %3.1f %%", f_c, ef_c);
 	    fitLabel->DrawLatex(0.68, 0.38, buff);
 	  }
+	  if (doFit==4) {
+	    sprintf(buff, "c_{W+jets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    fitLabel->DrawLatex(0.68, 0.48, buff);
+	  }
 	}
 
 	if (plot) {
@@ -1001,6 +1033,10 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	    out << fitter->GetParameter(0) << " " << fitter->GetParError(0) << endl;
 	    out << fitter->GetParameter(1) << " " << fitter->GetParError(1) << endl;
 	    out << fitter->GetParameter(2) << " " << fitter->GetParError(2) << endl;
+	    out.close();
+	  }
+	  if (doFit==4) {
+	    out << fitter->GetParameter(0) << " " << fitter->GetParError(0) << endl;
 	    out.close();
 	  }
 	}
