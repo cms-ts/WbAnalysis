@@ -184,4 +184,13 @@ while [ $i -le 8 ]; do
   i=$((i+1))
 done
 
+i=1
+while [ $i -le 8 ]; do
+
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_bb_wide\",1,$i,0,2\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_bb_wide\",1,$i,0,2\)
+
+  i=$((i+1))
+done
+
 exit
