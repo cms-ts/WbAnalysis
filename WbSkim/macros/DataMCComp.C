@@ -713,7 +713,6 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	  h_mc_fit0 = h_mc1;
 	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, 1.);
 	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, 1.);
-	  h_mc_fit1 = h_mc2;
 	  fitter = TVirtualFitter::Fitter(0, 1);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
