@@ -129,12 +129,12 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	double ec3_t=0.0;
 
 	if (doFit==1) {
-	  if (title=="w_mt_wenu_wide") { useFitResults=0; }
-	  if (title=="w_mt_wenu_b_wide") { useFitResults=0; }
-	  if (title=="w_mt_wenu_bb_wide") { useFitResults=0; }
-	  if (title=="w_mt_wmnu_wide") { useFitResults=0; }
-	  if (title=="w_mt_wmnu_b_wide") { useFitResults=0; }
-	  if (title=="w_mt_wmnu_bb_wide") { useFitResults=0; }
+	  if (title=="w_mt_wenu_wide") useFitResults=0;
+	  if (title=="w_mt_wenu_b_wide") useFitResults=0;
+	  if (title=="w_mt_wenu_bb_wide") useFitResults=0;
+	  if (title=="w_mt_wmnu_wide") useFitResults=0;
+	  if (title=="w_mt_wmnu_b_wide") useFitResults=0;
+	  if (title=="w_mt_wmnu_bb_wide") useFitResults=0;
 	}
 
 	ifstream in2, in3, in4, in5, in6, in7;
