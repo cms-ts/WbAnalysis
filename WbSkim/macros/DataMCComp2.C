@@ -682,7 +682,7 @@ if (irun==99) {            // irun==99 => pur
 	tmp2->SetFillColor(0);
 	tmp2->DrawClone("HISTLSAME");
 
-	h_data_b->Draw("EPX0SAME");
+	h_data_b->Draw("E1PX0SAME");
 
 	h_mc1b->SetLineColor(kRed);
 	h_mc1b->SetLineWidth(2);
@@ -712,7 +712,7 @@ if (irun==99) {            // irun==99 => pur
 	h_data->SetLineColor(kBlack);
 	h_data->SetMarkerStyle(20);
 	h_data->SetMarkerSize (0.7);
-	if (drawInclusive) h_data->Draw("EPX0SAME");
+	if (drawInclusive) h_data->Draw("E1PX0SAME");
 
 	if (ilepton==1) {
 	  if (drawInclusive) leg->AddEntry(h_data,"W(#rightarrow e#nu)+1b DATA","p");
@@ -760,7 +760,7 @@ if (irun==99) {            // irun==99 => pur
 	h_M->GetYaxis()->SetTickLength(0.02);
 
 	h_M->SetMarkerStyle(24);
-	h_M->Draw("EPX0");
+	h_M->Draw("E1PX0");
 
 	TH1F *h_M2= (TH1F*)h_data->Clone();
 	h_M2->Divide(h_mcg);

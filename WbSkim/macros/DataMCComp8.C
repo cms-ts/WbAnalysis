@@ -1047,9 +1047,9 @@ string subdir="0";
 	  }
 
 	  g_M2_tot->SetMarkerStyle(20);
-	  g_M2_tot->Draw("E1PX0SAME");
+	  g_M2_tot->Draw("EP0SAME");
 	  g_M2_stat->SetMarkerStyle(20);
-	  g_M2_stat->Draw("E1PX0SAME");
+	  g_M2_stat->Draw("EP0SAME");
 	}
 
 	TLatex *t2 = new TLatex();
