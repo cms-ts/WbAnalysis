@@ -243,16 +243,8 @@ if (irun==99) {            // irun==99 => pur
 	if (title.find("_bjet_")!=string::npos) {
 	  title.erase(title.find("_bjet_")+1, 1);
 	} else {
-	  title_b = title + "_b";
+	  title_b = title_b + "b";
         }
-
-	if (title.find("_single_")!=string::npos) {
-	  if (title.find("_jet_")!=string::npos) {
-	    title.replace(title.find("_single_"), 8, "_first_");
-	  } else {
-	    title.erase(title.find("_single_")+1, 7);
-	  }
-	}
 
 	if (ilepton==1) data->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2) data->cd(("demoMuo"+postfix).c_str());
@@ -748,14 +740,14 @@ if (irun==99) {            // irun==99 => pur
 	if (drawInclusive) h_data->Draw("EPX0SAME");
 
 	if (ilepton==1) {
-	  if (drawInclusive) leg->AddEntry(h_data,"W(#rightarrow e#nu) DATA","p");
-	  leg->AddEntry(h_data_b,"W(#rightarrow e#nu)+b DATA","p");
+	  if (drawInclusive) leg->AddEntry(h_data,"W(#rightarrow e#nu)+1b DATA","p");
+	  leg->AddEntry(h_data_b,"W(#rightarrow e#nu)+2b DATA","p");
 	  //leg->AddEntry(h_mc1,"W(#rightarrow e#nu) MC","l");
 	  leg->AddEntry(h_mcg,"W(#rightarrow e#nu) MadGraph","l");
 	}
 	if (ilepton==2){
-	  if (drawInclusive) leg->AddEntry(h_data,"W(#rightarrow #mu#nu) DATA","p");
-	  leg->AddEntry(h_data_b,"W(#rightarrow #mu#nu)+b DATA","p");
+	  if (drawInclusive) leg->AddEntry(h_data,"W(#rightarrow #mu#nu)+1b DATA","p");
+	  leg->AddEntry(h_data_b,"W(#rightarrow #mu#nu)+2b DATA","p");
 	  //leg->AddEntry(h_mc1,"W(#rightarrow #mu#nu) MC","l");
 	  leg->AddEntry(h_mcg,"W(#rightarrow #mu#nu) MadGraph","l");
 	}
@@ -848,7 +840,7 @@ if (irun==99) {            // irun==99 => pur
 	    if (ilepton==1) {
 	      gSystem->mkdir((path + "/electrons/" + version + "/" + subdir + "/xsecs/").c_str(), kTRUE);
 	      c1->SaveAs((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_b + "_xsecs.pdf").c_str());
-	      out.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title + "_xsecs.dat").c_str());
+	      out.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_b + "_xsecs.dat").c_str());
 	      TFile f((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_b + "_xsecs.root").c_str(),"RECREATE");
 	      h_data_raw->Write((title+"_raw").c_str());
 	      h_data_b_raw->Write((title_b+"_raw").c_str());
@@ -859,7 +851,7 @@ if (irun==99) {            // irun==99 => pur
 	    if (ilepton==2) {
 	      gSystem->mkdir((path + "/muons/" + version + "/" + subdir + "/xsecs/").c_str(), kTRUE);
 	      c1->SaveAs((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_b + "_xsecs.pdf").c_str());
-	      out.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title + "_xsecs.dat").c_str());
+	      out.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_b + "_xsecs.dat").c_str());
 	      TFile f((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_b + "_xsecs.root").c_str(),"RECREATE");
 	      h_data_raw->Write((title+"_raw").c_str());
 	      h_data_b_raw->Write((title_b+"_raw").c_str());
@@ -882,12 +874,12 @@ if (irun==99) {            // irun==99 => pur
 	    if (ilepton==1) {
 	      gSystem->mkdir((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/").c_str(), kTRUE);
 	      c1->SaveAs((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.pdf").c_str());
-	      out.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + title + "_xsecs_unfolding.dat").c_str());
+	      out.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.dat").c_str());
 	    }
 	    if (ilepton==2) {
 	      gSystem->mkdir((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/").c_str(), kTRUE);
 	      c1->SaveAs((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.pdf").c_str());
-	      out.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + title + "_xsecs_unfolding.dat").c_str());
+	      out.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.dat").c_str());
 	    }
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
 	    out << h_data->Integral(0, h_data->GetNbinsX()+1, "width") << endl;

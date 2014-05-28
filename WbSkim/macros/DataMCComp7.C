@@ -11,16 +11,16 @@ TH1F* read(string subdir, string title, int ilepton) {
   TFile* file=0;
 // to be removed when using unfolded data
   string title_tmp = title;
-  if (title_tmp.find("_bjet_")==string::npos) {
-    if (title_tmp.find("_b")==string::npos) title_tmp = title_tmp + "_b";
+  if (title_tmp.find("_bb")==string::npos) {
+    title_tmp = title_tmp + "b";
   }
   if (ilepton==1) {
-    //file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/unfolding/" + title + "_unfolding.root").c_str());
-    file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/xsecs/" + title_tmp + "_xsecs.root").c_str());
+    //file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title + "_unfolding.root").c_str());
+    file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_tmp + "_xsecs.root").c_str());
   }
   if (ilepton==2) {
-    //file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/unfolding/" + title + "_unfolding.root").c_str());
-    file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/xsecs/" + title_tmp + "_xsecs.root").c_str());
+    //file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title + "_unfolding.root").c_str());
+    file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_tmp + "_xsecs.root").c_str());
   }
   hist = (TH1F*)gDirectory->Get(title.c_str())->Clone();
   hist->SetDirectory(0);
@@ -122,7 +122,11 @@ string subdir="0";
 	if (title.find("_bjet_")!=string::npos) {
 	  title.erase(title.find("_bjet_")+1, 1);
 	} else {
-	  title_b = title + "_b";
+	  if (title_b.find("_b")==string::npos) {
+	    title_b = title + "_b";
+	  } else {
+	    title_b = title + "b";
+	  }
         }
 
 	TH1F* h_data;
@@ -195,6 +199,9 @@ string subdir="0";
         if (ilepton==1) {
 	  TFile f((path + "/electrons/" + version + "/" + subdir +"/efficiency/" + string(h_data->GetName()) + "_efficiency.root").c_str());
 	  TFile f_b((path + "/electrons/" + version + "/" + subdir +"/efficiency/" + string(h_data_b->GetName()) + "_efficiency.root").c_str());
+// FIXME
+if (f.IsOpen()&&f_b.IsOpen()) {
+// FIXME
 	  TH1F* h = (TH1F*)f.Get(h_data->GetName())->Clone();
 	  TH1F* h_b = (TH1F*)f_b.Get(h_data_b->GetName())->Clone();
 	  h->SetDirectory(0);
@@ -203,10 +210,16 @@ string subdir="0";
 	  f_b.Close();
 	  h_mc1->Divide(h);
 	  h_mc1b_b->Divide(h_b);
+// FIXME
+}
+// FIXME
         }
 	if (ilepton==2) {
 	  TFile f((path + "/muons/" + version + "/" + subdir +"/efficiency/" + string(h_data->GetName()) + "_efficiency.root").c_str());
 	  TFile f_b((path + "/muons/" + version + "/" + subdir +"/efficiency/" + string(h_data_b->GetName()) + "_efficiency.root").c_str());
+// FIXME
+if (f.IsOpen()&&f_b.IsOpen()) {
+// FIXME
 	  TH1F* h = (TH1F*)f.Get(h_data->GetName())->Clone();
 	  TH1F* h_b = (TH1F*)f_b.Get(h_data_b->GetName())->Clone();
 	  h->SetDirectory(0);
@@ -215,6 +228,9 @@ string subdir="0";
 	  f_b.Close();
 	  h_mc1->Divide(h);
 	  h_mc1b_b->Divide(h_b);
+// FIXME
+}
+// FIXME
         }
 
 // to be restored when using unfolded data
@@ -490,24 +506,24 @@ string subdir="0";
 	float sum1_b, sum2_b, sum3_b, sum4_b;
 	ifstream in1, in2, in3, in4;
 	if (ilepton==1) {
-	  //in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt" + "_xsecs_unfolding.dat").c_str());
-	  //in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta" + "_xsecs_unfolding.dat").c_str());
-	  //in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt" + "_xsecs_unfolding.dat").c_str());
-	  //in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta" + "_xsecs_unfolding.dat").c_str());
-	  in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt" + "_xsecs.dat").c_str());
-	  in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta" + "_xsecs.dat").c_str());
-	  in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt" + "_xsecs.dat").c_str());
-	  in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta" + "_xsecs.dat").c_str());
+	  //in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  //in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	  in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	}
 	if (ilepton==2) {
-	  //in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt" + "_xsecs_unfolding.dat").c_str());
-	  //in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta" + "_xsecs_unfolding.dat").c_str());
-	  //in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt" + "_xsecs_unfolding.dat").c_str());
-	  //in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta" + "_xsecs_unfolding.dat").c_str());
-	  in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt" + "_xsecs.dat").c_str());
-	  in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta" + "_xsecs.dat").c_str());
-	  in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt" + "_xsecs.dat").c_str());
-	  in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta" + "_xsecs.dat").c_str());
+	  //in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  //in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	  in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	}
 	in1 >> sum1; in1 >> sum1_b;
 	in2 >> sum2; in2 >> sum2_b;

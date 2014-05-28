@@ -11,45 +11,33 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
   TFile* file = infile;
   string title_tmp = title;
   if (ilepton==1) {
-    if (title=="w_pt_Z") title_tmp="w_pt_Z_ee";
-    if (title=="w_pt_Z_b") title_tmp="w_pt_Z_ee_b";
-    if (title=="w_delta_phi") title_tmp="w_delta_phi_ee";
-    if (title=="w_delta_phi_b") title_tmp="w_delta_phi_ee_b";
-    if (title=="w_mass_Zj") title_tmp="w_mass_Zj_ee";
-    if (title=="w_mass_Zj_b") title_tmp="w_mass_Zj_ee_b";
-    if (title=="w_mt") title_tmp="w_mt_wenu";
     if (title=="w_mt_b") title_tmp="w_mt_wenu_b";
+    if (title=="w_mt_bb") title_tmp="w_mt_wenu_bb";
 // to be removed when using unfolded data
     string title_tmp2 = title_tmp;
-    if (title_tmp2.find("_bjet_")==string::npos) {
-      if (title_tmp2.find("_b")==string::npos) title_tmp2 = title_tmp2 + "_b";
+    if (title_tmp2.find("_bb")==string::npos) {
+      title_tmp2 = title_tmp2 + "b";
     }
     if (file) {
       file->cd("demoEleGen");
     } else {
-      //file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/unfolding/" + title_tmp + "_unfolding.root").c_str());
-      file = TFile::Open((path + "/electrons/" + version + "/" + subdir +"/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
+      //file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_tmp + "_unfolding.root").c_str());
+      file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
     }
   }
   if (ilepton==2) {
-    if (title=="w_pt_Z") title_tmp="w_pt_Z_mm";
-    if (title=="w_pt_Z_b") title_tmp="w_pt_Z_mm_b";
-    if (title=="w_delta_phi") title_tmp="w_delta_phi_mm";
-    if (title=="w_delta_phi_b") title_tmp="w_delta_phi_mm_b";
-    if (title=="w_mass_Zj") title_tmp="w_mass_Zj_mm";
-    if (title=="w_mass_Zj_b") title_tmp="w_mass_Zj_mm_b";
-    if (title=="w_mt") title_tmp="w_mt_wmnu";
     if (title=="w_mt_b") title_tmp="w_mt_wmnu_b";
+    if (title=="w_mt_bb") title_tmp="w_mt_wmnu_bb";
 // to be removed when using unfolded data
     string title_tmp2 = title_tmp;
-    if (title_tmp2.find("_bjet_")==string::npos) {
-      if (title_tmp2.find("_b")==string::npos) title_tmp2 = title_tmp2 + "_b";
+    if (title_tmp2.find("_bb")==string::npos) {
+      title_tmp2 = title_tmp2 + "b";
     }
     if (file) {
       file->cd("demoMuoGen");
     } else {
-      //file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/unfolding/" + title_tmp + "_unfolding.root").c_str());
-      file = TFile::Open((path + "/muons/" + version + "/" + subdir +"/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
+      //file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_tmp + "_unfolding.root").c_str());
+      file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
     }
   }
   hist = (TH1F*)gDirectory->Get(title_tmp.c_str())->Clone();
@@ -109,7 +97,11 @@ string subdir="0";
 	if (title.find("_bjet_")!=string::npos) {
 	  title.erase(title.find("_bjet_")+1, 1);
 	} else {
-	  title_b = title + "_b";
+	  if (title_b.find("_b")==string::npos) {
+	    title_b = title + "_b";
+	  } else {
+	    title_b = title + "b";
+	  }
 	}
 
 	TH1F* w_data[2];
@@ -256,28 +248,16 @@ string subdir="0";
 	  ifstream in;
 	  string title_b_tmp = title_b;
 	  if (i==0) {
-	    if (title_b=="w_pt_Z") title_b_tmp="w_pt_Z_ee";
-	    if (title_b=="w_pt_Z_b") title_b_tmp="w_pt_Z_ee_b";
-	    if (title_b=="w_delta_phi") title_b_tmp="w_delta_phi_ee";
-	    if (title_b=="w_delta_phi_b") title_b_tmp="w_delta_phi_ee_b";
-	    if (title_b=="w_mass_Zj") title_b_tmp="w_mass_Zj_ee";
-	    if (title_b=="w_mass_Zj_b") title_b_tmp="w_mass_Zj_ee_b";
-	    if (title_b=="w_mt") title_b_tmp="w_mt_wenu";
 	    if (title_b=="w_mt_b") title_b_tmp="w_mt_wenu_b";
+	    if (title_b=="w_mt_bb") title_b_tmp="w_mt_wenu_bb";
 	    //if (isratio==0) in.open((path + "/electrons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
 	    //if (isratio==1) in.open((path + "/electrons/" + version + "/" + "/ratios_unfolding/" + title_b_tmp + "_ratio_unfolding.dat").c_str());
 	    if (isratio==0) in.open((path + "/electrons/" + version + "/" + "/xsecs/" + title_b_tmp + "_xsecs.dat").c_str());
 	    if (isratio==1) in.open((path + "/electrons/" + version + "/" + "/ratios/" + title_b_tmp + "_ratio.dat").c_str());
 	  }
 	  if (i==1) {
-	    if (title_b=="w_pt_Z") title_b_tmp="w_pt_Z_mm";
-	    if (title_b=="w_pt_Z_b") title_b_tmp="w_pt_Z_mm_b";
-	    if (title_b=="w_delta_phi") title_b_tmp="w_delta_phi_mm";
-	    if (title_b=="w_delta_phi_b") title_b_tmp="w_delta_phi_mm_b";
-	    if (title_b=="w_mass_Zj") title_b_tmp="w_mass_Zj_mm";
-	    if (title_b=="w_mass_Zj_b") title_b_tmp="w_mass_Zj_mm_b";
-	    if (title_b=="w_mt") title_b_tmp="w_mt_wmnu";
 	    if (title_b=="w_mt_b") title_b_tmp="w_mt_wmnu_b";
+	    if (title_b=="w_mt_bb") title_b_tmp="w_mt_wmnu_bb";
             //if (isratio==0) in.open((path + "/muons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
 	    //if (isratio==1) in.open((path + "/muons/" + version + "/" + "/ratios_unfolding/" + title_b_tmp + "_ratio_unfolding.dat").c_str());
             if (isratio==0) in.open((path + "/muons/" + version + "/" + "/xsecs/" + title_b_tmp + "_xsecs.dat").c_str());

@@ -12,16 +12,16 @@ cd -
 i=1
 while [ $i -le 2 ]; do
 
-  root -l -q -b DataMCComp7.C+\(\"w_mt_wenu\",1,$i,0\)
-  root -l -q -b DataMCComp7.C+\(\"w_mt_wmnu\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_mt_wenu_b\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_mt_wmnu_b\",1,$i,0\)
 
-  root -l -q -b DataMCComp7.C+\(\"w_first_bjet_pt\",1,$i,0\)
-  root -l -q -b DataMCComp7.C+\(\"w_first_bjet_eta\",1,$i,0\)
-  root -l -q -b DataMCComp7.C+\(\"w_first_bjet_mass\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_first_jet_pt_b\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_first_jet_eta_b\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_first_jet_mass_b\",1,$i,0\)
  
-  root -l -q -b DataMCComp7.C+\(\"w_second_bjet_pt\",1,$i,0\)
-  root -l -q -b DataMCComp7.C+\(\"w_second_bjet_eta\",1,$i,0\)
-  root -l -q -b DataMCComp7.C+\(\"w_second_bjet_mass\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_second_jet_pt_b\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_second_jet_eta_b\",1,$i,0\)
+  root -l -q -b DataMCComp7.C+\(\"w_second_jet_mass_b\",1,$i,0\)
  
   i=$((i+1))
 done
@@ -29,16 +29,16 @@ done
 i=1
 while [ $i -le 2 ]; do
 
-  root -l -q -b DataMCComp7.C+\(\"w_mt_wenu\",1,$i,1\)
-  root -l -q -b DataMCComp7.C+\(\"w_mt_wmnu\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_mt_wenu_b\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_mt_wmnu_b\",1,$i,1\)
 
-  root -l -q -b DataMCComp7.C+\(\"w_first_bjet_pt\",1,$i,1\)
-  root -l -q -b DataMCComp7.C+\(\"w_first_bjet_eta\",1,$i,1\)
-  root -l -q -b DataMCComp7.C+\(\"w_first_bjet_mass\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_first_jet_pt_b\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_first_jet_eta_b\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_first_jet_mass_b\",1,$i,1\)
 
-  root -l -q -b DataMCComp7.C+\(\"w_second_bjet_pt\",1,$i,1\)
-  root -l -q -b DataMCComp7.C+\(\"w_second_bjet_eta\",1,$i,1\)
-  root -l -q -b DataMCComp7.C+\(\"w_second_bjet_mass\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_second_jet_pt_b\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_second_jet_eta_b\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_second_jet_mass_B\",1,$i,1\)
  
   i=$((i+1))
 done
