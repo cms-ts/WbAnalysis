@@ -240,6 +240,10 @@ private:
   TH1F*     w_single_deltaR_wenu_b;
   TH1F*     w_single_deltaR_wmnu_b;
 
+  TH1F*     w_MET;
+  TH1F*     w_MET_b;
+  TH1F*     w_MET_bb;
+
 };
 
 using namespace  pat;
@@ -351,6 +355,10 @@ GenWbAnalyzer::GenWbAnalyzer (const edm::ParameterSet & iConfig) {
   w_single_delta_wmnu_b =        fs->make < TH1F > ("w_single_delta_wmnu_b",  "w_single_delta_wmnu_b", 12, 0, TMath::Pi ());
   w_single_deltaR_wenu_b =        fs->make < TH1F > ("w_single_deltaR_wenu_b",  "w_single_deltaR_wenu_b", 12, 0, TMath::Pi ());
   w_single_deltaR_wmnu_b =        fs->make < TH1F > ("w_single_deltaR_wmnu_b",  "w_single_deltaR_wmnu_b", 12, 0, TMath::Pi ());
+
+  w_MET =               fs->make < TH1F > ("w_MET",             "w_MET;MET [GeV]", 50, 0., 200.);
+  w_MET_b =               fs->make < TH1F > ("w_MET_b",             "w_MET;MET [GeV]", 50, 0., 200.);
+  w_MET_bb =               fs->make < TH1F > ("w_MET_bb",             "w_MET;MET [GeV]", 50, 0., 200.);
 
   produces<std::vector<double>>("myEventWeight");
 
@@ -905,6 +913,18 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   if (wmnu_event && mt_cut_wmnu) h_eventYields->Fill(8);
 
 
+  // ++++++++ MET PLOTS
+
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
+    w_MET->Fill (op_met);
+    if (Nb == 1) {
+      w_MET_b->Fill (op_met);
+    }
+    if (Nb > 1) {
+      w_MET_bb->Fill (op_met);
+    }
+  }
+
   // ++++++++ WeNu PLOTS
 
   if (wenu_event && mt_cut_wenu) {
@@ -993,28 +1013,28 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     w_jetmultiplicity->Fill (Nj, MyWeight);
     w_first_jet_pt->Fill (vect_jets[0].pt(), MyWeight);
     w_first_jet_eta->Fill (vect_jets[0].eta(), MyWeight);
-    //    w_first_jet_mass->Fill (vect_jets[0].mass(), MyWeight);
+    w_first_jet_mass->Fill (vect_jets[0].m(), MyWeight);
     w_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight);
     w_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight);
-    //    w_second_jet_mass->Fill (vect_jets[1].mass(), MyWeight);
+    w_second_jet_mass->Fill (vect_jets[1].m(), MyWeight);
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && Nb == 1) {
     w_first_jet_pt_b->Fill (vect_jets[0].pt(), MyWeight);
     w_first_jet_eta_b->Fill (vect_jets[0].eta(), MyWeight);
-    //    w_first_jet_mass_b->Fill (vect_jets[0].mass(), MyWeight);
+    w_first_jet_mass_b->Fill (vect_jets[0].m(), MyWeight);
     w_second_jet_pt_b->Fill (vect_jets[1].pt(), MyWeight);
     w_second_jet_eta_b->Fill (vect_jets[1].eta(), MyWeight);
-    //    w_second_jet_mass_b->Fill (vect_jets[1].mass(), MyWeight);
+    w_second_jet_mass_b->Fill (vect_jets[1].m(), MyWeight);
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && Nb > 1) {
     w_first_jet_pt_bb->Fill (vect_jets[0].pt(), MyWeight);
     w_first_jet_eta_bb->Fill (vect_jets[0].eta(), MyWeight);
-    //    w_first_jet_mass_bb->Fill (vect_jets[0].mass(), MyWeight);
+    w_first_jet_mass_bb->Fill (vect_jets[0].m(), MyWeight);
     w_second_jet_pt_bb->Fill (vect_jets[1].pt(), MyWeight);
     w_second_jet_eta_bb->Fill (vect_jets[1].eta(), MyWeight);
-    //    w_second_jet_mass_bb->Fill (vect_jets[1].mass(), MyWeight);
+    w_second_jet_mass_bb->Fill (vect_jets[1].m(), MyWeight);
   }
 
 
@@ -1024,13 +1044,13 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     w_bjetmultiplicity->Fill (Nb, MyWeight);
     w_first_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
     w_first_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
-    //    w_first_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight);
+    w_first_bjet_mass->Fill (vect_bjets[0].m(), MyWeight);
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && Nb > 1) {
     w_second_bjet_pt->Fill (vect_bjets[1].pt(), MyWeight);
     w_second_bjet_eta->Fill (vect_bjets[1].eta(), MyWeight);
-    //    w_second_bjet_mass->Fill (vect_bjets[1].mass(), MyWeight);
+    w_second_bjet_mass->Fill (vect_bjets[1].m(), MyWeight);
   }
 
 
@@ -1039,7 +1059,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && Nb == 1) {
     w_single_bjet_pt->Fill (vect_bjets[0].pt(), MyWeight);
     w_single_bjet_eta->Fill (vect_bjets[0].eta(), MyWeight);
-    //    w_single_bjet_mass->Fill (vect_bjets[0].mass(), MyWeight);
+    w_single_bjet_mass->Fill (vect_bjets[0].m(), MyWeight);
   }
 
 
