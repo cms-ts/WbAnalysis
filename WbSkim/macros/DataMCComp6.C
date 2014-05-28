@@ -163,6 +163,7 @@ if (irun==99) {            // irun==99 => pur
         h_data_e->SetMinimum(TMath::Max(0.002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 	if (title.find("_mt")!=string::npos) h_data_e->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 	if (title.find("_pt")!=string::npos) h_data_e->SetMinimum(TMath::Max(0.000002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
+	if (title.find("_mass")!=string::npos) h_data_e->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 
         h_data_e->Draw("EPX");
         h_data_e_b->Draw("EPXSAME");
