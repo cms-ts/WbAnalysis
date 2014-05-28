@@ -42,17 +42,23 @@ while [ $i -le 2 ]; do
 
   root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_pt\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_pt_b\",1,$i\)
+  root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_pt_bb\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_eta\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_eta_b\",1,$i\)
+  root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_eta_bb\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_mass\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_mass_b\",1,$i\)
+  root -l -q -b DataMCComp3.C+\($d,\"w_first_jet_mass_bb\",1,$i\)
   
   root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_pt\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_pt_b\",1,$i\)
+  root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_pt_bb\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_eta\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_eta_b\",1,$i\)
+  root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_eta_bb\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_mass\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_mass_b\",1,$i\)
+  root -l -q -b DataMCComp3.C+\($d,\"w_second_jet_mass_bb\",1,$i\)
 
   root -l -q -b DataMCComp3.C+\($d,\"w_first_bjet_pt\",1,$i\)
   root -l -q -b DataMCComp3.C+\($d,\"w_first_bjet_eta\",1,$i\)
