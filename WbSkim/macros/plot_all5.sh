@@ -116,40 +116,9 @@ while [ $i -le 6 ]; do
   root -l -q -b DataMCComp5.C+\($d,\"w_first_jet_pt\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_first_jet_eta\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_first_jet_mass\",1,$i\)
-  
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_pt_Z_ee_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_pt_Z_mm_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_bjet_pt\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_bjet_eta\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_bjet_mass\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_delta_ee_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_delta_mm_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_delta_wenu_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_delta_wmnu_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_deltaR_wenu_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_deltaR_wmnu_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_single_Ht_b\",1,$i\)
-  
   root -l -q -b DataMCComp5.C+\($d,\"w_second_jet_pt\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_second_jet_eta\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_second_jet_mass\",1,$i\)
-
-  root -l -q -b DataMCComp5.C+\($d,\"w_MET\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_MET_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_MET_bb\",1,$i\)
-
-  root -l -q -b DataMCComp5.C+\($d,\"w_MET_sign\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_MET_sign_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_MET_sign_bb\",1,$i\)
-
-  root -l -q -b DataMCComp5.C+\($d,\"w_Ht\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_Ht_b\",1,$i\)
-
-  root -l -q -b DataMCComp5.C+\($d,\"w_mass_Zj_ee\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_mass_Zj_mm\",1,$i\)
-
-  root -l -q -b DataMCComp5.C+\($d,\"w_mass_Zj_ee_b\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_mass_Zj_mm_b\",1,$i\)
 
   root -l -q -b DataMCComp5.C+\($d,\"w_first_jet_pt_b\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_first_jet_eta_b\",1,$i\)
@@ -173,10 +142,20 @@ while [ $i -le 6 ]; do
   root -l -q -b DataMCComp5.C+\($d,\"w_second_bjet_eta\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_second_bjet_mass\",1,$i\)
 
+  root -l -q -b DataMCComp5.C+\($d,\"w_MET\",1,$i\)
+  root -l -q -b DataMCComp5.C+\($d,\"w_MET_b\",1,$i\)
+  root -l -q -b DataMCComp5.C+\($d,\"w_MET_bb\",1,$i\)
+
+  root -l -q -b DataMCComp5.C+\($d,\"w_MET_sign\",1,$i\)
+  root -l -q -b DataMCComp5.C+\($d,\"w_MET_sign_b\",1,$i\)
+  root -l -q -b DataMCComp5.C+\($d,\"w_MET_sign_bb\",1,$i\)
+
+  root -l -q -b DataMCComp5.C+\($d,\"w_Ht\",1,$i\)
+  root -l -q -b DataMCComp5.C+\($d,\"w_Ht_b\",1,$i\)
+  root -l -q -b DataMCComp5.C+\($d,\"w_Ht_bb\",1,$i\)
+
   root -l -q -b DataMCComp5.C+\($d,\"h_scaleFactor_first_ele\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"h_scaleFactor_second_ele\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"h_scaleFactor_first_muon\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"h_scaleFactor_second_muon\",1,$i\)
 
   root -l -q -b DataMCComp5.C+\($d,\"w_SVTX_mass_jet\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_SVTX_mass_trk\",1,$i\)
