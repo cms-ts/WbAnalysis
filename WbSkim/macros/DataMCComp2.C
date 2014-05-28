@@ -547,19 +547,19 @@ if (irun==99) {            // irun==99 => pur
 	}
 
 	if (useBinnedEfficiency==0) {
-	  ifstream in10, in11;
+	  ifstream in8, in9;
 	  if (ilepton==1) {
-	    in10.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
-	    in11.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
+	    in8.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
+	    in9.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
 	  }
 	  if (ilepton==2) {
-	    in10.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
-	    in11.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
+	    in8.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
+	    in9.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
 	  }
-	  in10 >> e_W >> ee_W;
-	  in11 >> e_Wb >> ee_Wb;
-	  in10.close();
-	  in11.close();
+	  in8 >> e_W >> ee_W;
+	  in9 >> e_Wb >> ee_Wb;
+	  in8.close();
+	  in9.close();
 	  e_W = e_W>0 ? e_W : 1;
 	  e_Wb = e_Wb>0 ? e_Wb : 1;
 	  if (unfold==0) {
