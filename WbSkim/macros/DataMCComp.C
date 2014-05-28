@@ -35,8 +35,8 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
 
 void DataMCComp(int irun=0, string title="", int plot=0, int ilepton=1, int doBkg=0, int doFit=0) {
 
-//int useFitResults = 0; // use MC for c_qcd
-int useFitResults = 1; // use QCD fit results for c_qcd
+//int useFitResults = 0; // use MC for c_qcd and c_t
+int useFitResults = 1; // use QCD fit results for c_qcd and c_t
 
 string subdir="0";
 string postfix="";
@@ -198,16 +198,18 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	    in7.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
+
 	if (ilepton==3 || ilepton==4) useFitResults=0;
+
 	if (useFitResults) {
 	  in2 >> c1_qcd >> ec1_qcd;
 	  in3 >> c2_qcd >> ec2_qcd;
 	  in4 >> c3_qcd >> ec3_qcd;
+	  in2.close();
+	  in3.close();
 	  in5 >> c1_t >> ec1_t;
 	  in6 >> c2_t >> ec2_t;
 	  in7 >> c3_t >> ec3_t;
-	  in2.close();
-	  in3.close();
 	  in4.close();
 	  in5.close();
 	  in6.close();
@@ -461,21 +463,21 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	h_mc8->Scale(norm8);
 
 	if (useFitResults) {
-	  if (title.find("_b")==string::npos) {
-	    h_mc5->Scale(c1_qcd);
-	    h_mc2->Scale(c1_t);
-	    if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
-	    if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
-	  } else if (title.find("_b")!=string::npos && title.find("_bb")==string::npos) {
-	    h_mc5->Scale(c2_qcd);
-	    h_mc2->Scale(c2_t);
-	    if (irun==5) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
-	    if (irun==5) h_mc2->Scale((c2_t+ec2_t)/c2_t);
-	  } else if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos) {
 	    h_mc5->Scale(c3_qcd);
 	    h_mc2->Scale(c3_t);
 	    if (irun==5) h_mc5->Scale((c3_qcd+ec3_qcd)/c3_qcd);
 	    if (irun==5) h_mc2->Scale((c3_t+ec3_t)/c3_t);
+	  } else if (title.find("_b")!=string::npos) {
+	    h_mc5->Scale(c2_qcd);
+	    h_mc2->Scale(c2_t);
+	    if (irun==5) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+	    if (irun==5) h_mc2->Scale((c2_t+ec2_t)/c2_t);
+	  } else {
+	    h_mc5->Scale(c1_qcd);
+	    h_mc2->Scale(c1_t);
+	    if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+	    if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
 	  }
 	}
 

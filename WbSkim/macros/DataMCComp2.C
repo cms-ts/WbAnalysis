@@ -112,15 +112,6 @@ if (irun==99) {            // irun==99 => pur
 	double c_uds=1.0;
 	double ec_uds=0.0;
 
-	/* top background */
-
-	double c1_t=1.0;
-	double ec1_t=0.0;
-	double c2_t=1.0;
-	double ec2_t=0.0;
-	double c3_t=1.0;
-	double ec3_t=0.0;
-
 	/* QCD background */
 
 	double c1_qcd=1.0;
@@ -130,27 +121,36 @@ if (irun==99) {            // irun==99 => pur
 	double c3_qcd=1.0;
 	double ec3_qcd=0.0;
 
+	/* top background */
+
+	double c1_t=1.0;
+	double ec1_t=0.0;
+	double c2_t=1.0;
+	double ec2_t=0.0;
+	double c3_t=1.0;
+	double ec3_t=0.0;
+
 	ifstream in1, in2, in3, in4, in5, in6, in7;
 	if (ilepton==1) {
 	  if (useFitResults) {
 	    //in1.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
-	    in2.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in3.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in4.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in6.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in7.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in2.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in3.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in4.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
 	  if (useFitResults) {
 	    //in1.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
-	    in2.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
-	    in3.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
-	    in4.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
-	    in6.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
-	    in7.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in2.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in3.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in4.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (useFitResults) {
@@ -158,15 +158,15 @@ if (irun==99) {            // irun==99 => pur
 	  in1 >> c_b >> ec_b;
 	  in1 >> c_c >> ec_c;
 	  in1.close();
-	  in2 >> c1_t >> ec1_t;
-	  in3 >> c2_t >> ec2_t;
-	  in4 >> c3_t >> ec3_t;
+	  in2 >> c1_qcd >> ec1_qcd;
+	  in3 >> c2_qcd >> ec2_qcd;
+	  in4 >> c3_qcd >> ec3_qcd;
 	  in2.close();
 	  in3.close();
 	  in4.close();
-	  in5 >> c1_qcd >> ec1_qcd;
-	  in6 >> c2_qcd >> ec2_qcd;
-	  in7 >> c3_qcd >> ec3_qcd;
+	  in5 >> c1_t >> ec1_t;
+	  in6 >> c2_t >> ec2_t;
+	  in7 >> c3_t >> ec3_t;
 	  in5.close();
 	  in6.close();
 	  in7.close();
