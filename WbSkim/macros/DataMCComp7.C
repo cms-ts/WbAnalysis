@@ -629,7 +629,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 
 	h_mc1b_b->SetTitle("");
 	if (isratio==1) {
-	  h_mc1b_b->GetYaxis()->SetTitle("#sigma(Z+b) / #sigma(Z+j) [%]");
+	  h_mc1b_b->GetYaxis()->SetTitle("#sigma(W+2b) / #sigma(W+1b) [%]");
 	} else {
 	  h_mc1b_b->GetYaxis()->SetTitle("#sigma [pb]");
 	}
@@ -746,14 +746,14 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  if (drawInclusive) h_data_stat->Draw("E1PX0SAME");
 
 	  if (ilepton==1) {
-	    if (drawInclusive) leg->AddEntry(h_data_stat,"W(#rightarrow e#nu) DATA","p");
-	    leg->AddEntry(h_data_b_stat,"W(#rightarrow e#nu)+b DATA","p");
+	    if (drawInclusive) leg->AddEntry(h_data_stat,"W(#rightarrow e#nu)+1b DATA","p");
+	    leg->AddEntry(h_data_b_stat,"W(#rightarrow e#nu)+2b DATA","p");
 	    if (useMC) leg->AddEntry(h_mc1,"W(#rightarrow e#nu) MC","l");
 	    leg->AddEntry(h_mcg,"W(#rightarrow e#nu) MadGraph","l");
 	  }
 	  if (ilepton==2){
-	    if (drawInclusive) leg->AddEntry(h_data_stat,"W(#rightarrow #mu#nu) DATA","p");
-	    leg->AddEntry(h_data_b_stat,"W(#rightarrow #mu#nu)+b DATA","p");
+	    if (drawInclusive) leg->AddEntry(h_data_stat,"W(#rightarrow #mu#nu)+1b DATA","p");
+	    leg->AddEntry(h_data_b_stat,"W(#rightarrow #mu#nu)+2b DATA","p");
 	    if (useMC) leg->AddEntry(h_mc1,"W(#rightarrow #mu#nu) MC","l");
 	    leg->AddEntry(h_mcg,"W(#rightarrow #mu#nu) MadGraph","l");
 	  }
@@ -856,52 +856,29 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp_{T} [pb]");
 	  h_M_tot->GetXaxis()->SetTitle("leading jet p_{T} [GeV/c]");
 	  if (isratio==1) {
-	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(Z+b) / #sigma(Z+j)] / dp_{T} [%]");
+	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(W+2b) / #sigma(W+1b)] / dp_{T} [%]");
 	    h_mc1b_b->GetYaxis()->SetRangeUser(-0.5, 20);
 	  }
 	} else if (title_b=="w_first_jet_eta_b") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta [pb]");
 	  h_M_tot->GetXaxis()->SetTitle("leading jet #eta");
 	  if (isratio==1) {
-	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(Z+b) / #sigma(Z+j)] / d#eta [%]");
+	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(W+2b) / #sigma(W+1b)] / d#eta [%]");
 	    h_mc1b_b->GetYaxis()->SetRangeUser(0, 10);
 	  }
 	} else if (title_b=="w_first_bjet_pt") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
 	  h_M_tot->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
 	  if (isratio==1) {
-	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(Z+b) / #sigma(Z+j)] / dp^{b}_{T} [%]");
+	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(W+2b) / #sigma(W+1b)] / dp^{b}_{T} [%]");
 	    h_mc1b_b->GetYaxis()->SetRangeUser(-0.5, 10);
 	  }
 	} else if (title_b=="w_first_bjet_eta") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
 	  h_M_tot->GetXaxis()->SetTitle("leading b-jet #eta");
 	  if (isratio==1) {
-	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(Z+b) / #sigma(Z+j)] / d#eta^{b} [%]");
+	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(W+2b) / #sigma(W+1b)] / d#eta^{b} [%]");
 	    h_mc1b_b->GetYaxis()->SetRangeUser(0, 10);
-	  }
-	} else if (title_b=="w_pt_Z_ee_b"||title_b =="w_pt_Z_mm_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp^{Z}_{T} [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("Z boson p_{T} [GeV/c]");
-	  if (isratio==1) {
-	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(Z+b) / #sigma(Z+j)] / dp^{Z}_{T} [%]");
-	    h_mc1b_b->GetYaxis()->SetRangeUser(-0.5, 20);
-	  }
-	} else if (title_b=="w_Ht_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dH_{T} [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("H_{T} [GeV/c]");
-	  if (isratio==1) {
-	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(Z+b) / #sigma(Z+j)] / dH_{T} [%]");
-	    h_mc1b_b->GetYaxis()->SetRangeUser(0, 20);
-	  }
-	} else if (title_b=="w_delta_phi_ee_b" || title_b=="w_delta_phi_mm_b") {
-	  leg->SetX1(0.12);
-	  leg->SetX2(0.38);
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#Delta#phi_{bZ} [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("#Delta#phi(bZ) [rad]");
-	  if (isratio==1) {
-	    h_mc1b_b->GetYaxis()->SetTitle("d[#sigma(Z+b) / #sigma(Z+j)] / d#Delta#phi_{Zb} [%]");
-	    h_mc1b_b->GetYaxis()->SetRangeUser(0, 20);
 	  }
 	}
 

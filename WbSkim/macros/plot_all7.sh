@@ -38,7 +38,7 @@ while [ $i -le 2 ]; do
 
   root -l -q -b DataMCComp7.C+\(\"w_second_jet_pt_b\",1,$i,1\)
   root -l -q -b DataMCComp7.C+\(\"w_second_jet_eta_b\",1,$i,1\)
-  root -l -q -b DataMCComp7.C+\(\"w_second_jet_mass_B\",1,$i,1\)
+  root -l -q -b DataMCComp7.C+\(\"w_second_jet_mass_b\",1,$i,1\)
  
   i=$((i+1))
 done

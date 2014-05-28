@@ -820,18 +820,12 @@ if (irun==99) {            // irun==99 => pur
 	} else if (title_b=="w_first_bjet_eta") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
 	  h_M->GetXaxis()->SetTitle("leading b-jet #eta");
-	} else if (title_b=="w_pt_Z_ee_b"||title_b =="w_pt_Z_mm_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp^{Z}_{T} [pb]");
-	  h_M->GetXaxis()->SetTitle("Z boson p_{T} [GeV/c]");
 	} else if (title_b=="w_Ht_b") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dH_{T} [pb]");
 	  h_M->GetXaxis()->SetTitle("H_{T} [GeV/c]");
 	} else if (title_b=="w_delta_phi_ee_b" || title_b=="w_delta_phi_mm_b") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#Delta#phi_{bZ} [pb]");
 	  h_M->GetXaxis()->SetTitle("#Delta#phi(bZ) [rad]");
-	} else if (title_b=="w_mass_Zj_ee_b" || title_b=="w_mass_Zj_mm_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dM_{Zj} [pb]");
-	  h_M->GetXaxis()->SetTitle("M(Zj) [rad]");
 	}
 
 	if (plot) {
