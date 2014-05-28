@@ -14,9 +14,6 @@ int useBinnedEfficiency=0; // use average efficiencies
 //int useFitResults=0; // use MC predictions for c_b, c_c, c_uds, c_t, c_qcd
 int useFitResults=1;  // use fit results for c_b, c_c, c_uds, c_t, c_qcd
 
-int useEleMuo = 0; // use MC or fit results for c_t
-//int useEleMuo = 1; // use e-mu fit results for c_t
-
 //int drawInclusive = 0; // do not plot the "inclusive" histogram
 int drawInclusive = 1; // do plot the "inclusive" histogram
 
@@ -133,31 +130,27 @@ if (irun==99) {            // irun==99 => pur
 	double c3_qcd=1.0;
 	double ec3_qcd=0.0;
 
-	ifstream in1, in2, in3, in4, in5, in6, in7, in8, in9;
+	ifstream in1, in2, in3, in4, in5, in6, in7;
 	if (ilepton==1) {
 	  if (useFitResults) {
-	    in1.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
-	    in2.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_MET_doFit" + ".dat").c_str());
-	    in3.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_MET_b_doFit" + ".dat").c_str());
-	    in4.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in5.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in6.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
-	    in7.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
-	    in8.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
-	    in9.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    //in1.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	    in2.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in3.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in4.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
 	  if (useFitResults) {
-	    in1.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
-	    in2.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_MET_doFit" + ".dat").c_str());
-	    in3.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_MET_b_doFit" + ".dat").c_str());
-	    in4.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
-	    in5.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
-	    in6.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
-	    in7.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
-	    in8.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
-	    in9.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    //in1.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	    in2.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in3.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in4.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	    in5.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in6.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (useFitResults) {
@@ -167,20 +160,16 @@ if (irun==99) {            // irun==99 => pur
 	  in1.close();
 	  in2 >> c1_t >> ec1_t;
 	  in3 >> c2_t >> ec2_t;
+	  in4 >> c3_t >> ec3_t;
 	  in2.close();
 	  in3.close();
-	  in4 >> c1_t >> ec1_t;
-	  in5 >> c2_t >> ec2_t;
-	  in6 >> c3_t >> ec3_t;
 	  in4.close();
+	  in5 >> c1_qcd >> ec1_qcd;
+	  in6 >> c2_qcd >> ec2_qcd;
+	  in7 >> c3_qcd >> ec3_qcd;
 	  in5.close();
 	  in6.close();
-	  in7 >> c1_qcd >> ec1_qcd;
-	  in8 >> c2_qcd >> ec2_qcd;
-	  in9 >> c3_qcd >> ec3_qcd;
 	  in7.close();
-	  in8.close();
-	  in9.close();
 	}
 
 	double Lumi2012=0;
@@ -200,7 +189,6 @@ if (irun==99) {            // irun==99 => pur
 
 	double enorm1 = ((Lumi2012 * eXsec_wj) / Ngen_wj);
 	double enorm2 = ((Lumi2012 * eXsec_tt) / Ngen_tt);
-	if (useEleMuo && ilepton!=3) enorm2 = 0;
 	double enorm3 = ((Lumi2012 * eXsec_zz) / Ngen_zz);
 	double enorm4 = ((Lumi2012 * eXsec_wz) / Ngen_wz);
 	double enorm5 = ((Lumi2012 * eXsec_qcd) / Ngen_qcd);
@@ -300,21 +288,6 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) mc2->cd(("demoMuo"+postfix).c_str());
 	TH1F* h_mc2 = (TH1F*)gDirectory->Get(title.c_str());
 	TH1F* h_mc2_b = (TH1F*)gDirectory->Get(title_b.c_str());
-
-	if (useEleMuo) {
-	  if (ilepton==1) {
-	    mc2 = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/ttbar_sub/" + title + ".root").c_str());
-	    h_mc2 = (TH1F*)gDirectory->Get(title.c_str());
-	    mc2 = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/ttbar_sub/" + title_b + ".root").c_str());
-	    h_mc2_b = (TH1F*)gDirectory->Get(title_b.c_str());
-	  }
-	  if (ilepton==2) {
-	    mc2 = TFile::Open((path + "/muons/" + version + "/" + subdir + "/ttbar_sub/" + title + ".root").c_str());
-	    h_mc2 = (TH1F*)gDirectory->Get(title.c_str());
-	    mc2 = TFile::Open((path + "/muons/" + version + "/" + subdir + "/ttbar_sub/" + title_b + ".root").c_str());
-	    h_mc2_b = (TH1F*)gDirectory->Get(title_b.c_str());
-	  }
-	}
 
 	if (ilepton==1) mc3->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2) mc3->cd(("demoMuo"+postfix).c_str());
@@ -436,26 +409,28 @@ if (irun==99) {            // irun==99 => pur
 	h_mc8_b->Scale(norm8);
 
         if (useFitResults) {
-          h_mc2->Scale(c1_t);
-          if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
-          if (title_b.find("_b")!=string::npos && title_b.find("_bb")==string::npos) {
-            h_mc2_b->Scale(c2_t);
-            if (irun==5) h_mc2_b->Scale((c2_t+ec2_t)/c2_t);
-          } else if (title_b.find("_bb")!=string::npos) {
+          if (title_b.find("_bb")!=string::npos) {
             h_mc2_b->Scale(c3_t);
             if (irun==5) h_mc2_b->Scale((c3_t+ec3_t)/c3_t);
+          } else if (title_b.find("_b")!=string::npos) {
+            h_mc2_b->Scale(c2_t);
+            if (irun==5) h_mc2_b->Scale((c2_t+ec2_t)/c2_t);
+          } else {
+            h_mc2->Scale(c1_t);
+            if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
           }
         }
 
         if (useFitResults) {
-          h_mc5->Scale(c1_qcd);
-          if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
-          if (title_b.find("_b")!=string::npos && title_b.find("_bb")==string::npos) {
-            h_mc5_b->Scale(c2_qcd);
-            if (irun==5) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
-          } else if (title_b.find("_bb")!=string::npos) {
+          if (title_b.find("_bb")!=string::npos) {
             h_mc5_b->Scale(c3_qcd);
             if (irun==5) h_mc5_b->Scale((c3_qcd+ec3_qcd)/c3_qcd);
+          } else if (title_b.find("_b")!=string::npos) {
+            h_mc5_b->Scale(c2_qcd);
+            if (irun==5) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+          } else {
+            h_mc5->Scale(c1_qcd);
+            if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
           }
         }
 
