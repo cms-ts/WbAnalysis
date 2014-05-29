@@ -84,15 +84,15 @@ string subdir="0";
 
 	ifstream in;
 	if (ilepton==1) {
-	  in.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	  //in.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
 	}
 	if (ilepton==2) {
-	  in.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	  //in.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
 	}
-	in >> c_uds >> ec_uds;
-	in >> c_b >> ec_b;
-	in >> c_c >> ec_c;
-	in.close();
+	//in >> c_uds >> ec_uds;
+	//in >> c_b >> ec_b;
+	//in >> c_c >> ec_c;
+	//in.close();
 
 	double Lumi2012=0;
 
@@ -502,42 +502,48 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  syst_b_lumi->SetBinError(i, val);
 	}
 
-	float sum1, sum2, sum3, sum4;
-	float sum1_b, sum2_b, sum3_b, sum4_b;
-	ifstream in1, in2, in3, in4;
+	float sum1, sum2, sum3, sum4, sum5;
+	float sum1_b, sum2_b, sum3_b, sum4_b, sum5_b;
+	ifstream in1, in2, in3, in4, in5;
 	if (ilepton==1) {
-	  //in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	  //in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	  //in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	  //in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	  in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	  in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	  in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	  in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	  //in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wenu_b_wide" + "_xsecs_unfolding.dat").c_str());
+	  //in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  //in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wenu_bb_wide" + "_xsecs.dat").c_str());
+	  in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	  in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	}
 	if (ilepton==2) {
-	  //in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	  //in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	  //in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	  //in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	  in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	  in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	  in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	  in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	  //in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wmnu_b_wide" + "_xsecs_unfolding.dat").c_str());
+	  //in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  //in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	  //in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	  in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wmnu_bb_wide" + "_xsecs.dat").c_str());
+	  in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	  in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	  in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	}
 	in1 >> sum1; in1 >> sum1_b;
 	in2 >> sum2; in2 >> sum2_b;
 	in3 >> sum3; in3 >> sum3_b;
 	in4 >> sum4; in4 >> sum4_b;
+	in5 >> sum5; in5 >> sum5_b;
 	in1.close();
 	in2.close();
 	in3.close();
 	in4.close();
+	in5.close();
 
-	float tot = (sum1+sum2+sum3+sum4)/4.;
-	float tot_b = (sum1_b+sum2_b+sum3_b+sum4_b)/4.;
-	float rms = TMath::Sqrt((TMath::Power(sum1-tot,2)+TMath::Power(sum2-tot,2)+TMath::Power(sum3-tot,2)+TMath::Power(sum4-tot,2))/(4-1));
-	float rms_b = TMath::Sqrt((TMath::Power(sum1_b-tot_b,2)+TMath::Power(sum2_b-tot_b,2)+TMath::Power(sum3_b-tot_b,2)+TMath::Power(sum4_b-tot_b,2))/(4-1));
+	float tot = (sum1+sum2+sum3+sum4+sum5)/5.;
+	float tot_b = (sum1_b+sum2_b+sum3_b+sum4_b+sum5_b)/5.;
+	float rms = TMath::Sqrt((TMath::Power(sum1-tot,2)+TMath::Power(sum2-tot,2)+TMath::Power(sum3-tot,2)+TMath::Power(sum4-tot,2)+TMath::Power(sum5-tot,2))/(5-1));
+	float rms_b = TMath::Sqrt((TMath::Power(sum1_b-tot_b,2)+TMath::Power(sum2_b-tot_b,2)+TMath::Power(sum3_b-tot_b,2)+TMath::Power(sum4_b-tot_b,2)+TMath::Power(sum5_b-tot,2))/(5-1));
 
 	if (isratio==1) {
 	  float tmp1 = (tot_b/tot);
