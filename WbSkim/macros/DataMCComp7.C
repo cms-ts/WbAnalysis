@@ -413,7 +413,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	TH1F* syst_b_btag = (TH1F*)h_data_b->Clone();
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = 0.0;
+	  val = btag_sys * h_data_scan[0]->GetBinContent(i);
 	  syst_btag->SetBinError(i, val);
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
