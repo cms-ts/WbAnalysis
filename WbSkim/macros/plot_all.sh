@@ -14,12 +14,15 @@ cd $CMS_PATH/slc6_amd64_gcc472/cms/cmssw/CMSSW_6_2_7
 eval `scramv1 runtime -sh`
 cd -
 
-root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,7,0,1\)
-root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,7,0,1\)
-root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,7,0,1\)
-root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,8,0,1\)
-root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,8,0,1\)
-root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,8,0,1\)
+i=7
+while [ $i -le 8 ]; do
+
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,1\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,1\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,1\)
+
+  i=$((i+1))
+done
 
 i=1
 while [ $i -le 8 ]; do

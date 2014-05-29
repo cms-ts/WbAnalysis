@@ -154,10 +154,10 @@ if (irun==99) {            // irun==99 => pur
 	  }
 	}
 	if (useFitResults) {
-	  in1 >> c_uds >> ec_uds;
-	  in1 >> c_b >> ec_b;
-	  in1 >> c_c >> ec_c;
-	  in1.close();
+	  //in1 >> c_uds >> ec_uds;
+	  //in1 >> c_b >> ec_b;
+	  //in1 >> c_c >> ec_c;
+	  //in1.close();
 	  in2 >> c1_qcd >> ec1_qcd;
 	  in3 >> c2_qcd >> ec2_qcd;
 	  in4 >> c3_qcd >> ec3_qcd;
@@ -409,28 +409,36 @@ if (irun==99) {            // irun==99 => pur
 	h_mc8_b->Scale(norm8);
 
         if (useFitResults) {
+          if (title.find("_b")!=string::npos) {
+            h_mc2->Scale(c2_t);
+            if (irun==5) h_mc2->Scale((c2_t+ec2_t)/c2_t);
+          } else {
+            h_mc2->Scale(c1_t);
+            if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
+          }
           if (title_b.find("_bb")!=string::npos) {
             h_mc2_b->Scale(c3_t);
             if (irun==5) h_mc2_b->Scale((c3_t+ec3_t)/c3_t);
           } else if (title_b.find("_b")!=string::npos) {
             h_mc2_b->Scale(c2_t);
             if (irun==5) h_mc2_b->Scale((c2_t+ec2_t)/c2_t);
-          } else {
-            h_mc2->Scale(c1_t);
-            if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
           }
         }
 
         if (useFitResults) {
+          if (title.find("_b")!=string::npos) {
+            h_mc5->Scale(c2_qcd);
+            if (irun==5) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+          } else {
+            h_mc5->Scale(c1_qcd);
+            if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+          }
           if (title_b.find("_bb")!=string::npos) {
             h_mc5_b->Scale(c3_qcd);
             if (irun==5) h_mc5_b->Scale((c3_qcd+ec3_qcd)/c3_qcd);
           } else if (title_b.find("_b")!=string::npos) {
             h_mc5_b->Scale(c2_qcd);
             if (irun==5) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
-          } else {
-            h_mc5->Scale(c1_qcd);
-            if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
           }
         }
 
