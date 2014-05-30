@@ -679,19 +679,19 @@ process.p = cms.Path(
    process.demoMuoUp * process.demoMuoDown *
    process.demoMuoPur *
    process.demoMuoDR *
-   process.demoMuoJerUp * process.demoMuoJerDown
-#   process.demoEleDump *
-#   process.demoEleDumpPup * process.demoEleDumpPum *
-#   process.demoEleDumpUp * process.demoEleDumpDown *
-#   process.demoEleDumpPur *
-#   process.demoEleDumpDR *
-#   process.demoEleDumpJerUp * process.demoEleDumpJerDown *
-#   process.demoMuoDump *
-#   process.demoMuoDumpPup * process.demoMuoDumpPum *
-#   process.demoMuoDumpUp * process.demoMuoDumpDown *
-#   process.demoMuoDumpPur *
-#   process.demoMuoDumpDR *
-#   process.demoMuoDumpJerUp * process.demoMuoDumpJerDown
+   process.demoMuoJerUp * process.demoMuoJerDown *
+   process.demoEleDump *
+   process.demoEleDumpPup * process.demoEleDumpPum *
+   process.demoEleDumpUp * process.demoEleDumpDown *
+   process.demoEleDumpPur *
+   process.demoEleDumpDR *
+   process.demoEleDumpJerUp * process.demoEleDumpJerDown *
+   process.demoMuoDump *
+   process.demoMuoDumpPup * process.demoMuoDumpPum *
+   process.demoMuoDumpUp * process.demoMuoDumpDown *
+   process.demoMuoDumpPur *
+   process.demoMuoDumpDR *
+   process.demoMuoDumpJerUp * process.demoMuoDumpJerDown
    #process.dump
 )
 

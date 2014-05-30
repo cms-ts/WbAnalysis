@@ -1064,42 +1064,53 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
 
 //  // ++++++++ OUTPUT COLLECTIONS
-//
-//  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
-//     myEventWeight->push_back(MyWeight);
-//  }
-//
-//  if (wenu_event && mt_cut_wenu) {
-//    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E()));
-//  }
-//
-//  if (mm_event && Nj > 0) {
-//    myMuons->push_back(math::XYZTLorentzVector(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E()));
-//  }
-//
-//  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
-//    for (unsigned int i=0; i<vect_jets.size(); ++i) {
-//      myJets->push_back(math::XYZTLorentzVector(vect_jets[i].px(),vect_jets[i].py(),vect_jets[i].pz(),vect_jets[i].e()));
-//    }
-//    for (unsigned int i=0; i<vect_bjets.size(); ++i) {
-//      myBJets->push_back(math::XYZTLorentzVector(vect_bjets[i].px(),vect_bjets[i].py(),vect_bjets[i].pz(),vect_bjets[i].e()));
-//    }
-//  }
-//
+
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
+     myEventWeight->push_back(MyWeight);
+  }
+
+  if (wenu_event && mt_cut_wenu) {
+    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E()));
+  }
+
+  if (wmnu_event && mt_cut_wenu) {
+    myMuons->push_back(math::XYZTLorentzVector(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E()));
+  }
+
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
+    for (unsigned int i=0; i<vect_jets.size(); ++i) {
+      myJets->push_back(math::XYZTLorentzVector(vect_jets[i].px(),vect_jets[i].py(),vect_jets[i].pz(),vect_jets[i].e()));
+    }
+    for (unsigned int i=0; i<vect_bjets.size(); ++i) {
+      myBJets->push_back(math::XYZTLorentzVector(vect_bjets[i].px(),vect_bjets[i].py(),vect_bjets[i].pz(),vect_bjets[i].e()));
+    }
+  }
+
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
+    for (unsigned int i=0; i<vect_jets2.size(); ++i) {
+      myJets2->push_back(math::XYZTLorentzVector(vect_jets2[i].px(),vect_jets2[i].py(),vect_jets2[i].pz(),vect_jets2[i].e()));
+    }
+    for (unsigned int i=0; i<vect_bjets2.size(); ++i) {
+      myBJets2->push_back(math::XYZTLorentzVector(vect_bjets2[i].px(),vect_bjets2[i].py(),vect_bjets2[i].pz(),vect_bjets2[i].e()));
+    }
+  }
+
 //  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
 //    myHt->push_back(Ht);
 //  }
-//
-//  iEvent.put( myEventWeight, "myEventWeight" );
-//
-//  iEvent.put( myElectrons, "myElectrons" );
-//  iEvent.put( myMuons, "myMuons" );
-//
-//  iEvent.put( myJets, "myJets" );
-//
+
+  iEvent.put( myEventWeight, "myEventWeight" );
+
+  iEvent.put( myElectrons, "myElectrons" );
+  iEvent.put( myMuons, "myMuons" );
+
+  iEvent.put( myJets, "myJets" );
+  iEvent.put( myJets2, "myJets2" );
+
 //  iEvent.put( myHt, "myHt" );
-//
-//  iEvent.put( myBJets, "myBJets" );
+
+  iEvent.put( myBJets, "myBJets" );
+  iEvent.put( myBJets2, "myBJets2" );
 
 }
 
