@@ -25,6 +25,20 @@ while [ $i -le 8 ]; do
 done
 
 i=1
+while [ $i -le 2 ]; do
+
+  root -l -q -b DataMCComp.C+\($d,\"w_BJP\",1,$i,1,0\)
+  root -l -q -b DataMCComp.C+\($d,\"w_BJP\",1,$i,0,3\)
+  root -l -q -b DataMCComp.C+\($d,\"w_BJP\",1,$i,1,3\)
+
+  root -l -q -b DataMCComp.C+\($d,\"w_SVTX_mass\",1,$i,1,0\)
+  root -l -q -b DataMCComp.C+\($d,\"w_SVTX_mass\",1,$i,0,3\)
+  root -l -q -b DataMCComp.C+\($d,\"w_SVTX_mass\",1,$i,1,3\)
+
+  i=$((i+1))
+done
+
+i=1
 while [ $i -le 8 ]; do
 
   root -l -q -b DataMCComp.C+\($d,\"h_pu_weights\",1,$i\)
@@ -176,12 +190,26 @@ done
 i=1
 while [ $i -le 2 ]; do
 
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_wide\",1,$i,1,0\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_b_wide\",1,$i,1,0\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_bb_wide\",1,$i,1,0\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_wide\",1,$i,1,0\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_b_wide\",1,$i,1,0\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_bb_wide\",1,$i,1,0\)
+
   root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_wide\",1,$i,0,4\)
   root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_b_wide\",1,$i,0,4\)
   root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_bb_wide\",1,$i,0,4\)
   root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_wide\",1,$i,0,4\)
   root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_b_wide\",1,$i,0,4\)
   root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_bb_wide\",1,$i,0,4\)
+
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_wide\",1,$i,1,4\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_b_wide\",1,$i,1,4\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wenu_bb_wide\",1,$i,1,4\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_wide\",1,$i,1,4\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_b_wide\",1,$i,1,4\)
+  root -l -q -b DataMCComp.C\(0,\"w_mt_wmnu_bb_wide\",1,$i,1,4\)
 
   i=$((i+1))
 done
