@@ -10,7 +10,7 @@ int unfold=0; // use pre-unfolding distributions
 //int unfold=1; // use unfolded distributions
 
 TH1F* read(string subdir, string title, int ilepton) {
-  TH1F* hist;
+  TH1F* hist=0;
   TFile* file=0;
   string title_tmp = title;
   if (!unfold) {
@@ -32,9 +32,11 @@ TH1F* read(string subdir, string title, int ilepton) {
       file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_tmp + "_xsecs.root").c_str());
     }
   }
-  hist = (TH1F*)gDirectory->Get(title.c_str())->Clone();
-  hist->SetDirectory(0);
-  file->Close();
+  if (file) {
+    hist = (TH1F*)gDirectory->Get(title.c_str())->Clone();
+    hist->SetDirectory(0);
+    file->Close();
+  }
   return hist;
 }
 
@@ -57,6 +59,9 @@ int useSysUnfold=1; // include unfolding systematics
 
 int useSysUnfoldSherpa=0;
 //int useSysUnfoldSherpa=1; // use Sherpa for unfolding systematics
+
+int useSysUnfoldPowheg=0;
+//int useSysUnfoldPowheg=1; // use Powheg for unfolding systematics
 
 int useSysUnfoldMadGraph4FS=0;
 //int useSysUnfoldMadGraph4FS=1; // use MadGraph 4FS for unfolding systematics
@@ -441,11 +446,13 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
 	  double val = 0.0;
 	  if (useSysUnfold) {
-	    val = TMath::Abs(h_data_scan[9]->GetBinContent(i)-h_data_scan[7]->GetBinContent(i));
-	    val = TMath::Power(val,2);
-	    //val = val - (TMath::Power(h_data_scan[9]->GetBinError(i),2)-TMath::Power(h_data_scan[0]->GetBinError(i),2));
-	    //val = val - (TMath::Power(h_data_scan[7]->GetBinError(i),2)-TMath::Power(h_data_scan[0]->GetBinError(i),2));
-	    val = TMath::Sqrt(TMath::Max(0.,val));
+	    if (useSysUnfoldPowheg) {
+	      val = TMath::Abs(h_data_scan[9]->GetBinContent(i)-h_data_scan[7]->GetBinContent(i));
+	      val = TMath::Power(val,2);
+	      //val = val - (TMath::Power(h_data_scan[9]->GetBinError(i),2)-TMath::Power(h_data_scan[0]->GetBinError(i),2));
+	      //val = val - (TMath::Power(h_data_scan[7]->GetBinError(i),2)-TMath::Power(h_data_scan[0]->GetBinError(i),2));
+	      val = TMath::Sqrt(TMath::Max(0.,val));
+	    }
 	    if (useSysUnfoldSherpa) {
 	      val = TMath::Abs(h_data_scan[8]->GetBinContent(i)-h_data_scan[7]->GetBinContent(i));
 	      val = TMath::Power(val,2);
@@ -462,11 +469,13 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
 	  if (useSysUnfold) {
-	    val = TMath::Abs(h_data_b_scan[9]->GetBinContent(i)-h_data_b_scan[7]->GetBinContent(i));
-	    val = TMath::Power(val,2);
-	    //val = val - (TMath::Power(h_data_b_scan[9]->GetBinError(i),2)-TMath::Power(h_data_b_scan[0]->GetBinError(i),2));
-	    //val = val - (TMath::Power(h_data_b_scan[7]->GetBinError(i),2)-TMath::Power(h_data_b_scan[0]->GetBinError(i),2));
-	    val = TMath::Sqrt(TMath::Max(0.,val));
+	    if (useSysUnfoldPowheg) {
+	      val = TMath::Abs(h_data_b_scan[9]->GetBinContent(i)-h_data_b_scan[7]->GetBinContent(i));
+	      val = TMath::Power(val,2);
+	      //val = val - (TMath::Power(h_data_b_scan[9]->GetBinError(i),2)-TMath::Power(h_data_b_scan[0]->GetBinError(i),2));
+	      //val = val - (TMath::Power(h_data_b_scan[7]->GetBinError(i),2)-TMath::Power(h_data_b_scan[0]->GetBinError(i),2));
+	      val = TMath::Sqrt(TMath::Max(0.,val));
+	    }
 	    if (useSysUnfoldSherpa) {
 	      val = TMath::Abs(h_data_b_scan[8]->GetBinContent(i)-h_data_b_scan[7]->GetBinContent(i));
 	      val = TMath::Power(val,2);
@@ -573,7 +582,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(stat_unfold->GetBinError(i),2));
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(syst_unfold->GetBinError(i),2));
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(syst_lumi->GetBinError(i),2));
-	  if (useSysRMS) val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(h_data_stat->GetBinContent(i)*rms/tot,2));
+	  if (useSysRMS) val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(h_data_stat->GetBinContent(i)*(tot>0 ? rms/tot : 0),2));
 	  h_data_syst->SetBinError(i, val);
 	  val = TMath::Sqrt(TMath::Power(h_data_stat->GetBinError(i),2)+TMath::Power(h_data_syst->GetBinError(i),2));
 	  h_data_tot->SetBinError(i, val);
@@ -595,7 +604,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(stat_b_unfold->GetBinError(i),2));
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(syst_b_unfold->GetBinError(i),2));
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(syst_b_lumi->GetBinError(i),2));
-	  if (useSysRMS) val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(h_data_b_stat->GetBinContent(i)*rms_b/tot_b,2));
+	  if (useSysRMS) val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(h_data_b_stat->GetBinContent(i)*(tot_b>0 ? rms_b/tot_b : 0),2));
 	  h_data_b_syst->SetBinError(i, val);
 	  val = TMath::Sqrt(TMath::Power(h_data_b_stat->GetBinError(i),2)+TMath::Power(h_data_b_syst->GetBinError(i),2));
 	  h_data_b_tot->SetBinError(i, val);
@@ -858,7 +867,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  }
 	  out << h_data->GetName();
 	  out << std::fixed << std::setprecision(4);
-	  out << " : average unfolded total cross section = " << tot << " +- " << rms << " pb (" << 100*(rms/tot) << " %)";
+	  out << " : average unfolded total cross section = " << tot << " +- " << rms << " pb (" << 100*(tot>0 ? rms/tot : 0) << " %)";
 	  out << endl;
 	  out << std::setw(25) << "data";
 	  out << std::setw(12) << "bkg";
@@ -943,7 +952,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	    out << std::setw(8) << syst_lumi->GetBinError(i);
 	    if (useSysRMS) {
 	      out << " +- ";
-	      out << std::setw(8) << h_data->GetBinContent(i)*(rms/tot);
+	      out << std::setw(8) << h_data->GetBinContent(i)*(tot>0 ? rms/tot : 0);
 	    }
 	    out << " => ";
 	    out << std::setw(8) << h_data_stat->GetBinError(i);
@@ -958,7 +967,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  }
 	  out << h_data_b->GetName();
 	  out << std::fixed << std::setprecision(4);
-	  out << " : average unfolded total cross section = " << tot_b << " +- " << rms_b << " pb (" << 100*(rms_b/tot_b) << " %)";
+	  out << " : average unfolded total cross section = " << tot_b << " +- " << rms_b << " pb (" << 100*(tot_b>0 ? rms_b/tot_b : 0) << " %)";
 	  out << endl;
 	  out << std::setw(25) << "data";
 	  out << std::setw(12) << "bkg";
@@ -1043,7 +1052,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	    out << std::setw(8) << syst_b_lumi->GetBinError(i);
 	    if (useSysRMS) {
 	      out << " +- ";
-	      out << std::setw(8) << h_data_b->GetBinContent(i)*(rms_b/tot_b);
+	      out << std::setw(8) << h_data_b->GetBinContent(i)*(tot_b>0 ? rms_b/tot_b : 0);
 	    }
 	    out << " => ";
 	    out << std::setw(8) << h_data_b_stat->GetBinError(i);
@@ -1140,7 +1149,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	    out1 << std::setw(4) << syst_lumi->GetBinError(i)*val;
 	    if (useSysRMS) {
 	      out1 << " +- ";
-	      out1 << std::setw(4) << h_data->GetBinContent(i)*(rms/tot)*val;
+	      out1 << std::setw(4) << h_data->GetBinContent(i)*(tot>0 ? rms/tot : 0)*val;
 	    }
 	    out1 << " => ";
 	    out1 << std::setw(4) << h_data_stat->GetBinError(i)*val;
@@ -1233,7 +1242,7 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	    out1 << std::setw(4) << syst_b_lumi->GetBinError(i)*val;
 	    if (useSysRMS) {
 	      out1 << " +- ";
-	      out1 << std::setw(4) << h_data_b->GetBinContent(i)*(rms_b/tot_b)*val;
+	      out1 << std::setw(4) << h_data_b->GetBinContent(i)*(tot_b>0 ? rms_b/tot_b : 0)*val;
 	    }
 	    out1 << " => ";
 	    out1 << std::setw(4) << h_data_b_stat->GetBinError(i)*val;

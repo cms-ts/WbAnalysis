@@ -10,7 +10,7 @@ int unfold=0; // use pre-unfolding distributions
 //int unfold=1; // use unfolded distributions
 
 TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
-  TH1F* hist;
+  TH1F* hist=0;
   TFile* file = infile;
   string title_tmp = title;
   if (ilepton==1) {
