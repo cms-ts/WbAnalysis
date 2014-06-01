@@ -6,6 +6,9 @@
 
 string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
+int unfold=0; // use pre-unfolding distributions
+//int unfold=1; // use unfolded distributions
+
 TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
   TH1F* hist;
   TFile* file = infile;
@@ -13,31 +16,39 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
   if (ilepton==1) {
     if (title=="w_mt_b") title_tmp="w_mt_wenu_b";
     if (title=="w_mt_bb") title_tmp="w_mt_wenu_bb";
-// to be removed when using unfolded data
     string title_tmp2 = title_tmp;
-    if (title_tmp2.find("_bb")==string::npos) {
-      title_tmp2 = title_tmp2 + "b";
+    if (!unfold) {
+      if (title_tmp2.find("_bb")==string::npos) {
+        title_tmp2 = title_tmp2 + "b";
+      }
     }
     if (file) {
       file->cd("demoEleGen");
     } else {
-      //file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_tmp + "_unfolding.root").c_str());
-      file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
+      if (unfold) {
+        file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_tmp2 + "_unfolding.root").c_str());
+      } else {
+        file = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
+      }
     }
   }
   if (ilepton==2) {
     if (title=="w_mt_b") title_tmp="w_mt_wmnu_b";
     if (title=="w_mt_bb") title_tmp="w_mt_wmnu_bb";
-// to be removed when using unfolded data
     string title_tmp2 = title_tmp;
-    if (title_tmp2.find("_bb")==string::npos) {
-      title_tmp2 = title_tmp2 + "b";
+    if (!unfold) {
+      if (title_tmp2.find("_bb")==string::npos) {
+        title_tmp2 = title_tmp2 + "b";
+      }
     }
     if (file) {
       file->cd("demoMuoGen");
     } else {
-      //file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_tmp + "_unfolding.root").c_str());
-      file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
+      if (unfold) {
+        file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_tmp2 + "_unfolding.root").c_str());
+      } else {
+        file = TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_tmp2 + "_xsecs.root").c_str());
+      }
     }
   }
   hist = (TH1F*)gDirectory->Get(title_tmp.c_str())->Clone();
@@ -109,9 +120,10 @@ string subdir="0";
 	for (int i=0; i<2; i++) {
 	  w_data[i] = read(subdir, title, i+1);
 	  w_data_b[i] = read(subdir, title_b, i+1);
-// to be restored when using unfolded data
-//	  w_data[i]->Scale(1./Lumi2012, "width");
-//	  w_data_b[i]->Scale(1./Lumi2012, "width");
+	  if (unfold) {
+	    w_data[i]->Scale(1./Lumi2012, "width");
+	    w_data_b[i]->Scale(1./Lumi2012, "width");
+	  }
 	  if (isratio==1) {
 	    w_data_b[i]->Divide(w_data[i]);
 	    w_data_b[i]->Scale(100.);
@@ -250,18 +262,24 @@ string subdir="0";
 	  if (i==0) {
 	    if (title_b=="w_mt_b") title_b_tmp="w_mt_wenu_b";
 	    if (title_b=="w_mt_bb") title_b_tmp="w_mt_wenu_bb";
-	    //if (isratio==0) in.open((path + "/electrons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
-	    //if (isratio==1) in.open((path + "/electrons/" + version + "/" + "/ratios_unfolding/" + title_b_tmp + "_ratio_unfolding.dat").c_str());
-	    if (isratio==0) in.open((path + "/electrons/" + version + "/" + "/xsecs/" + title_b_tmp + "_xsecs.dat").c_str());
-	    if (isratio==1) in.open((path + "/electrons/" + version + "/" + "/ratios/" + title_b_tmp + "_ratio.dat").c_str());
+	    if (unfold) {
+	      if (isratio==0) in.open((path + "/electrons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
+	      if (isratio==1) in.open((path + "/electrons/" + version + "/" + "/ratios_unfolding/" + title_b_tmp + "_ratio_unfolding.dat").c_str());
+	    } else {
+	      if (isratio==0) in.open((path + "/electrons/" + version + "/" + "/xsecs/" + title_b_tmp + "_xsecs.dat").c_str());
+	      if (isratio==1) in.open((path + "/electrons/" + version + "/" + "/ratios/" + title_b_tmp + "_ratio.dat").c_str());
+	    }
 	  }
 	  if (i==1) {
 	    if (title_b=="w_mt_b") title_b_tmp="w_mt_wmnu_b";
 	    if (title_b=="w_mt_bb") title_b_tmp="w_mt_wmnu_bb";
-            //if (isratio==0) in.open((path + "/muons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
-	    //if (isratio==1) in.open((path + "/muons/" + version + "/" + "/ratios_unfolding/" + title_b_tmp + "_ratio_unfolding.dat").c_str());
-            if (isratio==0) in.open((path + "/muons/" + version + "/" + "/xsecs/" + title_b_tmp + "_xsecs.dat").c_str());
-	    if (isratio==1) in.open((path + "/muons/" + version + "/" + "/ratios/" + title_b_tmp + "_ratio.dat").c_str());
+	    if (unfold) {
+              if (isratio==0) in.open((path + "/muons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
+	      if (isratio==1) in.open((path + "/muons/" + version + "/" + "/ratios_unfolding/" + title_b_tmp + "_ratio_unfolding.dat").c_str());
+	    } else {
+              if (isratio==0) in.open((path + "/muons/" + version + "/" + "/xsecs/" + title_b_tmp + "_xsecs.dat").c_str());
+	      if (isratio==1) in.open((path + "/muons/" + version + "/" + "/ratios/" + title_b_tmp + "_ratio.dat").c_str());
+	    }
 	  }
 
 	  string tmp;
@@ -1103,28 +1121,34 @@ string subdir="0";
 	if (plot) {
 	  ofstream out, out1, out2;
 	  if (isratio==0) {
-	    //gSystem->mkdir((path + "/combined/" + version + "/xsecs_unfolding/").c_str(), kTRUE);
-	    //c1->SaveAs((path + "/combined/" + version + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.pdf").c_str());
-	    //out.open((path + "/combined/" + version + "/" + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.dat").c_str());
-	    //out1.open((path + "/combined/" + version + "/" + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.txt").c_str());
-	    //out2.open((path + "/combined/" + version + "/" + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.tex").c_str());
-	    gSystem->mkdir((path + "/combined/" + version + "/xsecs/").c_str(), kTRUE);
-	    c1->SaveAs((path + "/combined/" + version + "/xsecs/" + title_b + "_xsecs.pdf").c_str());
-	    out.open((path + "/combined/" + version + "/" + "/xsecs/" + title_b + "_xsecs.dat").c_str());
-	    out1.open((path + "/combined/" + version + "/" + "/xsecs/" + title_b + "_xsecs.txt").c_str());
-	    out2.open((path + "/combined/" + version + "/" + "/xsecs/" + title_b + "_xsecs.tex").c_str());
+	    if (unfold) {
+	      gSystem->mkdir((path + "/combined/" + version + "/xsecs_unfolding/").c_str(), kTRUE);
+	      c1->SaveAs((path + "/combined/" + version + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.pdf").c_str());
+	      out.open((path + "/combined/" + version + "/" + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.dat").c_str());
+	      out1.open((path + "/combined/" + version + "/" + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.txt").c_str());
+	      out2.open((path + "/combined/" + version + "/" + "/xsecs_unfolding/" + title_b + "_xsecs_unfolding.tex").c_str());
+	    } else {
+	      gSystem->mkdir((path + "/combined/" + version + "/xsecs/").c_str(), kTRUE);
+	      c1->SaveAs((path + "/combined/" + version + "/xsecs/" + title_b + "_xsecs.pdf").c_str());
+	      out.open((path + "/combined/" + version + "/" + "/xsecs/" + title_b + "_xsecs.dat").c_str());
+	      out1.open((path + "/combined/" + version + "/" + "/xsecs/" + title_b + "_xsecs.txt").c_str());
+	      out2.open((path + "/combined/" + version + "/" + "/xsecs/" + title_b + "_xsecs.tex").c_str());
+	    }
 	  }
 	  if (isratio==1) {
-	    //gSystem->mkdir((path + "/combined/" + version + "/ratios_unfolding/").c_str(), kTRUE);
-	    //c1->SaveAs((path + "/combined/" + version + "/ratios_unfolding/" + title_b + "_ratio_unfolding.pdf").c_str());
-	    //out.open((path + "/combined/" + version + "/" + "/ratios_unfolding/" + title_b + "_ratio_unfolding.dat").c_str());
-	    //out1.open((path + "/combined/" + version + "/" + "/ratios_unfolding/" + title_b + "_ratio_unfolding.txt").c_str());
-	    //out2.open((path + "/combined/" + version + "/" + "/ratios_unfolding/" + title_b + "_ratio_unfolding.tex").c_str());
-	    gSystem->mkdir((path + "/combined/" + version + "/ratios/").c_str(), kTRUE);
-	    c1->SaveAs((path + "/combined/" + version + "/ratios/" + title_b + "_ratio.pdf").c_str());
-	    out.open((path + "/combined/" + version + "/" + "/ratios/" + title_b + "_ratio.dat").c_str());
-	    out1.open((path + "/combined/" + version + "/" + "/ratios/" + title_b + "_ratio.txt").c_str());
-	    out2.open((path + "/combined/" + version + "/" + "/ratios/" + title_b + "_ratio.tex").c_str());
+	    if (unfold) {
+	      gSystem->mkdir((path + "/combined/" + version + "/ratios_unfolding/").c_str(), kTRUE);
+	      c1->SaveAs((path + "/combined/" + version + "/ratios_unfolding/" + title_b + "_ratio_unfolding.pdf").c_str());
+	      out.open((path + "/combined/" + version + "/" + "/ratios_unfolding/" + title_b + "_ratio_unfolding.dat").c_str());
+	      out1.open((path + "/combined/" + version + "/" + "/ratios_unfolding/" + title_b + "_ratio_unfolding.txt").c_str());
+	      out2.open((path + "/combined/" + version + "/" + "/ratios_unfolding/" + title_b + "_ratio_unfolding.tex").c_str());
+	    } else {
+	      gSystem->mkdir((path + "/combined/" + version + "/ratios/").c_str(), kTRUE);
+	      c1->SaveAs((path + "/combined/" + version + "/ratios/" + title_b + "_ratio.pdf").c_str());
+	      out.open((path + "/combined/" + version + "/" + "/ratios/" + title_b + "_ratio.dat").c_str());
+	      out1.open((path + "/combined/" + version + "/" + "/ratios/" + title_b + "_ratio.txt").c_str());
+	      out2.open((path + "/combined/" + version + "/" + "/ratios/" + title_b + "_ratio.tex").c_str());
+	    }
 	  }
 	  if (isratio==0) {
 	    out << h_data->GetName();

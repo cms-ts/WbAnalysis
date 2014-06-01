@@ -6,6 +6,9 @@ string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
 void DataMCComp6(int irun=0, string title="", int plot=0) {
 
+int unfold=0; // use pre-unfolding distributions
+//int unfold=1; // use unfolded distributions
+
 string subdir="0";
 string postfix="";
 if (irun==1) {             // irun==1 => JEC Up
@@ -99,38 +102,49 @@ if (irun==99) {            // irun==99 => pur
           title_m.erase(title_m.find("_bjet_")+1, 1);
         }
 
-        //TFile f_e((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_e + "_unfolding.root").c_str());
-        //TFile f_e_b((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_e_b + "_unfolding.root").c_str());
-        TFile f_e((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_e_b + "_xsecs.root").c_str());
-        TFile f_e_b((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_e_b + "_xsecs.root").c_str());
-        TH1F* h_data_e = (TH1F*)f_e.Get(title_e.c_str())->Clone();
-        TH1F* h_data_e_b = (TH1F*)f_e_b.Get(title_e_b.c_str())->Clone();
+        TFile* f_e;
+        TFile* f_e_b;
+        if (unfold) {
+           f_e = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_e + "_unfolding.root").c_str());
+           f_e_b = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/unfolding/" + title_e_b + "_unfolding.root").c_str());
+        } else {
+          f_e = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_e_b + "_xsecs.root").c_str());
+          f_e_b = TFile::Open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + title_e_b + "_xsecs.root").c_str());
+        }
+        TH1F* h_data_e = (TH1F*)f_e->Get(title_e.c_str())->Clone();
+        TH1F* h_data_e_b = (TH1F*)f_e_b->Get(title_e_b.c_str())->Clone();
         h_data_e->SetDirectory(0);
         h_data_e_b->SetDirectory(0);
-        f_e.Close();
-        f_e_b.Close();
+        f_e->Close();
+        f_e_b->Close();
 
-        //TFile f_m((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_m + "_unfolding.root").c_str());
-        //TFile f_m_b((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_m_b + "_unfolding.root").c_str());
-        TFile f_m((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_m_b + "_xsecs.root").c_str());
-        TFile f_m_b((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_m_b + "_xsecs.root").c_str());
-        TH1F* h_data_m = (TH1F*)f_m.Get(title_m.c_str())->Clone();
-        TH1F* h_data_m_b = (TH1F*)f_m_b.Get(title_m_b.c_str())->Clone();
+        TFile* f_m;
+        TFile* f_m_b;
+        if (unfold) {
+          f_m = TFile::Open((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_m + "_unfolding.root").c_str());
+          f_m_b= TFile::Open((path + "/muons/" + version + "/" + subdir + "/unfolding/" + title_m_b + "_unfolding.root").c_str());
+        } else {
+          f_m= TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_m_b + "_xsecs.root").c_str());
+          f_m_b= TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + title_m_b + "_xsecs.root").c_str());
+        }
+        TH1F* h_data_m = (TH1F*)f_m->Get(title_m.c_str())->Clone();
+        TH1F* h_data_m_b = (TH1F*)f_m_b->Get(title_m_b.c_str())->Clone();
         h_data_m->SetDirectory(0);
         h_data_m_b->SetDirectory(0);
-        f_m.Close();
-        f_m_b.Close();
+        f_m->Close();
+        f_m_b->Close();
 
         h_data_e->SetStats(0);
         h_data_e_b->SetStats(0);
         h_data_m->SetStats(0);
         h_data_m_b->SetStats(0);
 
-// to be removed when using unfolded data
-//	h_data_e->Scale(1./Lumi2012_ele, "width");
-//	h_data_e_b->Scale(1./Lumi2012_ele, "width");
-//	h_data_m->Scale(1./Lumi2012_muon, "width");
-//	h_data_m_b->Scale(1./Lumi2012_muon, "width");
+	if (unfold) {
+	  h_data_e->Scale(1./Lumi2012_ele, "width");
+	  h_data_e_b->Scale(1./Lumi2012_ele, "width");
+	  h_data_m->Scale(1./Lumi2012_muon, "width");
+	  h_data_m_b->Scale(1./Lumi2012_muon, "width");
+	}
 
         TCanvas* c1 = new TCanvas("c", "c", 800, 600);
         c1->cd();
@@ -232,10 +246,13 @@ if (irun==99) {            // irun==99 => pur
         c1->cd();
 
 	if (plot) {
-          //gSystem->mkdir((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/").c_str(), kTRUE);
-          //c1->SaveAs((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/" + title + "b" + "_xsecs_unfolding.pdf").c_str());
-          gSystem->mkdir((path + "/combined/" + version + "/" + subdir + "/xsecs/").c_str(), kTRUE);
-          c1->SaveAs((path + "/combined/" + version + "/" + subdir + "/xsecs/" + title + "b" + "_xsecs.pdf").c_str());
+          if (unfold) {
+            gSystem->mkdir((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/").c_str(), kTRUE);
+            c1->SaveAs((path + "/combined/" + version + "/" + subdir + "/xsecs_unfolding/" + title + "b" + "_xsecs_unfolding.pdf").c_str());
+          } else {
+            gSystem->mkdir((path + "/combined/" + version + "/" + subdir + "/xsecs/").c_str(), kTRUE);
+            c1->SaveAs((path + "/combined/" + version + "/" + subdir + "/xsecs/" + title + "b" + "_xsecs.pdf").c_str());
+          }
 	}
 
 }
