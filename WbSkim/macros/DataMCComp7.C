@@ -90,24 +90,48 @@ string subdir="0";
 
 	/* purity */
 
-	double c_b=1.0;
-	double ec_b=0.0;
-	double c_c=1.0;
-	double ec_c=0.0;
-	double c_uds=1.0;
-	double ec_uds=0.0;
+	double c1_b=1.0;
+	double ec1_b=0.0;
+	double c1_c=1.0;
+	double ec1_c=0.0;
+	double c1_uds=1.0;
+	double ec1_uds=0.0;
+	double c2_b=1.0;
+	double ec2_b=0.0;
+	double c2_c=1.0;
+	double ec2_c=0.0;
+	double c2_uds=1.0;
+	double ec2_uds=0.0;
+	double c3_b=1.0;
+	double ec3_b=0.0;
+	double c3_c=1.0;
+	double ec3_c=0.0;
+	double c3_uds=1.0;
+	double ec3_uds=0.0;
 
-	ifstream in;
+	ifstream in1, in2, in3;
 	if (ilepton==1) {
-	  //in.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	  //in1.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	  //in2.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_b_doFit" + ".dat").c_str());
+	  //in3.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_bb_doFit" + ".dat").c_str());
 	}
 	if (ilepton==2) {
-	  //in.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	  //in1.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	  //in2.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_b_doFit" + ".dat").c_str());
+	  //in3.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_bb_doFit" + ".dat").c_str());
 	}
-	//in >> c_uds >> ec_uds;
-	//in >> c_b >> ec_b;
-	//in >> c_c >> ec_c;
-	//in.close();
+	//in1 >> c1_uds >> ec1_uds;
+	//in1 >> c1_b >> ec1_b;
+	//in1 >> c1_c >> ec1_c;
+	//in2 >> c2_uds >> ec2_uds;
+	//in2 >> c2_b >> ec2_b;
+	//in2 >> c2_c >> ec2_c;
+	//in3 >> c3_uds >> ec3_uds;
+	//in1 >> c3_b >> ec3_b;
+	//in3 >> c3_c >> ec3_c;
+	//in1.close();
+	//in2.close();
+	//in3.close();
 
 	double Lumi2012=0;
 
@@ -186,7 +210,12 @@ string subdir="0";
 
 	if (ilepton==1) mc1->cd("demoEle");
 	if (ilepton==2) mc1->cd("demoMuo");
-	TH1F* h_mc1 = (TH1F*)gDirectory->Get(title.c_str());
+	TH1F* h_mc1;
+	if (title.find("_b")!=string::npos) {
+	  h_mc1 = (TH1F*)gDirectory->Get(("b"+title.substr(1)).c_str());
+	} else {
+	  h_mc1 = (TH1F*)gDirectory->Get(title.c_str());
+	}
 	TH1F* h_mc1b_b = (TH1F*)gDirectory->Get(("b"+title_b.substr(1)).c_str());
 
 	if (ilepton==1) mcg->cd("demoEleGen");
@@ -206,11 +235,30 @@ string subdir="0";
 	h_mc1b_b->Scale(norm1);
 	h_mcg_b->Scale(norm1);
 
-	h_mc1b_b->Scale(c_b);
-	for (int i=0; i<=h_mc1b_b->GetNbinsX()+1; i++) {
-	  float e = TMath::Power(h_mc1b_b->GetBinError(i),2);
-	  e = e + TMath::Power(h_mc1b_b->GetBinContent(i)*(ec_b/c_b),2);
-	  h_mc1b_b->SetBinError(i, TMath::Sqrt(e));
+	if (title.find("_b")!=string::npos) {
+	  h_mc1->Scale(c2_b);
+	  for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
+	    float e = TMath::Power(h_mc1->GetBinError(i),2);
+	    e = e + TMath::Power(h_mc1->GetBinContent(i)*(ec2_b/c2_b),2);
+	    h_mc1->SetBinError(i, TMath::Sqrt(e));
+	  }
+	} else {
+	  // inclusive not scaled
+	}
+	if (title_b.find("_bb")!=string::npos) {
+	  h_mc1b_b->Scale(c3_b);
+	  for (int i=0; i<=h_mc1b_b->GetNbinsX()+1; i++) {
+	    float e = TMath::Power(h_mc1b_b->GetBinError(i),2);
+	    e = e + TMath::Power(h_mc1b_b->GetBinContent(i)*(ec3_b/c3_b),2);
+	    h_mc1b_b->SetBinError(i, TMath::Sqrt(e));
+	  }
+	} else {
+	  h_mc1b_b->Scale(c2_b);
+	  for (int i=0; i<=h_mc1b_b->GetNbinsX()+1; i++) {
+	    float e = TMath::Power(h_mc1b_b->GetBinError(i),2);
+	    e = e + TMath::Power(h_mc1b_b->GetBinContent(i)*(ec2_b/c2_b),2);
+	    h_mc1b_b->SetBinError(i, TMath::Sqrt(e));
+	  }
 	}
 
         if (ilepton==1) {
@@ -514,47 +562,47 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 
 	float sum1, sum2, sum3, sum4, sum5;
 	float sum1_b, sum2_b, sum3_b, sum4_b, sum5_b;
-	ifstream in1, in2, in3, in4, in5;
+	ifstream in4, in5, in6, in7, in8;
 	if (ilepton==1) {
           if (unfold) {
-	    in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wenu_b_wide" + "_xsecs_unfolding.dat").c_str());
-	    in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wenu_b_wide" + "_xsecs_unfolding.dat").c_str());
+	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	    in8.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
 	  } else {
-	    in1.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wenu_bb_wide" + "_xsecs.dat").c_str());
-	    in2.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in3.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wenu_bb_wide" + "_xsecs.dat").c_str());
+	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in8.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
           if (unfold) {
-	    in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wmnu_b_wide" + "_xsecs_unfolding.dat").c_str());
-	    in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wmnu_b_wide" + "_xsecs_unfolding.dat").c_str());
+	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
+	    in8.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
 	  } else {
-	    in1.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wmnu_bb_wide" + "_xsecs.dat").c_str());
-	    in2.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in3.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wmnu_bb_wide" + "_xsecs.dat").c_str());
+	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in8.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	  }
 	}
-	in1 >> sum1; in1 >> sum1_b;
-	in2 >> sum2; in2 >> sum2_b;
-	in3 >> sum3; in3 >> sum3_b;
-	in4 >> sum4; in4 >> sum4_b;
-	in5 >> sum5; in5 >> sum5_b;
-	in1.close();
-	in2.close();
-	in3.close();
+	in4 >> sum1; in4 >> sum1_b;
+	in5 >> sum2; in5 >> sum2_b;
+	in6 >> sum3; in6 >> sum3_b;
+	in7 >> sum4; in7 >> sum4_b;
+	in8 >> sum5; in8 >> sum5_b;
 	in4.close();
 	in5.close();
+	in6.close();
+	in7.close();
+	in8.close();
 
 	float tot = (sum1+sum2+sum3+sum4+sum5)/5.;
 	float tot_b = (sum1_b+sum2_b+sum3_b+sum4_b+sum5_b)/5.;
