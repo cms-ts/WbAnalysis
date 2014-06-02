@@ -210,12 +210,7 @@ string subdir="0";
 
 	if (ilepton==1) mc1->cd("demoEle");
 	if (ilepton==2) mc1->cd("demoMuo");
-	TH1F* h_mc1;
-	if (title.find("_b")!=string::npos) {
-	  h_mc1 = (TH1F*)gDirectory->Get(("b"+title.substr(1)).c_str());
-	} else {
-	  h_mc1 = (TH1F*)gDirectory->Get(title.c_str());
-	}
+	TH1F* h_mc1 = (TH1F*)gDirectory->Get(("b"+title.substr(1)).c_str());
 	TH1F* h_mc1b_b = (TH1F*)gDirectory->Get(("b"+title_b.substr(1)).c_str());
 
 	if (ilepton==1) mcg->cd("demoEleGen");
@@ -243,7 +238,12 @@ string subdir="0";
 	    h_mc1->SetBinError(i, TMath::Sqrt(e));
 	  }
 	} else {
-	  // inclusive not scaled
+	  h_mc1->Scale(c1_b);
+	  for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
+	    float e = TMath::Power(h_mc1->GetBinError(i),2);
+	    e = e + TMath::Power(h_mc1->GetBinContent(i)*(ec1_b/c1_b),2);
+	    h_mc1->SetBinError(i, TMath::Sqrt(e));
+	  }
 	}
 	if (title_b.find("_bb")!=string::npos) {
 	  h_mc1b_b->Scale(c3_b);
