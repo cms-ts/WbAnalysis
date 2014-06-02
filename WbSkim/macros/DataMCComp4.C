@@ -141,6 +141,9 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) Lumi2012 = Lumi2012_muon;
 
 	double norm1 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
+	double norm1_1 = norm1;
+	double norm1_2 = norm1;
+	double norm1_3 = norm1;
 
 	if (title.empty()) title = "w_jetmultiplicity";
 
@@ -170,30 +173,30 @@ if (irun==99) {            // irun==99 => pur
 	TFile* mc1=0;
 	if (imode==-1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
 	if (imode== 0) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 3) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (imode== 1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (imode== 2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (imode== 3) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 4) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 5) mc1 = TFile::Open((path + "/" + version + "/" + "DYJets_sherpa_gen.root").c_str());
-//	if (imode== 6) {
-//	  if (ilepton==1) mc1 = TFile::Open((path + "/" + version + "/" + "DYToEE_powheg_gen.root").c_str());
-//	  if (ilepton==2) mc1 = TFile::Open((path + "/" + version + "/" + "DYToMuMu_powheg_gen.root").c_str());
-//	}
-//	if (imode== 7) mc1 = TFile::Open((path + "/" + version + "/" + "DYJetsToLL2_gen.root").c_str());
+	if (imode== 5) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_sherpa_gen.root").c_str());
+	if (imode== 6) {
+	  if (ilepton==1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
+	  if (ilepton==2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
+	}
+	if (imode== 7) mc1 = TFile::Open((path + "/" + version + "/" + "Wj22_gen.root").c_str());
 
 	TFile* mc2=0;
 	if (imode==-1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
 	if (imode== 0) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 1) mc2 = TFile::Open((path + "/" + version + "/" + "DYJets_sherpa_gen.root").c_str());
-//	if (imode== 2) {
-//	  if (ilepton==1) mc2 = TFile::Open((path + "/" + version + "/" + "DYToEE_powheg_gen.root").c_str());
-//	  if (ilepton==2) mc2 = TFile::Open((path + "/" + version + "/" + "DYToMuMu_powheg_gen.root").c_str());
-//	}
-//	if (imode== 3) mc2 = TFile::Open((path + "/" + version + "/" + "DYJetsToLL2_gen.root").c_str());
+	if (imode== 1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_sherpa_gen.root").c_str());
+	if (imode== 2) {
+	  if (ilepton==1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
+	  if (ilepton==2) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
+	}
+	if (imode== 3) mc2 = TFile::Open((path + "/" + version + "/" + "Wj22_gen.root").c_str());
 	if (imode== 4) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 5) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 6) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-//	if (imode== 7) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (imode== 5) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (imode== 6) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (imode== 7) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 
 	TH1F* h_data_reco;
 	data->cd();
@@ -275,32 +278,32 @@ if (irun==99) {            // irun==99 => pur
 
 	h_mc1_truth->Scale(norm1);
 	h_mc1_reco->Scale(norm1);
-//	if (imode==5) {
-//	  h_mc1_truth->Scale(norm1_1/norm1);
-//	  h_mc1_reco->Scale(norm1_1/norm1);
-//	}
-//	if (imode==6) {
-//	  h_mc1_truth->Scale(norm1_2/norm1);
-//	  h_mc1_reco->Scale(norm1_2/norm1);
-//	}
-//	if (imode==7) {
-//	  h_mc1_truth->Scale(norm1_3/norm1);
-//	  h_mc1_reco->Scale(norm1_3/norm1);
-//	}
+	if (imode==5) {
+	  h_mc1_truth->Scale(norm1_1/norm1);
+	  h_mc1_reco->Scale(norm1_1/norm1);
+	}
+	if (imode==6) {
+	  h_mc1_truth->Scale(norm1_2/norm1);
+	  h_mc1_reco->Scale(norm1_2/norm1);
+	}
+	if (imode==7) {
+	  h_mc1_truth->Scale(norm1_3/norm1);
+	  h_mc1_reco->Scale(norm1_3/norm1);
+	}
 	h_mc2_truth->Scale(norm1);
 	h_mc2_reco->Scale(norm1);
-//	if (imode==1) {
-//	  h_mc2_truth->Scale(norm1_1/norm1);
-//	  h_mc2_reco->Scale(norm1_1/norm1);
-//	}
-//	if (imode==2) {
-//	  h_mc2_truth->Scale(norm1_2/norm1);
-//	  h_mc2_reco->Scale(norm1_2/norm1);
-//	}
-//	if (imode==3) {
-//	  h_mc2_truth->Scale(norm1_3/norm1);
-//	  h_mc2_reco->Scale(norm1_3/norm1);
-//	}
+	if (imode==1) {
+	  h_mc2_truth->Scale(norm1_1/norm1);
+	  h_mc2_reco->Scale(norm1_1/norm1);
+	}
+	if (imode==2) {
+	  h_mc2_truth->Scale(norm1_2/norm1);
+	  h_mc2_reco->Scale(norm1_2/norm1);
+	}
+	if (imode==3) {
+	  h_mc2_truth->Scale(norm1_3/norm1);
+	  h_mc2_reco->Scale(norm1_3/norm1);
+	}
 
 	if (title.find("_b")!=string::npos) {
 	  h_mc1_truth->Scale(c_b);
