@@ -124,15 +124,15 @@ if (irun==99) {            // irun==99 => pur
 	ifstream in;
 	if (imode>=4) {
 	  if (ilepton==1) {
-	    in.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	    //in.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
 	  }
 	  if (ilepton==2) {
-	    in.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
+	    //in.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_BJP_doFit" + ".dat").c_str());
 	  }
-	  in >> c_uds >> ec_uds;
-	  in >> c_b >> ec_b;
-	  in >> c_c >> ec_c;
-	  in.close();
+	  //in >> c_uds >> ec_uds;
+	  //in >> c_b >> ec_b;
+	  //in >> c_c >> ec_c;
+	  //in.close();
 	}
 
 	double Lumi2012=0;
