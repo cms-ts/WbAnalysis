@@ -182,7 +182,7 @@ if (irun==99) {            // irun==99 => pur
 	  if (ilepton==1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	  if (ilepton==2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	}
-	if (imode== 7) mc1 = TFile::Open((path + "/" + version + "/" + "Wj22_gen.root").c_str());
+	if (imode== 7) mc1 = TFile::Open((path + "/" + version + "/" + "Wj2_gen.root").c_str());
 
 	TFile* mc2=0;
 	if (imode==-1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
@@ -192,7 +192,7 @@ if (irun==99) {            // irun==99 => pur
 	  if (ilepton==1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	  if (ilepton==2) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	}
-	if (imode== 3) mc2 = TFile::Open((path + "/" + version + "/" + "Wj22_gen.root").c_str());
+	if (imode== 3) mc2 = TFile::Open((path + "/" + version + "/" + "Wj2_gen.root").c_str());
 	if (imode== 4) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 5) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 6) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
