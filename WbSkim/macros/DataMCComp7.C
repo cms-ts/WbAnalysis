@@ -158,6 +158,8 @@ string subdir="0";
 	for (int i=0;i<NMAX;i++) {
 	  h_data_scan[i] = 0;
 	  h_data_b_scan[i] = 0;
+	  if (i==8 && !useSysUnfoldSherpa) continue;
+	  if (i==9 && !useSysUnfoldPowheg) continue;
 	  if (i<=13) {
 	    stringstream ss;
 	    ss << i;
