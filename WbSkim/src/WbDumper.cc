@@ -101,11 +101,6 @@ class WbDumper : public edm::EDAnalyzer {
      bool pcut_;
      bool useDeltaR_;
 
-  TH2F*     w_jetmultiplicity;
-  TH2F*     b_jetmultiplicity;
-  TH2F*     c_jetmultiplicity;
-  TH2F*     t_jetmultiplicity;
-
   TH2F*     w_first_jet_pt;	// leading jet of any type
   TH2F*     w_first_jet_eta;
   TH2F*     w_first_jet_mass;
@@ -127,8 +122,6 @@ class WbDumper : public edm::EDAnalyzer {
   TH2F*     w_second_jet_eta_bb;
   TH2F*     w_second_jet_mass_bb;
 
-  TH2F*     w_bjetmultiplicity;
-
   TH2F*     w_first_bjet_pt;	// leading b jet
   TH2F*     w_first_bjet_eta;
   TH2F*     w_first_bjet_mass;
@@ -143,12 +136,6 @@ class WbDumper : public edm::EDAnalyzer {
 
   TH2F*     w_mt_wenu;
   TH2F*     w_mt_wmnu;
-  TH2F*     w_mass_ee_b_wide;	// at least one b jet in the event
-  TH2F*     w_mass_mm_b_wide;
-  TH2F*     w_mt_wenu_b_wide;	// at least one b jet in the event
-  TH2F*     w_mt_wmnu_b_wide;
-  TH2F*     w_mt_wenu_bb_wide;	// at least one b jet in the event
-  TH2F*     w_mt_wmnu_bb_wide;
   TH2F*     w_mass_wenu_blepton;	// at least one b jet in the event
   TH2F*     w_mass_wmnu_blepton;
   TH2F*     w_mass_wenu_blepton_b;	// at least one b jet in the event
@@ -175,10 +162,6 @@ class WbDumper : public edm::EDAnalyzer {
   TH2F*     w_deltaR_wmnu_b;
   TH2F*     w_deltaR_wmnu_bb;
   TH2F*     w_deltaR_wmnu_2b;
-  TH2F*     w_single_delta_wenu_b;
-  TH2F*     w_single_delta_wmnu_b;
-  TH2F*     w_single_deltaR_wenu_b;
-  TH2F*     w_single_deltaR_wmnu_b;
 
 };
 
@@ -205,8 +188,6 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
    edm::Service < TFileService > fs;
 
 
-  w_jetmultiplicity =   fs->make < TH2F > ("w_jetmultiplicity", "w_jetmultiplicity;N_jets", 8, 0.5, 8.5, 8, 0.5, 8.5);
-
   w_first_jet_pt =      fs->make < TH2F > ("w_first_jet_pt",    "w_first_jet_pt;P_t [GeV]", 19, 20., 210., 19, 20., 210.);
   w_first_jet_eta =     fs->make < TH2F > ("w_first_jet_eta",   "w_first_jet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
   w_first_jet_mass =      fs->make < TH2F > ("w_first_jet_mass",    "w_first_jet_mass;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
@@ -228,8 +209,6 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
   w_second_jet_eta_bb =  fs->make < TH2F > ("w_second_jet_eta_bb", "w_second_jet_eta_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
   w_second_jet_mass_bb =      fs->make < TH2F > ("w_second_jet_mass_bb",    "w_second_jet_mass_bb;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
 
-  w_bjetmultiplicity =  fs->make < TH2F > ("w_bjetmultiplicity", "w_bjetmultiplicity;N_bjets", 5, 0.5, 5.5, 5, 0.5, 5.5);
-
   w_first_bjet_pt =     fs->make < TH2F > ("w_first_bjet_pt",    "w_first_bjet_pt;P_t [GeV]", 19, 20., 210., 19, 20., 210.);
   w_first_bjet_eta =    fs->make < TH2F > ("w_first_bjet_eta",   "w_first_bjet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
   w_first_bjet_mass =      fs->make < TH2F > ("w_first_bjet_mass",    "w_first_bjet_mass;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
@@ -244,10 +223,6 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
 
   w_mt_wenu =           fs->make < TH2F > ("w_mt_wenu",         "w_mt_wenu;M_{T} [GeV]", 40, 40., 200., 40, 40., 200.);
   w_mt_wmnu =           fs->make < TH2F > ("w_mt_wmnu",         "w_mt_wmnu;M_{T} [GeV]", 40, 40., 200., 40, 40., 200.);
-  w_mt_wenu_b_wide =    fs->make < TH2F > ("w_mt_wenu_b_wide",  "w_mt_wenu_b_wide;M_{T} [GeV]", 50, 0., 200., 50, 0., 200.);
-  w_mt_wmnu_b_wide =    fs->make < TH2F > ("w_mt_wmnu_b_wide",  "w_mt_wmnu_b_wide;M_{T} [GeV]", 50, 0., 200., 50, 0., 200.);
-  w_mt_wenu_bb_wide =   fs->make < TH2F > ("w_mt_wenu_bb_wide", "w_mt_wenu_bb_wide;M_{T} [GeV]", 50, 0., 200., 50, 0., 200.);
-  w_mt_wmnu_bb_wide =   fs->make < TH2F > ("w_mt_wmnu_bb_wide", "w_mt_wmnu_bb_wide;M_{T} [GeV]", 50, 0., 200., 50, 0., 200.);
   w_mass_wenu_blepton =      fs->make < TH2F > ("w_mass_wenu_blepton",    "w_mass_wenu_blepton;M_{T} [GeV]", 25, 0., 250., 25, 0., 250.);
   w_mass_wmnu_blepton =      fs->make < TH2F > ("w_mass_wmnu_blepton",    "w_mass_wmnu_blepton;M_{T} [GeV]", 25, 0., 250., 25, 0., 250.);
   w_mass_wenu_blepton_b =      fs->make < TH2F > ("w_mass_wenu_blepton_b",    "w_mass_wenu_blepton_b;M_{T} [GeV]", 25, 0., 250., 25, 0., 250.);
@@ -274,10 +249,6 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
   w_deltaR_wmnu_b =        fs->make < TH2F > ("w_deltaR_wmnu_b",   "w_deltaR_wmnu_b",  25, 0., 5., 25, 0., 5.);
   w_deltaR_wmnu_bb =       fs->make < TH2F > ("w_deltaR_wmnu_bb",  "w_deltaR_wmnu_bb", 25, 0., 5., 25, 0., 5.);
   w_deltaR_wmnu_2b =       fs->make < TH2F > ("w_deltaR_wmnu_2b",  "w_deltaR_wmnu_2b", 25, 0., 5., 25, 0., 5.);
-  w_single_delta_wenu_b =        fs->make < TH2F > ("w_single_delta_wenu_b",  "w_single_delta_wenu_b", 20, 0., TMath::Pi (), 20, 0., TMath::Pi ());
-  w_single_delta_wmnu_b =        fs->make < TH2F > ("w_single_delta_wmnu_b",  "w_single_delta_wmnu_b", 20, 0., TMath::Pi (), 20, 0., TMath::Pi ());
-  w_single_deltaR_wenu_b =        fs->make < TH2F > ("w_single_deltaR_wenu_b",  "w_single_deltaR_wenu_b", 20, 0., TMath::Pi (), 20, 0., TMath::Pi ());
-  w_single_deltaR_wmnu_b =        fs->make < TH2F > ("w_single_deltaR_wmnu_b",  "w_single_deltaR_wmnu_b", 20, 0., TMath::Pi (), 20, 0., TMath::Pi ());
 
 }
 
@@ -360,6 +331,7 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
      iEvent.getByLabel (edm::InputTag("demoMuoGen","myBJets2"), gen_bjets2);
    }
 
+   //match leading jet
    int k=-1;
    if (jets->size()>0) {
      double R = 0.5;
@@ -382,12 +354,43 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
    }
 
    if (k!=-1) {
-     if ((*gen_jets2)[k].pt() < 30) k=-1;
+     if ((*gen_jets2)[k].pt() < 25) k=-1;
      if (fabs((*gen_jets2)[k].eta()) > 2.4) k=-1;
    }
    if (k_b!=-1) {
-     if ((*gen_bjets2)[k_b].pt() < 30) k_b=-1;
+     if ((*gen_bjets2)[k_b].pt() < 25) k_b=-1;
      if (fabs((*gen_bjets2)[k_b].eta()) > 2.4) k_b=-1;
+   }
+
+   // match second jet
+   int k2=-1;
+   if (jets->size()>1) {
+     double R2 = 0.5;
+     for (unsigned int i=0; i<gen_jets2->size(); ++i) {
+       if (ROOT::Math::VectorUtil::DeltaR((*jets)[1], (*gen_jets2)[i]) < R2) {
+         k2=i;
+         R2 = ROOT::Math::VectorUtil::DeltaR((*jets)[1], (*gen_jets2)[i]);
+       }
+     }
+   }
+   int k2_b=-1;
+   if (bjets->size()>1) {
+     double R2_b = 0.5;
+     for (unsigned int i=0; i<gen_bjets2->size(); ++i) {
+       if (ROOT::Math::VectorUtil::DeltaR((*bjets)[1], (*gen_bjets2)[i]) < R2_b) {
+         k2_b=i;
+         R2_b = ROOT::Math::VectorUtil::DeltaR((*bjets)[1], (*gen_bjets2)[i]);
+       }
+     }
+   }
+
+   if (k2!=-1) {
+     if ((*gen_jets2)[k2].pt() < 25) k2=-1;
+     if (fabs((*gen_jets2)[k2].eta()) > 2.4) k2=-1;
+   }
+   if (k2_b!=-1) {
+     if ((*gen_bjets2)[k2_b].pt() < 25) k2_b=-1;
+     if (fabs((*gen_bjets2)[k2_b].eta()) > 2.4) k2_b=-1;
    }
 
    double my_weight = weight->empty() ? ( gen_weight->empty() ? -1 : (*gen_weight)[0] ) : (*weight)[0];
@@ -401,8 +404,30 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
      if (wenu_event || wmnu_event) {
        w_first_jet_pt->Fill(jets->empty() ? -1 : (*jets)[0].pt(), k<0 ? -1 : (*gen_jets2)[k].pt(), my_weight);
        w_first_jet_eta->Fill(jets->empty() ? -3 : (*jets)[0].eta(), k<0 ? -3 : (*gen_jets2)[k].eta(), my_weight);
+       w_first_jet_mass->Fill(jets->empty() ? -1 : (*jets)[0].mass(), k<0 ? -1 : (*gen_jets2)[k].mass(), my_weight);
        w_first_bjet_pt->Fill(bjets->empty() ? -1 : (*bjets)[0].pt(), k_b<0 ? -1 : (*gen_bjets2)[k_b].pt(), my_bweight);
        w_first_bjet_eta->Fill(bjets->empty() ? -3 : (*bjets)[0].eta(), k_b<0 ? -3 : (*gen_bjets2)[k_b].eta(), my_bweight);
+       w_first_bjet_mass->Fill(bjets->empty() ? -1 : (*bjets)[0].mass(), k_b<0 ? -1 : (*gen_bjets2)[k_b].mass(), my_bweight);
+       w_second_jet_pt->Fill(jets->size()<2 ? -1 : (*jets)[1].pt(), k2<0 ? -1 : (*gen_jets2)[k2].pt(), my_weight);
+       w_second_jet_eta->Fill(jets->size()<2 ? -3 : (*jets)[1].eta(), k2<0 ? -3 : (*gen_jets2)[k2].eta(), my_weight);
+       w_second_jet_mass->Fill(jets->size()<2 ? -1 : (*jets)[1].mass(), k2<0 ? -1 : (*gen_jets2)[k2].mass(), my_weight);
+       w_second_bjet_pt->Fill(bjets->size()<2 ? -1 : (*bjets)[1].pt(), k2_b<0 ? -1 : (*gen_bjets2)[k2_b].pt(), my_bweight);
+       w_second_bjet_eta->Fill(bjets->size()<2 ? -3 : (*bjets)[1].eta(), k2_b<0 ? -3 : (*gen_bjets2)[k2_b].eta(), my_bweight);
+       w_second_bjet_mass->Fill(bjets->size()<2 ? -1 : (*bjets)[1].mass(), k2_b<0 ? -1 : (*gen_bjets2)[k2_b].mass(), my_bweight);
+
+       w_first_jet_pt_b->Fill(bjets->size()!=1 ? -1 : (*jets)[0].pt(), k<0 ? -1 : (*gen_jets2)[k].pt(), my_weight);
+       w_first_jet_eta_b->Fill(bjets->size()!=1 ? -3 : (*jets)[0].eta(), k<0 ? -3 : (*gen_jets2)[k].eta(), my_weight);
+       w_first_jet_mass_b->Fill(bjets->size()!=1 ? -1 : (*jets)[0].mass(), k<0 ? -1 : (*gen_jets2)[k].mass(), my_weight);
+       w_second_jet_pt_b->Fill(bjets->size()!=1 ? -1 : (*jets)[1].pt(), k2<0 ? -1 : (*gen_jets2)[k2].pt(), my_weight);
+       w_second_jet_eta_b->Fill(bjets->size()!=1 ? -3 : (*jets)[1].eta(), k2<0 ? -3 : (*gen_jets2)[k2].eta(), my_weight);
+       w_second_jet_mass_b->Fill(bjets->size()!=1 ? -1 : (*jets)[1].mass(), k2<0 ? -1 : (*gen_jets2)[k2].mass(), my_weight);
+
+       w_first_jet_pt_bb->Fill(bjets->size()<2 ? -1 : (*jets)[0].pt(), k<0 ? -1 : (*gen_jets2)[k].pt(), my_weight);
+       w_first_jet_eta_bb->Fill(bjets->size()<2 ? -3 : (*jets)[0].eta(), k<0 ? -3 : (*gen_jets2)[k].eta(), my_weight);
+       w_first_jet_mass_bb->Fill(bjets->size()<2 ? -1 : (*jets)[0].mass(), k<0 ? -1 : (*gen_jets2)[k].mass(), my_weight);
+       w_second_jet_pt_bb->Fill(bjets->size()<2 ? -1 : (*jets)[1].pt(), k2<0 ? -1 : (*gen_jets2)[k2].pt(), my_weight);
+       w_second_jet_eta_bb->Fill(bjets->size()<2 ? -3 : (*jets)[1].eta(), k2<0 ? -3 : (*gen_jets2)[k2].eta(), my_weight);
+       w_second_jet_mass_bb->Fill(bjets->size()<2 ? -1 : (*jets)[1].mass(), k2<0 ? -1 : (*gen_jets2)[k2].mass(), my_weight);
      }
 
 /*

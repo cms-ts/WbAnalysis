@@ -1842,14 +1842,8 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   produces<std::vector<math::XYZTLorentzVector>>("myElectrons");
   produces<std::vector<math::XYZTLorentzVector>>("myMuons");
 
-  produces<std::vector<double>>("myPtZ");
-  produces<std::vector<double>>("myPtZb");
-
-  produces<std::vector<double>>("myMassZj");
-  produces<std::vector<double>>("myMassZb");
-
   produces<std::vector<math::XYZTLorentzVector>>("myJets");
-  produces<std::vector<double>>("myDeltaPhi");
+  //  produces<std::vector<double>>("myDeltaPhi");
 
   produces<std::vector<double>>("myHt");
   produces<std::vector<double>>("myHtb");
@@ -1857,7 +1851,7 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   produces<std::vector<double>>("myBJetsWeights");
 
   produces<std::vector<math::XYZTLorentzVector>>("myBJets");
-  produces<std::vector<double>>("myBDeltaPhi");
+  //  produces<std::vector<double>>("myBDeltaPhi");
 
 }
 
@@ -3801,7 +3795,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb>1) {
-    scalFac_b = btagSF(isMC, vect_bjets, 1);
+    scalFac_b = btagSF(isMC, vect_bjets, 2);
     h_first_jet_pt_bb->Fill (vect_jets[0].pt());
     w_first_jet_pt_bb->Fill (vect_jets[0].pt(), MyWeight*scalFac_b);
     w_first_jet_eta_bb->Fill (vect_jets[0].eta(), MyWeight*scalFac_b);
@@ -3824,6 +3818,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb>1) {
+    scalFac_b = btagSF(isMC, vect_bjets, 2);
     h_second_jet_pt_bb->Fill (vect_jets[1].pt());
     w_second_jet_pt_bb->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
     w_second_jet_eta_bb->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
@@ -3960,59 +3955,50 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   // ++++++++ OUTPUT COLLECTIONS
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
-    scalFac_b = btagSF(isMC, vect_bjets, 1);
-    myEventWeight->push_back(MyWeight*scalFac_b);
+    if (Nb < 2) {
+      scalFac_b = btagSF(isMC, vect_bjets, 1);
+      myEventWeight->push_back(MyWeight*scalFac_b);
+    }
+    if (Nb > 1) {
+      scalFac_b = btagSF(isMC, vect_bjets, 2);
+      myEventWeight->push_back(MyWeight*scalFac_b);
+    }
   }
 
-  if (wenu_event && mt_cut_wenu && vtx_cut) {
-    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[0].px(),vect_ele[0].py(),vect_ele[0].pz(),vect_ele[0].energy()));
-  }
-
-  if (wmnu_event && mt_cut_wmnu && vtx_cut) {
-    myMuons->push_back(math::XYZTLorentzVector(vect_muon[0].px(),vect_muon[0].py(),vect_muon[0].pz(),vect_muon[0].energy()));
-  }
+//  if (wenu_event && mt_cut_wenu && vtx_cut) {
+//    myElectrons->push_back(math::XYZTLorentzVector(vect_ele[0].px(),vect_ele[0].py(),vect_ele[0].pz(),vect_ele[0].energy()));
+//    myDeltaPhiEJ->push_back(delta_phi_ej);
+//    myDeltaPhiEBJ->push_back(delta_phi_ebj);
+//    if (Nb > 1) myDeltaPhiEBJBJ->push_back(delta_phi_ebjbj);
+//  }
+//
+//  if (wmnu_event && mt_cut_wmnu && vtx_cut) {
+//    myMuons->push_back(math::XYZTLorentzVector(vect_muon[0].px(),vect_muon[0].py(),vect_muon[0].pz(),vect_muon[0].energy()));
+//    myDeltaPhiMJ->push_back(delta_phi_mj);
+//    myDeltaPhiMBJ->push_back(delta_phi_mbj);
+//    if (Nb > 1) myDeltaPhiMBJBJ->push_back(delta_phi_mbjbj);
+//  }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
     for (unsigned int i=0; i<vect_jets.size(); ++i) {
       myJets->push_back(math::XYZTLorentzVector(vect_jets[i].px(),vect_jets[i].py(),vect_jets[i].pz(),vect_jets[i].energy()));
     }
-    if (Nb == 1) {
-      for (unsigned int i=0; i<vect_bjets.size(); ++i) {
-        scalFac_b = btagSF(isMC, vect_bjets, 1);
-        myBJetsWeights->push_back(scalFac_b);
-        myBJets->push_back(math::XYZTLorentzVector(vect_bjets[i].px(),vect_bjets[i].py(),vect_bjets[i].pz(),vect_bjets[i].energy()));
+    for (unsigned int i=0; i<vect_bjets.size(); ++i) {
+      myBJets->push_back(math::XYZTLorentzVector(vect_bjets[i].px(),vect_bjets[i].py(),vect_bjets[i].pz(),vect_bjets[i].energy()));
+      if (Nb < 2) {
+	scalFac_b = btagSF(isMC, vect_bjets, 1);
+	myBJetsWeights->push_back(scalFac_b);
+      }
+      if (Nb > 1) {
+	scalFac_b = btagSF(isMC, vect_bjets, 2);
+	myBJetsWeights->push_back(scalFac_b);
       }
     }
   }
 
-//  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
-//    myHt->push_back(Ht);
-//    if (Nb == 1) {
-//      myHtb->push_back(Ht);
-//    }
-//  }
-
-//  if (wenu_event && mt_cut_wenu && Nj > 0 && vtx_cut) {
-//    double delta_phi_ee = fabs(diele_phi - vect_jets[0].phi());
-//    if (delta_phi_ee > acos (-1)) delta_phi_ee = 2 * acos (-1) - delta_phi_ee;
-//    myDeltaPhi->push_back(delta_phi_ee);
-//    if (Nb > 0) {
-//      double delta_phi_ee_b = fabs(diele_phi - vect_bjets[0].phi());
-//      if (delta_phi_ee_b > acos (-1)) delta_phi_ee_b = 2 * acos (-1) - delta_phi_ee_b;
-//      myBDeltaPhi->push_back(delta_phi_ee_b);
-//    }
-//  }
-//
-//  if (wmnu_event && mt_cut_wmnu && Nj > 0 && vtx_cut) {
-//    double delta_phi_mm = fabs(dimuon_phi - vect_jets[0].phi());
-//    if (delta_phi_mm > acos (-1)) delta_phi_mm = 2 * acos (-1) - delta_phi_mm;
-//    myDeltaPhi->push_back(delta_phi_mm);
-//    if (Nb > 0) {
-//      double delta_phi_mm_b = fabs(dimuon_phi - vect_bjets[0].phi());
-//      if (delta_phi_mm_b > acos (-1)) delta_phi_mm_b = 2 * acos (-1) - delta_phi_mm_b;
-//      myBDeltaPhi->push_back(delta_phi_mm_b);
-//    }
-//  }
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
+    myHt->push_back(Ht);
+  }
 
   iEvent.put( myEventWeight, "myEventWeight" );
 
@@ -4020,15 +4006,15 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   iEvent.put( myMuons, "myMuons" );
 
   iEvent.put( myJets, "myJets" );
-  //  iEvent.put( myDeltaPhi, "myDeltaPhi" );
 
-  //  iEvent.put( myHt, "myHt" );
-  //  iEvent.put( myHtb, "myHtb" );
+  iEvent.put( myHt, "myHt" );
 
   iEvent.put( myBJetsWeights, "myBJetsWeights" );
 
   iEvent.put( myBJets, "myBJets" );
-  iEvent.put( myBDeltaPhi, "myBDeltaPhi" );
+
+  //  iEvent.put( myDeltaPhi, "myDeltaPhi" );
+  //  iEvent.put( myBDeltaPhi, "myBDeltaPhi" );
 
 }
 
