@@ -12,9 +12,6 @@ cd -
 i=1
 while [ $i -le 2 ]; do
 
-  root -l -q -b DataMCComp7.C+\(\"w_mt_wenu_b\",1,$i\)
-  root -l -q -b DataMCComp7.C+\(\"w_mt_wmnu_b\",1,$i\)
-
   root -l -q -b DataMCComp7.C+\(\"w_first_jet_pt_b\",1,$i\)
   root -l -q -b DataMCComp7.C+\(\"w_first_jet_eta_b\",1,$i\)
   root -l -q -b DataMCComp7.C+\(\"w_first_jet_mass_b\",1,$i\)
