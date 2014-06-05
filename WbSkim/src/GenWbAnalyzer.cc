@@ -198,6 +198,10 @@ private:
   TH1F*     w_second_bjet_eta;
   TH1F*     w_second_bjet_mass;
 
+  TH1F*     w_Ht;
+  TH1F*     w_Ht_b;
+  TH1F*     w_Ht_bb;
+
   TH1F*     w_mt_wenu;
   TH1F*     w_mt_wmnu;
   TH1F*     w_mass_ee_b_wide;	// at least one b jet in the event
@@ -316,6 +320,10 @@ GenWbAnalyzer::GenWbAnalyzer (const edm::ParameterSet & iConfig) {
   w_second_bjet_eta =   fs->make < TH1F > ("w_second_bjet_eta",  "w_second_bjet_eta;Eta", 20, -2.4, 2.4);
   w_second_bjet_mass =      fs->make < TH1F > ("w_second_bjet_mass",    "w_second_bjet_mass;Mass [GeV]", 18, 0., 36.);
 
+  w_Ht =                fs->make < TH1F > ("w_Ht",              "w_Ht [GeV]", 19, 20., 210.);
+  w_Ht_b =                fs->make < TH1F > ("w_Ht_b",              "w_Ht_b [GeV]", 19, 20., 210.);
+  w_Ht_bb =                fs->make < TH1F > ("w_Ht_bb",              "w_Ht_bb [GeV]", 19, 20., 210.);
+
   w_mt_wenu =           fs->make < TH1F > ("w_mt_wenu",         "w_mt_wenu;M_{T} [GeV]", 40, 40., 200.);
   w_mt_wmnu =           fs->make < TH1F > ("w_mt_wmnu",         "w_mt_wmnu;M_{T} [GeV]", 40, 40., 200.);
   w_mt_wenu_b_wide =    fs->make < TH1F > ("w_mt_wenu_b_wide",  "w_mt_wenu_b_wide;M_{T} [GeV]", 50, 0., 200.);
@@ -362,25 +370,27 @@ GenWbAnalyzer::GenWbAnalyzer (const edm::ParameterSet & iConfig) {
   produces<std::vector<math::XYZTLorentzVector>>("myElectrons");
   produces<std::vector<math::XYZTLorentzVector>>("myMuons");
 
-  produces<std::vector<double>>("myPtZ");
-  produces<std::vector<double>>("myPtZb");
-  
-  produces<std::vector<double>>("myYZ");
-  produces<std::vector<double>>("myYZb");
-
-  produces<std::vector<double>>("myMassZj");
-  produces<std::vector<double>>("myMassZb");
-
   produces<std::vector<math::XYZTLorentzVector>>("myJets");
   produces<std::vector<math::XYZTLorentzVector>>("myJets2");
-  produces<std::vector<double>>("myDeltaPhi");
 
   produces<std::vector<double>>("myHt");
-  produces<std::vector<double>>("myHtb");
 
   produces<std::vector<math::XYZTLorentzVector>>("myBJets");
   produces<std::vector<math::XYZTLorentzVector>>("myBJets2");
-  produces<std::vector<double>>("myBDeltaPhi");
+
+  produces<std::vector<double>>("myDeltaPhiEJ");
+  produces<std::vector<double>>("myDeltaPhiEBJ");
+  produces<std::vector<double>>("myDeltaPhiEBJBJ");
+  produces<std::vector<double>>("myDeltaPhiMJ");
+  produces<std::vector<double>>("myDeltaPhiMBJ");
+  produces<std::vector<double>>("myDeltaPhiMBJBJ");
+
+  produces<std::vector<double>>("myDeltaREJ");
+  produces<std::vector<double>>("myDeltaREBJ");
+  produces<std::vector<double>>("myDeltaREBJBJ");
+  produces<std::vector<double>>("myDeltaRMJ");
+  produces<std::vector<double>>("myDeltaRMBJ");
+  produces<std::vector<double>>("myDeltaRMBJBJ");
  
 }
 
@@ -409,25 +419,29 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myElectrons( new std::vector<math::XYZTLorentzVector> );
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myMuons( new std::vector<math::XYZTLorentzVector> );
 
-  std::auto_ptr<std::vector<double>> myPtZ( new std::vector<double> );
-  std::auto_ptr<std::vector<double>> myPtZb( new std::vector<double> );
-  
-  std::auto_ptr<std::vector<double>> myYZ( new std::vector<double> );
-  std::auto_ptr<std::vector<double>> myYZb( new std::vector<double> );
-
-  std::auto_ptr<std::vector<double>> myMassZj( new std::vector<double> );
-  std::auto_ptr<std::vector<double>> myMassZb( new std::vector<double> );
-
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myJets( new std::vector<math::XYZTLorentzVector> );
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myJets2( new std::vector<math::XYZTLorentzVector> );
-  std::auto_ptr<std::vector<double>> myDeltaPhi( new std::vector<double> );
+
+  //  std::auto_ptr<std::vector<double>> myDeltaPhi( new std::vector<double> );
 
   std::auto_ptr<std::vector<double>> myHt( new std::vector<double> );
-  std::auto_ptr<std::vector<double>> myHtb( new std::vector<double> );
 
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myBJets( new std::vector<math::XYZTLorentzVector> );
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myBJets2( new std::vector<math::XYZTLorentzVector> );
-  std::auto_ptr<std::vector<double>> myBDeltaPhi( new std::vector<double> );
+
+  std::auto_ptr<std::vector<double>> myDeltaPhiEJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaPhiEBJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaPhiEBJBJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaPhiMJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaPhiMBJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaPhiMBJBJ( new std::vector<double> );
+
+  std::auto_ptr<std::vector<double>> myDeltaREJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaREBJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaREBJBJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaRMJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaRMBJ( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDeltaRMBJBJ( new std::vector<double> );
 
   bool wenu_event = false;
   bool wmnu_event = false;
@@ -920,29 +934,51 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   // ++++++++ MET PLOTS
 
   if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
-    w_MET->Fill (op_met);
+    w_MET->Fill (op_met, MyWeight);
     if (Nb == 1) {
-      w_MET_b->Fill (op_met);
+      w_MET_b->Fill (op_met, MyWeight);
     }
     if (Nb > 1) {
-      w_MET_bb->Fill (op_met);
+      w_MET_bb->Fill (op_met, MyWeight);
+    }
+  }
+
+  // ++++++++ Ht PLOTS
+
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
+    w_Ht->Fill (Ht, MyWeight);
+    if (Nb == 1) {
+      w_Ht_b->Fill (Ht, MyWeight);
+    }
+    if (Nb > 1) {
+      w_Ht_bb->Fill (Ht, MyWeight);
     }
   }
 
   // ++++++++ WeNu PLOTS
 
+  double delta_phi_ej;
+  double delta_eta_ej;
+  double DR_ej;
+  double delta_phi_ebj;
+  double delta_eta_ebj;
+  double DR_ebj;
+  double delta_phi_ebjbj;
+  double delta_eta_ebjbj;
+  double DR_ebjbj;
+
   if (wenu_event && mt_cut_wenu) {
     w_mt_wenu->Fill (mt_wenu, MyWeight);
-    double delta_phi_ej = fabs(vect_ele[0].Phi() - vect_jets[0].phi());
-    double delta_eta_ej = fabs(vect_ele[0].Eta() - vect_jets[0].eta());
+    delta_phi_ej = fabs(vect_ele[0].Phi() - vect_jets[0].phi());
+    delta_eta_ej = fabs(vect_ele[0].Eta() - vect_jets[0].eta());
     if (delta_phi_ej > acos (-1)) delta_phi_ej = 2 * acos (-1) - delta_phi_ej;
-    double DR_ej = TMath::Sqrt(delta_phi_ej*delta_phi_ej + delta_eta_ej*delta_eta_ej);
+    DR_ej = TMath::Sqrt(delta_phi_ej*delta_phi_ej + delta_eta_ej*delta_eta_ej);
     w_delta_wenu->Fill (delta_phi_ej, MyWeight);
     w_deltaR_wenu->Fill (DR_ej, MyWeight);
-    double delta_phi_ebj = fabs(vect_ele[0].Phi() - vect_bjets[0].phi());
-    double delta_eta_ebj = fabs(vect_ele[0].Eta() - vect_bjets[0].eta());
+    delta_phi_ebj = fabs(vect_ele[0].Phi() - vect_bjets[0].phi());
+    delta_eta_ebj = fabs(vect_ele[0].Eta() - vect_bjets[0].eta());
     if (delta_phi_ebj > acos (-1)) delta_phi_ebj = 2 * acos (-1) - delta_phi_ebj;
-    double DR_ebj = TMath::Sqrt(delta_phi_ebj*delta_phi_ebj + delta_eta_ebj*delta_eta_ebj);
+    DR_ebj = TMath::Sqrt(delta_phi_ebj*delta_phi_ebj + delta_eta_ebj*delta_eta_ebj);
     w_delta_wenu_b->Fill (delta_phi_ebj, MyWeight);
     w_deltaR_wenu_b->Fill (DR_ebj, MyWeight);
     TLorentzVector belectron(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E());
@@ -959,10 +995,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       w_mt_wenu_bb->Fill (mt_wenu, MyWeight);
       w_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight);
       w_deltaR_wenu_bb->Fill (DR_ebj, MyWeight);
-      double delta_phi_ebjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
-      double delta_eta_ebjbj = fabs(vect_bjets[0].eta() - vect_bjets[1].eta());
+      delta_phi_ebjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
+      delta_eta_ebjbj = fabs(vect_bjets[0].eta() - vect_bjets[1].eta());
       if (delta_phi_ebjbj > acos (-1)) delta_phi_ebjbj = 2 * acos (-1) - delta_phi_ebjbj;
-      double DR_ebjbj = TMath::Sqrt(delta_phi_ebjbj*delta_phi_ebjbj + delta_eta_ebjbj*delta_eta_ebjbj);
+      DR_ebjbj = TMath::Sqrt(delta_phi_ebjbj*delta_phi_ebjbj + delta_eta_ebjbj*delta_eta_ebjbj);
       w_delta_wenu_2b->Fill (delta_phi_ebjbj, MyWeight);
       w_deltaR_wenu_2b->Fill (DR_ebjbj, MyWeight);
       //      w_mass_wenu_blepton_bb->Fill(belectron.mass(), MyWeight);
@@ -972,18 +1008,28 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   // ++++++++ WmNu PLOTS
 
+  double delta_phi_mj;
+  double delta_eta_mj;
+  double DR_mj;
+  double delta_phi_mbj;
+  double delta_eta_mbj;
+  double DR_mbj;
+  double delta_phi_mbjbj;
+  double delta_eta_mbjbj;
+  double DR_mbjbj;
+
   if (wmnu_event && mt_cut_wmnu) {
     w_mt_wmnu->Fill (mt_wmnu, MyWeight);
-    double delta_phi_mj = fabs(vect_muon[0].Phi() - vect_jets[0].phi());
-    double delta_eta_mj = fabs(vect_muon[0].Eta() - vect_jets[0].eta());
+    delta_phi_mj = fabs(vect_muon[0].Phi() - vect_jets[0].phi());
+    delta_eta_mj = fabs(vect_muon[0].Eta() - vect_jets[0].eta());
     if (delta_phi_mj > acos (-1)) delta_phi_mj = 2 * acos (-1) - delta_phi_mj;
-    double DR_mj = TMath::Sqrt(delta_phi_mj*delta_phi_mj + delta_eta_mj*delta_eta_mj);
+    DR_mj = TMath::Sqrt(delta_phi_mj*delta_phi_mj + delta_eta_mj*delta_eta_mj);
     w_delta_wmnu->Fill (delta_phi_mj, MyWeight);
     w_deltaR_wmnu->Fill (DR_mj, MyWeight);
-    double delta_phi_mbj = fabs(vect_muon[0].Phi() - vect_bjets[0].phi());
-    double delta_eta_mbj = fabs(vect_muon[0].Eta() - vect_bjets[0].eta());
+    delta_phi_mbj = fabs(vect_muon[0].Phi() - vect_bjets[0].phi());
+    delta_eta_mbj = fabs(vect_muon[0].Eta() - vect_bjets[0].eta());
     if (delta_phi_mbj > acos (-1)) delta_phi_mbj = 2 * acos (-1) - delta_phi_mbj;
-    double DR_mbj = TMath::Sqrt(delta_phi_mbj*delta_phi_mbj + delta_eta_mbj*delta_eta_mbj);
+    DR_mbj = TMath::Sqrt(delta_phi_mbj*delta_phi_mbj + delta_eta_mbj*delta_eta_mbj);
     w_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight);
     w_deltaR_wmnu_b->Fill (DR_mbj, MyWeight);
     TLorentzVector bmuon(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E());
@@ -1000,10 +1046,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       w_mt_wmnu_bb->Fill (mt_wmnu, MyWeight);
       w_delta_wmnu_bb->Fill (delta_phi_mbj, MyWeight);
       w_deltaR_wmnu_bb->Fill (DR_mbj, MyWeight);
-      double delta_phi_mbjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
-      double delta_eta_mbjbj = fabs(vect_bjets[0].eta() - vect_bjets[1].eta());
+      delta_phi_mbjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
+      delta_eta_mbjbj = fabs(vect_bjets[0].eta() - vect_bjets[1].eta());
       if (delta_phi_mbjbj > acos (-1)) delta_phi_mbjbj = 2 * acos (-1) - delta_phi_mbjbj;
-      double DR_mbjbj = TMath::Sqrt(delta_phi_mbjbj*delta_phi_mbjbj + delta_eta_mbjbj*delta_eta_mbjbj);
+      DR_mbjbj = TMath::Sqrt(delta_phi_mbjbj*delta_phi_mbjbj + delta_eta_mbjbj*delta_eta_mbjbj);
       w_delta_wmnu_2b->Fill (delta_phi_mbjbj, MyWeight);
       w_deltaR_wmnu_2b->Fill (DR_mbjbj, MyWeight);
       //      w_mass_wmnu_blepton_bb->Fill(bmuon.mass(), MyWeight);
@@ -1075,10 +1121,22 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   if (wenu_event && mt_cut_wenu) {
     myElectrons->push_back(math::XYZTLorentzVector(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E()));
+    myDeltaPhiEJ->push_back(delta_phi_ej);
+    myDeltaPhiEBJ->push_back(delta_phi_ebj);
+    if (Nb > 1) myDeltaPhiEBJBJ->push_back(delta_phi_ebjbj);
+    myDeltaREJ->push_back(DR_ej);
+    myDeltaREBJ->push_back(DR_ebj);
+    if (Nb > 1) myDeltaREBJBJ->push_back(DR_ebjbj);
   }
 
   if (wmnu_event && mt_cut_wenu) {
     myMuons->push_back(math::XYZTLorentzVector(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E()));
+    myDeltaPhiMJ->push_back(delta_phi_mj);
+    myDeltaPhiMBJ->push_back(delta_phi_mbj);
+    if (Nb > 1) myDeltaPhiMBJBJ->push_back(delta_phi_mbjbj);
+    myDeltaRMJ->push_back(DR_mj);
+    myDeltaRMBJ->push_back(DR_mbj);
+    if (Nb > 1) myDeltaRMBJBJ->push_back(DR_mbjbj);
   }
 
   if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
@@ -1099,9 +1157,9 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     }
   }
 
-//  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
-//    myHt->push_back(Ht);
-//  }
+  if ((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) {
+    myHt->push_back(Ht);
+  }
 
   iEvent.put( myEventWeight, "myEventWeight" );
 
@@ -1111,10 +1169,24 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   iEvent.put( myJets, "myJets" );
   iEvent.put( myJets2, "myJets2" );
 
-//  iEvent.put( myHt, "myHt" );
+  iEvent.put( myHt, "myHt" );
 
   iEvent.put( myBJets, "myBJets" );
   iEvent.put( myBJets2, "myBJets2" );
+
+  iEvent.put( myDeltaPhiEJ, "myDeltaPhiEJ" );
+  iEvent.put( myDeltaPhiEBJ, "myDeltaPhiEBJ" );
+  iEvent.put( myDeltaPhiEBJBJ, "myDeltaPhiEBJBJ" );
+  iEvent.put( myDeltaPhiMJ, "myDeltaPhiMJ" );
+  iEvent.put( myDeltaPhiMBJ, "myDeltaPhiMBJ" );
+  iEvent.put( myDeltaPhiMBJBJ, "myDeltaPhiMBJBJ" );
+
+  iEvent.put( myDeltaREJ, "myDeltaREJ" );
+  iEvent.put( myDeltaREBJ, "myDeltaREBJ" );
+  iEvent.put( myDeltaREBJBJ, "myDeltaREBJBJ" );
+  iEvent.put( myDeltaRMJ, "myDeltaRMJ" );
+  iEvent.put( myDeltaRMBJ, "myDeltaRMBJ" );
+  iEvent.put( myDeltaRMBJBJ, "myDeltaRMBJBJ" );
 
 }
 
