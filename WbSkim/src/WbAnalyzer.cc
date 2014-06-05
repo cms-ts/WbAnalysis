@@ -3985,11 +3985,11 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
     for (unsigned int i=0; i<vect_bjets.size(); ++i) {
       myBJets->push_back(math::XYZTLorentzVector(vect_bjets[i].px(),vect_bjets[i].py(),vect_bjets[i].pz(),vect_bjets[i].energy()));
-      if (Nb < 2) {
+      if (Nb <= 1) {
 	scalFac_b = btagSF(isMC, vect_bjets, 1);
 	myBJetsWeights->push_back(scalFac_b);
       }
-      if (Nb > 1) {
+      if (Nb >= 2) {
 	scalFac_b = btagSF(isMC, vect_bjets, 2);
 	myBJetsWeights->push_back(scalFac_b);
       }
