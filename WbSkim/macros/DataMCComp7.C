@@ -664,7 +664,6 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	h_mcg->Scale(1./Lumi2012, "width");
 	h_mcg_b->Scale(1./Lumi2012, "width");
 
-/*
 	h_data = fixrange(h_data);
 	h_data_b = fixrange(h_data_b);
 	for (int i=0;i<NMAX;i++) {
@@ -682,7 +681,6 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	h_mc1b_b = fixrange(h_mc1b_b);
 	h_mcg = fixrange(h_mcg);
 	h_mcg_b = fixrange(h_mcg_b);
-*/
 
 	h_data = rebin(h_data);
 	h_data_b = rebin(h_data_b);

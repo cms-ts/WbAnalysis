@@ -878,7 +878,6 @@ string subdir="0";
 	  h_data_b_tot->SetBinError(i, val);
 	}
 
-/*
 	h_data = fixrange(h_data);
 	h_data_b = fixrange(h_data_b);
 	h_data_stat = fixrange(h_data_stat);
@@ -890,7 +889,6 @@ string subdir="0";
 
 	h_mcg = fixrange(h_mcg);
 	h_mcg_b = fixrange(h_mcg_b);
-*/
 
 	h_data = rebin(h_data);
 	h_data_b = rebin(h_data_b);

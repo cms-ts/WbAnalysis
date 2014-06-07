@@ -247,14 +247,12 @@ if (irun==99) {            // irun==99 => pur
 	h_mc2_truth->Sumw2();
 	h_mc2_reco->Sumw2();
 
-/*
 	h_data_reco = fixrange(h_data_reco);
 	h_mc1_truth = fixrange(h_mc1_truth);
 	h_mc1_reco = fixrange(h_mc1_reco);
 	h_mc1_matrix = fixrange(h_mc1_matrix);
 	h_mc2_truth = fixrange(h_mc2_truth);
 	h_mc2_reco = fixrange(h_mc2_reco);
-*/
 
 	h_data_reco = rebin(h_data_reco);
 	h_mc1_truth = rebin(h_mc1_truth);
