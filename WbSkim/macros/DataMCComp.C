@@ -258,7 +258,6 @@ if (ilepton>=3 && ilepton<=8) postfix="";
 	if (ilepton==1 || ilepton==3 || ilepton==5 || ilepton==7) data = TFile::Open((path + "/" + version + "/" + "SingleElectron_2012_merge.root").c_str());
 	if (ilepton==2 || ilepton==4 || ilepton==6 || ilepton==8) data = TFile::Open((path + "/" + version + "/" + "SingleMu_2012_merge.root").c_str());
 
-	//TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj.root").c_str());
 	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str());
 	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "TTbar.root").c_str());
 	TFile *mc3 = TFile::Open((path + "/" + version + "/" + "ZZ.root").c_str());
