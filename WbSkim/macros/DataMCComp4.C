@@ -11,6 +11,7 @@
 #include "TSVDUnfold_local.h"
 
 #include "fixrange.C"
+#include "rebin.C"
 
 string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
@@ -254,6 +255,13 @@ if (irun==99) {            // irun==99 => pur
 	h_mc2_truth = fixrange(h_mc2_truth);
 	h_mc2_reco = fixrange(h_mc2_reco);
 */
+
+	h_data_reco = rebin(h_data_reco);
+	h_mc1_truth = rebin(h_mc1_truth);
+	h_mc1_reco = rebin(h_mc1_reco);
+	h_mc1_matrix = rebin(h_mc1_matrix);
+	h_mc2_truth = rebin(h_mc2_truth);
+	h_mc2_reco = rebin(h_mc2_reco);
 
 	if (irun==66) {
 	  for (int i=0;i<=h_mc1_matrix->GetNbinsX()+1;i++) {

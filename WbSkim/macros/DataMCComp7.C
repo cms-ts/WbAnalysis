@@ -3,6 +3,7 @@
 #include "LumiInfo_v09.h"
 
 #include "fixrange.C"
+#include "rebin.C"
 
 string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
@@ -682,6 +683,24 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	h_mcg = fixrange(h_mcg);
 	h_mcg_b = fixrange(h_mcg_b);
 */
+
+	h_data = rebin(h_data);
+	h_data_b = rebin(h_data_b);
+	for (int i=0;i<NMAX;i++) {
+	  if (h_data_scan[i]) h_data_scan[i] = rebin(h_data_scan[i]);
+	  if (h_data_b_scan[i]) h_data_b_scan[i] = rebin(h_data_b_scan[i]);
+	}
+	h_data_stat = rebin(h_data_stat);
+	h_data_b_stat = rebin(h_data_b_stat);
+	h_data_syst = rebin(h_data_syst);
+	h_data_b_syst = rebin(h_data_b_syst);
+	h_data_tot = rebin(h_data_tot);
+	h_data_b_tot = rebin(h_data_b_tot);
+
+	h_mc1 = rebin(h_mc1);
+	h_mc1b_b = rebin(h_mc1b_b);
+	h_mcg = rebin(h_mcg);
+	h_mcg_b = rebin(h_mcg_b);
 
 	TCanvas* c1 = new TCanvas("c", "c", 800, 600);
 	c1->cd();

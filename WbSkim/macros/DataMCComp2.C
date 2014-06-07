@@ -3,6 +3,7 @@
 #include "LumiInfo_v09.h"
 
 #include "fixrange.C"
+#include "rebin.C"
 
 string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
@@ -687,6 +688,13 @@ if (irun==99) {            // irun==99 => pur
 	h_mcg = fixrange(h_mcg);
 	h_mcg_b = fixrange(h_mcg_b);
 */
+
+	h_data = rebin(h_data);
+	h_data_b = rebin(h_data_b);
+	h_mc1 = rebin(h_mc1);
+	h_mc1b_b = rebin(h_mc1b_b);
+	h_mcg = rebin(h_mcg);
+	h_mcg_b = rebin(h_mcg_b);
 
 	TCanvas* c1 = new TCanvas("c", "c", 800, 600);
 	c1->cd();
