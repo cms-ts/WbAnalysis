@@ -93,22 +93,22 @@ string subdir="0";
 
 	double c1_b=1.0;
 	double ec1_b=0.0;
-	double c1_c=1.0;
-	double ec1_c=0.0;
-	double c1_uds=1.0;
-	double ec1_uds=0.0;
+	//double c1_c=1.0;
+	//double ec1_c=0.0;
+	//double c1_uds=1.0;
+	//double ec1_uds=0.0;
 	double c2_b=1.0;
 	double ec2_b=0.0;
-	double c2_c=1.0;
-	double ec2_c=0.0;
-	double c2_uds=1.0;
-	double ec2_uds=0.0;
+	//double c2_c=1.0;
+	//double ec2_c=0.0;
+	//double c2_uds=1.0;
+	//double ec2_uds=0.0;
 	double c3_b=1.0;
 	double ec3_b=0.0;
-	double c3_c=1.0;
-	double ec3_c=0.0;
-	double c3_uds=1.0;
-	double ec3_uds=0.0;
+	//double c3_c=1.0;
+	//double ec3_c=0.0;
+	//double c3_uds=1.0;
+	//double ec3_uds=0.0;
 
 	ifstream in1, in2, in3;
 	if (ilepton==1) {

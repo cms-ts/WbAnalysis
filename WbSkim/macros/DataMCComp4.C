@@ -116,11 +116,11 @@ if (irun==99) {            // irun==99 => pur
 	/* purity */
 
         double c_b=1.0;
-        double ec_b=0.0;
-	double c_c=1.0;
-	double ec_c=0.0;
-	double c_uds=1.0;
-	double ec_uds=0.0;
+        //double ec_b=0.0;
+	//double c_c=1.0;
+	//double ec_c=0.0;
+	//double c_uds=1.0;
+	//double ec_uds=0.0;
        
 	ifstream in;
 	if (imode>=4) {
