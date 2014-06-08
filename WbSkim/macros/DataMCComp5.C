@@ -160,7 +160,7 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       TFile *data_fit=data;
 
       TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str());
-      TFile *mc2 = TFile::Open((path + "/" + version + "/" + "TTbar.root").c_str());
+      TFile *mc2 = TFile::Open((path + "/" + version + "/" + "TTbar_merge.root").c_str());
       TFile *mc3 = TFile::Open((path + "/" + version + "/" + "ZZ.root").c_str());
       TFile *mc4 = TFile::Open((path + "/" + version + "/" + "WZ.root").c_str());
 //    TFile *mc5 = TFile::Open((path + "/" + version + "/" + "QCD.root").c_str());

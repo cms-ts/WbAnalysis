@@ -24,40 +24,52 @@ double Ngen_tt = 6923750;
 double Xsec_tt = 225.197; // NLO
 double eXsec_tt = 0.07*Xsec_tt;
 
-//////////////////////// TBarToLeptons_t
+//////////////////////// TTbar_FullLept
 
-double Ngen_tbar_t = 1711403;
-double Xsec_tbar_t = 30.7*0.324; // NLO
-double eXsec_tbar_t = 0;
+double Ngen_tt_fl = 12011428;
+double Xsec_tt_fl = 24.56; // NLO
+double eXsec_tt_fl = 0.07*Xsec_tt;
 
-//////////////////////// TToLeptons_t
+//////////////////////// TTbar_SemiLept
 
-double Ngen_t_t = 3915598;
-double Xsec_t_t = 56.4*0.324; // NLO
-double eXsec_t_t = 0;
+double Ngen_tt_sl = 24963676;
+double Xsec_tt_sl = 103.12; // NLO
+double eXsec_tt_sl = 0.07*Xsec_tt;
 
-//////////////////////// TBarToLeptons_s
+//////////////////////// TBar_s
 
-double Ngen_tbar_s = 1999667;
-double Xsec_tbar_s = 1.76*0.324; // NLO
+double Ngen_tbar_s = 139974;
+double Xsec_tbar_s = 1.76; // NNLO
 double eXsec_tbar_s = 0;
 
-//////////////////////// TToLeptons_s
+//////////////////////// TBar_t
 
-double Ngen_t_s = 3932710;
-double Xsec_t_s = 3.97*0.324; // NLO
-double eXsec_t_s = 0;
+double Ngen_tbar_t = 1935072;
+double Xsec_tbar_t = 30.7; // NNLO
+double eXsec_tbar_t = 0;
 
-//////////////////////// TBarToThadWlep_tW
+//////////////////////// TBar_tW
 
-double Ngen_tbar_tw = 1492919;
-double Xsec_tbar_tw = 11.1*0.324; // NLO
+double Ngen_tbar_tw = 493460;
+double Xsec_tbar_tw = 11.1; // NNLO
 double eXsec_tbar_tw = 0;
 
-//////////////////////// TToThadWlep_tW
+//////////////////////// T_s
 
-double Ngen_t_tw = 1457622;
-double Xsec_t_tw = 11.1*0.324; // NLO
+double Ngen_t_s = 259961;
+double Xsec_t_s = 3.97; // NNLO
+double eXsec_t_s = 0;
+
+//////////////////////// T_t
+
+double Ngen_t_t = 3758227;
+double Xsec_t_t = 56.4; // NNLO
+double eXsec_t_t = 0;
+
+//////////////////////// T_tW
+
+double Ngen_t_tw = 497658;
+double Xsec_t_tw = 11.1; // NNLO
 double eXsec_t_tw = 0;
 
 //////////////////////// ZZ

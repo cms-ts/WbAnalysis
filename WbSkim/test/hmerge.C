@@ -1,5 +1,5 @@
 
-#include "LumiInfo_v08.h"
+#include "LumiInfo_v09.h"
 
 TList *FileList;
 TFile *Target;
@@ -52,18 +52,18 @@ void hmerge(string path=".", string version="v01", string title="W") {
 
   if (title=="T") {
     Target = TFile::Open((path + "/" + version + "/" + "T_merge.root").c_str(), "RECREATE");
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "TBarToLeptons_t.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "TBarToLeptons_s.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "TToLeptons_t.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "TToLeptons_s.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "TBarToThadWlep_tW.root").c_str()));
-    FileList->Add(TFile::Open((path + "/" + version + "/" + "TToThadWlep_tW.root").c_str()));
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "TBar_s.root").c_str()));
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "TBar_t.root").c_str()));
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "TBar_tW.root").c_str()));
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "T_s.root").c_str()));
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "T_t.root").c_str()));
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "T_tW.root").c_str()));
 
-    crossSections[0] = (Xsec_tbar_t / Ngen_tbar_t);
-    crossSections[1] = (Xsec_tbar_s / Ngen_tbar_s);
-    crossSections[2] = (Xsec_t_t / Ngen_t_t);
+    crossSections[0] = (Xsec_tbar_s / Ngen_tbar_s);
+    crossSections[1] = (Xsec_tbar_t / Ngen_tbar_t);
+    crossSections[2] = (Xsec_tbar_tw / Ngen_tbar_tw);
     crossSections[3] = (Xsec_t_s / Ngen_t_s);
-    crossSections[4] = (Xsec_tbar_tw / Ngen_tbar_tw);
+    crossSections[4] = (Xsec_t_t / Ngen_t_t);
     crossSections[5] = (Xsec_t_tw / Ngen_t_tw);
 
     crossSections[0] = crossSections[0] / (Xsec_tbar_t / Ngen_tbar_t);
@@ -72,6 +72,18 @@ void hmerge(string path=".", string version="v01", string title="W") {
     crossSections[3] = crossSections[3] / (Xsec_tbar_t / Ngen_tbar_t);
     crossSections[4] = crossSections[4] / (Xsec_tbar_t / Ngen_tbar_t);
     crossSections[5] = crossSections[5] / (Xsec_tbar_t / Ngen_tbar_t);
+  }
+
+  if (title=="TTbar") {
+    Target = TFile::Open((path + "/" + version + "/" + "TTbar_merge.root").c_str(), "RECREATE");
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "TTbar_FullLept.root").c_str()));
+    FileList->Add(TFile::Open((path + "/" + version + "/" + "TTbar_SemiLept.root").c_str()));
+
+    crossSections[0] = (Xsec_tt_fl / Ngen_tt_fl);
+    crossSections[1] = (Xsec_tt_sl / Ngen_tt_sl);
+
+    crossSections[0] = crossSections[0] / (Xsec_tt / Ngen_tt);
+    crossSections[1] = crossSections[1] / (Xsec_tt / Ngen_tt);
   }
 
   //cout << "going to call merging routine..." << endl;

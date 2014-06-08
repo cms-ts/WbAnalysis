@@ -242,7 +242,7 @@ if (irun==99) {            // irun==99 => pur
 
 	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str());
 	TFile *mcg = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "TTbar.root").c_str());
+	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "TTbar_merge.root").c_str());
 	TFile *mc3 = TFile::Open((path + "/" + version + "/" + "ZZ.root").c_str());
 	TFile *mc4 = TFile::Open((path + "/" + version + "/" + "WZ.root").c_str());
 	TFile *mc5 = 0;

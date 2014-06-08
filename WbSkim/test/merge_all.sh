@@ -19,18 +19,20 @@ fi
 ./merge.sh data-all $VERSION
 
 ./merge.sh DYJetsToLL $VERSION
-./merge.sh TTbar $VERSION
 
-./merge.sh TToLeptons_s $VERSION
-./merge.sh TBarToLeptons_s $VERSION
-./merge.sh TToLeptons_t $VERSION
-./merge.sh TBarToLeptons_t $VERSION
-./merge.sh TToThadWlep_tW $VERSION
-./merge.sh TBarToThadWlep_tW $VERSION
+./merge.sh TTbar_FullLept $VERSION $CUT
+./merge.sh TTbar_SemiLept $VERSION $CUT
+
+./merge.sh TTbar-all $VERSION
+
+./merge.sh T_s
+./merge.sh T_t
+./merge.sh T_tW
+./merge.sh TBar_s
+./merge.sh TBar_t
+./merge.sh TBar_tW
 
 ./merge.sh T-all $VERSION
-
-./merge.sh WZ $VERSION
 
 ./merge.sh Wj $VERSION
 ./merge.sh W1j $VERSION
@@ -41,6 +43,7 @@ fi
 ./merge.sh W-all $VERSION
 
 ./merge.sh WW $VERSION
+./merge.sh WZ $VERSION
 ./merge.sh ZZ $VERSION
 
 exit
