@@ -326,18 +326,18 @@ if (irun==99) {            // irun==99 => pur
 
 	int kreg = 0; // default 0 -> nbins/2
 
-	if (title=="w_Ht_b") kreg = 6; // ~OK
-	if (title=="w_Ht") kreg = 10;
-	if (title=="w_delta_phi_ee_b" || title=="w_delta_phi_mm_b") kreg = 8; // ~OK
-	if (title=="w_delta_phi_ee" || title=="w_delta_phi_mm") kreg = 3;
-	if (title=="w_first_bjet_eta") kreg = 2; // ~OK
-	if (title=="w_first_bjet_pt") kreg = 6; // ~OK
-	if (title=="w_first_jet_eta") kreg = 3;
-	if (title=="w_first_jet_pt") kreg = 5;
-	if (title=="w_mass_Zj_ee_b" || title=="w_mass_Zj_mm_b") kreg = 2;
-	if (title=="w_mass_Zj_ee" || title=="w_mass_Zj_mm") kreg = 2;
-	if (title=="w_pt_Z_ee_b" || title=="w_pt_Z_mm_b") kreg = 10; // ~OK
-	if (title=="w_pt_Z_ee" || title=="w_pt_Z_mm") kreg = 9;
+	if (title=="w_first_jet_eta_b") kreg = 0;
+	if (title=="w_first_jet_mass_b") kreg = 0;
+	if (title=="w_first_jet_pt_b") kreg = 0;
+	if (title=="w_first_jet_eta_bb") kreg = 0;
+	if (title=="w_first_jet_mass_bb") kreg = 0;
+	if (title=="w_first_jet_pt_bb") kreg = 0;
+	if (title=="w_second_jet_eta_b") kreg = 0;
+	if (title=="w_second_jet_mass_b") kreg = 0;
+	if (title=="w_second_jet_pt_b") kreg = 0;
+	if (title=="w_second_jet_eta_bb") kreg = 0;
+	if (title=="w_second_jet_mass_bb") kreg = 0;
+	if (title=="w_second_jet_pt_bb") kreg = 0;
 
 	if (method==0) {
 	  unfold_mc = new RooUnfoldSvd(&response, h_mc2_reco, kreg);
