@@ -6,8 +6,8 @@ string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
 void DataMCComp6(int irun=0, string title="", int plot=0) {
 
-int unfold=0; // use pre-unfolding distributions
-//int unfold=1; // use unfolded distributions
+//int unfold=0; // use pre-unfolding distributions
+int unfold=1; // use unfolded distributions
 
 string subdir="0";
 string postfix="";
