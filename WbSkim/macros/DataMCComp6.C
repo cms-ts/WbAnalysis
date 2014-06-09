@@ -9,6 +9,9 @@ void DataMCComp6(int irun=0, string title="", int plot=0) {
 //int unfold=0; // use pre-unfolding distributions
 int unfold=1; // use unfolded distributions
 
+int drawInclusive = 0; // do not plot the "inclusive" histogram
+//int drawInclusive = 1; // do plot the "inclusive" histogram
+
 string subdir="0";
 string postfix="";
 if (irun==1) {             // irun==1 => JEC Up
@@ -173,16 +176,16 @@ if (irun==99) {            // irun==99 => pur
         h_data_m_b->SetMarkerSize(0.7);
         h_data_m_b->SetMarkerColor(kBlue);
 
-	h_data_e->SetMaximum(4*h_data_e->GetMaximum());
-        h_data_e->SetMinimum(TMath::Max(0.002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
-	if (title.find("_mt")!=string::npos) h_data_e->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
-	if (title.find("_pt")!=string::npos) h_data_e->SetMinimum(TMath::Max(0.000002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
-	if (title.find("_mass")!=string::npos) h_data_e->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
+	if (drawInclusive) h_data_e_b->SetMaximum(4*h_data_e->GetMaximum());
+        h_data_e_b->SetMinimum(TMath::Max(0.002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
+	if (title.find("_mt")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
+	if (title.find("_pt")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.000002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
+	if (title.find("_mass")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 
-        h_data_e->Draw("EPX");
-        h_data_e_b->Draw("EPXSAME");
-        h_data_m->Draw("EPXSAME");
+        h_data_e_b->Draw("EPX");
+        if (drawInclusive) h_data_e->Draw("EPXSAME");
         h_data_m_b->Draw("EPXSAME");
+        if (drawInclusive) h_data_m->Draw("EPXSAME");
 
         TLegend *leg = new TLegend(0.62, 0.580, 0.88, 0.88);
         leg->SetBorderSize(0);
@@ -190,10 +193,10 @@ if (irun==99) {            // irun==99 => pur
         leg->SetFillColor(0);
         leg->SetFillStyle(0);
 
-        leg->AddEntry(h_data_e,"W(#rightarrow e#nu)+1b DATA","p");
         leg->AddEntry(h_data_e_b,"W(#rightarrow e#nu)+2b DATA","p");
-        leg->AddEntry(h_data_m,"W(#rightarrow #mu#nu)+1b DATA","p");
+        if (drawInclusive) leg->AddEntry(h_data_e,"W(#rightarrow e#nu)+1b DATA","p");
         leg->AddEntry(h_data_m_b,"W(#rightarrow #mu#nu)+2b DATA","p");
+        if (drawInclusive) leg->AddEntry(h_data_m,"W(#rightarrow #mu#nu)+1b DATA","p");
 
         leg->Draw();
 
@@ -236,7 +239,7 @@ if (irun==99) {            // irun==99 => pur
         h_ratio_b->SetMarkerColor(kBlack);
 
         h_ratio_b->Draw("EPX");
-        h_ratio->Draw("EPXSAME");
+        if (drawInclusive) h_ratio->Draw("EPXSAME");
 
         TLine *OLine = new TLine(h_ratio->GetXaxis()->GetXmin(),1.,h_ratio->GetXaxis()->GetXmax(),1.);
         OLine->SetLineColor(kGreen);
