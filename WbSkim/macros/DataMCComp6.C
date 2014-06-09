@@ -9,8 +9,8 @@ void DataMCComp6(int irun=0, string title="", int plot=0) {
 //int unfold=0; // use pre-unfolding distributions
 int unfold=1; // use unfolded distributions
 
-int drawInclusive = 0; // do not plot the "inclusive" histogram
-//int drawInclusive = 1; // do plot the "inclusive" histogram
+//int drawInclusive = 0; // do not plot the "inclusive" histogram
+int drawInclusive = 1; // do plot the "inclusive" histogram
 
 string subdir="0";
 string postfix="";
