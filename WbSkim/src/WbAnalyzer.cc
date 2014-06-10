@@ -2714,15 +2714,15 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  double delta_phi_ej;
-  double delta_eta_ej;
-  double DR_ej;
-  double delta_phi_ebj;
-  double delta_eta_ebj;
-  double DR_ebj;
-  double delta_phi_ebjbj;
-  double delta_eta_ebjbj;
-  double DR_ebjbj;
+  double delta_phi_ej=0;
+  double delta_eta_ej=0;
+  double DR_ej=0;
+  double delta_phi_ebj=0;
+  double delta_eta_ebj=0;
+  double DR_ebj=0;
+  double delta_phi_ebjbj=0;
+  double delta_eta_ebjbj=0;
+  double DR_ebjbj=0;
 
   if (wenu_event && mt_cut_wenu && vtx_cut) {
     scalFac_b = btagSF(isMC, vect_bjets, 1);
@@ -3014,15 +3014,15 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   }
 
 
-  double delta_phi_mj;
-  double delta_eta_mj;
-  double DR_mj;
-  double delta_phi_mbj;
-  double delta_eta_mbj;
-  double DR_mbj;
-  double delta_phi_mbjbj;
-  double delta_eta_mbjbj;
-  double DR_mbjbj;
+  double delta_phi_mj=0;
+  double delta_eta_mj=0;
+  double DR_mj=0;
+  double delta_phi_mbj=0;
+  double delta_eta_mbj=0;
+  double DR_mbj=0;
+  double delta_phi_mbjbj=0;
+  double delta_eta_mbjbj=0;
+  double DR_mbjbj=0;
 
   if (wmnu_event && mt_cut_wmnu && vtx_cut) {
     scalFac_b = btagSF(isMC, vect_bjets, 1);
