@@ -549,54 +549,48 @@ string subdir="0";
 	  syst_b_lumi->SetBinError(i, val);
 	}
 
-	float sum1, sum2, sum3, sum4, sum5;
-	float sum1_b, sum2_b, sum3_b, sum4_b, sum5_b;
-	ifstream in4, in5, in6, in7, in8;
+	float sum1, sum2, sum3, sum4;
+	float sum1_b, sum2_b, sum3_b, sum4_b;
+	ifstream in4, in5, in6, in7;
 	if (ilepton==1) {
           if (unfold) {
-	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wenu_b_wide" + "_xsecs_unfolding.dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in8.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
+	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
 	  } else {
-	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wenu_bb_wide" + "_xsecs.dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in8.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
           if (unfold) {
-	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_mt_wmnu_b_wide" + "_xsecs_unfolding.dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
-	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_b" + "_xsecs_unfolding.dat").c_str());
-	    in8.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_b" + "_xsecs_unfolding.dat").c_str());
+	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
+	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
 	  } else {
-	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_mt_wmnu_bb_wide" + "_xsecs.dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in8.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	  }
 	}
 	in4 >> sum1; in4 >> sum1_b;
 	in5 >> sum2; in5 >> sum2_b;
 	in6 >> sum3; in6 >> sum3_b;
 	in7 >> sum4; in7 >> sum4_b;
-	in8 >> sum5; in8 >> sum5_b;
 	in4.close();
 	in5.close();
 	in6.close();
 	in7.close();
-	in8.close();
 
-	float tot = (sum1+sum2+sum3+sum4+sum5)/5.;
-	float tot_b = (sum1_b+sum2_b+sum3_b+sum4_b+sum5_b)/5.;
-	float rms = TMath::Sqrt((TMath::Power(sum1-tot,2)+TMath::Power(sum2-tot,2)+TMath::Power(sum3-tot,2)+TMath::Power(sum4-tot,2)+TMath::Power(sum5-tot,2))/(5-1));
-	float rms_b = TMath::Sqrt((TMath::Power(sum1_b-tot_b,2)+TMath::Power(sum2_b-tot_b,2)+TMath::Power(sum3_b-tot_b,2)+TMath::Power(sum4_b-tot_b,2)+TMath::Power(sum5_b-tot,2))/(5-1));
+	float tot = (sum1+sum2+sum3+sum4)/4.;
+	float tot_b = (sum1_b+sum2_b+sum3_b+sum4_b)/4.;
+	float rms = TMath::Sqrt((TMath::Power(sum1-tot,2)+TMath::Power(sum2-tot,2)+TMath::Power(sum3-tot,2)+TMath::Power(sum4-tot,2))/(4-1));
+	float rms_b = TMath::Sqrt((TMath::Power(sum1_b-tot_b,2)+TMath::Power(sum2_b-tot_b,2)+TMath::Power(sum3_b-tot_b,2)+TMath::Power(sum4_b-tot_b,2))/(4-1));
 
 	TH1F* h_data_stat = (TH1F*)h_data->Clone();
 	TH1F* h_data_b_stat = (TH1F*)h_data_b->Clone();
