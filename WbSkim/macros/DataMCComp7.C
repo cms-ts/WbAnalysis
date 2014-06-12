@@ -265,9 +265,6 @@ string subdir="0";
         if (ilepton==1) {
 	  TFile f((path + "/electrons/" + version + "/" + subdir +"/efficiency/" + string(h_data->GetName()) + "_efficiency.root").c_str());
 	  TFile f_b((path + "/electrons/" + version + "/" + subdir +"/efficiency/" + string(h_data_b->GetName()) + "_efficiency.root").c_str());
-// FIXME
-if (f.IsOpen()&&f_b.IsOpen()) {
-// FIXME
 	  TH1F* h = (TH1F*)f.Get(h_data->GetName())->Clone();
 	  TH1F* h_b = (TH1F*)f_b.Get(h_data_b->GetName())->Clone();
 	  h->SetDirectory(0);
@@ -276,16 +273,10 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  f_b.Close();
 	  h_mc1->Divide(h);
 	  h_mc1b_b->Divide(h_b);
-// FIXME
-}
-// FIXME
         }
 	if (ilepton==2) {
 	  TFile f((path + "/muons/" + version + "/" + subdir +"/efficiency/" + string(h_data->GetName()) + "_efficiency.root").c_str());
 	  TFile f_b((path + "/muons/" + version + "/" + subdir +"/efficiency/" + string(h_data_b->GetName()) + "_efficiency.root").c_str());
-// FIXME
-if (f.IsOpen()&&f_b.IsOpen()) {
-// FIXME
 	  TH1F* h = (TH1F*)f.Get(h_data->GetName())->Clone();
 	  TH1F* h_b = (TH1F*)f_b.Get(h_data_b->GetName())->Clone();
 	  h->SetDirectory(0);
@@ -294,9 +285,6 @@ if (f.IsOpen()&&f_b.IsOpen()) {
 	  f_b.Close();
 	  h_mc1->Divide(h);
 	  h_mc1b_b->Divide(h_b);
-// FIXME
-}
-// FIXME
         }
 
 	if (unfold) {
