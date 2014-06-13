@@ -276,7 +276,7 @@ string subdir="0";
 	  getline(in, tmp);
 	  getline(in, tmp);
 	  getline(in, tmp);
-	  for (int j=0; j<w_data[0]->GetNbinsX()+2; j++) {
+	  for (int j=0; j<=w_data[0]->GetNbinsX()+1; j++) {
 	    in >> tmp;
 	    double val = 0.0;
 	    in >> val; w_data[i]->SetBinContent(j, val); in >> tmp;
@@ -298,11 +298,12 @@ string subdir="0";
 	    in >> val; in >> tmp; in >> val;
 	    in.ignore();
 	  }
+	  getline(in, tmp);
 
 	  getline(in, tmp);
 	  getline(in, tmp);
 	  getline(in, tmp);
-	  for (int j=0; j<w_data_b[0]->GetNbinsX()+2; j++) {
+	  for (int j=0; j<=w_data_b[0]->GetNbinsX()+1; j++) {
 	    in >> tmp;
 	    double val = 0.0;
 	    in >> val; w_data_b[i]->SetBinContent(j, val); in >> tmp;
@@ -324,6 +325,7 @@ string subdir="0";
 	    in >> val; in >> tmp; in >> val;
 	    in.ignore();
 	  }
+	  getline(in, tmp);
 
 	  in.close();
 
