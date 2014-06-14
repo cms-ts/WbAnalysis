@@ -433,6 +433,10 @@ string subdir="0";
 	}
 	double xsec_syst_dr = 0.0;
 	double xsec_syst_b_dr = 0.0;
+	if (useSysDR) {
+	  xsec_syst_dr = TMath::Abs(h_data_scan[88]->Integral(0,h_data_scan[88]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
+	  xsec_syst_b_dr = TMath::Abs(h_data_b_scan[88]->Integral(0,h_data_b_scan[88]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	}
 
 	TH1F* syst_bkg = (TH1F*)h_data->Clone();
 	TH1F* syst_b_bkg = (TH1F*)h_data_b->Clone();
@@ -1198,7 +1202,7 @@ string subdir="0";
 	  out << std::setw(8) << xsec_syst_lumi;
 	  if (useSysRMS) {
 	    out << " +- ";
-	    out << std::setw(8) << 0.0;
+	    out << std::setw(8) << xsec_data*(tot>0 ? rms/tot : 0);
 	  }
 	  out << " => ";
 	  out << std::setw(8) << xsec_data_tot_stat;
@@ -1348,7 +1352,7 @@ string subdir="0";
 	  out << std::setw(8) << xsec_syst_b_lumi;
 	  if (useSysRMS) {
 	    out << " +- ";
-	    out << std::setw(8) << 0.0;
+	    out << std::setw(8) << xsec_data_b*(tot_b>0 ? rms_b/tot_b : 0);
 	  }
 	  out << " => ";
 	  out << std::setw(8) << xsec_data_b_tot_stat;
@@ -1492,7 +1496,7 @@ string subdir="0";
 	  out1 << std::setw(4) << xsec_syst_lumi*xval;
 	  if (useSysRMS) {
 	    out1 << " +- ";
-	    out1 << std::setw(4) << 0.0*xval;
+	    out1 << std::setw(4) << xsec_data*(tot>0 ? rms/tot : 0)*xval;
 	  }
 	  out1 << " => ";
 	  out1 << std::setw(4) << xsec_data_tot_stat*xval;
@@ -1631,7 +1635,7 @@ string subdir="0";
 	  out1 << std::setw(4) << xsec_syst_b_lumi*xval;;
 	  if (useSysRMS) {
 	    out1 << " +- ";
-	    out1 << std::setw(4) << 0.0*xval;;
+	    out1 << std::setw(4) << xsec_data_b*(tot_b>0 ? rms_b/tot_b : 0)*xval;;
 	  }
 	  out1 << " => ";
 	  out1 << std::setw(4) << xsec_data_b_tot_stat*xval;;
