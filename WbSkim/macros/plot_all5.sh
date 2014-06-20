@@ -44,14 +44,6 @@ while [ $i -le 6 ]; do
   root -l -q -b DataMCComp5.C+\($d,\"w_first_muon_eta\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_first_muon_iso\",1,$i\)
 
-  root -l -q -b DataMCComp5.C+\($d,\"w_first_ele_pt_bb\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_first_ele_eta_bb\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_first_ele_iso_bb\",1,$i\)
-
-  root -l -q -b DataMCComp5.C+\($d,\"w_first_muon_pt_bb\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_first_muon_eta_bb\",1,$i\)
-  root -l -q -b DataMCComp5.C+\($d,\"w_first_muon_iso_bb\",1,$i\)
-
   root -l -q -b DataMCComp5.C+\($d,\"w_mass_ee_wide\",1,$i\)
   root -l -q -b DataMCComp5.C+\($d,\"w_mass_mm_wide\",1,$i\)
 
