@@ -51,6 +51,18 @@ process.demoElePup = cms.EDProducer('WbAnalyzer',
 	lepton  = cms.untracked.string("electron")
 )
 
+process.demoEleQCDPum = cms.EDProducer('WbAnalyzer',
+        pileupMC  = cms.untracked.string("S10"),
+        pileupDT  = cms.untracked.string("ee_pum"),
+        lepton  = cms.untracked.string("electronQCD")
+)
+
+process.demoEleQCDPup = cms.EDProducer('WbAnalyzer',
+        pileupMC  = cms.untracked.string("S10"),
+        pileupDT  = cms.untracked.string("ee_pup"),
+        lepton  = cms.untracked.string("electronQCD")
+)
+
 process.demoEleUp = cms.EDProducer('WbAnalyzer',
 	pileupMC     = cms.untracked.string("S10"),
 	pileupDT     = cms.untracked.string("ee"),
@@ -63,6 +75,20 @@ process.demoEleDown = cms.EDProducer('WbAnalyzer',
 	pileupDT       = cms.untracked.string("ee"),
 	lepton 	     = cms.untracked.string("electron"),
 	JEC    	     = cms.untracked.double(-1)
+)
+
+process.demoEleQCDUp = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("ee"),
+        lepton  = cms.untracked.string("electronQCD"),
+        JEC     = cms.untracked.double(1)
+)
+
+process.demoEleQCDDown = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("ee"),
+        lepton  = cms.untracked.string("electronQCD"),
+        JEC     = cms.untracked.double(-1)
 )
 
 process.demoMuo = cms.EDProducer('WbAnalyzer',
@@ -101,6 +127,18 @@ process.demoMuoPup = cms.EDProducer('WbAnalyzer',
 	lepton  = cms.untracked.string("muon")
 )
 
+process.demoMuoQCDPum = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm_pum"),
+        lepton  = cms.untracked.string("muonQCD")
+)
+
+process.demoMuoQCDPup = cms.EDProducer('WbAnalyzer',
+        pileupMC  = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm_pup"),
+        lepton  = cms.untracked.string("muonQCD")
+)
+
 process.demoMuoUp = cms.EDProducer('WbAnalyzer',
 	pileupMC 	   = cms.untracked.string("S10"),
 	pileupDT 	   = cms.untracked.string("mm"),
@@ -115,6 +153,20 @@ process.demoMuoDown = cms.EDProducer('WbAnalyzer',
 	JEC    	     = cms.untracked.double(-1)
 )
 
+process.demoMuoQCDUp = cms.EDProducer('WbAnalyzer',
+        pileupMC  = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm"),
+        lepton  = cms.untracked.string("muonQCD"),
+        JEC     = cms.untracked.double(1)
+)
+
+process.demoMuoQCDDown = cms.EDProducer('WbAnalyzer',
+        pileupMC    = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm"),
+        lepton  = cms.untracked.string("muonQCD"),
+        JEC     = cms.untracked.double(-1)
+)
+
 process.demoEleBtag = cms.EDProducer('WbAnalyzer',
         pileupMC  = cms.untracked.string("S10"),
         pileupDT  = cms.untracked.string("ee"),
@@ -122,11 +174,25 @@ process.demoEleBtag = cms.EDProducer('WbAnalyzer',
 	usePartonFlavour = cms.untracked.bool(True)
 )
 
+process.demoEleQCDBtag = cms.EDProducer('WbAnalyzer',
+        pileupMC    = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("ee"),
+        lepton  = cms.untracked.string("electronQCD"),
+        usePartonFlavour = cms.untracked.bool(True)
+)
+
 process.demoMuoBtag = cms.EDProducer('WbAnalyzer',
         pileupMC  = cms.untracked.string("S10"),
         pileupDT  = cms.untracked.string("mm"),
         lepton  = cms.untracked.string("muon"),
 	usePartonFlavour = cms.untracked.bool(True)
+)
+
+process.demoMuoQCDBtag = cms.EDProducer('WbAnalyzer',
+        pileupMC  = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm"),
+        lepton  = cms.untracked.string("muonQCD"),
+        usePartonFlavour = cms.untracked.bool(True)
 )
 
 process.demoEleGen = cms.EDProducer('GenWbAnalyzer',
@@ -148,10 +214,24 @@ process.demoElePur = cms.EDProducer('WbAnalyzer',
         pcut = cms.untracked.bool(True)
 )
 
+process.demoEleQCDPur = cms.EDProducer('WbAnalyzer',
+        pileupMC  = cms.untracked.string("S10"),
+        pileupDT  = cms.untracked.string("ee"),
+        lepton  = cms.untracked.string("electronQCD"),
+        pcut = cms.untracked.bool(True)
+)
+
 process.demoMuoPur = cms.EDProducer('WbAnalyzer',
         pileupMC = cms.untracked.string("S10"),
         pileupDT = cms.untracked.string("mm"),
         lepton  = cms.untracked.string("muon"),
+        pcut = cms.untracked.bool(True)
+)
+
+process.demoMuoQCDPur = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm"),
+        lepton  = cms.untracked.string("muonQCD"),
         pcut = cms.untracked.bool(True)
 )
 
@@ -162,10 +242,24 @@ process.demoEleDR = cms.EDProducer('WbAnalyzer',
         useDeltaR = cms.untracked.bool(True)
 )
 
+process.demoEleQCDDR = cms.EDProducer('WbAnalyzer',
+        pileupMC  = cms.untracked.string("S10"),
+        pileupDT  = cms.untracked.string("ee"),
+        lepton  = cms.untracked.string("electronQCD"),
+        useDeltaR = cms.untracked.bool(True)
+)
+
 process.demoMuoDR = cms.EDProducer('WbAnalyzer',
         pileupMC = cms.untracked.string("S10"),
         pileupDT = cms.untracked.string("mm"),
         lepton  = cms.untracked.string("muon"),
+        useDeltaR = cms.untracked.bool(True)
+)
+
+process.demoMuoQCDDR = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm"),
+        lepton  = cms.untracked.string("muonQCD"),
         useDeltaR = cms.untracked.bool(True)
 )
 
@@ -183,6 +277,20 @@ process.demoEleJerDown = cms.EDProducer('WbAnalyzer',
         JER     = cms.untracked.double(-1)
 )
 
+process.demoEleQCDJerUp = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("ee"),
+        lepton  = cms.untracked.string("electronQCD"),
+        JER     = cms.untracked.double(1)
+)
+
+process.demoEleQCDJerDown = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("ee"),
+        lepton  = cms.untracked.string("electronQCD"),
+        JER     = cms.untracked.double(-1)
+)
+
 process.demoMuoJerUp = cms.EDProducer('WbAnalyzer',
         pileupMC = cms.untracked.string("S10"),
         pileupDT = cms.untracked.string("mm"),
@@ -194,6 +302,20 @@ process.demoMuoJerDown = cms.EDProducer('WbAnalyzer',
         pileupMC = cms.untracked.string("S10"),
         pileupDT = cms.untracked.string("mm"),
         lepton  = cms.untracked.string("muon"),
+        JER     = cms.untracked.double(-1)
+)
+
+process.demoMuoQCDJerUp = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm"),
+        lepton  = cms.untracked.string("muonQCD"),
+        JER     = cms.untracked.double(1)
+)
+
+process.demoMuoQCDJerDown = cms.EDProducer('WbAnalyzer',
+        pileupMC = cms.untracked.string("S10"),
+        pileupDT = cms.untracked.string("mm"),
+        lepton  = cms.untracked.string("muonQCD"),
         JER     = cms.untracked.double(-1)
 )
 
@@ -290,4 +412,4 @@ process.demoMuoDumpJerDown = cms.EDAnalyzer('WbDumper',
 )
 
 
-process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoEleTOP*process.demoElePum*process.demoElePup*process.demoEleUp*process.demoEleDown*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD*process.demoMuoTOP*process.demoMuoPum*process.demoMuoPup*process.demoMuoUp*process.demoMuoDown*process.demoEleBtag*process.demoMuoBtag*process.demoEleGen*process.demoMuoGen*process.demoElePur*process.demoMuoPur*process.demoEleDR*process.demoMuoDR*process.demoEleJerUp*process.demoEleJerDown*process.demoMuoJerUp*process.demoMuoJerDown*process.demoEleDump*process.demoMuoDump*process.demoEleDumpPup*process.demoEleDumpPum*process.demoEleDumpPum*process.demoEleDumpUp*process.demoEleDumpDown*process.demoEleDumpPur*process.demoEleDumpDR*process.demoEleDumpJerUp*process.demoEleDumpJerDown*process.demoMuoDump*process.demoMuoDumpPup*process.demoMuoDumpPum*process.demoMuoDumpUp*process.demoMuoDumpDown*process.demoMuoDumpPur*process.demoMuoDumpDR*process.demoMuoDumpJerUp*process.demoMuoDumpJerDown)
+process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoEleTOP*process.demoElePum*process.demoElePup*process.demoEleQCDPum*process.demoEleQCDPup*process.demoEleUp*process.demoEleDown*process.demoEleQCDUp*process.demoEleQCDDown*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD*process.demoMuoTOP*process.demoMuoPum*process.demoMuoPup*process.demoMuoQCDPum*process.demoMuoQCDPup*process.demoMuoUp*process.demoMuoDown*process.demoMuoQCDUp*process.demoMuoQCDDown*process.demoEleBtag*process.demoEleQCDBtag*process.demoMuoBtag*process.demoMuoQCDBtag*process.demoEleGen*process.demoMuoGen*process.demoElePur*process.demoEleQCDPur*process.demoMuoPur*process.demoMuoQCDPur*process.demoEleDR*process.demoEleQCDDR*process.demoMuoDR*process.demoMuoQCDDR*process.demoEleJerUp*process.demoEleJerDown*process.demoEleQCDJerUp*process.demoEleQCDJerDown*process.demoMuoJerUp*process.demoMuoJerDown*process.demoMuoQCDJerUp*process.demoMuoQCDJerDown*process.demoEleDump*process.demoMuoDump*process.demoEleDumpPup*process.demoEleDumpPum*process.demoEleDumpPum*process.demoEleDumpUp*process.demoEleDumpDown*process.demoEleDumpPur*process.demoEleDumpDR*process.demoEleDumpJerUp*process.demoEleDumpJerDown*process.demoMuoDump*process.demoMuoDumpPup*process.demoMuoDumpPum*process.demoMuoDumpUp*process.demoMuoDumpDown*process.demoMuoDumpPur*process.demoMuoDumpDR*process.demoMuoDumpJerUp*process.demoMuoDumpJerDown)

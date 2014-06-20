@@ -96,7 +96,7 @@ if (irun==99) {            // irun==99 => pur
   postfix="Pur";
 }
 
-// skip TOP, FWD samples (for QCD, see inline below)
+// skip variations for FWD (3,4) and TOP (5,6) samples
 if (ilepton>=3 && ilepton<=6) postfix="";
 
       double Lumi2012=0;
@@ -177,10 +177,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) data->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) data->cd(("demoMuoTOP"+postfix).c_str());
       h_data = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) data_fit->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) data_fit->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) data_fit->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) data_fit->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) data_fit->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) data_fit->cd(("demoMuoQCD"+postfix).c_str());
       h_data_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc1->cd(("demoEle"+postfix).c_str());
@@ -190,10 +188,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) mc1->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc1->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc1 = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) mc1->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) mc1->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc1->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) mc1->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) mc1->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc1->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc1_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc2->cd(("demoEle"+postfix).c_str());
@@ -203,10 +199,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) mc2->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc2->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc2 = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) mc2->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) mc2->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc2->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) mc2->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) mc2->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc2->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc2_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
       
       if (ilepton==1) mc3->cd(("demoEle"+postfix).c_str());
@@ -216,10 +210,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) mc3->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc3->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc3 = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) mc3->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) mc3->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc3->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) mc3->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) mc3->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc3->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc3_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc4->cd(("demoEle"+postfix).c_str());
@@ -229,10 +221,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) mc4->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc4->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc4 = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) mc4->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) mc4->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc4->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) mc4->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) mc4->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc4->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc4_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
 //    if (ilepton==1) mc5->cd(("demoEle"+postfix).c_str());
@@ -242,10 +232,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
 //    if (ilepton==5) mc5->cd(("demoEleTOP"+postfix).c_str());
 //    if (ilepton==6) mc5->cd(("demoMuoTOP"+postfix).c_str());
 //    TH1F* h_mc5 = (TH1F*)gDirectory->Get(title.c_str());
-//    //if (ilepton==1) mc5->cd(("demoEleQCD"+postfix).c_str());
-//    //if (ilepton==2) mc5->cd(("demoMuoQCD"+postfix).c_str());
-//    if (ilepton==1) mc5->cd("demoEleQCD");
-//    if (ilepton==2) mc5->cd("demoMuoQCD");
+//    if (ilepton==1) mc5->cd(("demoEleQCD"+postfix).c_str());
+//    if (ilepton==2) mc5->cd(("demoMuoQCD"+postfix).c_str());
 //    TH1F* h_mc5_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc6->cd(("demoEle"+postfix).c_str());
@@ -255,10 +243,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) mc6->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc6->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc6 = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) mc6->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) mc6->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc6->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) mc6->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) mc6->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc6->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc6_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc7->cd(("demoEle"+postfix).c_str());
@@ -268,10 +254,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) mc7->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc7->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc7 = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) mc7->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) mc7->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc7->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) mc7->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) mc7->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc7->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc7_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       if (ilepton==1) mc8->cd(("demoEle"+postfix).c_str());
@@ -281,10 +265,8 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       if (ilepton==5) mc8->cd(("demoEleTOP"+postfix).c_str());
       if (ilepton==6) mc8->cd(("demoMuoTOP"+postfix).c_str());
       TH1F* h_mc8 = (TH1F*)gDirectory->Get(title.c_str());
-      //if (ilepton==1||ilepton==3||ilepton==5) mc8->cd(("demoEleQCD"+postfix).c_str());
-      //if (ilepton==2||ilepton==4||ilepton==6) mc8->cd(("demoMuoQCD"+postfix).c_str());
-      if (ilepton==1||ilepton==3||ilepton==5) mc8->cd("demoEleQCD");
-      if (ilepton==2||ilepton==4||ilepton==6) mc8->cd("demoMuoQCD");
+      if (ilepton==1||ilepton==3||ilepton==5) mc8->cd(("demoEleQCD"+postfix).c_str());
+      if (ilepton==2||ilepton==4||ilepton==6) mc8->cd(("demoMuoQCD"+postfix).c_str());
       TH1F* h_mc8_fit = (TH1F*)gDirectory->Get(title_fit.c_str());
 
       h_data->Sumw2();
@@ -398,7 +380,7 @@ if (ilepton>=3 && ilepton<=6) postfix="";
         for (int i=0; i<=h_data_fit->GetNbinsX()+1; i++) {
 	  bool skip = false;
           if (title.find("w_mt")!=string::npos) {
-            if (h_data_fit->GetXaxis()->GetBinCenter(i)>40) {
+            if (h_data_fit->GetXaxis()->GetBinCenter(i)>20) {
 	      skip = true;
             }
 	  }
