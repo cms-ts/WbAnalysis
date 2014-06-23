@@ -720,6 +720,44 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_mc_fit0 = h_mc1;
 	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, 1.);
 	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, 1.);
+	  for (int i=0; i<=h_data_fit->GetNbinsX()+1; i++) {
+	    bool skip = false;
+	    if (title.find("w_mt_w")!=string::npos && title.find("_wide")!=string::npos) {
+	      if (h_data_fit->GetXaxis()->GetBinCenter(i) < 45) {
+	        skip = true;
+	      }
+	    }
+	    if (skip) {
+	      h_data->SetBinContent(i, 0);
+	      h_data->SetBinError(i, 0);
+	      h_data_fit->SetBinContent(i, 0);
+	      h_data_fit->SetBinError(i, 0);
+	      h_mc1->SetBinContent(i, 0);
+	      h_mc1->SetBinError(i, 0);
+	      if (h_mc1b) h_mc1b->SetBinContent(i, 0);
+	      if (h_mc1b) h_mc1b->SetBinError(i, 0);
+	      if (h_mc1c) h_mc1c->SetBinContent(i, 0);
+	      if (h_mc1c) h_mc1c->SetBinError(i, 0);
+	      if (h_mc1t) h_mc1t->SetBinContent(i, 0);
+	      if (h_mc1t) h_mc1t->SetBinError(i, 0);
+	      h_mc2->SetBinContent(i, 0);
+	      h_mc2->SetBinError(i, 0);
+	      h_mc3->SetBinContent(i, 0);
+	      h_mc3->SetBinError(i, 0);
+	      h_mc4->SetBinContent(i, 0);
+	      h_mc4->SetBinError(i, 0);
+	      if (h_mc5) {
+	        h_mc5->SetBinContent(i, 0);
+	        h_mc5->SetBinError(i, 0);
+	      }
+	      h_mc6->SetBinContent(i, 0);
+	      h_mc6->SetBinError(i, 0);
+	      h_mc7->SetBinContent(i, 0);
+	      h_mc7->SetBinError(i, 0);
+	      h_mc8->SetBinContent(i, 0);
+	      h_mc8->SetBinError(i, 0);
+	    }
+	  }
 	  fitter = TVirtualFitter::Fitter(0, 1);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
