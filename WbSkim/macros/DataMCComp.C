@@ -2,6 +2,7 @@
 #include "LumiLabel.C"
 #include "LumiInfo_v09.h"
 
+#include "fixrange.C"
 #include "rebin.C"
 
 string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
