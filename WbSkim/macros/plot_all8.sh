@@ -17,4 +17,11 @@ root -l -q -b DataMCComp8.C+\(\"w_second_jet_pt_b\",1\)
 root -l -q -b DataMCComp8.C+\(\"w_second_jet_eta_b\",1\)
 root -l -q -b DataMCComp8.C+\(\"w_second_jet_mass_b\",1\)
 
+#root -l -q -b DataMCComp8.C+\(\"w_Ht_b\",1\)
+
+root -l -q -b DataMCComp8.C+\(\"w_delta_wenu_b\",1\)
+root -l -q -b DataMCComp8.C+\(\"w_delta_wmnu_b\",1\)
+root -l -q -b DataMCComp8.C+\(\"w_deltaR_wenu_b\",1\)
+root -l -q -b DataMCComp8.C+\(\"w_deltaR_wmnu_b\",1\)
+
 exit
