@@ -99,6 +99,20 @@ if (irun==99) {            // irun==99 => pur
 	  title_m_b = "w_mt_wmnu_bb";
 	}
 
+        if (title=="w_delta_b") {
+	  title_e = "w_delta_wenu_b";
+	  title_e_b = "w_delta_wenu_bb";
+	  title_m = "w_delta_wmnu_b";
+	  title_m_b = "w_delta_wmnu_bb";
+	}
+
+        if (title=="w_deltaR_b") {
+	  title_e = "w_deltaR_wenu_b";
+	  title_e_b = "w_deltaR_wenu_bb";
+	  title_m = "w_deltaR_wmnu_b";
+	  title_m_b = "w_deltaR_wmnu_bb";
+	}
+
         if (title.find("_jet_")!=string::npos) {
 	  title_e_b = title_e_b + "b";
 	  title_m_b = title_m_b + "b";
