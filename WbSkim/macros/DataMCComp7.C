@@ -809,6 +809,7 @@ string subdir="0";
 	h_mcg->Scale(1./Lumi2012, "width");
 	h_mcg_b->Scale(1./Lumi2012, "width");
 
+/*
 	h_data = fixrange(h_data);
 	h_data_b = fixrange(h_data_b);
 	for (int i=0;i<NMAX;i++) {
@@ -821,12 +822,14 @@ string subdir="0";
 	h_data_b_syst = fixrange(h_data_b_syst);
 	h_data_tot = fixrange(h_data_tot);
 	h_data_b_tot = fixrange(h_data_b_tot);
+*/
 
 	h_mc1 = fixrange(h_mc1);
 	h_mc1b_b = fixrange(h_mc1b_b);
 	h_mcg = fixrange(h_mcg);
 	h_mcg_b = fixrange(h_mcg_b);
 
+/*
 	h_data = rebin(h_data);
 	h_data_b = rebin(h_data_b);
 	for (int i=0;i<NMAX;i++) {
@@ -839,6 +842,7 @@ string subdir="0";
 	h_data_b_syst = rebin(h_data_b_syst);
 	h_data_tot = rebin(h_data_tot);
 	h_data_b_tot = rebin(h_data_b_tot);
+*/
 
 	h_mc1 = rebin(h_mc1);
 	h_mc1b_b = rebin(h_mc1b_b);

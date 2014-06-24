@@ -1664,6 +1664,7 @@ string subdir="0";
 	xval = TMath::Sqrt(TMath::Power(xsec_tot_stat_b_tot,2)+TMath::Power(xsec_tot_syst_b_tot,2));
 	xsec_tot_data_b_tot = xval;
 
+/*
 	h_data = fixrange(h_data);
 	h_data_b = fixrange(h_data_b);
 	h_data_stat = fixrange(h_data_stat);
@@ -1672,10 +1673,12 @@ string subdir="0";
 	h_data_b_syst = fixrange(h_data_b_syst);
 	h_data_tot = fixrange(h_data_tot);
 	h_data_b_tot = fixrange(h_data_b_tot);
+*/
 
 	h_mcg = fixrange(h_mcg);
 	h_mcg_b = fixrange(h_mcg_b);
 
+/*
 	h_data = rebin(h_data);
 	h_data_b = rebin(h_data_b);
 	h_data_stat = rebin(h_data_stat);
@@ -1684,6 +1687,7 @@ string subdir="0";
 	h_data_b_syst = rebin(h_data_b_syst);
 	h_data_tot = rebin(h_data_tot);
 	h_data_b_tot = rebin(h_data_b_tot);
+*/
 
 	h_mcg = rebin(h_mcg);
 	h_mcg_b = rebin(h_mcg_b);
