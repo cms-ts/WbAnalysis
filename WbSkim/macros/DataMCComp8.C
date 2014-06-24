@@ -17,6 +17,10 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
   if (ilepton==1) {
     if (title=="w_mt_b") title_tmp="w_mt_wenu_b";
     if (title=="w_mt_bb") title_tmp="w_mt_wenu_bb";
+    if (title=="w_delta_b") title_tmp="w_delta_wenu_b";
+    if (title=="w_delta_bb") title_tmp="w_delta_wenu_bb";
+    if (title=="w_deltaR_b") title_tmp="w_deltaR_wenu_b";
+    if (title=="w_deltaR_bb") title_tmp="w_deltaR_wenu_bb";
     string title_tmp2 = title_tmp;
     if (!unfold) {
       if (title_tmp2.find("_bb")==string::npos) {
@@ -36,6 +40,10 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
   if (ilepton==2) {
     if (title=="w_mt_b") title_tmp="w_mt_wmnu_b";
     if (title=="w_mt_bb") title_tmp="w_mt_wmnu_bb";
+    if (title=="w_delta_b") title_tmp="w_delta_wmnu_b";
+    if (title=="w_delta_bb") title_tmp="w_delta_wmnu_bb";
+    if (title=="w_deltaR_b") title_tmp="w_deltaR_wmnu_b";
+    if (title=="w_deltaR_bb") title_tmp="w_deltaR_wmnu_bb";
     string title_tmp2 = title_tmp;
     if (!unfold) {
       if (title_tmp2.find("_bb")==string::npos) {
