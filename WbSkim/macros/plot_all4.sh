@@ -28,6 +28,18 @@ while [ $i -le 2 ]; do
   root -l -q -b DataMCComp4.C+\($d,\"w_second_jet_mass_b\",1,$i,0\)
   root -l -q -b DataMCComp4.C+\($d,\"w_second_jet_mass_bb\",1,$i,0\)
 
+  root -l -q -b DataMCComp4.C+\($d,\"w_Ht_b\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_Ht_bb\",1,$i,0\)
+
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wenu_b\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wmnu_bb\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wenu_b\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wmnu_bb\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wenu_b\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wmnu_bb\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wenu_b\",1,$i,0\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wmnu_bb\",1,$i,0\)
+
   i=$((i+1))
 done
 
@@ -47,6 +59,18 @@ while [ $i -le 2 ]; do
   root -l -q -b DataMCComp4.C+\($d,\"w_second_jet_eta_bb\",1,$i\)
   root -l -q -b DataMCComp4.C+\($d,\"w_second_jet_mass_b\",1,$i\)
   root -l -q -b DataMCComp4.C+\($d,\"w_second_jet_mass_bb\",1,$i\)
+
+  root -l -q -b DataMCComp4.C+\($d,\"w_Ht_b\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_Ht_bb\",1,$i\)
+
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wenu_b\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wmnu_bb\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wenu_b\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_delta_wmnu_bb\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wenu_b\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wmnu_bb\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wenu_b\",1,$i\)
+  root -l -q -b DataMCComp4.C+\($d,\"w_deltaR_wmnu_bb\",1,$i\)
 
   i=$((i+1))
 done
@@ -68,6 +92,18 @@ while [ $i -le 2 ]; do
   root -l -q -b DataMCComp2.C+\($d,\"w_second_jet_pt_b\",1,$i,1\)
   root -l -q -b DataMCComp2.C+\($d,\"w_second_jet_eta_b\",1,$i,1\)
   root -l -q -b DataMCComp2.C+\($d,\"w_second_jet_mass_b\",1,$i,1\)
+
+  root -l -q -b DataMCComp2.C+\($d,\"w_Ht_b\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_Ht_bb\",1,$i,1\)
+
+  root -l -q -b DataMCComp2.C+\($d,\"w_delta_wenu_b\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_delta_wmnu_bb\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_delta_wenu_b\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_delta_wmnu_bb\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_deltaR_wenu_b\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_deltaR_wmnu_bb\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_deltaR_wenu_b\",1,$i,1\)
+  root -l -q -b DataMCComp2.C+\($d,\"w_deltaR_wmnu_bb\",1,$i,1\)
 
   i=$((i+1))
 done
