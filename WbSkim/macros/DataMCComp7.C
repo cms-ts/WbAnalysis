@@ -185,7 +185,7 @@ string subdir="0";
 	  h_data_b_scan[i] = 0;
 	  if (i==8 && !useSysUnfoldSherpa) continue;
 	  if (i==9 && !useSysUnfoldPowheg) continue;
-	  if (i<=13) {
+	  if (i<=15) {
 	    stringstream ss;
 	    ss << i;
 	    h_data_scan[i] = read(ss.str(), title, ilepton);
@@ -195,10 +195,6 @@ string subdir="0";
 	if (useSysUnfoldMadGraph4FS) {
 	  h_data_scan[77] = read("77", title, ilepton);
 	  h_data_b_scan[77] = read("77", title_b, ilepton);
-	}
-	if (useSysUnfoldWeight) {
-	  h_data_scan[66] = read("66", title, ilepton);
-	  h_data_b_scan[66] = read("66", title_b, ilepton);
 	}
 	if (useSysDR) {
 	  h_data_scan[88] = read("88", title, ilepton);
@@ -472,6 +468,23 @@ string subdir="0";
 	xsec_stat_top = TMath::Abs(h_data_scan[5]->Integral(0,h_data_scan[5]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
 	xsec_stat_b_top = TMath::Abs(h_data_b_scan[5]->Integral(0,h_data_b_scan[5]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
 
+	TH1F* stat_qcd = (TH1F*)h_data->Clone();
+	TH1F* stat_b_qcd = (TH1F*)h_data_b->Clone();
+	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
+	  double val = 0.0;
+	  val = TMath::Abs(h_data_scan[15]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i));
+	  stat_qcd->SetBinError(i, val);
+	}
+	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
+	  double val = 0.0;
+	  val = TMath::Abs(h_data_b_scan[15]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i));
+	  stat_b_qcd->SetBinError(i, val);
+	}
+	double xsec_stat_qcd = 0.0;
+	double xsec_stat_b_qcd = 0.0;
+	xsec_stat_qcd = TMath::Abs(h_data_scan[15]->Integral(0,h_data_scan[15]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
+	xsec_stat_b_qcd = TMath::Abs(h_data_b_scan[15]->Integral(0,h_data_b_scan[15]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+
 	TH1F* stat_bfit = (TH1F*)h_data->Clone();
 	TH1F* stat_b_bfit = (TH1F*)h_data_b->Clone();
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
@@ -570,7 +583,7 @@ string subdir="0";
 	      val = TMath::Sqrt(TMath::Max(0.,val));
 	    }
 	    if (useSysUnfoldWeight) {
-	      val = TMath::Abs(h_data_scan[66]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i));
+	      val = TMath::Abs(h_data_scan[14]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i));
 	    }
 	  }
 	  syst_unfold->SetBinError(i, val);
@@ -600,7 +613,7 @@ string subdir="0";
 	      val = TMath::Sqrt(TMath::Max(0.,val));
 	    }
 	    if (useSysUnfoldWeight) {
-	      val = TMath::Abs(h_data_b_scan[66]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i));
+	      val = TMath::Abs(h_data_b_scan[14]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i));
 	    }
 	  }
 	  syst_b_unfold->SetBinError(i, val);
@@ -632,8 +645,8 @@ string subdir="0";
 	    xsec_syst_b_unfold = TMath::Sqrt(TMath::Max(0.,xsec_syst_b_unfold));
 	  }
 	  if (useSysUnfoldWeight) {
-	    xsec_syst_unfold = TMath::Abs(h_data_scan[66]->Integral(0,h_data_scan[66]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	    xsec_syst_b_unfold = TMath::Abs(h_data_b_scan[66]->Integral(0,h_data_b_scan[66]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	    xsec_syst_unfold = TMath::Abs(h_data_scan[14]->Integral(0,h_data_scan[14]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
+	    xsec_syst_b_unfold = TMath::Abs(h_data_b_scan[14]->Integral(0,h_data_b_scan[14]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
 	  }
 	}
 
@@ -706,6 +719,7 @@ string subdir="0";
 
 	for (int i=0;i<=h_data_stat->GetNbinsX()+1;i++) {
 	  h_data_stat->SetBinError(i, TMath::Sqrt(TMath::Power(h_data_stat->GetBinError(i),2)+TMath::Power(stat_top->GetBinError(i),2)));
+	  h_data_stat->SetBinError(i, TMath::Sqrt(TMath::Power(h_data_stat->GetBinError(i),2)+TMath::Power(stat_qcd->GetBinError(i),2)));
 	  h_data_stat->SetBinError(i, TMath::Sqrt(TMath::Power(h_data_stat->GetBinError(i),2)+TMath::Power(stat_bfit->GetBinError(i),2)));
 	  double val = 0.0;
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(stat_bkg->GetBinError(i),2));
@@ -728,6 +742,7 @@ string subdir="0";
 
 	for (int i=0;i<=h_data_b_stat->GetNbinsX()+1;i++) {
 	  h_data_b_stat->SetBinError(i, TMath::Sqrt(TMath::Power(h_data_b_stat->GetBinError(i),2)+TMath::Power(stat_b_top->GetBinError(i),2)));
+	  h_data_b_stat->SetBinError(i, TMath::Sqrt(TMath::Power(h_data_b_stat->GetBinError(i),2)+TMath::Power(stat_b_qcd->GetBinError(i),2)));
 	  h_data_b_stat->SetBinError(i, TMath::Sqrt(TMath::Power(h_data_b_stat->GetBinError(i),2)+TMath::Power(stat_b_bfit->GetBinError(i),2)));
 	  double val = 0.0;
 	  val = TMath::Sqrt(TMath::Power(val,2)+TMath::Power(stat_b_bkg->GetBinError(i),2));
@@ -756,9 +771,11 @@ string subdir="0";
 	double xsec_data_b_tot_tot = 0;
 	xsec_data_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_tot_stat,2)+TMath::Power(xsec_stat_data,2));
 	xsec_data_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_tot_stat,2)+TMath::Power(xsec_stat_top,2));
+	xsec_data_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_tot_stat,2)+TMath::Power(xsec_stat_qcd,2));
 	xsec_data_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_tot_stat,2)+TMath::Power(xsec_stat_bfit,2));
 	xsec_data_b_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_b_tot_stat,2)+TMath::Power(xsec_stat_data_b,2));
 	xsec_data_b_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_b_tot_stat,2)+TMath::Power(xsec_stat_b_top,2));
+	xsec_data_b_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_b_tot_stat,2)+TMath::Power(xsec_stat_b_qcd,2));
 	xsec_data_b_tot_stat = TMath::Sqrt(TMath::Power(xsec_data_b_tot_stat,2)+TMath::Power(xsec_stat_b_bfit,2));
 	xsec_data_tot_syst = TMath::Sqrt(TMath::Power(xsec_data_tot_syst,2)+TMath::Power(xsec_stat_bkg,2));
 	xsec_data_tot_syst = TMath::Sqrt(TMath::Power(xsec_data_tot_syst,2)+TMath::Power(xsec_syst_eff,2));
@@ -1077,6 +1094,7 @@ string subdir="0";
 	  if (useSysDR) out << std::setw(12) << "DR";
 	  out << std::setw(12) << "bkg";
 	  out << std::setw(12) << "ttbar";
+	  out << std::setw(12) << "qcd";
 	  out << std::setw(12) << "bfit";
 	  if (useSysBfit2) out << std::setw(12) << "bfit2";
 	  out << std::setw(12) << "btag";
@@ -1096,6 +1114,7 @@ string subdir="0";
 	  out << std::setw(12) << "syst";
 	  if (useSysDR) out << std::setw(12) << "syst";
 	  out << std::setw(12) << "syst";
+	  out << std::setw(12) << "stat";
 	  out << std::setw(12) << "stat";
 	  out << std::setw(12) << "stat";
 	  if (useSysBfit2) out << std::setw(12) << "syst";
@@ -1135,6 +1154,8 @@ string subdir="0";
 	    out << std::setw(8) << syst_bkg->GetBinError(i);
 	    out << " +- ";
 	    out << std::setw(8) << stat_top->GetBinError(i);
+	    out << " +- ";
+	    out << std::setw(8) << stat_qcd->GetBinError(i);
 	    out << " +- ";
 	    out << std::setw(8) << stat_bfit->GetBinError(i);
 	    if (useSysBfit2) {
@@ -1188,6 +1209,8 @@ string subdir="0";
 	  out << " +- ";
 	  out << std::setw(8) << xsec_stat_top;
 	  out << " +- ";
+	  out << std::setw(8) << xsec_stat_qcd;
+	  out << " +- ";
 	  out << std::setw(8) << xsec_stat_bfit;
 	  if (useSysBfit2) {
 	    out << std::setw(8) << xsec_syst_bfit2;
@@ -1227,6 +1250,7 @@ string subdir="0";
 	  if (useSysDR) out << std::setw(12) << "DR";
 	  out << std::setw(12) << "bkg";
 	  out << std::setw(12) << "ttbar";
+	  out << std::setw(12) << "qcd";
 	  out << std::setw(12) << "bfit";
 	  if (useSysBfit2) out << std::setw(12) << "bfit2";
 	  out << std::setw(12) << "btag";
@@ -1246,6 +1270,7 @@ string subdir="0";
 	  out << std::setw(12) << "syst";
 	  if (useSysDR) out << std::setw(12) << "syst";
 	  out << std::setw(12) << "syst";
+	  out << std::setw(12) << "stat";
 	  out << std::setw(12) << "stat";
 	  out << std::setw(12) << "stat";
 	  if (useSysBfit2) out << std::setw(12) << "syst";
@@ -1285,6 +1310,8 @@ string subdir="0";
 	    out << std::setw(8) << syst_b_bkg->GetBinError(i);
 	    out << " +- ";
 	    out << std::setw(8) << stat_b_top->GetBinError(i);
+	    out << " +- ";
+	    out << std::setw(8) << stat_b_qcd->GetBinError(i);
 	    out << " +- ";
 	    out << std::setw(8) << stat_b_bfit->GetBinError(i);
 	    if (useSysBfit2) {
@@ -1338,6 +1365,8 @@ string subdir="0";
 	  out << " +- ";
 	  out << std::setw(8) << xsec_stat_b_top;
 	  out << " +- ";
+	  out << std::setw(8) << xsec_stat_b_qcd;
+	  out << " +- ";
 	  out << std::setw(8) << xsec_stat_b_bfit;
 	  if (useSysBfit2) {
 	    out << std::setw(8) << xsec_syst_b_bfit2;
@@ -1377,6 +1406,7 @@ string subdir="0";
 	  if (useSysDR) out1 << std::setw(8) << "DR";
 	  out1 << std::setw(8) << "bkg";
 	  out1 << std::setw(8) << "ttbar";
+	  out1 << std::setw(8) << "qcd";
 	  out1 << std::setw(8) << "bfit";
 	  if (useSysBfit2) out1 << std::setw(8) << "bfit2";
 	  out1 << std::setw(8) << "btag";
@@ -1396,6 +1426,7 @@ string subdir="0";
 	  out1 << std::setw(8) << "syst";
 	  if (useSysDR) out1 << std::setw(8) << "syst";
 	  out1 << std::setw(8) << "syst";
+	  out1 << std::setw(8) << "stat";
 	  out1 << std::setw(8) << "stat";
 	  out1 << std::setw(8) << "stat";
 	  if (useSysBfit2) out1 << std::setw(8) << "syst";
@@ -1433,6 +1464,8 @@ string subdir="0";
 	    out1 << std::setw(4) << syst_bkg->GetBinError(i)*val;
 	    out1 << " +- ";
 	    out1 << std::setw(4) << stat_top->GetBinError(i)*val;
+	    out1 << " +- ";
+	    out1 << std::setw(4) << stat_qcd->GetBinError(i)*val;
 	    out1 << " +- ";
 	    out1 << std::setw(4) << stat_bfit->GetBinError(i)*val;
 	    if (useSysBfit2) {
@@ -1482,6 +1515,8 @@ string subdir="0";
 	  out1 << " +- ";
 	  out1 << std::setw(4) << xsec_stat_top*xval;
 	  out1 << " +- ";
+	  out1 << std::setw(4) << xsec_stat_qcd*xval;
+	  out1 << " +- ";
 	  out1 << std::setw(4) << xsec_stat_bfit*xval;
 	  if (useSysBfit2) {
 	    out1 << std::setw(4) << xsec_syst_bfit2*xval;
@@ -1516,6 +1551,7 @@ string subdir="0";
 	  if (useSysDR) out1 << std::setw(8) << "DR";
 	  out1 << std::setw(8) << "bkg";
 	  out1 << std::setw(8) << "ttbar";
+	  out1 << std::setw(8) << "qcd";
 	  out1 << std::setw(8) << "bfit";
 	  if (useSysBfit2) out1 << std::setw(8) << "bfit2";
 	  out1 << std::setw(8) << "btag";
@@ -1535,6 +1571,7 @@ string subdir="0";
 	  out1 << std::setw(8) << "syst";
 	  if (useSysDR) out1 << std::setw(8) << "syst";
 	  out1 << std::setw(8) << "syst";
+	  out1 << std::setw(8) << "stat";
 	  out1 << std::setw(8) << "stat";
 	  out1 << std::setw(8) << "stat";
 	  if (useSysBfit2) out1 << std::setw(8) << "syst";
@@ -1572,6 +1609,8 @@ string subdir="0";
 	    out1 << std::setw(4) << syst_b_bkg->GetBinError(i)*val;
 	    out1 << " +- ";
 	    out1 << std::setw(4) << stat_b_top->GetBinError(i)*val;
+	    out1 << " +- ";
+	    out1 << std::setw(4) << stat_b_qcd->GetBinError(i)*val;
 	    out1 << " +- ";
 	    out1 << std::setw(4) << stat_b_bfit->GetBinError(i)*val;
 	    if (useSysBfit2) {
@@ -1620,6 +1659,8 @@ string subdir="0";
 	  out1 << std::setw(4) << xsec_syst_b_bkg*xval;;
 	  out1 << " +- ";
 	  out1 << std::setw(4) << xsec_stat_b_top*xval;;
+	  out1 << " +- ";
+	  out1 << std::setw(4) << xsec_stat_b_qcd*xval;;
 	  out1 << " +- ";
 	  out1 << std::setw(4) << xsec_stat_b_bfit*xval;;
 	  if (useSysBfit2) {

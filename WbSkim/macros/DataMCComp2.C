@@ -72,8 +72,12 @@ if (irun==13) {            // irun==13 => bkg statistics
   subdir="13";
   postfix="";
 }
-if (irun==66) {            // irun==66 => unfolding with data weight
-  subdir="66";
+if (irun==14) {            // irun==14 => unfolding with data weight
+  subdir="14";
+  postfix="";
+}
+if (irun==15) {            // irun==15 => qcd bkg
+  subdir="15";
   postfix="";
 }
 if (irun==77) {            // irun==77 => unfolding with MadGraph 4FS
@@ -453,17 +457,17 @@ if (irun==99) {            // irun==99 => pur
         if (useFitResults) {
           if (title.find("_b")!=string::npos) {
             h_mc5->Scale(c2_qcd);
-            if (irun==5) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+            if (irun==15) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
           } else {
             h_mc5->Scale(c1_qcd);
-            if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+            if (irun==15) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
           }
           if (title_b.find("_bb")!=string::npos) {
             h_mc5_b->Scale(c3_qcd);
-            if (irun==5) h_mc5_b->Scale((c3_qcd+ec3_qcd)/c3_qcd);
+            if (irun==15) h_mc5_b->Scale((c3_qcd+ec3_qcd)/c3_qcd);
           } else if (title_b.find("_b")!=string::npos) {
             h_mc5_b->Scale(c2_qcd);
-            if (irun==5) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+            if (irun==15) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
           }
         }
 

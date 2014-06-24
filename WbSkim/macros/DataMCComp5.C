@@ -79,8 +79,12 @@ if (irun==13) {            // irun==13 => bkg statistics
   subdir="13";
   postfix="";
 }
-if (irun==66) {            // irun==66 => unfolding with data weight
-  subdir="66";
+if (irun==14) {            // irun==14 => unfolding with data weight
+  subdir="14";
+  postfix="";
+}
+if (irun==15) {            // irun==15 => qcd bkg
+  subdir="15";
   postfix="";
 }
 if (irun==77) {            // irun==77 => unfolding with MadGraph 4FS

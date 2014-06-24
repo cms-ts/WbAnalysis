@@ -88,8 +88,12 @@ if (irun==13) {            // irun==13 => bkg statistics
   subdir="13";
   postfix="";
 }
-if (irun==66) {            // irun==66 => unfolding with data weight
-  subdir="66";
+if (irun==14) {            // irun==14 => unfolding with data weight
+  subdir="14";
+  postfix="";
+}
+if (irun==15) {            // irun==15 => qcd bkg
+  subdir="15";
   postfix="";
 }
 if (irun==77) {            // irun==77 => unfolding with MadGraph 4FS
@@ -261,7 +265,7 @@ if (irun==99) {            // irun==99 => pur
 	h_mc2_truth = rebin(h_mc2_truth);
 	h_mc2_reco = rebin(h_mc2_reco);
 
-	if (irun==66) {
+	if (irun==14) {
 	  for (int i=0;i<=h_mc1_matrix->GetNbinsX()+1;i++) {
 	    for (int j=0;j<=h_mc1_matrix->GetNbinsY()+1;j++) {
 	      float val = h_mc1_matrix->GetBinContent(i,j);
