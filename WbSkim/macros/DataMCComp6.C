@@ -184,15 +184,19 @@ if (irun==99) {            // irun==99 => pur
         h_data_e->SetMarkerStyle(20);
         h_data_e->SetMarkerSize(0.7);
         h_data_e->SetMarkerColor(kRed);
+        h_data_e->SetLineColor(kRed);
         h_data_e_b->SetMarkerStyle(24);
         h_data_e_b->SetMarkerSize(0.7);
         h_data_e_b->SetMarkerColor(kRed);
+        h_data_e_b->SetLineColor(kRed);
         h_data_m->SetMarkerStyle(20);
         h_data_m->SetMarkerSize(0.7);
         h_data_m->SetMarkerColor(kBlue);
+        h_data_m->SetLineColor(kBlue);
         h_data_m_b->SetMarkerStyle(24);
         h_data_m_b->SetMarkerSize(0.7);
         h_data_m_b->SetMarkerColor(kBlue);
+        h_data_m_b->SetLineColor(kBlue);
 
 	if (drawInclusive) {
 	  h_data_e_b->SetMaximum(4*h_data_e->GetMaximum());
@@ -204,10 +208,10 @@ if (irun==99) {            // irun==99 => pur
 	if (title.find("_pt")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.000004,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 	if (title.find("_mass")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.0002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 
-        h_data_e_b->Draw("EPX");
-        if (drawInclusive) h_data_e->Draw("EPXSAME");
-        h_data_m_b->Draw("EPXSAME");
-        if (drawInclusive) h_data_m->Draw("EPXSAME");
+        h_data_e_b->Draw("E0PX");
+        if (drawInclusive) h_data_e->Draw("E0PXSAME");
+        h_data_m_b->Draw("E0PXSAME");
+        if (drawInclusive) h_data_m->Draw("E0PXSAME");
 
         TLegend *leg = new TLegend(0.62, 0.580, 0.88, 0.88);
         leg->SetBorderSize(0);
@@ -257,11 +261,13 @@ if (irun==99) {            // irun==99 => pur
 
         h_ratio->SetMarkerStyle(20);
         h_ratio->SetMarkerColor(kBlack);
+        h_ratio->SetLineColor(kBlack);
         h_ratio_b->SetMarkerStyle(24);
         h_ratio_b->SetMarkerColor(kBlack);
+        h_ratio_b->SetLineColor(kBlack);
 
-        h_ratio_b->Draw("EPX");
-        if (drawInclusive) h_ratio->Draw("EPXSAME");
+        h_ratio_b->Draw("E0PX");
+        if (drawInclusive) h_ratio->Draw("E0PXSAME");
 
         TLine *OLine = new TLine(h_ratio->GetXaxis()->GetXmin(),1.,h_ratio->GetXaxis()->GetXmax(),1.);
         OLine->SetLineColor(kGreen);
