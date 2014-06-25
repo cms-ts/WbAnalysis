@@ -538,7 +538,7 @@ string subdir="0";
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  if (title.find("_bb")!=string::npos) {
+	  if (title_b.find("_bb")!=string::npos) {
 	    val = 2.0 * btag_sys * h_data_b_scan[0]->GetBinContent(i);
 	  } else {
 	    val = btag_sys * h_data_b_scan[0]->GetBinContent(i);
@@ -547,8 +547,14 @@ string subdir="0";
 	}
 	double xsec_syst_btag = 0.0;
 	double xsec_syst_b_btag = 0.0;
-	xsec_syst_btag = btag_sys * h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width");
-	xsec_syst_b_btag = btag_sys * h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width");
+	if (title.find("_b")!=string::npos) {
+	  xsec_syst_btag = btag_sys * h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width");
+	}
+	if (title_b.find("_bb")!=string::npos) {
+	  xsec_syst_b_btag = 2.0 * btag_sys * h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width");
+	} else {
+	  xsec_syst_b_btag = btag_sys * h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width");
+	}
 
 	TH1F* stat_unfold = (TH1F*)h_data->Clone();
 	TH1F* stat_b_unfold = (TH1F*)h_data_b->Clone();
