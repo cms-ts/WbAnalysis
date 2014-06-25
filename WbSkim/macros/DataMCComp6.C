@@ -194,11 +194,15 @@ if (irun==99) {            // irun==99 => pur
         h_data_m_b->SetMarkerSize(0.7);
         h_data_m_b->SetMarkerColor(kBlue);
 
-	if (drawInclusive) h_data_e_b->SetMaximum(4*h_data_e->GetMaximum());
+	if (drawInclusive) {
+	  h_data_e_b->SetMaximum(4*h_data_e->GetMaximum());
+	} else {
+	  h_data_e_b->SetMaximum(4*h_data_e_b->GetMaximum());
+	}
         h_data_e_b->SetMinimum(TMath::Max(0.002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 	if (title.find("_mt")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
-	if (title.find("_pt")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.000002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
-	if (title.find("_mass")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
+	if (title.find("_pt")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.000004,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
+	if (title.find("_mass")!=string::npos) h_data_e_b->SetMinimum(TMath::Max(0.0002,0.25*h_data_e_b->GetBinContent(h_data_e_b->GetMinimumBin())));
 
         h_data_e_b->Draw("EPX");
         if (drawInclusive) h_data_e->Draw("EPXSAME");
