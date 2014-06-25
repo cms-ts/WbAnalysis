@@ -566,59 +566,6 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    float e = TMath::Power(h_data_fit->GetBinError(i),2);
 	    h_data_fit->SetBinError(i, TMath::Sqrt(e));
 	  }
-	  for (int i=0; i<=h_data_fit->GetNbinsX()+1; i++) {
-	    bool skip = false;
-	    if (title=="w_MET") {
-	      if (h_data_fit->GetXaxis()->GetBinCenter(i) < 125) {
-		skip = true;
-	      }
-	    }
-	    if (title=="w_MET_sign") {
-	      if (h_data_fit->GetXaxis()->GetBinCenter(i) < 50) {
-		skip = true;
-	      }
-	    }
-	    if (title=="w_MET_b") {
-	      if (h_data_fit->GetXaxis()->GetBinCenter(i) < 90) {
-		skip = true;
-	      }
-	    }
-	    if (title=="w_MET_sign_b") {
-	      if (h_data_fit->GetXaxis()->GetBinCenter(i) < 30) {
-		skip = true;
-	      }
-	    }
-	    if (skip) {
-	      h_data->SetBinContent(i, 0);
-	      h_data->SetBinError(i, 0);
-	      h_data_fit->SetBinContent(i, 0);
-	      h_data_fit->SetBinError(i, 0);
-	      h_mc1->SetBinContent(i, 0);
-	      h_mc1->SetBinError(i, 0);
-	      if (h_mc1b) h_mc1b->SetBinContent(i, 0);
-	      if (h_mc1b) h_mc1b->SetBinError(i, 0);
-	      if (h_mc1c) h_mc1c->SetBinContent(i, 0);
-	      if (h_mc1c) h_mc1c->SetBinError(i, 0);
-	      if (h_mc1t) h_mc1t->SetBinContent(i, 0);
-	      if (h_mc1t) h_mc1t->SetBinError(i, 0);
-	      h_mc2->SetBinContent(i, 0);
-	      h_mc2->SetBinError(i, 0);
-	      h_mc3->SetBinContent(i, 0);
-	      h_mc3->SetBinError(i, 0);
-	      h_mc4->SetBinContent(i, 0);
-	      h_mc4->SetBinError(i, 0);
-	      if (h_mc5) {
-	        h_mc5->SetBinContent(i, 0);
-	        h_mc5->SetBinError(i, 0);
-	      }
-	      h_mc6->SetBinContent(i, 0);
-	      h_mc6->SetBinError(i, 0);
-	      h_mc7->SetBinContent(i, 0);
-	      h_mc7->SetBinError(i, 0);
-	      h_mc8->SetBinContent(i, 0);
-	      h_mc8->SetBinError(i, 0);
-	    }
-	  }
 	  fitter = TVirtualFitter::Fitter(0, 1);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
@@ -633,21 +580,21 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    h_data_fit->Add(h_mc8, -1.);
 	    h_data_fit->Add(h_mc7, -1.);
 	    h_data_fit->Add(h_mc6, -1.);
-	    if (h_mc5) h_data_fit->Add(h_mc5, -1.);
 	    h_data_fit->Add(h_mc4, -1.);
 	    h_data_fit->Add(h_mc3, -1.);
+	    h_data_fit->Add(h_mc2, -1.);
 	    h_data_fit->Add(h_mc1t, -1.);
 	  }
 	  h_mc_fit0 = h_mc1;
 	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, 1.);
 	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, 1.);
-	  h_mc_fit1 = h_mc2;
+	  h_mc_fit1 = h_mc5;
 	  fitter = TVirtualFitter::Fitter(0, 2);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
 	  fitter->SetParameter(0, "c(W+jets)", 1.00, 0.01, 0.00, 100.00);
-	  fitter->SetParameter(1, "c(t)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(1, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
 	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, -1.);
 	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, -1.);
@@ -973,7 +920,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (doFit==2) {
 	    sprintf(buff, "c_{W+jets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
-	    sprintf(buff, "c_{t} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
+	    sprintf(buff, "c_{qcd} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
 	    fitLabel->DrawLatex(0.68, 0.43, buff);
 	  }
 	  if (doFit==3) {
