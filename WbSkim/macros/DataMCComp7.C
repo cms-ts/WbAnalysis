@@ -538,7 +538,11 @@ string subdir="0";
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = btag_sys * h_data_b_scan[0]->GetBinContent(i);
+	  if (title.find("_bb")!=string::npos) {
+	    val = 2.0 * btag_sys * h_data_b_scan[0]->GetBinContent(i);
+	  } else {
+	    val = btag_sys * h_data_b_scan[0]->GetBinContent(i);
+	  }
 	  syst_b_btag->SetBinError(i, val);
 	}
 	double xsec_syst_btag = 0.0;
