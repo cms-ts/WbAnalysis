@@ -484,13 +484,13 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	if (useFitResults) {
 	  if (title.find("_bb")!=string::npos) {
 	    h_mc5->Scale(c3_qcd);
-	    if (irun==5) h_mc5->Scale((c3_qcd+ec3_qcd)/c3_qcd);
+	    if (irun==15) h_mc5->Scale((c3_qcd+ec3_qcd)/c3_qcd);
 	  } else if (title.find("_b")!=string::npos) {
 	    h_mc5->Scale(c2_qcd);
-	    if (irun==5) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+	    if (irun==15) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
 	  } else {
 	    h_mc5->Scale(c1_qcd);
-	    if (irun==5) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+	    if (irun==15) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
 	  }
 	}
 
