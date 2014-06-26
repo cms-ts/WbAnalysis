@@ -240,6 +240,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 
 	double enorm1 = ((Lumi2012 * eXsec_wj) / Ngen_wj);
 	double enorm2 = ((Lumi2012 * eXsec_tt) / Ngen_tt);
+	if (useFitResults) enorm2 = 0.0;
 	double enorm3 = ((Lumi2012 * eXsec_zz) / Ngen_zz);
 	double enorm4 = ((Lumi2012 * eXsec_wz) / Ngen_wz);
 	double enorm5 = ((Lumi2012 * eXsec_qcd) / Ngen_qcd);
