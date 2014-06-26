@@ -452,20 +452,22 @@ if (irun==99) {            // irun==99 => pur
           }
         }
 
-        if (title.find("_b")!=string::npos) {
-          h_mc5->Scale(c2_qcd);
-          if (irun==15) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
-        } else {
-          h_mc5->Scale(c1_qcd);
-          if (irun==15) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
-        }
-        if (title_b.find("_bb")!=string::npos) {
-          h_mc5_b->Scale(c3_qcd);
-          if (irun==15) h_mc5_b->Scale((c3_qcd+ec3_qcd)/c3_qcd);
-        } else if (title_b.find("_b")!=string::npos) {
-          h_mc5_b->Scale(c2_qcd);
-          if (irun==15) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
-        }
+	if (h_mc5) {
+          if (title.find("_b")!=string::npos) {
+            h_mc5->Scale(c2_qcd);
+            if (irun==15) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+          } else {
+            h_mc5->Scale(c1_qcd);
+            if (irun==15) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+          }
+          if (title_b.find("_bb")!=string::npos) {
+            h_mc5_b->Scale(c3_qcd);
+            if (irun==15) h_mc5_b->Scale((c3_qcd+ec3_qcd)/c3_qcd);
+          } else if (title_b.find("_b")!=string::npos) {
+            h_mc5_b->Scale(c2_qcd);
+            if (irun==15) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+          }
+	}
 
 	if (irun==13) {
 	  for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
