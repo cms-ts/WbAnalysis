@@ -21,19 +21,19 @@ double eXsec_dy = 0;
 //////////////////////// TTbar
 
 double Ngen_tt = 6923750;
-double Xsec_tt = 225.197; // NLO
+double Xsec_tt = 245.8; // NNLO
 double eXsec_tt = 0.07*Xsec_tt;
 
 //////////////////////// TTbar_FullLept
 
 double Ngen_tt_fl = 12011428;
-double Xsec_tt_fl = 24.56; // NLO
+double Xsec_tt_fl = 25.8; // NNLO : 245.8*0.324*0.324
 double eXsec_tt_fl = 0.07*Xsec_tt;
 
 //////////////////////// TTbar_SemiLept
 
 double Ngen_tt_sl = 24963676;
-double Xsec_tt_sl = 103.12; // NLO
+double Xsec_tt_sl = 107.67; // NNLO : 245.8*0.324*0.676*2
 double eXsec_tt_sl = 0.07*Xsec_tt;
 
 //////////////////////// TBar_s
