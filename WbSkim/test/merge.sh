@@ -46,7 +46,7 @@ elif [ "$JOBDIR" == "T-all" ]; then
   rm -f $WORKDIR/$VERSION/T_merge.root
   root -l -q -b hmerge.C\(\"$WORKDIR\",\"$VERSION\",\"T\"\)
 elif [ "$JOBDIR" == "TTbar-all" ]; then
-  rm -f $WORKDIR/$VERSION/T_merge.root
+  rm -f $WORKDIR/$VERSION/TTbar_merge.root
   root -l -q -b hmerge.C\(\"$WORKDIR\",\"$VERSION\",\"TTbar\"\)
 elif [ "$JOBDIR" == "W-all" ]; then
   rm -f $WORKDIR/$VERSION/W_merge.root
