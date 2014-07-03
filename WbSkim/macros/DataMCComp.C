@@ -36,10 +36,10 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
       xd = xd + TMath::Power(par[2]*h_mc_fit2->GetBinError(i),2);
     }
     if (xd!=0) chisq = chisq + (xn*xn)/xd;
-    if (e_mc_fit0!=0) chisq = chisq + TMath::Power((par[0]-1.0)/e_mc_fit0,2);
-    if (e_mc_fit1!=0) chisq = chisq + TMath::Power((par[1]-1.0)/e_mc_fit1,2);
-    if (e_mc_fit2!=0) chisq = chisq + TMath::Power((par[2]-1.0)/e_mc_fit2,2);
   }
+  if (e_mc_fit0!=0) chisq = chisq + TMath::Power((par[0]-1.0)/e_mc_fit0,2);
+  if (e_mc_fit1!=0) chisq = chisq + TMath::Power((par[1]-1.0)/e_mc_fit1,2);
+  if (e_mc_fit2!=0) chisq = chisq + TMath::Power((par[2]-1.0)/e_mc_fit2,2);
   fun = chisq;
 }
 
