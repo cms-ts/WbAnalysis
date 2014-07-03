@@ -1067,6 +1067,12 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    out << fitter->GetParameter(0) << " " << fitter->GetParError(0) << endl;
 	    out.close();
 	  }
+	  if (doFit==5) {
+	    out << fitter->GetParameter(0) << " " << fitter->GetParError(0) << endl;
+	    out << fitter->GetParameter(1) << " " << fitter->GetParError(1) << endl;
+	    out << fitter->GetParameter(2) << " " << fitter->GetParError(2) << endl;
+	    out.close();
+	  }
 	}
 }
 
