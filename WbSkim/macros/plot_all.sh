@@ -31,6 +31,26 @@ done
 i=1
 while [ $i -le 2 ]; do
 
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,5\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,5\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,5\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,5\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,5\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,5\)
+
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu\",1,$i,0,4\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b\",1,$i,0,4\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb\",1,$i,0,4\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu\",1,$i,0,4\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b\",1,$i,0,4\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb\",1,$i,0,4\)
+
+  i=$((i+1))
+done
+
+i=1
+while [ $i -le 2 ]; do
+
   root -l -q -b DataMCComp.C+\($d,\"w_BJP\",1,$i,1,0\)
   root -l -q -b DataMCComp.C+\($d,\"w_BJP_b\",1,$i,1,0\)
   root -l -q -b DataMCComp.C+\($d,\"w_BJP_bb\",1,$i,1,0\)
@@ -217,26 +237,6 @@ while [ $i -le 8 ]; do
   root -l -q -b DataMCComp.C+\($d,\"w_BJP0\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"w_BJP1\",1,$i\)
   root -l -q -b DataMCComp.C+\($d,\"w_BJP2\",1,$i\)
-
-  i=$((i+1))
-done
-
-i=1
-while [ $i -le 2 ]; do
-
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,5\)
-
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu\",1,$i,0,4\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b\",1,$i,0,4\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb\",1,$i,0,4\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu\",1,$i,0,4\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b\",1,$i,0,4\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb\",1,$i,0,4\)
 
   i=$((i+1))
 done
