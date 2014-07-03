@@ -492,6 +492,7 @@ if (irun==99) {            // irun==99 => pur
             if (irun==5) h_mc2_b->Scale((c2_t+ec2_t)/c2_t);
           }
         }
+
 	if (h_mc5) {
           if (title.find("_b")!=string::npos) {
             h_mc5->Scale(c2_qcd);
