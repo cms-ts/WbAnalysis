@@ -2732,64 +2732,56 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     delta_eta_ej = fabs(vect_ele[0].eta() - vect_jets[0].eta());
     if (delta_phi_ej > acos (-1)) delta_phi_ej = 2 * acos (-1) - delta_phi_ej;
     DR_ej = TMath::Sqrt(delta_phi_ej*delta_phi_ej + delta_eta_ej*delta_eta_ej);
-    w_delta_wenu->Fill (delta_phi_ej, MyWeight*scalFac_b);
-    w_deltaR_wenu->Fill (DR_ej, MyWeight*scalFac_b);
     delta_phi_ebj = fabs(vect_ele[0].phi() - vect_bjets[0].phi());
     delta_eta_ebj = fabs(vect_ele[0].eta() - vect_bjets[0].eta());
     if (delta_phi_ebj > acos (-1)) delta_phi_ebj = 2 * acos (-1) - delta_phi_ebj;
     DR_ebj = TMath::Sqrt(delta_phi_ebj*delta_phi_ebj + delta_eta_ebj*delta_eta_ebj);
-    w_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-    w_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+    w_delta_wenu->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+    w_deltaR_wenu->Fill (DR_ebj, MyWeight*scalFac_b);
     math::XYZTLorentzVector belectron;
     belectron = vect_ele[0].p4() + vect_bjets[0].p4();
     w_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     if (ist) {
       t_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
-      t_delta_wenu->Fill (delta_phi_ej, MyWeight*scalFac_b);
-      t_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-      t_deltaR_wenu->Fill (DR_ej, MyWeight*scalFac_b);
-      t_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+      t_delta_wenu->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+      t_deltaR_wenu->Fill (DR_ebj, MyWeight*scalFac_b);
       t_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
-      b_delta_wenu->Fill (delta_phi_ej, MyWeight*scalFac_b);
-      b_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-      b_deltaR_wenu->Fill (DR_ej, MyWeight*scalFac_b);
-      b_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+      b_delta_wenu->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+      b_deltaR_wenu->Fill (DR_ebj, MyWeight*scalFac_b);
       b_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
-      c_delta_wenu->Fill (delta_phi_ej, MyWeight*scalFac_b);
-      c_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-      c_deltaR_wenu->Fill (DR_ej, MyWeight*scalFac_b);
-      c_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+      c_delta_wenu->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+      c_deltaR_wenu->Fill (DR_ebj, MyWeight*scalFac_b);
       c_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
     }
     if (Nb == 1) {
       scalFac_b = btagSF(isMC, vect_bjets, 1);
       h_mt_wenu_b->Fill (mt_wenu);
-      w_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
-      w_single_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-      w_single_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+      w_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b); 
+      w_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+      w_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
       w_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
-	t_single_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-	t_single_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+	t_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+	t_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
 	t_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
         b_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
-	b_single_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-	b_single_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+	b_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+	b_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
 	b_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
         c_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
-	c_single_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
-	c_single_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
+	c_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
+	c_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
 	c_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       }
     }
@@ -3032,64 +3024,56 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     delta_eta_mj = fabs(vect_muon[0].eta() - vect_jets[0].eta());
     if (delta_phi_mj > acos (-1)) delta_phi_mj = 2 * acos (-1) - delta_phi_mj;
     DR_mj = TMath::Sqrt(delta_phi_mj*delta_phi_mj + delta_eta_mj*delta_eta_mj);
-    w_delta_wmnu->Fill (delta_phi_mj, MyWeight*scalFac_b);
-    w_deltaR_wmnu->Fill (DR_mj, MyWeight*scalFac_b);
     delta_phi_mbj = fabs(vect_muon[0].phi() - vect_bjets[0].phi());
     delta_eta_mbj = fabs(vect_muon[0].eta() - vect_bjets[0].eta());
     if (delta_phi_mbj > acos (-1)) delta_phi_mbj = 2 * acos (-1) - delta_phi_mbj;
     DR_mbj = TMath::Sqrt(delta_phi_mbj*delta_phi_mbj + delta_eta_mbj*delta_eta_mbj);
-    w_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-    w_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+    w_delta_wmnu->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+    w_deltaR_wmnu->Fill (DR_mbj, MyWeight*scalFac_b);
     math::XYZTLorentzVector bmuon;
     bmuon = vect_muon[0].p4() + vect_bjets[0].p4();
     w_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     if (ist) {
       t_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
-      t_delta_wmnu->Fill (delta_phi_mj, MyWeight*scalFac_b);
-      t_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-      t_deltaR_wmnu->Fill (DR_mj, MyWeight*scalFac_b);
-      t_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+      t_delta_wmnu->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+      t_deltaR_wmnu->Fill (DR_mbj, MyWeight*scalFac_b);
       t_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
-      b_delta_wmnu->Fill (delta_phi_mj, MyWeight*scalFac_b);
-      b_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-      b_deltaR_wmnu->Fill (DR_mj, MyWeight*scalFac_b);
-      b_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+      b_delta_wmnu->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+      b_deltaR_wmnu->Fill (DR_mbj, MyWeight*scalFac_b);
       b_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     }
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
-      c_delta_wmnu->Fill (delta_phi_mj, MyWeight*scalFac_b);
-      c_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-      c_deltaR_wmnu->Fill (DR_mj, MyWeight*scalFac_b);
-      c_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+      c_delta_wmnu->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+      c_deltaR_wmnu->Fill (DR_mbj, MyWeight*scalFac_b);
       c_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
     }
     if (Nb == 1) {
       scalFac_b = btagSF(isMC, vect_bjets, 1);
       h_mt_wmnu_b->Fill (mt_wmnu);
       w_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
-      w_single_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-      w_single_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+      w_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+      w_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
       w_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
-	t_single_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-	t_single_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+	t_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+	t_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
 	t_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
         b_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
-	b_single_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-	b_single_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+	b_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+	b_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
 	b_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
         c_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
-	c_single_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
-	c_single_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
+	c_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
+	c_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
 	c_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       }
     }
