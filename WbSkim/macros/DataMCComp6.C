@@ -88,40 +88,33 @@ if (irun==99) {            // irun==99 => pur
 }
 
         string title_e = title;
-        string title_e_b = title;
         string title_m = title;
-        string title_m_b = title;
 
         if (title=="w_mt_b") {
 	  title_e = "w_mt_wenu_b";
-	  title_e_b = "w_mt_wenu_bb";
 	  title_m = "w_mt_wmnu_b";
-	  title_m_b = "w_mt_wmnu_bb";
 	}
 
         if (title=="w_delta_b") {
 	  title_e = "w_delta_wenu_b";
-	  title_e_b = "w_delta_wenu_bb";
 	  title_m = "w_delta_wmnu_b";
-	  title_m_b = "w_delta_wmnu_bb";
 	}
 
         if (title=="w_deltaR_b") {
 	  title_e = "w_deltaR_wenu_b";
-	  title_e_b = "w_deltaR_wenu_bb";
 	  title_m = "w_deltaR_wmnu_b";
-	  title_m_b = "w_deltaR_wmnu_bb";
 	}
 
-        if (title.find("_jet_")!=string::npos) {
-	  title_e_b = title_e_b + "b";
-	  title_m_b = title_m_b + "b";
-	}
+        string title_e_b = title_e;
+        string title_m_b = title_m;
 
         if (title.find("_bjet_")!=string::npos) {
           title_e.erase(title_e.find("_bjet_")+1, 1);
           title_m.erase(title_m.find("_bjet_")+1, 1);
-        }
+        } else {
+	  title_e_b = title_e_b + "b";
+	  title_m_b = title_m_b + "b";
+	}
 
         TFile* f_e;
         TFile* f_e_b;
