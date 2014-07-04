@@ -7,13 +7,7 @@ TH1F* fixrange(TH1F* old) {
   float x1, x2;
   string name = old->GetName();
 
-  if (name.find("Ht")!=string::npos) {
-    x1 = 30.;
-    x2 = 250.;
-  } else if (name.find("jet_pt")!=string::npos) {
-    x1 = 30.;
-    x2 = 200.;
-  } else if (name.find("pt_Z")!=string::npos) {
+  if (name.find("pt_Z")!=string::npos) {
     x1 = 0.;
     x2 = 200.;
   } else {
@@ -56,13 +50,7 @@ TH2F* fixrange(TH2F* old) {
   float x1, x2;
   string name = old->GetName();
 
-  if (name.find("Ht")!=string::npos) {
-    x1 = 30.;
-    x2 = 250.;
-  } else if (name.find("jet_pt")!=string::npos) {
-    x1 = 30.;
-    x2 = 200.;
-  } else if (name.find("pt_Z")!=string::npos) {
+  if (name.find("pt_Z")!=string::npos) {
     x1 = 0.;
     x2 = 200.;
   } else {
