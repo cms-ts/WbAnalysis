@@ -440,14 +440,14 @@ if (irun==99) {            // irun==99 => pur
 	h_mc8_b->Sumw2();
 
 	if (irun==10) {
-	  norm1 = norm1 + enorm1;
-	  norm2 = norm2 + enorm2;
-	  norm3 = norm3 + enorm3;
-	  norm4 = norm4 + enorm4;
-	  norm5 = norm5 + enorm5;
-	  norm6 = norm6 + enorm6;
-	  norm7 = norm7 + enorm7;
-	  norm8 = norm8 + enorm8;
+	  norm1 = norm1 + 0.1*enorm1;
+	  norm2 = norm2 + 0.1*enorm2;
+	  norm3 = norm3 + 0.1*enorm3;
+	  norm4 = norm4 + 0.1*enorm4;
+	  norm5 = norm5 + 0.1*enorm5;
+	  norm6 = norm6 + 0.1*enorm6;
+	  norm7 = norm7 + 0.1*enorm7;
+	  norm8 = norm8 + 0.1*enorm8;
 	}
 
 	h_mc1->Scale(norm1);
@@ -479,34 +479,34 @@ if (irun==99) {            // irun==99 => pur
         if (useFitResults) {
           if (title.find("_b")!=string::npos) {
             h_mc2->Scale(c2_t);
-            if (irun==5) h_mc2->Scale((c2_t+ec2_t)/c2_t);
+            if (irun==5) h_mc2->Scale((c2_t+0.1*ec2_t)/c2_t);
           } else {
             h_mc2->Scale(c1_t);
-            if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
+            if (irun==5) h_mc2->Scale((c1_t+0.1*ec1_t)/c1_t);
           }
           if (title_b.find("_bb")!=string::npos) {
             h_mc2_b->Scale(c3_t);
-            if (irun==5) h_mc2_b->Scale((c3_t+ec3_t)/c3_t);
+            if (irun==5) h_mc2_b->Scale((c3_t+0.1*ec3_t)/c3_t);
           } else if (title_b.find("_b")!=string::npos) {
             h_mc2_b->Scale(c2_t);
-            if (irun==5) h_mc2_b->Scale((c2_t+ec2_t)/c2_t);
+            if (irun==5) h_mc2_b->Scale((c2_t+0.1*ec2_t)/c2_t);
           }
         }
 
 	if (h_mc5) {
           if (title.find("_b")!=string::npos) {
             h_mc5->Scale(c2_qcd);
-            if (irun==15) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+            if (irun==15) h_mc5->Scale((c2_qcd+0.1*ec2_qcd)/c2_qcd);
           } else {
             h_mc5->Scale(c1_qcd);
-            if (irun==15) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+            if (irun==15) h_mc5->Scale((c1_qcd+0.1*ec1_qcd)/c1_qcd);
           }
           if (title_b.find("_bb")!=string::npos) {
             h_mc5_b->Scale(c3_qcd);
-            if (irun==15) h_mc5_b->Scale((c3_qcd+ec3_qcd)/c3_qcd);
+            if (irun==15) h_mc5_b->Scale((c3_qcd+0.1*ec3_qcd)/c3_qcd);
           } else if (title_b.find("_b")!=string::npos) {
             h_mc5_b->Scale(c2_qcd);
-            if (irun==15) h_mc5_b->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+            if (irun==15) h_mc5_b->Scale((c2_qcd+0.1*ec2_qcd)/c2_qcd);
           }
 	}
 
@@ -585,28 +585,28 @@ if (irun==99) {            // irun==99 => pur
 	  if (title.find("_b")!=string::npos) {
 	    if (h_mc1uds) {
 	      h_mc1uds->Scale(c2_uds);
-	      if (irun==6) h_mc1uds->Scale((c2_uds+ec2_uds)/c2_uds);
+	      if (irun==6) h_mc1uds->Scale((c2_uds+0.1*ec2_uds)/c2_uds);
 	    }
 	    if (h_mc1b) {
 	      h_mc1b->Scale(c2_b);
-	      if (irun==6) h_mc1b->Scale((c2_b+ec2_b)/c2_b);
+	      if (irun==6) h_mc1b->Scale((c2_b+0.1*ec2_b)/c2_b);
 	    }
 	    if (h_mc1c) {
 	      h_mc1c->Scale(c2_c);
-	      if (irun==6) h_mc1c->Scale((c2_c+ec2_c)/c2_c);
+	      if (irun==6) h_mc1c->Scale((c2_c+0.1*ec2_c)/c2_c);
             }
 	  } else {
 	    if (h_mc1uds) {
 	      h_mc1uds->Scale(c1_uds);
-	      if (irun==6) h_mc1uds->Scale((c1_uds+ec1_uds)/c1_uds);
+	      if (irun==6) h_mc1uds->Scale((c1_uds+0.1*ec1_uds)/c1_uds);
 	    }
 	    if (h_mc1b) {
 	      h_mc1b->Scale(c1_b);
-	      if (irun==6) h_mc1b->Scale((c1_b+ec1_b)/c1_b);
+	      if (irun==6) h_mc1b->Scale((c1_b+0.1*ec1_b)/c1_b);
 	    }
 	    if (h_mc1c) {
 	      h_mc1c->Scale(c1_c);
-	      if (irun==6) h_mc1c->Scale((c1_c+ec1_c)/c1_c);
+	      if (irun==6) h_mc1c->Scale((c1_c+0.1*ec1_c)/c1_c);
             }
 	  }
 	}
@@ -615,28 +615,28 @@ if (irun==99) {            // irun==99 => pur
 	  if (title_b.find("_bb")!=string::npos) {
 	    if (h_mc1uds_b) {
 	      h_mc1uds_b->Scale(c3_uds);
-	      if (irun==6) h_mc1uds_b->Scale((c3_uds+ec3_uds)/c3_uds);
+	      if (irun==6) h_mc1uds_b->Scale((c3_uds+0.1*ec3_uds)/c3_uds);
 	    }
 	    if (h_mc1b_b) {
 	      h_mc1b_b->Scale(c3_b);
-	      if (irun==6) h_mc1b_b->Scale((c3_b+ec3_b)/c3_b);
+	      if (irun==6) h_mc1b_b->Scale((c3_b+0.1*ec3_b)/c3_b);
 	    }
 	    if (h_mc1c_b) {
 	      h_mc1c_b->Scale(c3_c);
-	      if (irun==6) h_mc1c_b->Scale((c3_c+ec3_c)/c3_c);
+	      if (irun==6) h_mc1c_b->Scale((c3_c+0.1*ec3_c)/c3_c);
             }
           } else {
 	    if (h_mc1uds_b) {
 	      h_mc1uds_b->Scale(c2_uds);
-	      if (irun==6) h_mc1uds_b->Scale((c2_uds+ec2_uds)/c2_uds);
+	      if (irun==6) h_mc1uds_b->Scale((c2_uds+0.1*ec2_uds)/c2_uds);
 	    }
 	    if (h_mc1b_b) {
 	      h_mc1b_b->Scale(c2_b);
-	      if (irun==6) h_mc1b_b->Scale((c2_b+ec2_b)/c2_b);
+	      if (irun==6) h_mc1b_b->Scale((c2_b+0.1*ec2_b)/c2_b);
 	    }
 	    if (h_mc1c_b) {
 	      h_mc1c_b->Scale(c2_c);
-	      if (irun==6) h_mc1c_b->Scale((c2_c+ec2_c)/c2_c);
+	      if (irun==6) h_mc1c_b->Scale((c2_c+0.1*ec2_c)/c2_c);
             }
 	  }
 	}

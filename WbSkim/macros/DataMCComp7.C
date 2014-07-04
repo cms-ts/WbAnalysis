@@ -438,69 +438,69 @@ string subdir="0";
 	TH1F* syst_b_bkg = (TH1F*)h_data_b->Clone();
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_scan[10]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_scan[10]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i))/0.1;
 	  syst_bkg->SetBinError(i, val);
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_b_scan[10]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_b_scan[10]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i))/0.1;
 	  syst_b_bkg->SetBinError(i, val);
 	}
 	double xsec_syst_bkg = 0.0;
 	double xsec_syst_b_bkg = 0.0;
-	xsec_syst_bkg = TMath::Abs(h_data_scan[10]->Integral(0,h_data_scan[10]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	xsec_syst_b_bkg = TMath::Abs(h_data_b_scan[10]->Integral(0,h_data_b_scan[10]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	xsec_syst_bkg = TMath::Abs(h_data_scan[10]->Integral(0,h_data_scan[10]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"))/0.1;
+	xsec_syst_b_bkg = TMath::Abs(h_data_b_scan[10]->Integral(0,h_data_b_scan[10]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"))/0.1;
 
 	TH1F* stat_top = (TH1F*)h_data->Clone();
 	TH1F* stat_b_top = (TH1F*)h_data_b->Clone();
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_scan[5]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_scan[5]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i))/0.1;
 	  stat_top->SetBinError(i, val);
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_b_scan[5]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_b_scan[5]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i))/0.1;
 	  stat_b_top->SetBinError(i, val);
 	}
 	double xsec_stat_top = 0.0;
 	double xsec_stat_b_top = 0.0;
-	xsec_stat_top = TMath::Abs(h_data_scan[5]->Integral(0,h_data_scan[5]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	xsec_stat_b_top = TMath::Abs(h_data_b_scan[5]->Integral(0,h_data_b_scan[5]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	xsec_stat_top = TMath::Abs(h_data_scan[5]->Integral(0,h_data_scan[5]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"))/0.1;
+	xsec_stat_b_top = TMath::Abs(h_data_b_scan[5]->Integral(0,h_data_b_scan[5]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"))/0.1;
 
 	TH1F* stat_qcd = (TH1F*)h_data->Clone();
 	TH1F* stat_b_qcd = (TH1F*)h_data_b->Clone();
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_scan[15]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_scan[15]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i))/0.1;
 	  stat_qcd->SetBinError(i, val);
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_b_scan[15]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_b_scan[15]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i))/0.1;
 	  stat_b_qcd->SetBinError(i, val);
 	}
 	double xsec_stat_qcd = 0.0;
 	double xsec_stat_b_qcd = 0.0;
-	xsec_stat_qcd = TMath::Abs(h_data_scan[15]->Integral(0,h_data_scan[15]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	xsec_stat_b_qcd = TMath::Abs(h_data_b_scan[15]->Integral(0,h_data_b_scan[15]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	xsec_stat_qcd = TMath::Abs(h_data_scan[15]->Integral(0,h_data_scan[15]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"))/0.1;
+	xsec_stat_b_qcd = TMath::Abs(h_data_b_scan[15]->Integral(0,h_data_b_scan[15]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"))/0.1;
 
 	TH1F* stat_bfit = (TH1F*)h_data->Clone();
 	TH1F* stat_b_bfit = (TH1F*)h_data_b->Clone();
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_scan[6]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_scan[6]->GetBinContent(i)-h_data_scan[0]->GetBinContent(i))/0.1;
 	  stat_bfit->SetBinError(i, val);
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Abs(h_data_b_scan[6]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i));
+	  val = TMath::Abs(h_data_b_scan[6]->GetBinContent(i)-h_data_b_scan[0]->GetBinContent(i))/0.1;
 	  stat_b_bfit->SetBinError(i, val);
 	}
 	double xsec_stat_bfit = 0.0;
 	double xsec_stat_b_bfit = 0.0;
-	xsec_stat_bfit = TMath::Abs(h_data_scan[6]->Integral(0,h_data_scan[6]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	xsec_stat_b_bfit = TMath::Abs(h_data_b_scan[6]->Integral(0,h_data_b_scan[6]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	xsec_stat_bfit = TMath::Abs(h_data_scan[6]->Integral(0,h_data_scan[6]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"))/0.1;
+	xsec_stat_b_bfit = TMath::Abs(h_data_b_scan[6]->Integral(0,h_data_b_scan[6]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"))/0.1;
 
 	TH1F* syst_bfit2 = (TH1F*)h_data->Clone();
 	TH1F* syst_b_bfit2 = (TH1F*)h_data_b->Clone();

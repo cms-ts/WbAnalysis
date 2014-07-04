@@ -504,14 +504,14 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	//h_mc8 -> SetFillStyle(3004);
 
 	if (irun==10) {
-	  norm1 = norm1 + enorm1;
-	  norm2 = norm2 + enorm2;
-	  norm3 = norm3 + enorm3;
-	  norm4 = norm4 + enorm4;
-	  norm5 = norm5 + enorm5;
-	  norm6 = norm6 + enorm6;
-	  norm7 = norm7 + enorm7;
-	  norm8 = norm8 + enorm8;
+	  norm1 = norm1 + 0.1*enorm1;
+	  norm2 = norm2 + 0.1*enorm2;
+	  norm3 = norm3 + 0.1*enorm3;
+	  norm4 = norm4 + 0.1*enorm4;
+	  norm5 = norm5 + 0.1*enorm5;
+	  norm6 = norm6 + 0.1*enorm6;
+	  norm7 = norm7 + 0.1*enorm7;
+	  norm8 = norm8 + 0.1*enorm8;
 	}
 
 	h_mc1->Scale(norm1);
@@ -529,26 +529,26 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	if (useFitResults) {
 	  if (title.find("_bb")!=string::npos) {
 	    h_mc2->Scale(c3_t);
-	    if (irun==5) h_mc2->Scale((c3_t+ec3_t)/c3_t);
+	    if (irun==5) h_mc2->Scale((c3_t+0.1*ec3_t)/c3_t);
 	  } else if (title.find("_b")!=string::npos) {
 	    h_mc2->Scale(c2_t);
-	    if (irun==5) h_mc2->Scale((c2_t+ec2_t)/c2_t);
+	    if (irun==5) h_mc2->Scale((c2_t+0.1*ec2_t)/c2_t);
 	  } else {
 	    h_mc2->Scale(c1_t);
-	    if (irun==5) h_mc2->Scale((c1_t+ec1_t)/c1_t);
+	    if (irun==5) h_mc2->Scale((c1_t+0.1*ec1_t)/c1_t);
 	  }
 	}
 
 	if (h_mc5) {
 	  if (title.find("_bb")!=string::npos) {
 	    h_mc5->Scale(c3_qcd);
-	    if (irun==15) h_mc5->Scale((c3_qcd+ec3_qcd)/c3_qcd);
+	    if (irun==15) h_mc5->Scale((c3_qcd+0.1*ec3_qcd)/c3_qcd);
 	  } else if (title.find("_b")!=string::npos) {
 	    h_mc5->Scale(c2_qcd);
-	    if (irun==15) h_mc5->Scale((c2_qcd+ec2_qcd)/c2_qcd);
+	    if (irun==15) h_mc5->Scale((c2_qcd+0.1*ec2_qcd)/c2_qcd);
 	  } else {
 	    h_mc5->Scale(c1_qcd);
-	    if (irun==15) h_mc5->Scale((c1_qcd+ec1_qcd)/c1_qcd);
+	    if (irun==15) h_mc5->Scale((c1_qcd+0.1*ec1_qcd)/c1_qcd);
 	  }
 	}
 

@@ -104,7 +104,7 @@ if (irun==99) {            // irun==99 => pur
 if (ilepton>=3 && ilepton<=6) postfix="";
 
       double Lumi2012=0;
-      
+
       if (ilepton==1||ilepton==3||ilepton==5) Lumi2012 = Lumi2012_ele;
       if (ilepton==2||ilepton==4||ilepton==6) Lumi2012 = Lumi2012_muon;
 
@@ -301,14 +301,14 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       h_mc8_fit->Sumw2();
 
       if (irun==10) {
-        norm1 = norm1 + enorm1;
-        norm2 = norm2 + enorm2;
-        norm3 = norm3 + enorm3;
-        norm4 = norm4 + enorm4;
-        norm5 = norm5 + enorm5;
-        norm6 = norm6 + enorm6;
-        norm7 = norm7 + enorm7;
-        norm8 = norm8 + enorm8;
+        norm1 = norm1 + 0.1*enorm1;
+        norm2 = norm2 + 0.1*enorm2;
+        norm3 = norm3 + 0.1*enorm3;
+        norm4 = norm4 + 0.1*enorm4;
+        norm5 = norm5 + 0.1*enorm5;
+        norm6 = norm6 + 0.1*enorm6;
+        norm7 = norm7 + 0.1*enorm7;
+        norm8 = norm8 + 0.1*enorm8;
       }
 
       h_mc1->Scale(norm1);
@@ -321,14 +321,14 @@ if (ilepton>=3 && ilepton<=6) postfix="";
       h_mc8->Scale(norm8);
       
       if (irun==10) {
-        norm1_fit = norm1_fit + enorm1_fit;
-        norm2_fit = norm2_fit + enorm2_fit;
-        norm3_fit = norm3_fit + enorm3_fit;
-        norm4_fit = norm4_fit + enorm4_fit;
-        norm5_fit = norm5_fit + enorm5_fit;
-        norm6_fit = norm6_fit + enorm6_fit;
-        norm7_fit = norm7_fit + enorm7_fit;
-        norm8_fit = norm8_fit + enorm8_fit;
+        norm1_fit = norm1_fit + 0.1*enorm1_fit;
+        norm2_fit = norm2_fit + 0.1*enorm2_fit;
+        norm3_fit = norm3_fit + 0.1*enorm3_fit;
+        norm4_fit = norm4_fit + 0.1*enorm4_fit;
+        norm5_fit = norm5_fit + 0.1*enorm5_fit;
+        norm6_fit = norm6_fit + 0.1*enorm6_fit;
+        norm7_fit = norm7_fit + 0.1*enorm7_fit;
+        norm8_fit = norm8_fit + 0.1*enorm8_fit;
       }
 
       h_mc1_fit->Scale(norm1_fit);
