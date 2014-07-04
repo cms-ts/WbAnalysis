@@ -973,22 +973,20 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     delta_eta_ej = fabs(vect_ele[0].Eta() - vect_jets[0].eta());
     if (delta_phi_ej > acos (-1)) delta_phi_ej = 2 * acos (-1) - delta_phi_ej;
     DR_ej = TMath::Sqrt(delta_phi_ej*delta_phi_ej + delta_eta_ej*delta_eta_ej);
-    w_delta_wenu->Fill (delta_phi_ej, MyWeight);
-    w_deltaR_wenu->Fill (DR_ej, MyWeight);
     delta_phi_ebj = fabs(vect_ele[0].Phi() - vect_bjets[0].phi());
     delta_eta_ebj = fabs(vect_ele[0].Eta() - vect_bjets[0].eta());
     if (delta_phi_ebj > acos (-1)) delta_phi_ebj = 2 * acos (-1) - delta_phi_ebj;
     DR_ebj = TMath::Sqrt(delta_phi_ebj*delta_phi_ebj + delta_eta_ebj*delta_eta_ebj);
-    w_delta_wenu_b->Fill (delta_phi_ebj, MyWeight);
-    w_deltaR_wenu_b->Fill (DR_ebj, MyWeight);
+    w_delta_wenu->Fill (delta_phi_ebj, MyWeight);
+    w_deltaR_wenu->Fill (DR_ebj, MyWeight);
     TLorentzVector belectron(vect_ele[0].Px(),vect_ele[0].Py(),vect_ele[0].Pz(),vect_ele[0].E());
     TLorentzVector belectron2(vect_bjets[0].px(),vect_bjets[0].py(),vect_bjets[0].pz(),vect_bjets[0].E());
     belectron += belectron2;
     w_mass_wenu_blepton->Fill(belectron.M(), MyWeight);
     if (Nb == 1) {
       w_mt_wenu_b->Fill (mt_wenu, MyWeight);
-      w_single_delta_wenu_b->Fill (delta_phi_ebj, MyWeight);
-      w_single_deltaR_wenu_b->Fill (DR_ebj, MyWeight);
+      w_delta_wenu_b->Fill (delta_phi_ebj, MyWeight);
+      w_deltaR_wenu_b->Fill (DR_ebj, MyWeight);
       //      w_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight);
     }
     if (Nb > 1) {
@@ -1024,22 +1022,20 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     delta_eta_mj = fabs(vect_muon[0].Eta() - vect_jets[0].eta());
     if (delta_phi_mj > acos (-1)) delta_phi_mj = 2 * acos (-1) - delta_phi_mj;
     DR_mj = TMath::Sqrt(delta_phi_mj*delta_phi_mj + delta_eta_mj*delta_eta_mj);
-    w_delta_wmnu->Fill (delta_phi_mj, MyWeight);
-    w_deltaR_wmnu->Fill (DR_mj, MyWeight);
     delta_phi_mbj = fabs(vect_muon[0].Phi() - vect_bjets[0].phi());
     delta_eta_mbj = fabs(vect_muon[0].Eta() - vect_bjets[0].eta());
     if (delta_phi_mbj > acos (-1)) delta_phi_mbj = 2 * acos (-1) - delta_phi_mbj;
     DR_mbj = TMath::Sqrt(delta_phi_mbj*delta_phi_mbj + delta_eta_mbj*delta_eta_mbj);
-    w_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight);
-    w_deltaR_wmnu_b->Fill (DR_mbj, MyWeight);
+    w_delta_wmnu->Fill (delta_phi_mbj, MyWeight);
+    w_deltaR_wmnu->Fill (DR_mbj, MyWeight);
     TLorentzVector bmuon(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E());
     TLorentzVector bmuon2(vect_bjets[0].px(),vect_bjets[0].py(),vect_bjets[0].pz(),vect_bjets[0].E());
     bmuon += bmuon2;
     w_mass_wmnu_blepton->Fill(bmuon.M(), MyWeight);
     if (Nb == 1) {
       w_mt_wmnu_b->Fill (mt_wmnu, MyWeight);
-      w_single_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight);
-      w_single_deltaR_wmnu_b->Fill (DR_mbj, MyWeight);
+      w_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight);
+      w_deltaR_wmnu_b->Fill (DR_mbj, MyWeight);
       //      w_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight);
     }
     if (Nb > 1) {
