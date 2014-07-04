@@ -722,13 +722,10 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_mc_fit2 = h_mc5;
 	  if (title.find("_bb")!=string::npos) {
 	    e_mc_fit1 = ec3_t/c3_t;
-	    e_mc_fit2 = ec3_qcd/c3_qcd;
 	  } else if (title.find("_b")!=string::npos) {
 	    e_mc_fit1 = ec2_t/c2_t;
-	    e_mc_fit2 = ec2_qcd/c2_qcd;
 	  } else {
 	    e_mc_fit1 = ec1_t/c1_t;
-	    e_mc_fit2 = ec1_qcd/c1_qcd;
 	  }
 	  fitter = TVirtualFitter::Fitter(0, 3);
 	  fitter->SetFCN(fcn);
