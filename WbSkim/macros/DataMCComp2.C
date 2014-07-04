@@ -229,7 +229,7 @@ if (irun==99) {            // irun==99 => pur
 	  in10 >> c >> ec;
 	  c2_t = c2_t * c; ec2_t = ec;
 	  in10 >> c >> ec;
-	  c2_qcd = c2_qcd * c; ec3_qcd = ec;
+	  c2_qcd = c2_qcd * c; ec2_qcd = ec;
 	  c = 1.0;
 	  ec = 0.0;
 	  in10 >> c >> ec; // drop first line
