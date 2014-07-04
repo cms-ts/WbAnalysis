@@ -15,8 +15,8 @@ int useBinnedEfficiency=0; // use average efficiencies
 //int useFitResults=0; // use MC predictions for c_b, c_c, c_uds, c_t
 int useFitResults=1;  // use fit results for c_b, c_c, c_uds, c_t
 
-int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
-//int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
+//int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
+int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
 
 //int drawInclusive = 0; // do not plot the "inclusive" histogram
 int drawInclusive = 1; // do plot the "inclusive" histogram

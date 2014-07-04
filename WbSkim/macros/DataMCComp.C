@@ -48,8 +48,8 @@ void DataMCComp(int irun=0, string title="", int plot=0, int ilepton=1, int doBk
 //int useFitResults = 0; // use MC for c_t
 int useFitResults = 1; // use fit results for c_t
 
-int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
-//int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
+//int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
+int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
 
 string subdir="0";
 string postfix="";
