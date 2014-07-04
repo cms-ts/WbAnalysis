@@ -225,17 +225,17 @@ if (irun==99) {            // irun==99 => pur
 	  c1_qcd = c1_qcd * c; ec1_qcd = ec;
 	  c = 1.0;
 	  ec = 0.0;
-	  in10 >> c >> ec; // drop first line
-	  in10 >> c >> ec;
+	  in11 >> c >> ec; // drop first line
+	  in11 >> c >> ec;
 	  c2_t = c2_t * c; ec2_t = ec;
-	  in10 >> c >> ec;
+	  in11 >> c >> ec;
 	  c2_qcd = c2_qcd * c; ec2_qcd = ec;
 	  c = 1.0;
 	  ec = 0.0;
-	  in10 >> c >> ec; // drop first line
-	  in10 >> c >> ec;
+	  in12 >> c >> ec; // drop first line
+	  in12 >> c >> ec;
 	  c3_t = c3_t * c; ec3_t = ec;
-	  in10 >> c >> ec;
+	  in12 >> c >> ec;
 	  c3_qcd = c3_qcd * c; ec3_qcd = ec;
 	  in10.close();
 	  in11.close();
