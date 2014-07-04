@@ -528,27 +528,45 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 
 	if (useFitResults) {
 	  if (title.find("_bb")!=string::npos) {
-	    h_mc2->Scale(c3_t);
-	    if (irun==5) h_mc2->Scale((c3_t+0.1*ec3_t)/c3_t);
+	    if (irun==5) {
+	      h_mc2->Scale(c3_t+0.1*ec3_t);
+	    } else {
+	      h_mc2->Scale(c3_t);
+	    }
 	  } else if (title.find("_b")!=string::npos) {
-	    h_mc2->Scale(c2_t);
-	    if (irun==5) h_mc2->Scale((c2_t+0.1*ec2_t)/c2_t);
+	    if (irun==5) {
+	      h_mc2->Scale(c2_t+0.1*ec2_t);
+	    } else {
+	      h_mc2->Scale(c2_t);
+	    }
 	  } else {
-	    h_mc2->Scale(c1_t);
-	    if (irun==5) h_mc2->Scale((c1_t+0.1*ec1_t)/c1_t);
+	    if (irun==5) {
+	      h_mc2->Scale(c1_t+0.1*ec1_t);
+	    } else {
+	      h_mc2->Scale(c1_t);
+	    }
 	  }
 	}
 
 	if (h_mc5) {
 	  if (title.find("_bb")!=string::npos) {
-	    h_mc5->Scale(c3_qcd);
-	    if (irun==15) h_mc5->Scale((c3_qcd+0.1*ec3_qcd)/c3_qcd);
+	    if (irun==15) {
+	      h_mc5->Scale(c3_qcd+0.1*ec3_qcd);
+	    } else {
+	      h_mc5->Scale(c3_qcd);
+	    }
 	  } else if (title.find("_b")!=string::npos) {
-	    h_mc5->Scale(c2_qcd);
-	    if (irun==15) h_mc5->Scale((c2_qcd+0.1*ec2_qcd)/c2_qcd);
+	    if (irun==15) {
+	      h_mc5->Scale(c2_qcd+0.1*ec2_qcd);
+	    } else {
+	      h_mc5->Scale(c2_qcd);
+	    }
 	  } else {
-	    h_mc5->Scale(c1_qcd);
-	    if (irun==15) h_mc5->Scale((c1_qcd+0.1*ec1_qcd)/c1_qcd);
+	    if (irun==15) {
+	      h_mc5->Scale(c1_qcd+0.1*ec1_qcd);
+	    } else {
+	      h_mc5->Scale(c1_qcd);
+	    }
 	  }
 	}
 
