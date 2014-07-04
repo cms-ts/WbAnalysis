@@ -277,6 +277,9 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  c3_t = c3_t * c; ec3_t = ec;
 	  in12 >> c >> ec;
 	  c3_qcd = c3_qcd * c; ec3_qcd = ec;
+	  in10.close();
+	  in11.close();
+	  in12.close();
 	}
 
 	double Lumi2012=0;
