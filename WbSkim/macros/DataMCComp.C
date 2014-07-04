@@ -48,6 +48,9 @@ void DataMCComp(int irun=0, string title="", int plot=0, int ilepton=1, int doBk
 //int useFitResults = 0; // use MC for c_t
 int useFitResults = 1; // use fit results for c_t
 
+int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
+//int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
+
 string subdir="0";
 string postfix="";
 if (irun==1) {             // irun==1 => JEC Up
@@ -151,7 +154,20 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (title=="w_mt_wmnu_bb_wide") useFitResults=0;
 	}
 
-	ifstream in1, in2, in3, in4, in5, in6;
+	if (doFit==1 || doFit==5) {
+	  if (title=="w_mt_wenu_wide") useFitResults2=0;
+	  if (title=="w_mt_wenu_b_wide") useFitResults2=0;
+	  if (title=="w_mt_wenu_bb_wide") useFitResults2=0;
+	  if (title=="w_mt_wmnu_wide") useFitResults2=0;
+	  if (title=="w_mt_wmnu_b_wide") useFitResults2=0;
+	  if (title=="w_mt_wmnu_bb_wide") useFitResults2=0;
+	}
+
+	if (ilepton==3 || ilepton==4) useFitResults=0;
+
+	if (ilepton>=3) useFitResults2=0;
+
+	ifstream in1, in2, in3, in4, in5, in6, in10, in11, in12;
 	if (ilepton==1) {
 	  in1.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
 	  in2.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
@@ -160,6 +176,11 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    in4.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
 	    in5.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/electronsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
+	  }
+	  if (useFitResults2) {
+	    in10.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
+	    in11.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_b_wide_doFit" + ".dat").c_str());
+	    in12.open((path + "/electrons/" + version + "/" + subdir + "/distributions/" + "w_mt_wenu_bb_wide_doFit" + ".dat").c_str());
 	  }
 	}
 	if (ilepton==5) {
@@ -191,6 +212,11 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    in5.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
 	    in6.open((path + "/muonsTOP/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
 	  }
+	  if (useFitResults2) {
+	    in10.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
+	    in11.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_b_wide_doFit" + ".dat").c_str());
+	    in12.open((path + "/muons/" + version + "/" + subdir + "/distributions/" + "w_mt_wmnu_bb_wide_doFit" + ".dat").c_str());
+	  }
 	}
 	if (ilepton==6) {
 	  in1.open((path + "/muonsFWD/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wmnu_wide_doFit" + ".dat").c_str());
@@ -213,8 +239,6 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  }
 	}
 
-	if (ilepton==3 || ilepton==4) useFitResults=0;
-
 	in1 >> c1_qcd >> ec1_qcd;
 	in2 >> c2_qcd >> ec2_qcd;
 	in3 >> c3_qcd >> ec3_qcd;
@@ -228,6 +252,31 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  in4.close();
 	  in5.close();
 	  in6.close();
+	}
+	if (useFitResults2) {
+	  double c;
+	  double ec;
+	  c = 1.0;
+	  ec = 0.0;
+	  in10 >> c >> ec; // drop first line
+	  in10 >> c >> ec;
+	  c1_t = c1_t * c; ec1_t = ec;
+	  in10 >> c >> ec;
+	  c1_qcd = c1_qcd * c; ec1_qcd = ec;
+	  c = 1.0;
+	  ec = 0.0;
+	  in11 >> c >> ec; // drop first line
+	  in11 >> c >> ec;
+	  c2_t = c2_t * c; ec2_t = ec;
+	  in11 >> c >> ec;
+	  c2_qcd = c2_qcd * c; ec2_qcd = ec;
+	  c = 1.0;
+	  ec = 0.0;
+	  in12 >> c >> ec; // drop first line
+	  in12 >> c >> ec;
+	  c3_t = c3_t * c; ec3_t = ec;
+	  in12 >> c >> ec;
+	  c3_qcd = c3_qcd * c; ec3_qcd = ec;
 	}
 
 	double Lumi2012=0;
