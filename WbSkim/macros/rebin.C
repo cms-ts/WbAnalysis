@@ -55,7 +55,7 @@ TH2F* rebin(TH2F* old) {
   if (name.find("deltaR_wenu")!=string::npos) ngroup = 2;
   if (name.find("deltaR_wmnu")!=string::npos) ngroup = 2;
 
-  if (ngroup>1) old->Rebin2D(ngroup);
+  if (ngroup>1) old->Rebin2D(ngroup, ngroup);
 
   return old;
 }
