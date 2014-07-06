@@ -786,7 +786,7 @@ if (irun==99) {            // irun==99 => pur
 	  h_data = fixrange(h_data);
 	  h_data_b = fixrange(h_data_b);
 	}
-	h_mc1 = fixrange(h_mc1);
+	h_mc1b = fixrange(h_mc1b);
 	h_mc1b_b = fixrange(h_mc1b_b);
 	h_mcg = fixrange(h_mcg);
 	h_mcg_b = fixrange(h_mcg_b);
@@ -795,7 +795,7 @@ if (irun==99) {            // irun==99 => pur
 	  h_data = rebin(h_data);
 	  h_data_b = rebin(h_data_b);
 	}
-	h_mc1 = rebin(h_mc1);
+	h_mc1b = rebin(h_mc1b);
 	h_mc1b_b = rebin(h_mc1b_b);
 	h_mcg = rebin(h_mcg);
 	h_mcg_b = rebin(h_mcg_b);
