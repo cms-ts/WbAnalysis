@@ -96,6 +96,10 @@ if (irun==99) {            // irun==99 => pur
 
 	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (title.find("_bb")!=string::npos) {
+	  mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	}
 
 /* efficiency:  e_W / e_Wb = e_W / e_W_1 * e_W_b */
 

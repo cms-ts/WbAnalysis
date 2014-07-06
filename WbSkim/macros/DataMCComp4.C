@@ -147,8 +147,16 @@ if (irun==99) {            // irun==99 => pur
 
 	double norm1 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
 	double norm1_1 = norm1;
-	double norm1_2 = norm1;
+	double norm1_2=0;
+	if (ilepton==1) norm1_2 = norm1;
+	if (ilepton==2) norm1_2 = norm1;
 	double norm1_3 = norm1;
+	if (title.find("_bb")!=string::npos) {
+	  norm1 = ((Lumi2012 * Xsec_wbb) / Ngen_wbb);
+	  if (ilepton==1) norm1_2 = norm1;
+	  if (ilepton==2) norm1_2 = norm1;
+	  norm1_3 = norm1;
+	}
 
 	if (title.empty()) title = "w_jetmultiplicity";
 
@@ -188,6 +196,13 @@ if (irun==99) {            // irun==99 => pur
 	  if (ilepton==2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	}
 	if (imode== 7) mc1 = TFile::Open((path + "/" + version + "/" + "Wj2_gen.root").c_str());
+	if (title.find("_bb")!=string::npos) {
+	  if (imode== 0) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 1) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 2) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 3) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 4) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	}
 
 	TFile* mc2=0;
 	if (imode==-1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
@@ -202,6 +217,13 @@ if (irun==99) {            // irun==99 => pur
 	if (imode== 5) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 6) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 7) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (title.find("_bb")!=string::npos) {
+	  if (imode== 0) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 4) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 5) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 6) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	  if (imode== 7) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	}
 
 	TH1F* h_data_reco;
 	data->cd();
