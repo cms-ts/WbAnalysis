@@ -774,14 +774,6 @@ if (irun==99) {            // irun==99 => pur
           }
 	}
 
-	h_data->Scale(1./Lumi2012, "width");
-	h_data_b->Scale(1./Lumi2012, "width");
-	h_mc1b->Scale(1./Lumi2012, "width");
-	h_mc1b_b->Scale(1./Lumi2012, "width");
-
-	h_mcg->Scale(1./Lumi2012, "width");
-	h_mcg_b->Scale(1./Lumi2012, "width");
-
 	if (unfold==0) {
 	  h_data = fixrange(h_data);
 	  h_data_b = fixrange(h_data_b);
@@ -799,6 +791,14 @@ if (irun==99) {            // irun==99 => pur
 	h_mc1b_b = rebin(h_mc1b_b);
 	h_mcg = rebin(h_mcg);
 	h_mcg_b = rebin(h_mcg_b);
+
+	h_data->Scale(1./Lumi2012, "width");
+	h_data_b->Scale(1./Lumi2012, "width");
+	h_mc1b->Scale(1./Lumi2012, "width");
+	h_mc1b_b->Scale(1./Lumi2012, "width");
+
+	h_mcg->Scale(1./Lumi2012, "width");
+	h_mcg_b->Scale(1./Lumi2012, "width");
 
 	TCanvas* c1 = new TCanvas("c", "c", 800, 600);
 	c1->cd();
