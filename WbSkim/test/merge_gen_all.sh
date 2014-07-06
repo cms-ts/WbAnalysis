@@ -14,4 +14,6 @@ fi
 
 ./merge.sh Wj_gen-all $VERSION
 
+./merge.sh Wbb_gen $VERSION
+
 exit

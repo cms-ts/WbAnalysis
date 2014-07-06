@@ -126,5 +126,11 @@ double Ngen_w4j = 13382803;
 double Xsec_w4j = 214; // LO
 double eXsec_w4j = 0; 
 
+//////////////////////// Wbb
+
+double Ngen_wbb = 20646001;
+double Xsec_wbb = 377.4; // NLO
+double eXsec_wbb = 0;
+
 ///////////////////////
 

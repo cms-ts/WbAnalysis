@@ -42,6 +42,8 @@ fi
 
 ./merge.sh W-all $VERSION
 
+./merge.sh Wbb $VERSION
+
 ./merge.sh WW $VERSION
 ./merge.sh WZ $VERSION
 ./merge.sh ZZ $VERSION

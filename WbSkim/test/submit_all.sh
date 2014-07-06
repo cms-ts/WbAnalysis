@@ -39,6 +39,8 @@ fi
 ./submit.sh W3j $VERSION $CUT
 ./submit.sh W4j $VERSION $CUT
 
+./submit.sh Wbb $VERSION $CUT
+
 ./submit.sh WW $VERSION $CUT
 ./submit.sh WZ $VERSION $CUT
 ./submit.sh ZZ $VERSION $CUT
