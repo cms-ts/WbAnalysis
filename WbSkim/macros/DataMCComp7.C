@@ -221,12 +221,6 @@ string subdir="0";
 	h_mc1b_b->Sumw2();
 	h_mcg_b->Sumw2();
 
-	h_mc1->Scale(norm1);
-	h_mcg->Scale(norm1);
-
-	h_mc1b_b->Scale(norm1);
-	h_mcg_b->Scale(norm1);
-
 	if (title.find("_b")!=string::npos) {
 	  h_mc1->Scale(c2_b);
 	  for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
@@ -283,6 +277,40 @@ string subdir="0";
 	  h_mc1b_b->Divide(h_b);
         }
 
+	h_data = fixrange(h_data);
+	h_data_b = fixrange(h_data_b);
+	for (int i=0;i<NMAX;i++) {
+	  if (h_data_scan[i]) h_data_scan[i] = fixrange(h_data_scan[i]);
+	  if (h_data_b_scan[i]) h_data_b_scan[i] = fixrange(h_data_b_scan[i]);
+	}
+
+	h_mc1 = fixrange(h_mc1);
+	h_mc1b_b = fixrange(h_mc1b_b);
+
+	h_mcg = fixrange(h_mcg);
+	h_mcg_b = fixrange(h_mcg_b);
+
+/*
+	h_data = rebin(h_data);
+	h_data_b = rebin(h_data_b);
+	for (int i=0;i<NMAX;i++) {
+	  if (h_data_scan[i]) h_data_scan[i] = rebin(h_data_scan[i]);
+	  if (h_data_b_scan[i]) h_data_b_scan[i] = rebin(h_data_b_scan[i]);
+	}
+*/
+
+	h_mc1 = rebin(h_mc1);
+	h_mc1b_b = rebin(h_mc1b_b);
+
+	h_mcg = rebin(h_mcg);
+	h_mcg_b = rebin(h_mcg_b);
+
+	h_mc1->Scale(norm1);
+	h_mcg->Scale(norm1);
+
+	h_mc1b_b->Scale(norm1);
+	h_mcg_b->Scale(norm1);
+
 	if (unfold) {
 	  h_data->Scale(1./Lumi2012, "width");
 	  h_data_b->Scale(1./Lumi2012, "width");
@@ -293,6 +321,9 @@ string subdir="0";
 	}
 	h_mc1->Scale(1./Lumi2012, "width");
 	h_mc1b_b->Scale(1./Lumi2012, "width");
+
+	h_mcg->Scale(1./Lumi2012, "width");
+	h_mcg_b->Scale(1./Lumi2012, "width");
 
 	TH1F* stat_bkg = (TH1F*)h_data->Clone();
 	TH1F* stat_b_bkg = (TH1F*)h_data_b->Clone();
@@ -815,47 +846,6 @@ string subdir="0";
 	if (useSysRMS) xsec_data_b_tot_syst = TMath::Sqrt(TMath::Power(xsec_data_b_tot_syst,2)+TMath::Power(xsec_data_b*(tot_b>0 ? rms_b/tot_b : 0),2));
 	xsec_data_tot_tot = TMath::Sqrt(TMath::Power(xsec_data_tot_stat,2)+TMath::Power(xsec_data_tot_syst,2));
 	xsec_data_b_tot_tot = TMath::Sqrt(TMath::Power(xsec_data_b_tot_stat,2)+TMath::Power(xsec_data_b_tot_syst,2));
-
-	h_mcg->Scale(1./Lumi2012, "width");
-	h_mcg_b->Scale(1./Lumi2012, "width");
-
-	h_data = fixrange(h_data);
-	h_data_b = fixrange(h_data_b);
-	for (int i=0;i<NMAX;i++) {
-	  if (h_data_scan[i]) h_data_scan[i] = fixrange(h_data_scan[i]);
-	  if (h_data_b_scan[i]) h_data_b_scan[i] = fixrange(h_data_b_scan[i]);
-	}
-	h_data_stat = fixrange(h_data_stat);
-	h_data_b_stat = fixrange(h_data_b_stat);
-	h_data_syst = fixrange(h_data_syst);
-	h_data_b_syst = fixrange(h_data_b_syst);
-	h_data_tot = fixrange(h_data_tot);
-	h_data_b_tot = fixrange(h_data_b_tot);
-
-	h_mc1 = fixrange(h_mc1);
-	h_mc1b_b = fixrange(h_mc1b_b);
-	h_mcg = fixrange(h_mcg);
-	h_mcg_b = fixrange(h_mcg_b);
-
-/*
-	h_data = rebin(h_data);
-	h_data_b = rebin(h_data_b);
-	for (int i=0;i<NMAX;i++) {
-	  if (h_data_scan[i]) h_data_scan[i] = rebin(h_data_scan[i]);
-	  if (h_data_b_scan[i]) h_data_b_scan[i] = rebin(h_data_b_scan[i]);
-	}
-	h_data_stat = rebin(h_data_stat);
-	h_data_b_stat = rebin(h_data_b_stat);
-	h_data_syst = rebin(h_data_syst);
-	h_data_b_syst = rebin(h_data_b_syst);
-	h_data_tot = rebin(h_data_tot);
-	h_data_b_tot = rebin(h_data_b_tot);
-*/
-
-	h_mc1 = rebin(h_mc1);
-	h_mc1b_b = rebin(h_mc1b_b);
-	h_mcg = rebin(h_mcg);
-	h_mcg_b = rebin(h_mcg_b);
 
 	TCanvas* c1 = new TCanvas("c", "c", 800, 600);
 	c1->cd();

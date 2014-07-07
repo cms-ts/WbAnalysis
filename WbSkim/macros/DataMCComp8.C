@@ -129,10 +129,6 @@ string subdir="0";
 	for (int i=0; i<2; i++) {
 	  w_data[i] = read(subdir, title, i+1);
 	  w_data_b[i] = read(subdir, title_b, i+1);
-	  if (unfold) {
-	    w_data[i]->Scale(1./Lumi2012, "width");
-	    w_data_b[i]->Scale(1./Lumi2012, "width");
-	  }
 	}
 
 	TH1F* w_mcg[2];
@@ -146,7 +142,6 @@ string subdir="0";
 	TH1F* h_mcg_b = (TH1F*)w_mcg_b[0]->Clone();
 
 	h_mcg->Sumw2();
-
 	h_mcg_b->Sumw2();
 
 	for (int i=0;i<=h_mcg->GetNbinsX()+1;i++) {
@@ -165,9 +160,33 @@ string subdir="0";
 	  }
 	}
 
-	h_mcg->Scale(norm1);
+	for (int i=0; i<2; i++) {
+	  w_data[i] = fixrange(w_data[i]);
+	  w_data_b[i] = fixrange(w_data_b[i]);
+	}
 
+	h_mcg = fixrange(h_mcg);
+	h_mcg_b = fixrange(h_mcg_b);
+
+/*
+	for (int i=0; i<2; i++) {
+	  w_data[i] = rebin(w_data[i]);
+	  w_data_b[i] = rebin(w_data_b[i]);
+	}
+*/
+
+	h_mcg = rebin(h_mcg);
+	h_mcg_b = rebin(h_mcg_b);
+
+	h_mcg->Scale(norm1);
 	h_mcg_b->Scale(norm1);
+
+	if (unfold) {
+	  for (int i=0; i<2; i++) {
+	    w_data[i]->Scale(1./Lumi2012, "width");
+	    w_data_b[i]->Scale(1./Lumi2012, "width");
+	  }
+	}
 
 	h_mcg->Scale(1./Lumi2012, "width");
 	h_mcg_b->Scale(1./Lumi2012, "width");
@@ -1671,32 +1690,6 @@ string subdir="0";
 	xsec_tot_syst_b_tot = xval;
 	xval = TMath::Sqrt(TMath::Power(xsec_tot_stat_b_tot,2)+TMath::Power(xsec_tot_syst_b_tot,2));
 	xsec_tot_data_b_tot = xval;
-
-	h_data = fixrange(h_data);
-	h_data_b = fixrange(h_data_b);
-	h_data_stat = fixrange(h_data_stat);
-	h_data_b_stat = fixrange(h_data_b_stat);
-	h_data_syst = fixrange(h_data_syst);
-	h_data_b_syst = fixrange(h_data_b_syst);
-	h_data_tot = fixrange(h_data_tot);
-	h_data_b_tot = fixrange(h_data_b_tot);
-
-	h_mcg = fixrange(h_mcg);
-	h_mcg_b = fixrange(h_mcg_b);
-
-/*
-	h_data = rebin(h_data);
-	h_data_b = rebin(h_data_b);
-	h_data_stat = rebin(h_data_stat);
-	h_data_b_stat = rebin(h_data_b_stat);
-	h_data_syst = rebin(h_data_syst);
-	h_data_b_syst = rebin(h_data_b_syst);
-	h_data_tot = rebin(h_data_tot);
-	h_data_b_tot = rebin(h_data_b_tot);
-*/
-
-	h_mcg = rebin(h_mcg);
-	h_mcg_b = rebin(h_mcg_b);
 
 	TCanvas* c1 = new TCanvas("c", "c", 800, 600);
 	c1->cd();
