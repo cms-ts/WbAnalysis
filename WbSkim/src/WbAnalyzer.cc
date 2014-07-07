@@ -526,6 +526,36 @@ private:
   TH1F*     c_pt_W_wmnu_bb;
   TH1F*     t_pt_W_wmnu_bb;
 
+  TH1F*     w_eta_W_wenu;
+  TH1F*     b_eta_W_wenu;
+  TH1F*     c_eta_W_wenu;
+  TH1F*     t_eta_W_wenu;
+
+  TH1F*     w_eta_W_wmnu;
+  TH1F*     b_eta_W_wmnu;
+  TH1F*     c_eta_W_wmnu;
+  TH1F*     t_eta_W_wmnu;
+
+  TH1F*     w_eta_W_wenu_b;
+  TH1F*     b_eta_W_wenu_b;
+  TH1F*     c_eta_W_wenu_b;
+  TH1F*     t_eta_W_wenu_b;
+
+  TH1F*     w_eta_W_wmnu_b;
+  TH1F*     b_eta_W_wmnu_b;
+  TH1F*     c_eta_W_wmnu_b;
+  TH1F*     t_eta_W_wmnu_b;
+
+  TH1F*     w_eta_W_wenu_bb;
+  TH1F*     b_eta_W_wenu_bb;
+  TH1F*     c_eta_W_wenu_bb;
+  TH1F*     t_eta_W_wenu_bb;
+
+  TH1F*     w_eta_W_wmnu_bb;
+  TH1F*     b_eta_W_wmnu_bb;
+  TH1F*     c_eta_W_wmnu_bb;
+  TH1F*     t_eta_W_wmnu_bb;
+
   TH1F*     w_pt_Z_ee;
   TH1F*     b_pt_Z_ee;
   TH1F*     c_pt_Z_ee;
@@ -1424,6 +1454,36 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_pt_W_wmnu_bb =           fs->make < TH1F > ("c_pt_W_wmnu_bb",         "c_pt_W_wmnu_bb;P_t [GeV]", 20, 0., 400.);
   t_pt_W_wmnu_bb =           fs->make < TH1F > ("t_pt_W_wmnu_bb",         "t_pt_W_wmnu_bb;P_t [GeV]", 20, 0., 400.);
 
+  w_eta_W_wenu =           fs->make < TH1F > ("w_eta_W_wenu",         "w_eta_W_wenu;Eta", 20, -2.4, 2.4);
+  b_eta_W_wenu =           fs->make < TH1F > ("b_eta_W_wenu",         "b_eta_W_wenu;Eta", 20, -2.4, 2.4);
+  c_eta_W_wenu =           fs->make < TH1F > ("c_eta_W_wenu",         "c_eta_W_wenu;Eta", 20, -2.4, 2.4);
+  t_eta_W_wenu =           fs->make < TH1F > ("t_eta_W_wenu",         "t_eta_W_wenu;Eta", 20, -2.4, 2.4);
+
+  w_eta_W_wmnu =           fs->make < TH1F > ("w_eta_W_wmnu",         "w_eta_W_wmnu;Eta", 20, -2.4, 2.4);
+  b_eta_W_wmnu =           fs->make < TH1F > ("b_eta_W_wmnu",         "b_eta_W_wmnu;Eta", 20, -2.4, 2.4);
+  c_eta_W_wmnu =           fs->make < TH1F > ("c_eta_W_wmnu",         "c_eta_W_wmnu;Eta", 20, -2.4, 2.4);
+  t_eta_W_wmnu =           fs->make < TH1F > ("t_eta_W_wmnu",         "t_eta_W_wmnu;Eta", 20, -2.4, 2.4);
+
+  w_eta_W_wenu_b =           fs->make < TH1F > ("w_eta_W_wenu_b",         "w_eta_W_wenu_b;Eta", 20, -2.4, 2.4);
+  b_eta_W_wenu_b =           fs->make < TH1F > ("b_eta_W_wenu_b",         "b_eta_W_wenu_b;Eta", 20, -2.4, 2.4);
+  c_eta_W_wenu_b =           fs->make < TH1F > ("c_eta_W_wenu_b",         "c_eta_W_wenu_b;Eta", 20, -2.4, 2.4);
+  t_eta_W_wenu_b =           fs->make < TH1F > ("t_eta_W_wenu_b",         "t_eta_W_wenu_b;Eta", 20, -2.4, 2.4);
+
+  w_eta_W_wmnu_b =           fs->make < TH1F > ("w_eta_W_wmnu_b",         "w_eta_W_wmnu_b;Eta", 20, -2.4, 2.4);
+  b_eta_W_wmnu_b =           fs->make < TH1F > ("b_eta_W_wmnu_b",         "b_eta_W_wmnu_b;Eta", 20, -2.4, 2.4);
+  c_eta_W_wmnu_b =           fs->make < TH1F > ("c_eta_W_wmnu_b",         "c_eta_W_wmnu_b;Eta", 20, -2.4, 2.4);
+  t_eta_W_wmnu_b =           fs->make < TH1F > ("t_eta_W_wmnu_b",         "t_eta_W_wmnu_b;Eta", 20, -2.4, 2.4);
+
+  w_eta_W_wenu_bb =           fs->make < TH1F > ("w_eta_W_wenu_bb",         "w_eta_W_wenu_bb;Eta", 20, -2.4, 2.4);
+  b_eta_W_wenu_bb =           fs->make < TH1F > ("b_eta_W_wenu_bb",         "b_eta_W_wenu_bb;Eta", 20, -2.4, 2.4);
+  c_eta_W_wenu_bb =           fs->make < TH1F > ("c_eta_W_wenu_bb",         "c_eta_W_wenu_bb;Eta", 20, -2.4, 2.4);
+  t_eta_W_wenu_bb =           fs->make < TH1F > ("t_eta_W_wenu_bb",         "t_eta_W_wenu_bb;Eta", 20, -2.4, 2.4);
+
+  w_eta_W_wmnu_bb =           fs->make < TH1F > ("w_eta_W_wmnu_bb",         "w_eta_W_wmnu_bb;Eta", 20, -2.4, 2.4);
+  b_eta_W_wmnu_bb =           fs->make < TH1F > ("b_eta_W_wmnu_bb",         "b_eta_W_wmnu_bb;Eta", 20, -2.4, 2.4);
+  c_eta_W_wmnu_bb =           fs->make < TH1F > ("c_eta_W_wmnu_bb",         "c_eta_W_wmnu_bb;Eta", 20, -2.4, 2.4);
+  t_eta_W_wmnu_bb =           fs->make < TH1F > ("t_eta_W_wmnu_bb",         "t_eta_W_wmnu_bb;Eta", 20, -2.4, 2.4);
+
   w_pt_Z_ee =           fs->make < TH1F > ("w_pt_Z_ee",         "w_pt_Z_ee;P_t [GeV]", 40, 0., 400.);
   b_pt_Z_ee =           fs->make < TH1F > ("b_pt_Z_ee",         "b_pt_Z_ee;P_t [GeV]", 40, 0., 400.);
   c_pt_Z_ee =           fs->make < TH1F > ("c_pt_Z_ee",         "c_pt_Z_ee;P_t [GeV]", 40, 0., 400.);
@@ -2261,10 +2321,12 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   math::XYZTLorentzVector w_enu;
 
   double wenu_pt = 0.;
+  double wenu_eta = 0.;
 
   if (!vect_ele.empty() && !mets->empty()) {
     w_enu = vect_ele[0].p4() + (*mets)[0].p4();
     wenu_pt = w_enu.pt();
+    wenu_eta = w_enu.eta();
   }
 
   // +++++++++ MUONS
@@ -2340,10 +2402,12 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   math::XYZTLorentzVector w_mnu;
 
   double wmnu_pt = 0.;
+  double wmnu_eta = 0.;
 
   if (!vect_muon.empty() && !mets->empty()) {
     w_mnu = vect_muon[0].p4() + (*mets)[0].p4();
     wmnu_pt = w_mnu.pt();
+    wmnu_eta = w_mnu.eta();
   }
 
 
@@ -2889,6 +2953,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     h_mt_wenu->Fill (mt_wenu);
     w_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
     w_pt_W_wenu->Fill (wenu_pt, MyWeight*scalFac_b);
+    w_eta_W_wenu->Fill (wenu_eta, MyWeight*scalFac_b);
     delta_phi_ej = fabs(vect_ele[0].phi() - vect_jets[0].phi());
     delta_eta_ej = fabs(vect_ele[0].eta() - vect_jets[0].eta());
     if (delta_phi_ej > acos (-1)) delta_phi_ej = 2 * acos (-1) - delta_phi_ej;
@@ -2905,6 +2970,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (ist) {
       t_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
       t_pt_W_wenu->Fill (wenu_pt, MyWeight*scalFac_b);
+      t_eta_W_wenu->Fill (wenu_eta, MyWeight*scalFac_b);
       t_delta_wenu->Fill (delta_phi_ebj, MyWeight*scalFac_b);
       t_deltaR_wenu->Fill (DR_ebj, MyWeight*scalFac_b);
       t_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
@@ -2912,6 +2978,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
       b_pt_W_wenu->Fill (wenu_pt, MyWeight*scalFac_b);
+      b_eta_W_wenu->Fill (wenu_eta, MyWeight*scalFac_b);
       b_delta_wenu->Fill (delta_phi_ebj, MyWeight*scalFac_b);
       b_deltaR_wenu->Fill (DR_ebj, MyWeight*scalFac_b);
       b_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
@@ -2919,6 +2986,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mt_wenu->Fill (mt_wenu, MyWeight*scalFac_b);
       c_pt_W_wenu->Fill (wenu_pt, MyWeight*scalFac_b);
+      c_eta_W_wenu->Fill (wenu_eta, MyWeight*scalFac_b);
       c_delta_wenu->Fill (delta_phi_ebj, MyWeight*scalFac_b);
       c_deltaR_wenu->Fill (DR_ebj, MyWeight*scalFac_b);
       c_mass_wenu_blepton->Fill(belectron.mass(), MyWeight*scalFac_b);
@@ -2928,12 +2996,14 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       h_mt_wenu_b->Fill (mt_wenu);
       w_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b); 
       w_pt_W_wenu_b->Fill (wenu_pt, MyWeight*scalFac_b);
+      w_eta_W_wenu_b->Fill (wenu_eta, MyWeight*scalFac_b);
       w_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
       w_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
       w_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
 	t_pt_W_wenu_b->Fill (wenu_pt, MyWeight*scalFac_b);
+	t_eta_W_wenu_b->Fill (wenu_eta, MyWeight*scalFac_b);
 	t_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
 	t_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
 	t_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
@@ -2941,6 +3011,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
         b_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
 	b_pt_W_wenu_b->Fill (wenu_pt, MyWeight*scalFac_b);
+	b_eta_W_wenu_b->Fill (wenu_eta, MyWeight*scalFac_b);
 	b_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
 	b_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
 	b_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
@@ -2948,6 +3019,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
         c_mt_wenu_b->Fill (mt_wenu, MyWeight*scalFac_b);
 	c_pt_W_wenu_b->Fill (wenu_pt, MyWeight*scalFac_b);
+	c_eta_W_wenu_b->Fill (wenu_eta, MyWeight*scalFac_b);
 	c_delta_wenu_b->Fill (delta_phi_ebj, MyWeight*scalFac_b);
 	c_deltaR_wenu_b->Fill (DR_ebj, MyWeight*scalFac_b);
 	c_mass_wenu_blepton_b->Fill(belectron.mass(), MyWeight*scalFac_b);
@@ -2958,6 +3030,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       h_mt_wenu_bb->Fill (mt_wenu);
       w_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
       w_pt_W_wenu_bb->Fill (wenu_pt, MyWeight*scalFac_b);
+      w_eta_W_wenu_bb->Fill (wenu_eta, MyWeight*scalFac_b);
       w_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight*scalFac_b);
       w_deltaR_wenu_bb->Fill (DR_ebj, MyWeight*scalFac_b);
       delta_phi_ebjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
@@ -2970,6 +3043,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (ist) {
         t_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	t_pt_W_wenu_bb->Fill (wenu_pt, MyWeight*scalFac_b);
+	t_eta_W_wenu_bb->Fill (wenu_eta, MyWeight*scalFac_b);
 	t_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight*scalFac_b);
 	t_delta_wenu_2b->Fill (delta_phi_ebjbj, MyWeight*scalFac_b);
 	t_deltaR_wenu_bb->Fill (DR_ebj, MyWeight*scalFac_b);
@@ -2979,6 +3053,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
         b_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	b_pt_W_wenu_bb->Fill (wenu_pt, MyWeight*scalFac_b);
+	b_eta_W_wenu_bb->Fill (wenu_eta, MyWeight*scalFac_b);
 	b_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight*scalFac_b);
 	b_delta_wenu_2b->Fill (delta_phi_ebjbj, MyWeight*scalFac_b);
 	b_deltaR_wenu_bb->Fill (DR_ebj, MyWeight*scalFac_b);
@@ -2988,6 +3063,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
         c_mt_wenu_bb->Fill (mt_wenu, MyWeight*scalFac_b);
 	c_pt_W_wenu_bb->Fill (wenu_pt, MyWeight*scalFac_b);
+	c_eta_W_wenu_bb->Fill (wenu_eta, MyWeight*scalFac_b);
 	c_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight*scalFac_b);
 	c_delta_wenu_2b->Fill (delta_phi_ebjbj, MyWeight*scalFac_b);
 	c_deltaR_wenu_bb->Fill (DR_ebj, MyWeight*scalFac_b);
@@ -3193,6 +3269,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     h_mt_wmnu->Fill (mt_wmnu);
     w_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
     w_pt_W_wmnu->Fill (wmnu_pt, MyWeight*scalFac_b);
+    w_eta_W_wmnu->Fill (wmnu_eta, MyWeight*scalFac_b);
     delta_phi_mj = fabs(vect_muon[0].phi() - vect_jets[0].phi());
     delta_eta_mj = fabs(vect_muon[0].eta() - vect_jets[0].eta());
     if (delta_phi_mj > acos (-1)) delta_phi_mj = 2 * acos (-1) - delta_phi_mj;
@@ -3209,6 +3286,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (ist) {
       t_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
       t_pt_W_wmnu->Fill (wmnu_pt, MyWeight*scalFac_b);
+      t_eta_W_wmnu->Fill (wmnu_eta, MyWeight*scalFac_b);
       t_delta_wmnu->Fill (delta_phi_mbj, MyWeight*scalFac_b);
       t_deltaR_wmnu->Fill (DR_mbj, MyWeight*scalFac_b);
       t_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
@@ -3216,6 +3294,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
       b_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
       b_pt_W_wmnu->Fill (wmnu_pt, MyWeight*scalFac_b);
+      b_eta_W_wmnu->Fill (wmnu_eta, MyWeight*scalFac_b);
       b_delta_wmnu->Fill (delta_phi_mbj, MyWeight*scalFac_b);
       b_deltaR_wmnu->Fill (DR_mbj, MyWeight*scalFac_b);
       b_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
@@ -3223,6 +3302,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
       c_mt_wmnu->Fill (mt_wmnu, MyWeight*scalFac_b);
       c_pt_W_wmnu->Fill (wmnu_pt, MyWeight*scalFac_b);
+      c_eta_W_wmnu->Fill (wmnu_eta, MyWeight*scalFac_b);
       c_delta_wmnu->Fill (delta_phi_mbj, MyWeight*scalFac_b);
       c_deltaR_wmnu->Fill (DR_mbj, MyWeight*scalFac_b);
       c_mass_wmnu_blepton->Fill(bmuon.mass(), MyWeight*scalFac_b);
@@ -3232,12 +3312,14 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       h_mt_wmnu_b->Fill (mt_wmnu);
       w_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
       w_pt_W_wmnu_b->Fill (wmnu_pt, MyWeight*scalFac_b);
+      w_eta_W_wmnu_b->Fill (wmnu_eta, MyWeight*scalFac_b);
       w_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
       w_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
       w_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
       if (ist) {
         t_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
 	t_pt_W_wmnu_b->Fill (wmnu_pt, MyWeight*scalFac_b);
+	t_eta_W_wmnu_b->Fill (wmnu_eta, MyWeight*scalFac_b);
 	t_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
 	t_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
 	t_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
@@ -3245,6 +3327,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
         b_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
 	b_pt_W_wmnu_b->Fill (wmnu_pt, MyWeight*scalFac_b);
+	b_eta_W_wmnu_b->Fill (wmnu_eta, MyWeight*scalFac_b);
 	b_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
 	b_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
 	b_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
@@ -3252,6 +3335,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
         c_mt_wmnu_b->Fill (mt_wmnu, MyWeight*scalFac_b);
 	c_pt_W_wmnu_b->Fill (wmnu_pt, MyWeight*scalFac_b);
+	c_eta_W_wmnu_b->Fill (wmnu_eta, MyWeight*scalFac_b);
 	c_delta_wmnu_b->Fill (delta_phi_mbj, MyWeight*scalFac_b);
 	c_deltaR_wmnu_b->Fill (DR_mbj, MyWeight*scalFac_b);
 	c_mass_wmnu_blepton_b->Fill(bmuon.mass(), MyWeight*scalFac_b);
@@ -3262,6 +3346,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       h_mt_wmnu_bb->Fill (mt_wmnu);
       w_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
       w_pt_W_wmnu_bb->Fill (wmnu_pt, MyWeight*scalFac_b);
+      w_eta_W_wmnu_bb->Fill (wmnu_eta, MyWeight*scalFac_b);
       w_delta_wmnu_bb->Fill (delta_phi_mbj, MyWeight*scalFac_b);
       w_deltaR_wmnu_bb->Fill (DR_mbj, MyWeight*scalFac_b);
       delta_phi_mbjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
@@ -3274,6 +3359,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (ist) {
         t_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
 	t_pt_W_wmnu_bb->Fill (wmnu_pt, MyWeight*scalFac_b);
+	t_eta_W_wmnu_bb->Fill (wmnu_eta, MyWeight*scalFac_b);
 	t_delta_wmnu_bb->Fill (delta_phi_mbj, MyWeight*scalFac_b);
 	t_delta_wmnu_2b->Fill (delta_phi_mbjbj, MyWeight*scalFac_b);
 	t_deltaR_wmnu_bb->Fill (DR_mbj, MyWeight*scalFac_b);
@@ -3283,6 +3369,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 5) {
         b_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
 	b_pt_W_wmnu_bb->Fill (wmnu_pt, MyWeight*scalFac_b);
+	b_eta_W_wmnu_bb->Fill (wmnu_eta, MyWeight*scalFac_b);
 	b_delta_wmnu_bb->Fill (delta_phi_mbj, MyWeight*scalFac_b);
 	b_delta_wmnu_2b->Fill (delta_phi_mbjbj, MyWeight*scalFac_b);
 	b_deltaR_wmnu_bb->Fill (DR_mbj, MyWeight*scalFac_b);
@@ -3292,6 +3379,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
       if (!ist && isMC && fabs(vect_jets[0].partonFlavour()) == 4) {
         c_mt_wmnu_bb->Fill (mt_wmnu, MyWeight*scalFac_b);
 	c_pt_W_wmnu_bb->Fill (wmnu_pt, MyWeight*scalFac_b);
+	c_eta_W_wmnu_bb->Fill (wmnu_eta, MyWeight*scalFac_b);
 	c_delta_wmnu_bb->Fill (delta_phi_mbj, MyWeight*scalFac_b);
 	c_delta_wmnu_2b->Fill (delta_phi_mbjbj, MyWeight*scalFac_b);
 	c_deltaR_wmnu_bb->Fill (DR_mbj, MyWeight*scalFac_b);
