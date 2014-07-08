@@ -899,6 +899,7 @@ string subdir="0";
 	if (title.find("_mt")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 	if (title.find("_pt")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.000004,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 	if (title.find("_mass")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.0002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
+	if (title.find("_Ht")!=string::npos) h_mc1b_b->SetMinimum(TMath::Max(0.00002,0.25*h_data_b_tot->GetBinContent(h_data_b_tot->GetMinimumBin())));
 
 	h_mc1b_b->Draw("E5");
 	TH1F* tmp1 = (TH1F*)h_mc1b_b->Clone();
