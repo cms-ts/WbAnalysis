@@ -1852,18 +1852,33 @@ string subdir="0";
 
 	c1->cd();
 
-	if (title_b=="w_first_jet_pt_b") {
-	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dp_{T} [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("leading jet p_{T} [GeV/c]");
-	} else if (title_b=="w_first_jet_eta_b") {
-	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#eta [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("leading jet #eta");
-	} else if (title_b=="w_first_bjet_pt") {
+	if (title_b=="w_first_jet_pt_bb") {
 	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
 	  h_M_tot->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
-	} else if (title_b=="w_first_bjet_eta") {
+	} else if (title_b=="w_first_jet_eta_bb") {
 	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("leading b-jet #eta");
+	  h_M_tot->GetXaxis()->SetTitle("leading b-jet #eta [rad]");
+	} else if (title_b=="w_first_jet_mass_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dm^{b} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("leading b-jet mass [GeV/c^{2}]");
+	} else if (title_b=="w_second_jet_pt_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("sub-leading b-jet p_{T} [GeV/c]");
+	} else if (title_b=="w_second_jet_eta_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("sub-leading b-jet #eta [rad]");
+	} else if (title_b=="w_second_jet_mass_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dm^{b} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
+	} else if (title_b=="w_Ht_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dH_{T} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("H_{T} [GeV/c]");
+	} else if (title_b=="w_delta_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#Delta#phi_{lb} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("#Delta#phi (lepton b-jet) [rad]");
+	} else if (title_b=="w_deltaR_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#DeltaR_{lb} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("#DeltaR (lepton b-jet) [rad]");
 	}
 
 	if (plot) {

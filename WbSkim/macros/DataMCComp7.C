@@ -167,12 +167,12 @@ string subdir="0";
 	  } else {
 	    title_b = title + "b";
 	  }
-        }
+	}
 
 	TH1F* h_data;
 	TH1F* h_data_b;
-        h_data = read(subdir, title, ilepton);
-        h_data_b = read(subdir, title_b, ilepton);
+	h_data = read(subdir, title, ilepton);
+	h_data_b = read(subdir, title_b, ilepton);
 	h_data->SetStats(0);
 	h_data_b->SetStats(0);
 
@@ -252,7 +252,7 @@ string subdir="0";
 	  }
 	}
 
-        if (ilepton==1) {
+	if (ilepton==1) {
 	  TFile f((path + "/electrons/" + version + "/" + subdir +"/efficiency/" + string(h_data->GetName()) + "_efficiency.root").c_str());
 	  TFile f_b((path + "/electrons/" + version + "/" + subdir +"/efficiency/" + string(h_data_b->GetName()) + "_efficiency.root").c_str());
 	  TH1F* h = (TH1F*)f.Get(h_data->GetName())->Clone();
@@ -263,7 +263,7 @@ string subdir="0";
 	  f_b.Close();
 	  h_mc1->Divide(h);
 	  h_mc1b_b->Divide(h_b);
-        }
+	}
 	if (ilepton==2) {
 	  TFile f((path + "/muons/" + version + "/" + subdir +"/efficiency/" + string(h_data->GetName()) + "_efficiency.root").c_str());
 	  TFile f_b((path + "/muons/" + version + "/" + subdir +"/efficiency/" + string(h_data_b->GetName()) + "_efficiency.root").c_str());
@@ -275,7 +275,7 @@ string subdir="0";
 	  f_b.Close();
 	  h_mc1->Divide(h);
 	  h_mc1b_b->Divide(h_b);
-        }
+	}
 
 	h_data = fixrange(h_data);
 	h_data_b = fixrange(h_data_b);
@@ -712,7 +712,7 @@ string subdir="0";
 	float sum1_b, sum2_b, sum3_b, sum4_b;
 	ifstream in4, in5, in6, in7;
 	if (ilepton==1) {
-          if (unfold) {
+	  if (unfold) {
 	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
 	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
 	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
@@ -725,7 +725,7 @@ string subdir="0";
 	  }
 	}
 	if (ilepton==2) {
-          if (unfold) {
+	  if (unfold) {
 	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
 	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
 	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
@@ -1042,18 +1042,33 @@ string subdir="0";
 
 	c1->cd();
 
-	if (title_b=="w_first_jet_pt_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp_{T} [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("leading jet p_{T} [GeV/c]");
-	} else if (title_b=="w_first_jet_eta_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("leading jet #eta");
-	} else if (title_b=="w_first_bjet_pt") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
+	if (title_b=="w_first_jet_pt_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
 	  h_M_tot->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
-	} else if (title_b=="w_first_bjet_eta") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
-	  h_M_tot->GetXaxis()->SetTitle("leading b-jet #eta");
+	} else if (title_b=="w_first_jet_eta_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("leading b-jet #eta [rad]");
+	} else if (title_b=="w_first_jet_mass_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dm^{b} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("leading b-jet mass [GeV/c^{2}]");
+	} else if (title_b=="w_second_jet_pt_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("sub-leading b-jet p_{T} [GeV/c]");
+	} else if (title_b=="w_second_jet_eta_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("sub-leading b-jet #eta [rad]");
+	} else if (title_b=="w_second_jet_mass_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dm^{b} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
+	} else if (title_b=="w_Ht_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / dH_{T} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("H_{T} [GeV/c]");
+	} else if (title_b=="w_delta_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#Delta#phi_{lb} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("#Delta#phi (lepton b-jet) [rad]");
+	} else if (title_b=="w_deltaR_bb") {
+	  h_mcg_b->GetYaxis()->SetTitle("d#sigma / d#DeltaR_{lb} [pb]");
+	  h_M_tot->GetXaxis()->SetTitle("#DeltaR (lepton b-jet) [rad]");
 	}
 
 	if (plot) {

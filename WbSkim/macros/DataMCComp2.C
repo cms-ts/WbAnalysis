@@ -966,24 +966,33 @@ if (irun==99) {            // irun==99 => pur
 
 	c1->cd();
 
-	if (title_b=="w_first_jet_pt_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp_{T} [pb]");
-	  h_M->GetXaxis()->SetTitle("leading jet p_{T} [GeV/c]");
-	} else if (title_b=="w_first_jet_eta_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta [pb]");
-	  h_M->GetXaxis()->SetTitle("leading jet #eta");
-	} else if (title_b=="w_first_bjet_pt") {
+	if (title_b=="w_first_jet_pt_bb") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
 	  h_M->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
-	} else if (title_b=="w_first_bjet_eta") {
+	} else if (title_b=="w_first_jet_eta_bb") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
-	  h_M->GetXaxis()->SetTitle("leading b-jet #eta");
-	} else if (title_b=="w_Ht_b") {
+	  h_M->GetXaxis()->SetTitle("leading b-jet #eta [rad]");
+	} else if (title_b=="w_first_jet_mass_bb") {
+	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dm^{b} [pb]");
+	  h_M->GetXaxis()->SetTitle("leading b-jet mass [GeV/c^{2}]");
+	} else if (title_b=="w_second_jet_pt_bb") {
+	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dp^{b}_{T} [pb]");
+	  h_M->GetXaxis()->SetTitle("sub-leading b-jet p_{T} [GeV/c]");
+	} else if (title_b=="w_second_jet_eta_bb") {
+	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#eta^{b} [pb]");
+	  h_M->GetXaxis()->SetTitle("sub-leading b-jet #eta [rad]");
+	} else if (title_b=="w_second_jet_mass_bb") {
+	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dm^{b} [pb]");
+	  h_M->GetXaxis()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
+	} else if (title_b=="w_Ht_bb") {
 	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / dH_{T} [pb]");
 	  h_M->GetXaxis()->SetTitle("H_{T} [GeV/c]");
-	} else if (title_b=="w_delta_phi_ee_b" || title_b=="w_delta_phi_mm_b") {
-	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#Delta#phi_{bZ} [pb]");
-	  h_M->GetXaxis()->SetTitle("#Delta#phi(bZ) [rad]");
+	} else if (title_b=="w_delta_wenu_bb"||title_b=="w_delta_wmnu_bb") {
+	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#Delta#phi_{lb} [pb]");
+	  h_M->GetXaxis()->SetTitle("#Delta#phi (lepton b-jet) [rad]");
+	} else if (title_b=="w_deltaR_wenu_bb"||title_b=="w_deltaR_wmnu_bb") {
+	  h_mc1b_b->GetYaxis()->SetTitle("d#sigma / d#DeltaR_{lb} [pb]");
+	  h_M->GetXaxis()->SetTitle("#DeltaR (lepton b-jet) [rad]");
 	}
 
 	if (plot) {

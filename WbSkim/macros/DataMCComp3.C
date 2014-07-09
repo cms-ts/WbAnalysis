@@ -150,36 +150,25 @@ int itype = 0; // e_W and e_Wb = e_W_1 * e_W_b
 	h_reco->SetTitle("");
 	h_reco->SetStats(0);
 
-	if (title=="w_first_jet_pt") {
-	  h_reco->GetXaxis()->SetTitle("leading jet p_{T} [GeV/c]");
-	} else if (title=="w_first_jet_eta") {
-	  h_reco->GetXaxis()->SetTitle("leading jet #eta");
-	} else if (title=="w_pt_Z_ee"||title=="w_pt_Z_mm") {
-	  h_reco->GetXaxis()->SetTitle("Z boson p_{T} [GeV/c]");
-	} else if (title=="w_delta_phi_ee"||title=="w_delta_phi_mm") {
-	  h_reco->GetXaxis()->SetTitle("#Delta #phi(Zj) [rad]");
-	} else if (title=="w_Ht") {
+        if (title=="w_first_jet_pt_bb") {
+          h_reco->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
+        } else if (title=="w_first_jet_eta_bb") {
+          h_reco->GetXaxis()->SetTitle("leading b-jet #eta [rad]");
+        } else if (title=="w_first_jet_mass_bb") {
+          h_reco->GetXaxis()->SetTitle("leading b-jet mass [GeV/c^{2}]");
+        } else if (title=="w_second_jet_pt_bb") {
+          h_reco->GetXaxis()->SetTitle("sub-leading b-jet p_{T} [GeV/c]");
+        } else if (title=="w_second_jet_eta_bb") {
+          h_reco->GetXaxis()->SetTitle("sub-leading b-jet #eta [rad]");
+        } else if (title=="w_second_jet_mass_bb") {
+          h_reco->GetXaxis()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
+        } else if (title=="w_Ht_bb") {
           h_reco->GetXaxis()->SetTitle("H_{T} [GeV/c]");
-	}
-	if (title=="w_first_bjet_pt") {
-	  h_reco->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
-	  h_reco->GetXaxis()->SetRangeUser(0, 200);
-	  h_reco->GetYaxis()->SetRangeUser(0, 1);
-	} else if (title=="w_first_bjet_eta") {
-	  h_reco->GetYaxis()->SetRangeUser(0, 1);
-	  h_reco->GetXaxis()->SetTitle("leading b-jet #eta");
-	} else if (title=="w_pt_Z_ee_b"||title=="w_pt_Z_mm_b") {
-	  h_reco->GetYaxis()->SetRangeUser(0, 1);
-	  h_reco->GetXaxis()->SetRangeUser(0, 200);
-	  h_reco->GetXaxis()->SetTitle("Z boson p_{T} [GeV/c]");
-	} else if (title=="w_delta_phi_ee_b"||title=="w_delta_phi_mm_b") {
-	  h_reco->GetYaxis()->SetRangeUser(0, 1);
-	  h_reco->GetXaxis()->SetTitle("#Delta #phi(Zb) [rad]");
-	} else if (title=="w_Ht_b") {
-	  h_reco->GetYaxis()->SetRangeUser(0, 1);
-	  h_reco->GetXaxis()->SetRangeUser(0, 200);
-          h_reco->GetXaxis()->SetTitle("H_{T} [GeV/c]");
-	}
+        } else if (title=="w_delta_wenu_bb"||title=="w_delta_wmnu_bb") {
+          h_reco->GetXaxis()->SetTitle("#Delta#phi (lepton b-jet) [rad]");
+        } else if (title=="w_deltaR_wenu_bb"||title=="w_deltaR_wmnu_bb") {
+          h_reco->GetXaxis()->SetTitle("#DeltaR (lepton b-jet) [rad]");
+        }
 
 	h_reco->GetXaxis()->SetTitleOffset(0.95);
 	h_reco->GetXaxis()->SetTitleSize(0.04);

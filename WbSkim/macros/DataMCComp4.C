@@ -499,27 +499,44 @@ if (irun==99) {            // irun==99 => pur
 
 	if (imode<=3) tmp = h_mc2_unfold;
 	if (imode>=4) tmp = h_data_unfold;
-	if (title=="w_first_jet_pt") {
-	  tmp->GetXaxis()->SetTitle("leading jet p_{T} [GeV/c]");
-	} else if (title=="w_first_jet_eta") {
-	  tmp->GetXaxis()->SetTitle("leading jet #eta");
-	} else if (title=="w_pt_Z_ee"||title=="w_pt_Z_mm") {
-	  tmp->GetXaxis()->SetTitle("Z boson p_{T} [GeV/c]");
-	} else if (title=="w_delta_phi_ee"||title=="w_delta_phi_mm") {
-	  tmp->GetXaxis()->SetTitle("#Delta #phi(jZ) [rad]");
-	} else if (title=="w_Ht") {
-          tmp->GetXaxis()->SetTitle("H_{T} [GeV/c]");
-	}
-	if (title=="w_first_bjet_pt") {
+
+	if (title=="w_first_jet_pt_b") {
 	  tmp->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
-	} else if (title=="w_first_bjet_eta") {
-	  tmp->GetXaxis()->SetTitle("leading b-jet #eta");
-	} else if (title=="w_pt_Z_ee_b"||title=="w_pt_Z_mm_b") {
-	  tmp->GetXaxis()->SetTitle("Z boson p_{T} [GeV/c]");
-	} else if (title=="w_delta_phi_ee_b"||title=="w_delta_phi_mm_b") {
-	  tmp->GetXaxis()->SetTitle("#Delta #phi(bZ) [rad]");
+	} else if (title=="w_first_jet_eta_b") {
+	  tmp->GetXaxis()->SetTitle("leading b-jet #eta [rad]");
+	} else if (title=="w_first_jet_mass_b") {
+	  tmp->GetXaxis()->SetTitle("leading b-jet mass [GeV/c^{2}]");
+	} else if (title=="w_second_jet_pt_b") {
+	  tmp->GetXaxis()->SetTitle("sub-leading b-jet p_{T} [GeV/c]");
+	} else if (title=="w_second_jet_eta_b") {
+	  tmp->GetXaxis()->SetTitle("sub-leading b-jet #eta [rad]");
+	} else if (title=="w_second_jet_mass_b") {
+	  tmp->GetXaxis()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
 	} else if (title=="w_Ht_b") {
           tmp->GetXaxis()->SetTitle("H_{T} [GeV/c]");
+	} else if (title=="w_delta_wenu_b"||title=="w_delta_wmnu_b") {
+	  tmp->GetXaxis()->SetTitle("#Delta#phi (lepton b-jet) [rad]");
+	} else if (title=="w_deltaR_wenu_b"||title=="w_deltaR_wmnu_b") {
+	  tmp->GetXaxis()->SetTitle("#DeltaR (lepton b-jet) [rad]");
+	}
+	if (title=="w_first_jet_pt_bb") {
+	  tmp->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
+	} else if (title=="w_first_jet_eta_bb") {
+	  tmp->GetXaxis()->SetTitle("leading b-jet #eta [rad]");
+	} else if (title=="w_first_jet_mass_bb") {
+	  tmp->GetXaxis()->SetTitle("leading b-jet mass [GeV/c^{2}]");
+	} else if (title=="w_second_jet_pt_bb") {
+	  tmp->GetXaxis()->SetTitle("sub-leading b-jet p_{T} [GeV/c]");
+	} else if (title=="w_second_jet_eta_bb") {
+	  tmp->GetXaxis()->SetTitle("sub-leading b-jet #eta [rad]");
+	} else if (title=="w_second_jet_mass_bb") {
+	  tmp->GetXaxis()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
+	} else if (title=="w_Ht_bb") {
+          tmp->GetXaxis()->SetTitle("H_{T} [GeV/c]");
+	} else if (title=="w_delta_wenu_bb"||title=="w_delta_wmnu_bb") {
+	  tmp->GetXaxis()->SetTitle("#Delta#phi (lepton b-jet) [rad]");
+	} else if (title=="w_deltaR_wenu_bb"||title=="w_deltaR_wmnu_bb") {
+	  tmp->GetXaxis()->SetTitle("#DeltaR (lepton b-jet) [rad]");
 	}
 
         TLegend* leg1 = new TLegend(0.42, 0.580, 0.68, 0.88);
