@@ -948,26 +948,72 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_ratio->GetXaxis ()->SetTitle("jet p_{T} [GeV/c]");
 	} else if (title=="w_secondvtx_N") {
 	  h_ratio->GetXaxis ()->SetTitle("CSV discriminator");
-	} else if (title=="w_recoVTX") {
+	} else if (title=="h_recoVTX"||title=="w_recoVTX") {
 	  h_ratio->GetXaxis ()->SetTitle("Number of offline vertices");
 	} else if (title=="w_muon_pt") {
 	  h_ratio->GetXaxis ()->SetTitle("muon p_{T} [GeV/c]");
-	} else if (title=="w_MET") {
+	} else if (title=="w_bjetmultiplicity") {
+	  h_ratio->GetXaxis ()->SetTitle("b-jet multiplicity");
+	} else if (title=="w_first_bjet_pt") {
+	  h_ratio->GetXaxis ()->SetTitle("leading b-jet p_{T}");
+	} else if (title=="w_first_bjet_eta") {
+	  h_ratio->GetXaxis ()->SetTitle("leading b-jet #eta [rad]");
+	} else if (title=="w_second_bjet_pt") {
+	  h_ratio->GetXaxis ()->SetTitle("leading b-jet p_{T}");
+	} else if (title=="w_second_bjet_eta") {
+	  h_ratio->GetXaxis ()->SetTitle("leading b-jet #eta [rad]");
+	} else if (title=="w_second_bjet_mass") {
+	  h_ratio->GetXaxis ()->SetTitle("leading b-jet mass [GeV/c^{2}");
+	}
+	if (title=="w_MET") {
 	  h_ratio->GetXaxis ()->SetTitle("MET [GeV/c]");
 	} else if (title=="w_MET_sign") {
 	  h_ratio->GetXaxis ()->SetTitle("MET Significance [GeV/c]");
 	} else if (title=="w_Ht") {
 	  h_ratio->GetXaxis ()->SetTitle("H_{T} [GeV/c]");
-	} else if (title=="w_mass_Zj_ee_b"||title=="w_mass_Zj_mm_b") {
-	  h_ratio->GetXaxis ()->SetTitle("Zb invariant mass [GeV/c^{2}]");
-	} else if (title=="w_mass_wenu_blepton_b"||title=="w_mass_wmnu_blepton_b") {
+	} else if (title=="w_mass_wenu_blepton"||title=="w_mass_wmnu_blepton") {
 	  h_ratio->GetXaxis ()->SetTitle("lepton b-jet invariant mass [GeV/c^{2}]");
-	} else if (title=="w_mass_wenu_blepton_bb"||title=="w_mass_wmnu_blepton_bb") {
-	  h_ratio->GetXaxis ()->SetTitle("lepton b-jet invariant mass [GeV/c^{2}]");
+	} else if (title=="w_pt_W_ee"||title=="w_pt_W_mm") {
+	  h_ratio->GetXaxis ()->SetTitle("W boson p_{T} [GeV/c]");
 	} else if (title=="w_pt_Z_ee"||title=="w_pt_Z_mm") {
 	  h_ratio->GetXaxis ()->SetTitle("Z boson p_{T} [GeV/c]");
-	} else if (title=="w_bjetmultiplicity") {
-	  h_ratio->GetXaxis ()->SetTitle("b-jet multiplicity");
+	} else if (title=="w_mass_ee"||title=="w_mm_mass") {
+	  h_ratio->GetXaxis ()->SetTitle("Z mass [GeV/c^{2}]");
+	} else if (title=="w_first_jet_pt") {
+	  h_ratio->GetXaxis ()->SetTitle("leading jet p_{T} [GeV/c]");
+	} else if (title=="w_first_jet_eta") {
+	  h_ratio->GetXaxis ()->SetTitle("leading jet #eta");
+	} else if (title=="w_first_jet_mass") {
+	  h_ratio->GetXaxis ()->SetTitle("leading jet mass [GeV/c^{2}]");
+	} else if (title=="w_second_jet_pt") {
+	  h_ratio->GetXaxis ()->SetTitle("subleading jet p_{T} [GeV/c]");
+	} else if (title=="w_second_jet_eta") {
+	  h_ratio->GetXaxis ()->SetTitle("subleading jet #eta");
+	} else if (title=="w_second_jet_mass") {
+	  h_ratio->GetXaxis ()->SetTitle("sub-leading jet mass [GeV/c^{2}]");
+	} else if (title=="w_delta_wenu"||title=="w_delta_wenu") {
+	  h_ratio->GetXaxis ()->SetTitle("#Delta#phi(lj) [rad]");
+	} else if (title=="w_deltaR_wenu"||title=="w_deltaR_wenu") {
+	  h_ratio->GetXaxis ()->SetTitle("#DeltaR(lj) [rad]");
+	} else if (title=="SVTX_mass_jet"||title=="SVTX_mass_trk"||title=="SVTX_mass") {
+	  h_ratio->GetXaxis ()->SetTitle("SV mass [GeV/c^{2}]");
+	} else if (title=="w_BJP"||title=="w_JBP") {
+	  h_ratio->GetXaxis ()->SetTitle("JP Discriminator");
+	}
+	if (title=="w_MET_b") {
+	  h_ratio->GetXaxis ()->SetTitle("MET [GeV/c]");
+	} else if (title=="w_MET_sign_b") {
+	  h_ratio->GetXaxis ()->SetTitle("MET Significance [GeV/c]");
+	} else if (title=="w_Ht_b") {
+	  h_ratio->GetXaxis ()->SetTitle("H_{T} [GeV/c]");
+	} else if (title=="w_mass_wenu_blepton_b"||title=="w_mass_wmnu_blepton_b") {
+	  h_ratio->GetXaxis ()->SetTitle("lepton b-jet invariant mass [GeV/c^{2}]");
+	} else if (title=="w_pt_W_ee_b"||title=="w_pt_W_mm_b") {
+	  h_ratio->GetXaxis ()->SetTitle("W boson p_{T} [GeV/c]");
+	} else if (title=="w_pt_Z_ee_b"||title=="w_pt_Z_mm_b") {
+	  h_ratio->GetXaxis ()->SetTitle("Z boson p_{T} [GeV/c]");
+	} else if (title=="w_mass_ee_b"||title=="w_mm_mass_b") {
+	  h_ratio->GetXaxis ()->SetTitle("Z mass [GeV/c^{2}]");
 	} else if (title=="w_first_jet_pt_b") {
 	  h_ratio->GetXaxis ()->SetTitle("leading b-jet p_{T} [GeV/c]");
 	} else if (title=="w_first_jet_eta_b") {
@@ -980,6 +1026,25 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_ratio->GetXaxis ()->SetTitle("subleading b-jet #eta");
 	} else if (title=="w_second_jet_mass_b") {
 	  h_ratio->GetXaxis ()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
+	} else if (title=="w_delta_wenu_b"||title=="w_delta_wenu_b") {
+	  h_ratio->GetXaxis ()->SetTitle("#Delta#phi(lb) [rad]");
+	} else if (title=="w_deltaR_wenu_b"||title=="w_deltaR_wenu_b") {
+	  h_ratio->GetXaxis ()->SetTitle("#DeltaR(lb) [rad]");
+	} else if (title=="SVTX_mass_jet_b"||title=="SVTX_mass_trk_b"||title=="SVTX_mass_b") {
+	  h_ratio->GetXaxis ()->SetTitle("SV mass [GeV/c^{2}]");
+	} else if (title=="w_BJP_b"||title=="w_JBP_b") {
+	  h_ratio->GetXaxis ()->SetTitle("JP Discriminator");
+	}
+	if (title=="w_MET_bb") {
+	  h_ratio->GetXaxis ()->SetTitle("MET [GeV/c]");
+	} else if (title=="w_MET_sign_bb") {
+	  h_ratio->GetXaxis ()->SetTitle("MET Significance [GeV/c]");
+	} else if (title=="w_Ht_bb") {
+	  h_ratio->GetXaxis ()->SetTitle("H_{T} [GeV/c]");
+	} else if (title=="w_mass_wenu_blepton_bb"||title=="w_mass_wmnu_blepton_bb") {
+	  h_ratio->GetXaxis ()->SetTitle("lepton b-jet invariant mass [GeV/c^{2}]");
+	} else if (title=="w_pt_W_ee_bb"||title=="w_pt_W_mm_bb") {
+	  h_ratio->GetXaxis ()->SetTitle("W boson p_{T} [GeV/c]");
 	} else if (title=="w_first_jet_pt_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("leading b-jet p_{T} [GeV/c]");
 	} else if (title=="w_first_jet_eta_bb") {
@@ -992,31 +1057,16 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_ratio->GetXaxis ()->SetTitle("subleading b-jet #eta");
 	} else if (title=="w_second_jet_mass_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
-	} else if (title=="w_mass_ee_b"||title=="w_mm_mass_b") {
-	  h_ratio->GetXaxis ()->SetTitle("Z mass + (#geq 1 b-jet) [GeV/c^{2}]");
-	} else if (title=="w_pt_Z_ee_b"||title=="w_pt_Z_mm_b") {
-	  h_ratio->GetXaxis ()->SetTitle("Z boson p_{T} [GeV/c]");
-	} else if (title=="w_delta_phi_ee"||title=="w_delta_phi_mm") {
-	  h_ratio->GetXaxis ()->SetTitle("#Delta#phi(jZ) [rad]");
-	} else if (title=="w_delta_phi_ee_b"||title=="w_delta_phi_mm_b") {
-	  h_ratio->GetXaxis ()->SetTitle("#Delta#phi(bZ) [rad]");
-	} else if (title=="w_delta_wenu_b"||title=="w_delta_wenu_b") {
-	  h_ratio->GetXaxis ()->SetTitle("#Delta#phi(lb) [rad]");
-	} else if (title=="w_deltaR_wenu_b"||title=="w_deltaR_wenu_b") {
-	  h_ratio->GetXaxis ()->SetTitle("#DeltaR(lb) [rad]");
 	} else if (title=="w_delta_wenu_bb"||title=="w_delta_wenu_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("#Delta#phi(lb) [rad]");
 	} else if (title=="w_deltaR_wenu_bb"||title=="w_deltaR_wenu_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("#DeltaR(lb) [rad]");
-	} else if (title=="SVTX_mass_jet"||title=="SVTX_mass_trk"||title=="SVTX_mass") {
+	} else if (title=="SVTX_mass_jet_bb"||title=="SVTX_mass_trk_bb"||title=="SVTX_mass_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("SV mass [GeV/c^{2}]");
-	} else if (title=="w_BJP"||title=="w_JBP") {
+	} else if (title=="w_BJP_bb"||title=="w_JBP_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("JP Discriminator");
-	} else if (title=="w_first_bjet_pt") {
-	  h_ratio->GetXaxis ()->SetTitle("leading b-jet p_{T}");
-	} else if (title=="w_first_bjet_eta") {
-	  h_ratio->GetXaxis ()->SetTitle("leading b-jet #eta");
 	}
+
 	h_ratio->GetXaxis()->SetTitleOffset(0.9);
  	h_ratio->GetXaxis()->SetTitleSize(0.1);
 	h_ratio->GetXaxis()->SetLabelFont(42);
