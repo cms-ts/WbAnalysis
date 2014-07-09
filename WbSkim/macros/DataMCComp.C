@@ -973,7 +973,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_ratio->GetXaxis ()->SetTitle("H_{T} [GeV/c]");
 	} else if (title=="w_mass_wenu_blepton"||title=="w_mass_wmnu_blepton") {
 	  h_ratio->GetXaxis ()->SetTitle("lepton b-jet invariant mass [GeV/c^{2}]");
-	} else if (title=="w_pt_W_ee"||title=="w_pt_W_mm") {
+	} else if (title=="w_pt_W_wenu"||title=="w_pt_W_wmnu") {
 	  h_ratio->GetXaxis ()->SetTitle("W boson p_{T} [GeV/c]");
 	} else if (title=="w_pt_Z_ee"||title=="w_pt_Z_mm") {
 	  h_ratio->GetXaxis ()->SetTitle("Z boson p_{T} [GeV/c]");
@@ -1008,7 +1008,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_ratio->GetXaxis ()->SetTitle("H_{T} [GeV/c]");
 	} else if (title=="w_mass_wenu_blepton_b"||title=="w_mass_wmnu_blepton_b") {
 	  h_ratio->GetXaxis ()->SetTitle("lepton b-jet invariant mass [GeV/c^{2}]");
-	} else if (title=="w_pt_W_ee_b"||title=="w_pt_W_mm_b") {
+	} else if (title=="w_pt_W_wenu_b"||title=="w_pt_W_wmnu_b") {
 	  h_ratio->GetXaxis ()->SetTitle("W boson p_{T} [GeV/c]");
 	} else if (title=="w_pt_Z_ee_b"||title=="w_pt_Z_mm_b") {
 	  h_ratio->GetXaxis ()->SetTitle("Z boson p_{T} [GeV/c]");
@@ -1043,7 +1043,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_ratio->GetXaxis ()->SetTitle("H_{T} [GeV/c]");
 	} else if (title=="w_mass_wenu_blepton_bb"||title=="w_mass_wmnu_blepton_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("lepton b-jet invariant mass [GeV/c^{2}]");
-	} else if (title=="w_pt_W_ee_bb"||title=="w_pt_W_mm_bb") {
+	} else if (title=="w_pt_W_wenu_bb"||title=="w_pt_W_wmnu_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("W boson p_{T} [GeV/c]");
 	} else if (title=="w_first_jet_pt_bb") {
 	  h_ratio->GetXaxis ()->SetTitle("leading b-jet p_{T} [GeV/c]");
