@@ -746,7 +746,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   // computing W pt:
   double wmnu_pt = 0.;
   double wmnu_eta = 0.;
-  if (!vect_ele.empty()) {
+  if (!vect_muon.empty()) {
     TLorentzVector w_mnu(vect_muon[0].Px(),vect_muon[0].Py(),vect_muon[0].Pz(),vect_muon[0].E());
     w_mnu += met;
     wmnu_pt = w_mnu.Pt();
