@@ -150,6 +150,25 @@ int itype = 0; // e_W and e_Wb = e_W_1 * e_W_b
 	h_reco->SetTitle("");
 	h_reco->SetStats(0);
 
+        if (title=="w_first_jet_pt_b") {
+          h_reco->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
+        } else if (title=="w_first_jet_eta_b") {
+          h_reco->GetXaxis()->SetTitle("leading b-jet #eta [rad]");
+        } else if (title=="w_first_jet_mass_b") {
+          h_reco->GetXaxis()->SetTitle("leading b-jet mass [GeV/c^{2}]");
+        } else if (title=="w_second_jet_pt_b") {
+          h_reco->GetXaxis()->SetTitle("sub-leading b-jet p_{T} [GeV/c]");
+        } else if (title=="w_second_jet_eta_b") {
+          h_reco->GetXaxis()->SetTitle("sub-leading b-jet #eta [rad]");
+        } else if (title=="w_second_jet_mass_b") {
+          h_reco->GetXaxis()->SetTitle("sub-leading b-jet mass [GeV/c^{2}]");
+        } else if (title=="w_Ht_b") {
+          h_reco->GetXaxis()->SetTitle("H_{T} [GeV/c]");
+        } else if (title=="w_delta_wenu_b"||title=="w_delta_wmnu_b") {
+          h_reco->GetXaxis()->SetTitle("#Delta#phi (lepton b-jet) [rad]");
+        } else if (title=="w_deltaR_wenu_b"||title=="w_deltaR_wmnu_b") {
+          h_reco->GetXaxis()->SetTitle("#DeltaR (lepton b-jet) [rad]");
+        }
         if (title=="w_first_jet_pt_bb") {
           h_reco->GetXaxis()->SetTitle("leading b-jet p_{T} [GeV/c]");
         } else if (title=="w_first_jet_eta_bb") {
