@@ -755,8 +755,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   // +++++++++ Decisions:
 
-  wenu_event = (lepton_ == "electron") && index_goodele==1 && index_ele2==0 && index_goodmu==0 && index_mu2==0;
-  wmnu_event = (lepton_ == "muon") && index_goodmu==1 && index_mu2==0 && index_goodele==0 && index_ele2==0;
+  //  wenu_event = (lepton_ == "electron") && index_goodele==1 && index_ele2==0 && index_goodmu==0 && index_mu2==0;
+  //  wmnu_event = (lepton_ == "muon") && index_goodmu==1 && index_mu2==0 && index_goodele==0 && index_ele2==0;
+  wenu_event = (lepton_ == "electron") && index_goodele==1;
+  wmnu_event = (lepton_ == "muon") && index_goodmu==1;
 
   if (wenu_event) {
     lepton1_eta = ele_dres.p_part.Eta();
@@ -974,8 +976,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     }
   }
 
-  wenu_event = wenu_event && !ist && Nj==2 && Nb>0 && Nj3==0;
-  wmnu_event = wmnu_event && !ist && Nj==2 && Nb>0 && Nj3==0;
+  //  wenu_event = wenu_event && !ist && Nj==2 && Nb>0 && Nj3==0;
+  //  wmnu_event = wmnu_event && !ist && Nj==2 && Nb>0 && Nj3==0;
+  wenu_event = wenu_event && !ist && Nj==2 && Nb>0;
+  wmnu_event = wmnu_event && !ist && Nj==2 && Nb>0;
 
   /////////////////////////////////////////////////
   mt_cut_wenu = true; // N.B.: Disable mt cut!!! //
