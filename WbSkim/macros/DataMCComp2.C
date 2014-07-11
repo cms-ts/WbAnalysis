@@ -1051,6 +1051,10 @@ if (irun==99) {            // irun==99 => pur
 	    out << h_mc1b->Integral(0, h_mc1b->GetNbinsX()+1, "width") << endl;
 	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
 	    out << h_mc1b_b->Integral(0, h_mc1b_b->GetNbinsX()+1, "width") << endl;
+	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
+	    out << h_mcg->Integral(0, h_mcg->GetNbinsX()+1, "width") << endl;
+	    out << std::fixed << std::setw( 11 ) << std::setprecision( 4 );
+	    out << h_mcg_b->Integral(0, h_mcg_b->GetNbinsX()+1, "width") << endl;
 	    out.close();
 	  }
 	}
