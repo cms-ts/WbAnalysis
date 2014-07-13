@@ -277,6 +277,25 @@ string subdir="0";
 	  h_mc1b_b->Divide(h_b);
 	}
 
+	double e_W=1.0;
+	double ee_W=0.0;
+	double e_Wb=1.0;
+	double ee_Wb=0.0;
+
+	ifstream in4, in5;
+	if (ilepton==1) {
+	  in4.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
+	  in5.open((path + "/electrons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
+	}
+	if (ilepton==2) {
+	  in4.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data->GetName()) + "_efficiency.dat").c_str());
+	  in5.open((path + "/muons/" + version + "/" + subdir + "/efficiency/" + string(h_data_b->GetName()) + "_efficiency.dat").c_str());
+	}
+	in4 >> e_W >> ee_W;
+	in5 >> e_Wb >> ee_Wb;
+	in4.close();
+	in5.close();
+
 	h_data = fixrange(h_data);
 	h_data_b = fixrange(h_data_b);
 	for (int i=0;i<NMAX;i++) {
@@ -591,18 +610,31 @@ string subdir="0";
 	TH1F* stat_b_unfold = (TH1F*)h_data_b->Clone();
 	for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Sqrt(TMath::Max(0.,TMath::Power(h_data_scan[7]->GetBinError(i),2)-TMath::Power(h_data_scan[0]->GetBinError(i),2)));
+	  if (unfold) {
+	    val = TMath::Sqrt(TMath::Max(0.,TMath::Power(h_data_scan[7]->GetBinError(i),2)-TMath::Power(h_data_scan[0]->GetBinError(i),2)));
+	  } else {
+	    val = (ee_W/e_W) * h_data_scan[0]->GetBinContent(i);
+	  }
 	  stat_unfold->SetBinError(i, val);
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  val = TMath::Sqrt(TMath::Max(0.,TMath::Power(h_data_b_scan[7]->GetBinError(i),2)-TMath::Power(h_data_b_scan[0]->GetBinError(i),2)));
+	  if (unfold) {
+	    val = TMath::Sqrt(TMath::Max(0.,TMath::Power(h_data_b_scan[7]->GetBinError(i),2)-TMath::Power(h_data_b_scan[0]->GetBinError(i),2)));
+	  } else {
+	    val = (ee_Wb/e_Wb) * h_data_b_scan[0]->GetBinContent(i);
+	  }
 	  stat_b_unfold->SetBinError(i, val);
 	}
 	double xsec_stat_unfold = 0.0;
 	double xsec_stat_b_unfold = 0.0;
-	xsec_stat_unfold = TMath::Abs(h_data_scan[7]->Integral(0,h_data_scan[7]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	xsec_stat_b_unfold = TMath::Abs(h_data_b_scan[7]->Integral(0,h_data_b_scan[7]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	if (unfold) {
+	  xsec_stat_unfold = TMath::Abs(h_data_scan[7]->Integral(0,h_data_scan[7]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
+	  xsec_stat_b_unfold = TMath::Abs(h_data_b_scan[7]->Integral(0,h_data_b_scan[7]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	} else {
+	  xsec_stat_unfold = (ee_W/e_W) * h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width");
+	  xsec_stat_b_unfold = (ee_Wb/e_Wb) * h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width");
+	}
 
 	TH1F* syst_unfold = (TH1F*)h_data->Clone();
 	TH1F* syst_b_unfold = (TH1F*)h_data_b->Clone();
@@ -710,41 +742,41 @@ string subdir="0";
 
 	float sum1, sum2, sum3, sum4;
 	float sum1_b, sum2_b, sum3_b, sum4_b;
-	ifstream in4, in5, in6, in7;
+	ifstream in6, in7, in8, in9;
 	if (ilepton==1) {
 	  if (unfold) {
-	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
-	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
-	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
+	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
+	    in8.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in9.open((path + "/electrons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
 	  } else {
-	    in4.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in5.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in6.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in7.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in8.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in9.open((path + "/electrons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	  }
 	}
 	if (ilepton==2) {
 	  if (unfold) {
-	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
-	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
-	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
+	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_first_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
+	    in8.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_pt_bb" + "_xsecs_unfolding.dat").c_str());
+	    in9.open((path + "/muons/" + version + "/" + subdir + "/xsecs_unfolding/" + "w_second_jet_eta_bb" + "_xsecs_unfolding.dat").c_str());
 	  } else {
-	    in4.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in5.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
-	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
-	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in6.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in7.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_first_jet_eta_bb" + "_xsecs.dat").c_str());
+	    in8.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_pt_bb" + "_xsecs.dat").c_str());
+	    in9.open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + "w_second_jet_eta_bb" + "_xsecs.dat").c_str());
 	  }
 	}
-	in4 >> sum1; in4 >> sum1_b;
-	in5 >> sum2; in5 >> sum2_b;
-	in6 >> sum3; in6 >> sum3_b;
-	in7 >> sum4; in7 >> sum4_b;
-	in4.close();
-	in5.close();
+	in6 >> sum1; in6 >> sum1_b;
+	in7 >> sum2; in7 >> sum2_b;
+	in8 >> sum3; in8 >> sum3_b;
+	in9 >> sum4; in9 >> sum4_b;
 	in6.close();
 	in7.close();
+	in8.close();
+	in9.close();
 
 	float tot = (sum1+sum2+sum3+sum4)/4.;
 	float tot_b = (sum1_b+sum2_b+sum3_b+sum4_b)/4.;
