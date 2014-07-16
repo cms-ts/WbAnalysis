@@ -51,6 +51,9 @@ int useFitResults = 1; // use fit results for c_t
 //int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
 int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
 
+//int useWbb=0; // do not use the special Wbb MC sample
+int useWbb=1; // use the special Wbb MC sample
+
 string subdir="0";
 string postfix="";
 if (irun==1) {             // irun==1 => JEC Up
@@ -357,6 +360,34 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	TH1F* h_mc1b = (TH1F*)gDirectory->Get(("b"+title.substr(1)).c_str());
 	TH1F* h_mc1c = (TH1F*)gDirectory->Get(("c"+title.substr(1)).c_str());
 	TH1F* h_mc1t = (TH1F*)gDirectory->Get(("t"+title.substr(1)).c_str());
+
+	if (useWbb) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
+	    if (h_mc1b) {
+	      h_mc1->Add(h_mc1b, -1.);
+	      for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
+	        float e = TMath::Power(h_mc1->GetBinError(i),2);
+	        e = e - TMath::Power(h_mc1b->GetBinError(i),2);
+	        h_mc1->SetBinError(i, TMath::Sqrt(e));
+	      }
+	      float xval = h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1);
+	      mc1 = TFile::Open((path + "/" + version + "/" + "Wbb.root").c_str());
+	      if (ilepton==1) mc1->cd(("demoEle"+postfix).c_str());
+	      if (ilepton==2) mc1->cd(("demoMuo"+postfix).c_str());
+	      if (ilepton==3) mc1->cd(("demoEleQCD"+postfix).c_str());
+	      if (ilepton==4) mc1->cd(("demoMuoQCD"+postfix).c_str());
+	      if (ilepton==5) mc1->cd(("demoEleFWD"+postfix).c_str());
+	      if (ilepton==6) mc1->cd(("demoMuoFWD"+postfix).c_str());
+	      if (ilepton==7) mc1->cd(("demoEleTOP"+postfix).c_str());
+	      if (ilepton==8) mc1->cd(("demoMuoTOP"+postfix).c_str());
+	      h_mc1b = (TH1F*)gDirectory->Get(("b"+title.substr(1)).c_str());
+	      h_mc1b->Sumw2();
+	      xval = xval / h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1);
+	      h_mc1b->Scale(xval);
+	      h_mc1->Add(h_mc1b, +1.);
+	    }
+	  }
+	}
 
 	if (ilepton==1) mc2->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2) mc2->cd(("demoMuo"+postfix).c_str());
