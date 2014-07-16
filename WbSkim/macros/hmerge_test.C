@@ -35,10 +35,10 @@ h5->Sumw2();
 h0x->Scale(Xsec_wj/Ngen_wj);
 h0->Scale(Xsec_wj/Ngen_wj);
 
-h1->Scale((Xsec_w1j/Ngen_w1j)*(Xsec_wj/30400.));
-h2->Scale((Xsec_w2j/Ngen_w2j)*(Xsec_wj/30400.));
-h3->Scale((Xsec_w3j/Ngen_w3j)*(Xsec_wj/30400.));
-h4->Scale((Xsec_w4j/Ngen_w4j)*(Xsec_wj/30400.));
+h1->Scale((Xsec_w1j/Ngen_w1j)*(Xsec_wj/36703.2));
+h2->Scale((Xsec_w2j/Ngen_w2j)*(Xsec_wj/36703.2));
+h3->Scale((Xsec_w3j/Ngen_w3j)*(Xsec_wj/36703.2));
+h4->Scale((Xsec_w4j/Ngen_w4j)*(Xsec_wj/36703.2));
 
 h5->Scale(Xsec_wj/Ngen_wj);
 
