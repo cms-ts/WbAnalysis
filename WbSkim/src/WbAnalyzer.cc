@@ -1197,10 +1197,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_dijet_eta =     fs->make < TH1F > ("b_dijet_eta",   "b_dijet_eta;Eta", 20, -2.4, 2.4);
   c_dijet_eta =     fs->make < TH1F > ("c_dijet_eta",   "c_dijet_eta;Eta", 20, -2.4, 2.4);
   t_dijet_eta =     fs->make < TH1F > ("t_dijet_eta",   "t_dijet_eta;Eta", 20, -2.4, 2.4);
-  w_dijet_mass =      fs->make < TH1F > ("w_dijet_mass",    "w_dijet_mass;Mass [GeV]", 18, 20., 56.);
-  b_dijet_mass =      fs->make < TH1F > ("b_dijet_mass",    "b_dijet_mass;Mass [GeV]", 18, 20., 56.);
-  c_dijet_mass =      fs->make < TH1F > ("c_dijet_mass",    "c_dijet_mass;Mass [GeV]", 18, 20., 56.);
-  t_dijet_mass =      fs->make < TH1F > ("t_dijet_mass",    "t_dijet_mass;Mass [GeV]", 18, 20., 56.);
+  w_dijet_mass =      fs->make < TH1F > ("w_dijet_mass",    "w_dijet_mass;Mass [GeV]", 20, 20., 260.);
+  b_dijet_mass =      fs->make < TH1F > ("b_dijet_mass",    "b_dijet_mass;Mass [GeV]", 20, 20., 260.);
+  c_dijet_mass =      fs->make < TH1F > ("c_dijet_mass",    "c_dijet_mass;Mass [GeV]", 20, 20., 260.);
+  t_dijet_mass =      fs->make < TH1F > ("t_dijet_mass",    "t_dijet_mass;Mass [GeV]", 20, 20., 260.);
 
   h_first_jet_pt_b =    fs->make < TH1F > ("h_first_jet_pt_b",   "h_first_jet_pt_b;P_t [GeV]", 20, 20., 220.);
   w_first_jet_pt_b =    fs->make < TH1F > ("w_first_jet_pt_b",   "w_first_jet_pt_b;P_t [GeV]", 20, 20., 220.);
@@ -1237,10 +1237,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_dijet_eta_b =   fs->make < TH1F > ("b_dijet_eta_b",  "b_dijet_eta_b;Eta", 20, -2.4, 2.4);
   c_dijet_eta_b =   fs->make < TH1F > ("c_dijet_eta_b",  "c_dijet_eta_b;Eta", 20, -2.4, 2.4);
   t_dijet_eta_b =   fs->make < TH1F > ("t_dijet_eta_b",  "t_dijet_eta_b;Eta", 20, -2.4, 2.4);
-  w_dijet_mass_b =      fs->make < TH1F > ("w_dijet_mass_b",    "w_dijet_mass_b;Mass [GeV]", 18, 20., 56.);
-  b_dijet_mass_b =      fs->make < TH1F > ("b_dijet_mass_b",    "b_dijet_mass_b;Mass [GeV]", 18, 20., 56.);
-  c_dijet_mass_b =      fs->make < TH1F > ("c_dijet_mass_b",    "c_dijet_mass_b;Mass [GeV]", 18, 20., 56.);
-  t_dijet_mass_b =      fs->make < TH1F > ("t_dijet_mass_b",    "t_dijet_mass_b;Mass [GeV]", 18, 20., 56.);
+  w_dijet_mass_b =      fs->make < TH1F > ("w_dijet_mass_b",    "w_dijet_mass_b;Mass [GeV]", 20, 20., 260.);
+  b_dijet_mass_b =      fs->make < TH1F > ("b_dijet_mass_b",    "b_dijet_mass_b;Mass [GeV]", 20, 20., 260.);
+  c_dijet_mass_b =      fs->make < TH1F > ("c_dijet_mass_b",    "c_dijet_mass_b;Mass [GeV]", 20, 20., 260.);
+  t_dijet_mass_b =      fs->make < TH1F > ("t_dijet_mass_b",    "t_dijet_mass_b;Mass [GeV]", 20, 20., 260.);
 
   h_first_jet_pt_bb =    fs->make < TH1F > ("h_first_jet_pt_bb",   "h_first_jet_pt_bb;P_t [GeV]", 20, 20., 220.);
   w_first_jet_pt_bb =    fs->make < TH1F > ("w_first_jet_pt_bb",   "w_first_jet_pt_bb;P_t [GeV]", 20, 20., 220.);
@@ -1277,10 +1277,10 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   b_dijet_eta_bb =   fs->make < TH1F > ("b_dijet_eta_bb",  "b_dijet_eta_bb;Eta", 20, -2.4, 2.4);
   c_dijet_eta_bb =   fs->make < TH1F > ("c_dijet_eta_bb",  "c_dijet_eta_bb;Eta", 20, -2.4, 2.4);
   t_dijet_eta_bb =   fs->make < TH1F > ("t_dijet_eta_bb",  "t_dijet_eta_bb;Eta", 20, -2.4, 2.4);
-  w_dijet_mass_bb =      fs->make < TH1F > ("w_dijet_mass_bb",    "w_dijet_mass_bb;Mass [GeV]", 18, 20., 56.);
-  b_dijet_mass_bb =      fs->make < TH1F > ("b_dijet_mass_bb",    "b_dijet_mass_bb;Mass [GeV]", 18, 20., 56.);
-  c_dijet_mass_bb =      fs->make < TH1F > ("c_dijet_mass_bb",    "c_dijet_mass_bb;Mass [GeV]", 18, 20., 56.);
-  t_dijet_mass_bb =      fs->make < TH1F > ("t_dijet_mass_bb",    "t_dijet_mass_bb;Mass [GeV]", 18, 20., 56.);
+  w_dijet_mass_bb =      fs->make < TH1F > ("w_dijet_mass_bb",    "w_dijet_mass_bb;Mass [GeV]", 20, 20., 260.);
+  b_dijet_mass_bb =      fs->make < TH1F > ("b_dijet_mass_bb",    "b_dijet_mass_bb;Mass [GeV]", 20, 20., 260.);
+  c_dijet_mass_bb =      fs->make < TH1F > ("c_dijet_mass_bb",    "c_dijet_mass_bb;Mass [GeV]", 20, 20., 260.);
+  t_dijet_mass_bb =      fs->make < TH1F > ("t_dijet_mass_bb",    "t_dijet_mass_bb;Mass [GeV]", 20, 20., 260.);
 
   w_bjetmultiplicity =  fs->make < TH1F > ("w_bjetmultiplicity", "w_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
   b_bjetmultiplicity =  fs->make < TH1F > ("b_bjetmultiplicity", "b_bjetmultiplicity;N_bjets", 5, 0.5, 5.5);
