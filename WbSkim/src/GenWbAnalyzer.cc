@@ -856,7 +856,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   vector<fastjet::PseudoJet> jets = sorted_by_pt(cseq.inclusive_jets(0.0));
   for (unsigned int i = 0; i < jets.size(); i++) {
 	double etaj = jets[i].eta();
-	double phij = jets[i].phi();
+	double phij = jets[i].phi_std();
 	double ptj = jets[i].perp();
 
 	vect_jets2.push_back(jets[i]);
@@ -912,7 +912,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
     if (Bjet_found) {
       double eta_bj = vect_jets[k].eta();
-      double phi_bj = vect_jets[k].phi();
+      double phi_bj = vect_jets[k].phi_std();
 
       double deltaEta_Bb = eta_bj - B_eta; 
       double deltaPhi_Bb = fabs(phi_bj - B_phi);
@@ -947,7 +947,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     }
     if (Bjet2_found) {
       double eta_bj = vect_jets2[k].eta();
-      double phi_bj = vect_jets2[k].phi();
+      double phi_bj = vect_jets2[k].phi_std();
 
       double deltaEta_Bb = eta_bj - B_eta2;
       double deltaPhi_Bb = fabs(phi_bj - B_phi2);
@@ -1038,11 +1038,11 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     w_mt_wenu->Fill (mt_wenu, MyWeight);
     w_pt_W_wenu->Fill (wenu_pt, MyWeight);
     w_eta_W_wenu->Fill (wenu_eta, MyWeight);
-    delta_phi_ej = fabs(vect_ele[0].Phi() - vect_jets[0].phi());
+    delta_phi_ej = fabs(vect_ele[0].Phi() - vect_jets[0].phi_std());
     delta_eta_ej = fabs(vect_ele[0].Eta() - vect_jets[0].eta());
     if (delta_phi_ej > acos (-1)) delta_phi_ej = 2 * acos (-1) - delta_phi_ej;
     DR_ej = TMath::Sqrt(delta_phi_ej*delta_phi_ej + delta_eta_ej*delta_eta_ej);
-    delta_phi_ebj = fabs(vect_ele[0].Phi() - vect_bjets[0].phi());
+    delta_phi_ebj = fabs(vect_ele[0].Phi() - vect_bjets[0].phi_std());
     delta_eta_ebj = fabs(vect_ele[0].Eta() - vect_bjets[0].eta());
     if (delta_phi_ebj > acos (-1)) delta_phi_ebj = 2 * acos (-1) - delta_phi_ebj;
     DR_ebj = TMath::Sqrt(delta_phi_ebj*delta_phi_ebj + delta_eta_ebj*delta_eta_ebj);
@@ -1066,7 +1066,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       w_eta_W_wenu_bb->Fill (wenu_eta, MyWeight);
       w_delta_wenu_bb->Fill (delta_phi_ebj, MyWeight);
       w_deltaR_wenu_bb->Fill (DR_ebj, MyWeight);
-      delta_phi_ebjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
+      delta_phi_ebjbj = fabs(vect_bjets[0].phi_std() - vect_bjets[1].phi_std());
       delta_eta_ebjbj = fabs(vect_bjets[0].eta() - vect_bjets[1].eta());
       if (delta_phi_ebjbj > acos (-1)) delta_phi_ebjbj = 2 * acos (-1) - delta_phi_ebjbj;
       DR_ebjbj = TMath::Sqrt(delta_phi_ebjbj*delta_phi_ebjbj + delta_eta_ebjbj*delta_eta_ebjbj);
@@ -1093,11 +1093,11 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
     w_mt_wmnu->Fill (mt_wmnu, MyWeight);
     w_pt_W_wmnu->Fill (wmnu_pt, MyWeight);
     w_eta_W_wmnu->Fill (wmnu_eta, MyWeight);
-    delta_phi_mj = fabs(vect_muon[0].Phi() - vect_jets[0].phi());
+    delta_phi_mj = fabs(vect_muon[0].Phi() - vect_jets[0].phi_std());
     delta_eta_mj = fabs(vect_muon[0].Eta() - vect_jets[0].eta());
     if (delta_phi_mj > acos (-1)) delta_phi_mj = 2 * acos (-1) - delta_phi_mj;
     DR_mj = TMath::Sqrt(delta_phi_mj*delta_phi_mj + delta_eta_mj*delta_eta_mj);
-    delta_phi_mbj = fabs(vect_muon[0].Phi() - vect_bjets[0].phi());
+    delta_phi_mbj = fabs(vect_muon[0].Phi() - vect_bjets[0].phi_std());
     delta_eta_mbj = fabs(vect_muon[0].Eta() - vect_bjets[0].eta());
     if (delta_phi_mbj > acos (-1)) delta_phi_mbj = 2 * acos (-1) - delta_phi_mbj;
     DR_mbj = TMath::Sqrt(delta_phi_mbj*delta_phi_mbj + delta_eta_mbj*delta_eta_mbj);
@@ -1121,7 +1121,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       w_eta_W_wmnu_bb->Fill (wmnu_eta, MyWeight);
       w_delta_wmnu_bb->Fill (delta_phi_mbj, MyWeight);
       w_deltaR_wmnu_bb->Fill (DR_mbj, MyWeight);
-      delta_phi_mbjbj = fabs(vect_bjets[0].phi() - vect_bjets[1].phi());
+      delta_phi_mbjbj = fabs(vect_bjets[0].phi_std() - vect_bjets[1].phi_std());
       delta_eta_mbjbj = fabs(vect_bjets[0].eta() - vect_bjets[1].eta());
       if (delta_phi_mbjbj > acos (-1)) delta_phi_mbjbj = 2 * acos (-1) - delta_phi_mbjbj;
       DR_mbjbj = TMath::Sqrt(delta_phi_mbjbj*delta_phi_mbjbj + delta_eta_mbjbj*delta_eta_mbjbj);
