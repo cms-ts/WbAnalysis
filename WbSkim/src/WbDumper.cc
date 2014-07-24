@@ -107,6 +107,9 @@ class WbDumper : public edm::EDAnalyzer {
   TH2F*     w_second_jet_pt;
   TH2F*     w_second_jet_eta;
   TH2F*     w_second_jet_mass;
+  TH2F*     w_dijet_pt;
+  TH2F*     w_dijet_eta;
+  TH2F*     w_dijet_mass;
 
   TH2F*     w_first_jet_pt_b;	// leading jet with at least one b jet in the event
   TH2F*     w_first_jet_eta_b;
@@ -114,6 +117,9 @@ class WbDumper : public edm::EDAnalyzer {
   TH2F*     w_second_jet_pt_b;
   TH2F*     w_second_jet_eta_b;
   TH2F*     w_second_jet_mass_b;
+  TH2F*     w_dijet_pt_b;
+  TH2F*     w_dijet_eta_b;
+  TH2F*     w_dijet_mass_b;
 
   TH2F*     w_first_jet_pt_bb;	// leading jet with at least one b jet in the event
   TH2F*     w_first_jet_eta_bb;
@@ -121,6 +127,9 @@ class WbDumper : public edm::EDAnalyzer {
   TH2F*     w_second_jet_pt_bb;
   TH2F*     w_second_jet_eta_bb;
   TH2F*     w_second_jet_mass_bb;
+  TH2F*     w_dijet_pt_bb;
+  TH2F*     w_dijet_eta_bb;
+  TH2F*     w_dijet_mass_bb;
 
   TH2F*     w_first_bjet_pt;	// leading b jet
   TH2F*     w_first_bjet_eta;
@@ -152,6 +161,19 @@ class WbDumper : public edm::EDAnalyzer {
   TH2F*     w_deltaR_wmnu_b;
   TH2F*     w_deltaR_wmnu_bb;
   TH2F*     w_deltaR_wmnu_2b;
+
+  TH2F*     w_pt_W_wenu;
+  TH2F*     w_pt_W_wmnu;
+  TH2F*     w_pt_W_wenu_b;
+  TH2F*     w_pt_W_wmnu_b;
+  TH2F*     w_pt_W_wenu_bb;
+  TH2F*     w_pt_W_wmnu_bb;
+  TH2F*     w_eta_W_wenu;
+  TH2F*     w_eta_W_wmnu;
+  TH2F*     w_eta_W_wenu_b;
+  TH2F*     w_eta_W_wmnu_b;
+  TH2F*     w_eta_W_wenu_bb;
+  TH2F*     w_eta_W_wmnu_bb;
 
   TH2F*     w_Ht;
   TH2F*     w_Ht_b;
@@ -187,6 +209,9 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
   w_second_jet_pt =     fs->make < TH2F > ("w_second_jet_pt",   "w_second_jet_pt;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
   w_second_jet_eta =    fs->make < TH2F > ("w_second_jet_eta",  "w_second_jet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
   w_second_jet_mass =      fs->make < TH2F > ("w_second_jet_mass",    "w_second_jet_mass;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
+  w_dijet_pt =     fs->make < TH2F > ("w_dijet_pt",   "w_dijet_pt;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_dijet_eta =    fs->make < TH2F > ("w_dijet_eta",  "w_dijet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_dijet_mass =      fs->make < TH2F > ("w_dijet_mass",    "w_dijet_mass;Mass [GeV]", 20, 20., 260., 20, 20., 260.);
 
   w_first_jet_pt_b =    fs->make < TH2F > ("w_first_jet_pt_b",   "w_first_jet_pt_b;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
   w_first_jet_eta_b =   fs->make < TH2F > ("w_first_jet_eta_b",  "w_first_jet_eta_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
@@ -194,6 +219,9 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
   w_second_jet_pt_b =   fs->make < TH2F > ("w_second_jet_pt_b",  "w_second_jet_pt_b;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
   w_second_jet_eta_b =  fs->make < TH2F > ("w_second_jet_eta_b", "w_second_jet_eta_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
   w_second_jet_mass_b =      fs->make < TH2F > ("w_second_jet_mass_b",    "w_second_jet_mass_b;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
+  w_dijet_pt_b =   fs->make < TH2F > ("w_dijet_pt_b",  "w_dijet_pt_b;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_dijet_eta_b =  fs->make < TH2F > ("w_dijet_eta_b", "w_dijet_eta_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_dijet_mass_b =      fs->make < TH2F > ("w_dijet_mass_b",    "w_dijet_mass_b;Mass [GeV]", 20, 20., 260., 20, 20., 260.);
 
   w_first_jet_pt_bb =    fs->make < TH2F > ("w_first_jet_pt_bb",   "w_first_jet_pt_bb;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
   w_first_jet_eta_bb =   fs->make < TH2F > ("w_first_jet_eta_bb",  "w_first_jet_eta_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
@@ -201,6 +229,9 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
   w_second_jet_pt_bb =   fs->make < TH2F > ("w_second_jet_pt_bb",  "w_second_jet_pt_bb;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
   w_second_jet_eta_bb =  fs->make < TH2F > ("w_second_jet_eta_bb", "w_second_jet_eta_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
   w_second_jet_mass_bb =      fs->make < TH2F > ("w_second_jet_mass_bb",    "w_second_jet_mass_bb;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
+  w_dijet_pt_bb =   fs->make < TH2F > ("w_dijet_pt_bb",  "w_dijet_pt_bb;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_dijet_eta_bb =  fs->make < TH2F > ("w_dijet_eta_bb", "w_dijet_eta_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_dijet_mass_bb =      fs->make < TH2F > ("w_dijet_mass_bb",    "w_dijet_mass_bb;Mass [GeV]", 20, 20., 260., 20, 20., 260.);
 
   w_first_bjet_pt =     fs->make < TH2F > ("w_first_bjet_pt",    "w_first_bjet_pt;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
   w_first_bjet_eta =    fs->make < TH2F > ("w_first_bjet_eta",   "w_first_bjet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
@@ -232,6 +263,19 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
   w_deltaR_wmnu_b =        fs->make < TH2F > ("w_deltaR_wmnu_b",   "w_deltaR_wmnu_b",  24, 0., 4.8, 24, 0., 4.8);
   w_deltaR_wmnu_bb =       fs->make < TH2F > ("w_deltaR_wmnu_bb",  "w_deltaR_wmnu_bb", 24, 0., 4.8, 24, 0., 4.8);
   w_deltaR_wmnu_2b =       fs->make < TH2F > ("w_deltaR_wmnu_2b",  "w_deltaR_wmnu_2b", 24, 0., 4.8, 24, 0., 4.8);
+
+  w_pt_W_wenu =           fs->make < TH2F > ("w_pt_W_wenu",         "w_pt_W_wenu;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_pt_W_wmnu =           fs->make < TH2F > ("w_pt_W_wmnu",         "w_pt_W_wmnu;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_pt_W_wenu_b =         fs->make < TH2F > ("w_pt_W_wenu_b",       "w_pt_W_wenu_b;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_pt_W_wmnu_b =         fs->make < TH2F > ("w_pt_W_wmnu_b",       "w_pt_W_wmnu_b;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_pt_W_wenu_bb =        fs->make < TH2F > ("w_pt_W_wenu_bb",      "w_pt_W_wenu_bb;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_pt_W_wmnu_bb =        fs->make < TH2F > ("w_pt_W_wmnu_bb",      "w_pt_W_wmnu_bb;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
+  w_eta_W_wenu =           fs->make < TH2F > ("w_eta_W_wenu",         "w_eta_W_wenu;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_eta_W_wmnu =           fs->make < TH2F > ("w_eta_W_wmnu",         "w_eta_W_wmnu;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_eta_W_wenu_b =         fs->make < TH2F > ("w_eta_W_wenu_b",       "w_eta_W_wenu_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_eta_W_wmnu_b =         fs->make < TH2F > ("w_eta_W_wmnu_b",       "w_eta_W_wmnu_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_eta_W_wenu_bb =        fs->make < TH2F > ("w_eta_W_wenu_bb",      "w_eta_W_wenu_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_eta_W_wmnu_bb =        fs->make < TH2F > ("w_eta_W_wmnu_bb",      "w_eta_W_wmnu_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
 
   w_Ht =                fs->make < TH2F > ("w_Ht",              "w_Ht [GeV]", 20, 20., 220., 20, 20., 220.);
   w_Ht_b =              fs->make < TH2F > ("w_Ht_b",            "w_Ht_b [GeV]", 20, 20., 220., 20, 20., 220.);
@@ -281,6 +325,11 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
     edm::Handle <std::vector<double>>   deltaR_mj;
     edm::Handle <std::vector<double>>   deltaR_mbj;
     edm::Handle <std::vector<double>>   deltaR_mbjbj;
+    edm::Handle <std::vector<double>>   pt_W_wenu;
+    edm::Handle <std::vector<double>>   pt_W_wmnu;
+    edm::Handle <std::vector<double>>   eta_W_wenu;
+    edm::Handle <std::vector<double>>   eta_W_wmnu;
+
     edm::Handle <std::vector<double>>   gen_deltaphi_ej;
     edm::Handle <std::vector<double>>   gen_deltaphi_ebj;
     edm::Handle <std::vector<double>>   gen_deltaphi_ebjbj;
@@ -293,9 +342,20 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
     edm::Handle <std::vector<double>>   gen_deltaR_mj;
     edm::Handle <std::vector<double>>   gen_deltaR_mbj;
     edm::Handle <std::vector<double>>   gen_deltaR_mbjbj;
+    edm::Handle <std::vector<double>>   gen_pt_W_wenu;
+    edm::Handle <std::vector<double>>   gen_pt_W_wmnu;
+    edm::Handle <std::vector<double>>   gen_eta_W_wenu;
+    edm::Handle <std::vector<double>>   gen_eta_W_wmnu;
 
     edm::Handle <std::vector<double>>   Ht;
     edm::Handle <std::vector<double>>   gen_Ht;
+
+    edm::Handle <std::vector<double>>   dijet_pt;
+    edm::Handle <std::vector<double>>   dijet_eta;
+    edm::Handle <std::vector<double>>   dijet_mass;
+    edm::Handle <std::vector<double>>   gen_dijet_pt;
+    edm::Handle <std::vector<double>>   gen_dijet_eta;
+    edm::Handle <std::vector<double>>   gen_dijet_mass;
 
     string postfix = "";
     if (pileupDT_=="ee_pup" || pileupDT_=="mm_pup") postfix = "Pup";
@@ -340,6 +400,18 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
 
      iEvent.getByLabel (edm::InputTag("demoEle","myHt"), Ht);
      iEvent.getByLabel (edm::InputTag("demoEleGen","myHt"), gen_Ht);
+
+     iEvent.getByLabel (edm::InputTag("demoEle","myWenuPt"), pt_W_wenu);
+     iEvent.getByLabel (edm::InputTag("demoEleGen","myWenuPt"), gen_pt_W_wenu);
+     iEvent.getByLabel (edm::InputTag("demoEle","myWenuEta"), eta_W_wenu);
+     iEvent.getByLabel (edm::InputTag("demoEleGen","myWenuEta"), gen_eta_W_wenu);
+
+     iEvent.getByLabel (edm::InputTag("demoEle","myDijetPt"), dijet_pt);
+     iEvent.getByLabel (edm::InputTag("demoEle","myDijetEta"), dijet_eta);
+     iEvent.getByLabel (edm::InputTag("demoEle","myDijetMass"), dijet_mass);
+     iEvent.getByLabel (edm::InputTag("demoEleGen","myDijetPt"), gen_dijet_pt);
+     iEvent.getByLabel (edm::InputTag("demoEleGen","myDijetEta"), gen_dijet_eta);
+     iEvent.getByLabel (edm::InputTag("demoEleGen","myDijetMass"), gen_dijet_mass);
    }
 
    if (lepton_== "muon") {
@@ -375,6 +447,18 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
 
      iEvent.getByLabel (edm::InputTag("demoMuo","myHt"), Ht);
      iEvent.getByLabel (edm::InputTag("demoMuoGen","myHt"), gen_Ht);
+
+     iEvent.getByLabel (edm::InputTag("demoMuo","myWmnuPt"), pt_W_wmnu);
+     iEvent.getByLabel (edm::InputTag("demoMuoGen","myWmnuPt"), gen_pt_W_wmnu);
+     iEvent.getByLabel (edm::InputTag("demoMuo","myWmnuEta"), eta_W_wmnu);
+     iEvent.getByLabel (edm::InputTag("demoMuoGen","myWmnuEta"), gen_eta_W_wmnu);
+
+     iEvent.getByLabel (edm::InputTag("demoMuo","myDijetPt"), dijet_pt);
+     iEvent.getByLabel (edm::InputTag("demoMuo","myDijetEta"), dijet_eta);
+     iEvent.getByLabel (edm::InputTag("demoMuo","myDijetMass"), dijet_mass);
+     iEvent.getByLabel (edm::InputTag("demoMuoGen","myDijetPt"), gen_dijet_pt);
+     iEvent.getByLabel (edm::InputTag("demoMuoGen","myDijetEta"), gen_dijet_eta);
+     iEvent.getByLabel (edm::InputTag("demoMuoGen","myDijetMass"), gen_dijet_mass);
    }
 
    //match leading jet
@@ -479,6 +563,15 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
        w_Ht->Fill(Ht->empty() ? -1 : (*Ht)[0], gen_Ht->empty() ? -1 : (*gen_Ht)[0], my_weight);
        w_Ht_b->Fill(Ht->empty() ? -1 : (*Ht)[0], gen_Ht->empty() ? -1 : (*gen_Ht)[0], my_weight);
        w_Ht_bb->Fill(Ht->empty() ? -1 : (*Ht)[0], gen_Ht->empty() ? -1 : (*gen_Ht)[0], my_weight);
+       w_dijet_pt->Fill(dijet_pt->empty() ? -1 : (*dijet_pt)[0], gen_dijet_pt->empty() ? -1 : (*gen_dijet_pt)[0], my_weight);
+       w_dijet_eta->Fill(dijet_eta->empty() ? -1 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -1 : (*gen_dijet_eta)[0], my_weight);
+       w_dijet_mass->Fill(dijet_mass->empty() ? -1 : (*dijet_mass)[0], gen_dijet_mass->empty() ? -1 : (*gen_dijet_mass)[0], my_weight);
+       w_dijet_pt_b->Fill(dijet_pt->empty() ? -1 : (*dijet_pt)[0], gen_dijet_pt->empty() ? -1 : (*gen_dijet_pt)[0], my_weight);
+       w_dijet_eta_b->Fill(dijet_eta->empty() ? -1 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -1 : (*gen_dijet_eta)[0], my_weight);
+       w_dijet_mass_b->Fill(dijet_mass->empty() ? -1 : (*dijet_mass)[0], gen_dijet_mass->empty() ? -1 : (*gen_dijet_mass)[0], my_weight);
+       w_dijet_pt_bb->Fill(dijet_pt->empty() ? -1 : (*dijet_pt)[0], gen_dijet_pt->empty() ? -1 : (*gen_dijet_pt)[0], my_weight);
+       w_dijet_eta_bb->Fill(dijet_eta->empty() ? -1 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -1 : (*gen_dijet_eta)[0], my_weight);
+       w_dijet_mass_bb->Fill(dijet_mass->empty() ? -1 : (*dijet_mass)[0], gen_dijet_mass->empty() ? -1 : (*gen_dijet_mass)[0], my_weight);
      }
 
      if (wenu_event) {
@@ -490,6 +583,12 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
        w_deltaR_wenu_b->Fill(deltaR_ebj->empty() ? -1 : (*deltaR_ebj)[0], gen_deltaR_ebj->empty() ? -1 : (*gen_deltaR_ebj)[0], my_weight);
        w_deltaR_wenu_bb->Fill(deltaR_ebj->empty() ? -1 : (*deltaR_ebj)[0], gen_deltaR_ebj->empty() ? -1 : (*gen_deltaR_ebj)[0], my_weight);
        w_deltaR_wenu_2b->Fill(deltaR_ebjbj->empty() ? -1 : (*deltaR_ebjbj)[0], gen_deltaR_ebjbj->empty() ? -1 : (*gen_deltaR_ebjbj)[0], my_weight);
+       w_pt_W_wenu->Fill(pt_W_wenu->empty() ? -1 : (*pt_W_wenu)[0], gen_pt_W_wenu->empty() ? -1 : (*gen_pt_W_wenu)[0], my_weight);
+       w_pt_W_wenu_b->Fill(pt_W_wenu->empty() ? -1 : (*pt_W_wenu)[0], gen_pt_W_wenu->empty() ? -1 : (*gen_pt_W_wenu)[0], my_weight);
+       w_pt_W_wenu_bb->Fill(pt_W_wenu->empty() ? -1 : (*pt_W_wenu)[0], gen_pt_W_wenu->empty() ? -1 : (*gen_pt_W_wenu)[0], my_weight);
+       w_eta_W_wenu->Fill(eta_W_wenu->empty() ? -1 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -1 : (*gen_eta_W_wenu)[0], my_weight);
+       w_eta_W_wenu_b->Fill(eta_W_wenu->empty() ? -1 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -1 : (*gen_eta_W_wenu)[0], my_weight);
+       w_eta_W_wenu_bb->Fill(eta_W_wenu->empty() ? -1 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -1 : (*gen_eta_W_wenu)[0], my_weight);
      }
 
      if (wmnu_event) {
@@ -501,6 +600,12 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
        w_deltaR_wmnu_b->Fill(deltaR_mbj->empty() ? -1 : (*deltaR_mbj)[0], gen_deltaR_mbj->empty() ? -1 : (*gen_deltaR_mbj)[0], my_weight);
        w_deltaR_wmnu_bb->Fill(deltaR_mbj->empty() ? -1 : (*deltaR_mbj)[0], gen_deltaR_mbj->empty() ? -1 : (*gen_deltaR_mbj)[0], my_weight);
        w_deltaR_wmnu_2b->Fill(deltaR_mbjbj->empty() ? -1 : (*deltaR_mbjbj)[0], gen_deltaR_mbjbj->empty() ? -1 : (*gen_deltaR_mbjbj)[0], my_weight);
+       w_pt_W_wmnu->Fill(pt_W_wmnu->empty() ? -1 : (*pt_W_wmnu)[0], gen_pt_W_wmnu->empty() ? -1 : (*gen_pt_W_wmnu)[0], my_weight);
+       w_pt_W_wmnu_b->Fill(pt_W_wmnu->empty() ? -1 : (*pt_W_wmnu)[0], gen_pt_W_wmnu->empty() ? -1 : (*gen_pt_W_wmnu)[0], my_weight);
+       w_pt_W_wmnu_bb->Fill(pt_W_wmnu->empty() ? -1 : (*pt_W_wmnu)[0], gen_pt_W_wmnu->empty() ? -1 : (*gen_pt_W_wmnu)[0], my_weight);
+       w_eta_W_wmnu->Fill(eta_W_wmnu->empty() ? -1 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -1 : (*gen_eta_W_wmnu)[0], my_weight);
+       w_eta_W_wmnu_b->Fill(eta_W_wmnu->empty() ? -1 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -1 : (*gen_eta_W_wmnu)[0], my_weight);
+       w_eta_W_wmnu_bb->Fill(eta_W_wmnu->empty() ? -1 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -1 : (*gen_eta_W_wmnu)[0], my_weight);
      }
 
    }

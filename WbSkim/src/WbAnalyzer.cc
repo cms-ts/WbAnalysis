@@ -2044,6 +2044,15 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
 
   produces<std::vector<double>>("myHt");
 
+  produces<std::vector<double>>("myWenuPt");
+  produces<std::vector<double>>("myWenuEta");
+  produces<std::vector<double>>("myWmnuPt");
+  produces<std::vector<double>>("myWmnuEta");
+
+  produces<std::vector<double>>("myDijetPt");
+  produces<std::vector<double>>("myDijetEta");
+  produces<std::vector<double>>("myDijetMass");
+
   produces<std::vector<double>>("myBJetsWeights");
 
   produces<std::vector<math::XYZTLorentzVector>>("myBJets");
@@ -2125,6 +2134,15 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   std::auto_ptr<std::vector<math::XYZTLorentzVector>> myJets( new std::vector<math::XYZTLorentzVector> );
 
   std::auto_ptr<std::vector<double>> myHt( new std::vector<double> );
+
+  std::auto_ptr<std::vector<double>> myWenuPt( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myWenuEta( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myWmnuPt( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myWmnuEta( new std::vector<double> );
+
+  std::auto_ptr<std::vector<double>> myDijetPt( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDijetEta( new std::vector<double> );
+  std::auto_ptr<std::vector<double>> myDijetMass( new std::vector<double> );
 
   std::auto_ptr<std::vector<double>> myBJetsWeights( new std::vector<double> );
 
@@ -4131,9 +4149,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
+  math::XYZTLorentzVector dijet;
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
     scalFac_b = btagSF(isMC, vect_bjets, 1);
-    math::XYZTLorentzVector dijet;
     dijet = vect_jets[0].p4() + vect_jets[1].p4();
     h_dijet_pt->Fill (dijet.pt());
     w_dijet_pt->Fill (dijet.pt(), MyWeight*scalFac_b);
@@ -4332,6 +4350,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     myDeltaREJ->push_back(DR_ej);
     myDeltaREBJ->push_back(DR_ebj);
     if (Nb > 1) myDeltaREBJBJ->push_back(DR_ebjbj);
+    myWenuPt->push_back(wenu_pt);
+    myWenuEta->push_back(wenu_eta);
   }
 
   if (wmnu_event && mt_cut_wmnu && vtx_cut) {
@@ -4342,6 +4362,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     myDeltaRMJ->push_back(DR_mj);
     myDeltaRMBJ->push_back(DR_mbj);
     if (Nb > 1) myDeltaRMBJBJ->push_back(DR_mbjbj);
+    myWmnuPt->push_back(wmnu_pt);
+    myWmnuEta->push_back(wmnu_eta);
   }
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
@@ -4363,6 +4385,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
     myHt->push_back(Ht);
+    myDijetPt->push_back(dijet.pt());
+    myDijetEta->push_back(dijet.eta());
+    myDijetMass->push_back(dijet.mass());
   }
 
   iEvent.put( myEventWeight, "myEventWeight" );
@@ -4377,6 +4402,15 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   iEvent.put( myBJetsWeights, "myBJetsWeights" );
 
   iEvent.put( myBJets, "myBJets" );
+
+  iEvent.put( myWenuPt, "myWenuPt" );
+  iEvent.put( myWmnuPt, "myWmnuPt" );
+  iEvent.put( myWenuEta, "myWenuEta" );
+  iEvent.put( myWmnuEta, "myWmnuEta" );
+
+  iEvent.put( myDijetPt, "myDijetPt" );
+  iEvent.put( myDijetEta, "myDijetEta" );
+  iEvent.put( myDijetMass, "myDijetMass" );
 
   iEvent.put( myDeltaPhiEJ, "myDeltaPhiEJ" );
   iEvent.put( myDeltaPhiEBJ, "myDeltaPhiEBJ" );
