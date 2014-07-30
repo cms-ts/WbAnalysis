@@ -1791,6 +1791,7 @@ string subdir="0";
 	pad2->Draw();
 	pad2->cd();
 
+	TH1F *h_M = (TH1F*)h_mcg_b->Clone();
 	TH1F *h_M_tot = (TH1F*)h_mcg_b->Clone();
 	TH1F *h_M_stat = (TH1F*)h_mcg_b->Clone();
 
@@ -1799,6 +1800,7 @@ string subdir="0";
 	  h_M_stat->SetBinError(i, 0.);
 	}
 
+	h_M->Divide(h_M_tot);
 	h_M_tot->Divide(h_data_b_tot);
 	h_M_stat->Divide(h_data_b_stat);
 
@@ -1826,11 +1828,16 @@ string subdir="0";
 	h_M_stat->SetLineWidth(1);
 	h_M_stat->SetMarkerSize(0.7);
 
+	h_M->SetLineColor(kGreen+2);
+
 	h_M_tot->SetMarkerStyle(24);
 	h_M_tot->Draw("E1PX0");
+	h_M->Draw("E2SAME");
+	h_M_tot->Draw("E1PX0SAME");
 	h_M_stat->SetMarkerStyle(24);
 	h_M_stat->Draw("E1PX0SAME");
 
+	TH1F *h_M2= (TH1F*)h_mcg->Clone();
 	TH1F *h_M2_tot= (TH1F*)h_mcg->Clone();
 	TH1F *h_M2_stat= (TH1F*)h_mcg->Clone();
 
@@ -1839,6 +1846,7 @@ string subdir="0";
 	  h_M2_stat->SetBinError(i, 0.);
 	}
 
+	h_M2->Divide(h_M2_tot);
 	h_M2_tot->Divide(h_data_tot);
 	h_M2_stat->Divide(h_data_stat);
 
@@ -1863,7 +1871,11 @@ string subdir="0";
 	g_M2_stat->SetLineWidth(1);
 	g_M2_stat->SetMarkerSize(0.7);
 
+	h_M2->SetLineColor(kGreen+2);
+
 	g_M2_tot->SetMarkerStyle(20);
+	if (drawInclusive) g_M2_tot->Draw("EP0SAME");
+	h_M2->Draw("E2SAME");
 	if (drawInclusive) g_M2_tot->Draw("EP0SAME");
 	g_M2_stat->SetMarkerStyle(20);
 	if (drawInclusive) g_M2_stat->Draw("EP0SAME");
@@ -1874,11 +1886,6 @@ string subdir="0";
 	t2->SetLineWidth(2);
 	t2->SetNDC();
 	//t2->DrawLatex(0.15,0.9,"MadGraph");
-
-	TLine *OLine2 = new TLine(h_M_tot->GetXaxis()->GetXmin(),1.,h_M_tot->GetXaxis()->GetXmax(),1.);
-	OLine2->SetLineColor(kGreen+2);
-	OLine2->SetLineWidth(2);
-	OLine2->Draw();
 
 	c1->cd();
 
