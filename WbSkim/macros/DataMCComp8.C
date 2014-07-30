@@ -1804,6 +1804,12 @@ string subdir="0";
 	h_M_tot->Divide(h_data_b_tot);
 	h_M_stat->Divide(h_data_b_stat);
 
+	for (int i=0;i<=h_M_tot->GetNbinsX()+1;i++) {
+	  h_M->SetBinContent(i, h_M_tot->GetBinContent(i));
+	  h_M_tot->SetBinContent(i, 1.);
+	  h_M_stat->SetBinContent(i, 1.);
+	}
+
 	h_M_tot->SetTitle("");
 	h_M_tot->SetStats(0);
 	h_M_tot->GetXaxis()->SetTitleOffset(0.9);
@@ -1849,6 +1855,12 @@ string subdir="0";
 	h_M2->Divide(h_M2_tot);
 	h_M2_tot->Divide(h_data_tot);
 	h_M2_stat->Divide(h_data_stat);
+
+	for (int i=0;i<=h_M2_tot->GetNbinsX()+1;i++) {
+	  h_M2->SetBinContent(i, h_M2_tot->GetBinContent(i));
+	  h_M2_tot->SetBinContent(i, 1.);
+	  h_M2_stat->SetBinContent(i, 1.);
+	}
 
 	TGraphErrors *g_M2_tot = new TGraphErrors(h_M2_tot);
 	TGraphErrors *g_M2_stat = new TGraphErrors(h_M2_stat);
