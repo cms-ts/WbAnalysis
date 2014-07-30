@@ -1032,7 +1032,6 @@ string subdir="0";
 	  h_M_stat->SetBinContent(i, 1.);
 	}
 
-
 	h_M_tot->SetTitle("");
 	h_M_tot->SetStats(0);
 	h_M_tot->GetXaxis()->SetTitleOffset(0.9);
@@ -1057,11 +1056,16 @@ string subdir="0";
 	h_M_stat->SetLineWidth(1);
 	h_M_stat->SetMarkerSize(0.7);
 
+	h_M->SetMarkerColor(kGreen+1);
 	h_M->SetLineColor(kGreen+2);
+	h_M->SetLineWidth(1);
+	h_M->SetMarkerSize(0.7);
 
 	h_M_tot->SetMarkerStyle(24);
 	h_M_tot->Draw("E1PX0");
+	h_M->SetMarkerStyle(24);
 	h_M->Draw("E2SAME");
+	h_M->Draw("EPSAME");
 	h_M_tot->Draw("E1PX0SAME");
 	h_M_stat->SetMarkerStyle(24);
 	h_M_stat->Draw("E1PX0SAME");
@@ -1106,11 +1110,16 @@ string subdir="0";
 	g_M2_stat->SetLineWidth(1);
 	g_M2_stat->SetMarkerSize(0.7);
 
+	h_M2->SetMarkerColor(kGreen+1);
 	h_M2->SetLineColor(kGreen+2);
+	h_M2->SetLineWidth(1);
+	h_M2->SetMarkerSize(0.7);
 
 	g_M2_tot->SetMarkerStyle(20);
 	if (drawInclusive) g_M2_tot->Draw("EP0SAME");
+	h_M2->SetMarkerStyle(20);
 	h_M2->Draw("E2SAME");
+	h_M2->Draw("EPSAME");
 	if (drawInclusive) g_M2_tot->Draw("EP0SAME");
 	g_M2_stat->SetMarkerStyle(20);
 	if (drawInclusive) g_M2_stat->Draw("EP0SAME");
