@@ -22,7 +22,17 @@ root -l -q -b DataMCComp6.C+\($d,\"w_second_jet_pt_b\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_jet_eta_b\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_second_jet_mass_b\",1\)
 
+root -l -q -b DataMCComp6.C+\($d,\"w_dijet_pt_b\",1\)
+root -l -q -b DataMCComp6.C+\($d,\"w_dijet_eta_b\",1\)
+root -l -q -b DataMCComp6.C+\($d,\"w_dijet_mass_b\",1\)
+
+
 root -l -q -b DataMCComp6.C+\($d,\"w_Ht_b\",1\)
+
+root -l -q -b DataMCComp6.C+\($d,\"w_pt_W_wenu_b\",1\)
+root -l -q -b DataMCComp6.C+\($d,\"w_pt_W_wmnu_b\",1\)
+root -l -q -b DataMCComp6.C+\($d,\"w_eta_W_wenu_b\",1\)
+root -l -q -b DataMCComp6.C+\($d,\"w_eta_W_wmnu_b\",1\)
 
 root -l -q -b DataMCComp6.C+\($d,\"w_delta_b\",1\)
 root -l -q -b DataMCComp6.C+\($d,\"w_deltaR_b\",1\)

@@ -21,6 +21,10 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
     if (title=="w_delta_bb") title_tmp="w_delta_wenu_bb";
     if (title=="w_deltaR_b") title_tmp="w_deltaR_wenu_b";
     if (title=="w_deltaR_bb") title_tmp="w_deltaR_wenu_bb";
+    if (title=="w_pt_W_b") title_tmp="w_pt_W_wenu_b";
+    if (title=="w_pt_W_bb") title_tmp="w_pt_W_wenu_bb";
+    if (title=="w_eta_W_b") title_tmp="w_eta_W_wenu_b";
+    if (title=="w_eta_W_bb") title_tmp="w_eta_W_wenu_bb";
     string title_tmp2 = title_tmp;
     if (!unfold) {
       if (title_tmp2.find("_bb")==string::npos) {
@@ -44,6 +48,10 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
     if (title=="w_delta_bb") title_tmp="w_delta_wmnu_bb";
     if (title=="w_deltaR_b") title_tmp="w_deltaR_wmnu_b";
     if (title=="w_deltaR_bb") title_tmp="w_deltaR_wmnu_bb";
+    if (title=="w_pt_W_b") title_tmp="w_pt_W_wmnu_b";
+    if (title=="w_pt_W_bb") title_tmp="w_pt_W_wmnu_bb";
+    if (title=="w_eta_W_b") title_tmp="w_eta_W_wmnu_b";
+    if (title=="w_eta_W_bb") title_tmp="w_eta_W_wmnu_bb";
     string title_tmp2 = title_tmp;
     if (!unfold) {
       if (title_tmp2.find("_bb")==string::npos) {
@@ -343,6 +351,10 @@ string subdir="0";
 	    if (title_b=="w_delta_bb") title_b_tmp="w_delta_wenu_bb";
 	    if (title_b=="w_deltaR_b") title_b_tmp="w_deltaR_wenu_b";
 	    if (title_b=="w_deltaR_bb") title_b_tmp="w_deltaR_wenu_bb";
+	    if (title_b=="w_pt_W_b") title_b_tmp="w_pt_W_wenu_b";
+	    if (title_b=="w_pt_W_bb") title_b_tmp="w_pt_W_wenu_bb";
+	    if (title_b=="w_eta_W_b") title_b_tmp="w_eta_W_wenu_b";
+	    if (title_b=="w_eta_W_bb") title_b_tmp="w_eta_W_wenu_bb";
 	    if (unfold) {
 	      in.open((path + "/electrons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
 	    } else {
@@ -356,6 +368,10 @@ string subdir="0";
 	    if (title_b=="w_delta_bb") title_b_tmp="w_delta_wmnu_bb";
 	    if (title_b=="w_deltaR_b") title_b_tmp="w_deltaR_wmnu_b";
 	    if (title_b=="w_deltaR_bb") title_b_tmp="w_deltaR_wmnu_bb";
+	    if (title_b=="w_pt_W_b") title_b_tmp="w_pt_W_wmnu_b";
+	    if (title_b=="w_pt_W_bb") title_b_tmp="w_pt_W_wmnu_bb";
+	    if (title_b=="w_eta_W_b") title_b_tmp="w_eta_W_wmnu_b";
+	    if (title_b=="w_eta_W_bb") title_b_tmp="w_eta_W_wmnu_bb";
 	    if (unfold) {
               in.open((path + "/muons/" + version + "/" + "/xsecs_unfolding/" + title_b_tmp + "_xsecs_unfolding.dat").c_str());
 	    } else {
