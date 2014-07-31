@@ -630,7 +630,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       ele.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
 
       ele_photons.push_back(index_ele);
-      if (ele.Pt()>10. && fabs(ele.Eta())<2.4) ele_photons_canc.push_back(index_ele);
+      //      if (ele.Pt()>10. && fabs(ele.Eta())<2.4) ele_photons_canc.push_back(index_ele);
 
       unsigned int index_gamma=0;
       // Loop over photons: FSR dressing for electrons
@@ -644,7 +644,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	  if (deltaR_eg< 0.1) {
 	    ele_photons.push_back(index_gamma);
 	    ele += gam;
-	    if (ele.Pt()>10. && fabs(ele.Eta())<2.4) ele_photons_canc.push_back(index_gamma);
+	    //	    if (ele.Pt()>10. && fabs(ele.Eta())<2.4) ele_photons_canc.push_back(index_gamma);
 	  }
 	}
 	index_gamma++;
@@ -709,7 +709,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       muon.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
 
       mu_photons.push_back(index_mu);
-      if (muon.Pt()>10. && fabs(muon.Eta())<2.4) mu_photons_canc.push_back(index_mu);
+      //      if (muon.Pt()>10. && fabs(muon.Eta())<2.4) mu_photons_canc.push_back(index_mu);
 
       // Loop over photons: FSR dressing for muons
       unsigned int index_gammamu = 0;
@@ -723,7 +723,7 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 	  if (deltaR_mg< 0.1) {
 	    mu_photons.push_back(index_gammamu);
 	    muon += gam;
-	    if (muon.Pt()>10. && fabs(muon.Eta())<2.4) mu_photons_canc.push_back(index_gammamu);
+	    //	    if (muon.Pt()>10. && fabs(muon.Eta())<2.4) mu_photons_canc.push_back(index_gammamu);
 	  }
         }
 	index_gammamu++;
@@ -775,8 +775,8 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
 
   //  wenu_event = (lepton_ == "electron") && index_goodele==1 && index_ele2==0 && index_goodmu==0 && index_mu2==0;
   //  wmnu_event = (lepton_ == "muon") && index_goodmu==1 && index_mu2==0 && index_goodele==0 && index_ele2==0;
-  wenu_event = (lepton_ == "electron") && index_goodele==1;
-  wmnu_event = (lepton_ == "muon") && index_goodmu==1;
+  wenu_event = (lepton_ == "electron") && index_goodele>0;
+  wmnu_event = (lepton_ == "muon") && index_goodmu>0;
 
   if (wenu_event) {
     lepton1_eta = ele_dres.p_part.Eta();
