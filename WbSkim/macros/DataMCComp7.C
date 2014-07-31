@@ -1068,7 +1068,7 @@ string subdir="0";
 	h_M->Draw("EPSAME");
 	h_M_tot->Draw("E1PX0SAME");
 	h_M_stat->SetMarkerStyle(24);
-	h_M_stat->Draw("E1PX0SAME");
+	h_M_stat->Draw("EPSAME");
 
 	TH1F *h_M2= (TH1F*)h_mcg->Clone();
 	TH1F *h_M2_tot= (TH1F*)h_mcg->Clone();
