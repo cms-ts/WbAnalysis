@@ -20,17 +20,17 @@ fi
 
 ./merge.sh DYJetsToLL $VERSION
 
-./merge.sh TTbar_FullLept $VERSION $CUT
-./merge.sh TTbar_SemiLept $VERSION $CUT
+./merge.sh TTbar_FullLept $VERSION
+./merge.sh TTbar_SemiLept $VERSION
 
 ./merge.sh TTbar-all $VERSION
 
-./merge.sh T_s
-./merge.sh T_t
-./merge.sh T_tW
-./merge.sh TBar_s
-./merge.sh TBar_t
-./merge.sh TBar_tW
+./merge.sh T_s $VERSION
+./merge.sh T_t $VERSION
+./merge.sh T_tW $VERSION
+./merge.sh TBar_s $VERSION
+./merge.sh TBar_t $VERSION
+./merge.sh TBar_tW $VERSION
 
 ./merge.sh T-all $VERSION
 
