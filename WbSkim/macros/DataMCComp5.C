@@ -1,6 +1,6 @@
 #include "DataMCComp.h"
 #include "LumiLabel.C"
-#include "LumiInfo_v09.h"
+#include "LumiInfo_v10.h"
 
 string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
