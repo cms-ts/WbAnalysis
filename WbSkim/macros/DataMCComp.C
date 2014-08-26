@@ -54,6 +54,9 @@ int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
 //int useWbb=0; // do not use the special Wbb MC sample
 int useWbb=1; // use the special Wbb MC sample
 
+int printYield=0; // do not print pre-fit and post-fit yields
+//int printYield=1; // print pre-fit and post-fit yields
+
 string subdir="0";
 string postfix="";
 if (irun==1) {             // irun==1 => JEC Up
@@ -141,12 +144,23 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	double c3_qcd=1.0;
 	double ec3_qcd=0.0;
 
+	/* top background */
+
 	double c1_t=1.0;
 	double ec1_t=0.0;
 	double c2_t=1.0;
 	double ec2_t=0.0;
 	double c3_t=1.0;
 	double ec3_t=0.0;
+
+	/* purity */
+
+	double c1_b=1.0;
+	double ec1_b=0.0;
+	double c2_b=1.0;
+	double ec2_b=0.0;
+	double c3_b=1.0;
+	double ec3_b=0.0;
 
 	if (doFit==1) {
 	  if (title=="w_mt_wenu_wide") useFitResults=0;
@@ -261,21 +275,24 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  double ec;
 	  c = 1.0;
 	  ec = 0.0;
-	  in10 >> c >> ec; // drop first line
+	  in10 >> c >> ec;
+	  c1_b = c1_b * c ; ec1_b = c1_b * ec;
 	  in10 >> c >> ec;
 	  c1_t = c1_t * c; ec1_t = c1_t * ec;
 	  in10 >> c >> ec;
 	  c1_qcd = c1_qcd * c; ec1_qcd = c1_qcd * ec;
 	  c = 1.0;
 	  ec = 0.0;
-	  in11 >> c >> ec; // drop first line
+	  in11 >> c >> ec;
+	  c2_b = c2_b * c ; ec2_b = c2_b * ec;
 	  in11 >> c >> ec;
 	  c2_t = c2_t * c; ec2_t = c2_t * ec;
 	  in11 >> c >> ec;
 	  c2_qcd = c2_qcd * c; ec2_qcd = c2_qcd * ec;
 	  c = 1.0;
 	  ec = 0.0;
-	  in12 >> c >> ec; // drop first line
+	  in12 >> c >> ec;
+	  c3_b = c3_b * c ; ec3_b = c3_b * ec;
 	  in12 >> c >> ec;
 	  c3_t = c3_t * c; ec3_t = c3_t * ec;
 	  in12 >> c >> ec;
@@ -557,6 +574,25 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	h_mc7->Scale(norm7);
 	h_mc8->Scale(norm8);
 
+	if (printYield) {
+	  cout << "******************" << endl;
+	  cout << "PRE FIT YIELDS:" << endl;
+	  cout << "data: " << h_data->Integral(0,h_data->GetNbinsX()+1) << endl;
+	  //	if (h_data_fit) cout << "data_fit: " << h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1) << endl;
+	  cout << "mc1: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
+	  if (h_mc1b) cout << "mc1b: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
+	  if (h_mc1c) cout << "mc1c: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
+	  if (h_mc1t) cout << "mc1t: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  cout << "mc2: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
+	  cout << "mc3: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
+	  cout << "mc4: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
+	  if (h_mc5) cout << "mc5: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
+	  cout << "mc6: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "mc7: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
+	  cout << "mc8: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
+	  cout << "******************" << endl;
+	}
+
 	if (useFitResults) {
 	  if (title.find("_bb")!=string::npos) {
 	    if (irun==5) {
@@ -599,6 +635,47 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	      h_mc5->Scale(c1_qcd);
 	    }
 	  }
+	}
+
+	if (useFitResults) {
+	  if (title.find("_bb")!=string::npos) {
+	    if (irun==6) {
+	      if (h_mc1b) h_mc1b->Scale(c3_b+0.1*ec3_b);
+	    } else {
+	      if (h_mc1b) h_mc1b->Scale(c3_b);
+	    }
+	  } else if (title.find("_b")!=string::npos) {
+	    if (irun==6) {
+	      if (h_mc1b) h_mc1b->Scale(c2_b+0.1*ec2_b);
+	    } else {
+	      if (h_mc1b) h_mc1b->Scale(c2_b);
+	    }
+	  } else {
+	    if (irun==6) {
+	      if (h_mc1b) h_mc1b->Scale(c1_b+0.1*ec1_b);
+	    } else {
+	      if (h_mc1b) h_mc1b->Scale(c1_b);
+	    }
+	  }
+	}
+
+	if (printYield) {
+	  cout << "******************" << endl;
+	  cout << "POST FIT YIELDS:" << endl;
+	  cout << "data: " << h_data->Integral(0,h_data->GetNbinsX()+1) << endl;
+	  if (h_data_fit) cout << "data_fit: " << h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1) << endl;
+	  cout << "mc1: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
+	  if (h_mc1b) cout << "mc1b: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
+	  if (h_mc1c) cout << "mc1c: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
+	  if (h_mc1t) cout << "mc1t: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  cout << "mc2: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
+	  cout << "mc3: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
+	  cout << "mc4: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
+	  if (h_mc5) cout << "mc5: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
+	  cout << "mc6: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "mc7: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
+	  cout << "mc8: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
+	  cout << "******************" << endl;
 	}
 
 	if (irun==13) {
@@ -816,9 +893,9 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    h_data_fit->Add(h_mc3, -1.);
 	    h_data_fit->Add(h_mc1t, -1.);
 	  }
-	  h_mc_fit0 = h_mc1;
-	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, 1.);
-	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, 1.);
+	  h_data_fit->Add(h_mc1, -1.);
+	  if (h_mc1c) h_data_fit->Add(h_mc1c, -1.);
+	  h_mc_fit0 = h_mc1b;
 	  h_mc_fit1 = h_mc2;
 	  h_mc_fit2 = h_mc5;
 	  if (title.find("_bb")!=string::npos) {
@@ -832,15 +909,11 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
-	  fitter->SetParameter(0, "c(W+jets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(0, "c(W+bjets)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(1, "c(t)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(2, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
-	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, -1.);
-	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, -1.);
 	  h_mc_fit0->Scale(fitter->GetParameter(0));
-	  if (h_mc1b) h_mc1b->Scale(fitter->GetParameter(0));
-	  if (h_mc1c) h_mc1c->Scale(fitter->GetParameter(0));
 	  h_mc_fit1->Scale(fitter->GetParameter(1));
 	  h_mc_fit2->Scale(fitter->GetParameter(2));
 	}
@@ -1165,7 +1238,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
 	  }
 	  if (doFit==5) {
-	    sprintf(buff, "c_{W+jets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    sprintf(buff, "c_{W+bjets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
 	    sprintf(buff, "c_{t} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
 	    fitLabel->DrawLatex(0.68, 0.43, buff);
