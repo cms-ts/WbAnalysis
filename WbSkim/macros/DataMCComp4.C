@@ -25,7 +25,7 @@ bool verbose = false;
 // imode =  0; // identity test using MadGraph GEN
 // imode =  1; // closure test using MadGraph + Sherpa
 // imode =  2; // closure test using MadGraph + Powheg
-// imode =  3; // closure test using MadGraph + MadGraph 4FS
+// imode =  3; // closure test using MadGraph 4FS + MadGraph
 // imode =  4; // unfolding data with MadGraph
 // imode =  5; // unfolding data with Sherpa
 // imode =  6; // unfolding data with Powheg
@@ -536,15 +536,7 @@ if (irun==99) {            // irun==99 => pur
           leg1->AddEntry(h_mc1_reco,"MADGRAPH 4FS reco","l");
           leg1->AddEntry(h_mc1_truth,"MADGRAPH 4FS truth","l");
 	}
-        if (imode>=0&&imode<=2) {
-          leg1->AddEntry(h_mc1_reco,"MADGRAPH reco","l");
-          leg1->AddEntry(h_mc1_truth,"MADGRAPH truth","l");
-	}
-        if (imode==3) {
-          leg1->AddEntry(h_mc1_reco,"MADGRAPH 4FS reco","l");
-          leg1->AddEntry(h_mc1_truth,"MADGRAPH 4FS truth","l");
-	}
-        if (imode==4) {
+        if (imode>=0&&imode<=4) {
           leg1->AddEntry(h_mc1_reco,"MADGRAPH reco","l");
           leg1->AddEntry(h_mc1_truth,"MADGRAPH truth","l");
 	}
@@ -574,9 +566,9 @@ if (irun==99) {            // irun==99 => pur
           leg1->AddEntry(h_mc2_unfold,"POWHEG unfold","l");
         }
         if (imode==3) {
-          leg1->AddEntry(h_mc2_reco,"MADGRAPH reco","l");
-          leg1->AddEntry(h_mc2_truth,"MADGRAPH truth","l");
-          leg1->AddEntry(h_mc2_unfold,"MADGRAPH unfold","l");
+          leg1->AddEntry(h_mc2_reco,"MADGRAPH 4FS reco","l");
+          leg1->AddEntry(h_mc2_truth,"MADGRAPH 4FS truth","l");
+          leg1->AddEntry(h_mc2_unfold,"MADGRAPH 4FS unfold","l");
         }
         if (imode>=4) {
           leg1->AddEntry(h_data_reco,"DATA reco","p");
