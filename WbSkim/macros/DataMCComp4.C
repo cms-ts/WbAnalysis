@@ -20,7 +20,8 @@ void DataMCComp4(int irun=0, string title="", int plot=0, int ilepton=1, int imo
 bool verbose = false;
 // bool verbose = true;
 
-// imode = -1; // identity test using MadGraph PAT
+// imode = -2; // identity test using MadGraph PAT
+// imode = -1; // identity test using MadGraph 4FS GEN 
 // imode =  0; // identity test using MadGraph GEN
 // imode =  1; // closure test using MadGraph + Sherpa
 // imode =  2; // closure test using MadGraph + Powheg
@@ -33,9 +34,6 @@ bool verbose = false;
 // method = 0; // use SVD
 // method = 1; // use Bayes
 // method = 2; // use BinByBin
-
-//int useWbb=0; // do not use the special Wbb MC sample
-int useWbb=1; // use the special Wbb MC sample
 
 string subdir="0";
 string postfix="";
@@ -150,19 +148,10 @@ if (irun==99) {            // irun==99 => pur
 
 	double norm1 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
 	double norm1_1 = norm1;
-	double norm1_2=0;
-	if (ilepton==1) norm1_2 = norm1;
-	if (ilepton==2) norm1_2 = norm1;
-	double norm1_3 = norm1;
-
-	if (useWbb) {
-	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
-	    norm1 = ((Lumi2012 * Xsec_wbb) / Ngen_wbb);
-	    if (ilepton==1) norm1_2 = norm1;
-	    if (ilepton==2) norm1_2 = norm1;
-	    norm1_3 = norm1;
-	  }
-	}
+	double norm1_2 = 0;
+	if (ilepton==1) norm1_2 = 0;
+	if (ilepton==2) norm1_2 = 0;
+	double norm1_3 = ((Lumi2012 * Xsec_wbb) / Ngen_wbb);
 
 	if (title.empty()) title = "w_jetmultiplicity";
 
@@ -190,52 +179,34 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) data = TFile::Open((path + "/muons/" + version + "/" + subdir + "/xsecs/" + file + "_xsecs.root").c_str());
 
 	TFile* mc1=0;
-	if (imode==-1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
+	if (imode==-2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
+	if (imode==-1) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
 	if (imode== 0) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-	if (imode== 3) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (imode== 3) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
 	if (imode== 4) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 5) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_sherpa_gen.root").c_str());
 	if (imode== 6) {
 	  if (ilepton==1) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	  if (ilepton==2) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	}
-	if (imode== 7) mc1 = TFile::Open((path + "/" + version + "/" + "Wj2_gen.root").c_str());
-
-	if (useWbb) {
-	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
-	    if (imode== 0) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 1) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 2) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 3) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 4) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	  }
-	}
+	if (imode== 7) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
 
 	TFile* mc2=0;
-	if (imode==-1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
+	if (imode==-2) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_patgen_merge.root").c_str());
+	if (imode==-1) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
 	if (imode== 0) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_sherpa_gen.root").c_str());
 	if (imode== 2) {
 	  if (ilepton==1) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	  if (ilepton==2) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_powheg_gen.root").c_str());
 	}
-	if (imode== 3) mc2 = TFile::Open((path + "/" + version + "/" + "Wj2_gen.root").c_str());
+	if (imode== 3) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 4) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 5) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 6) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 	if (imode== 7) mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
-
-	if (useWbb) {
-	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
-	    if (imode== 0) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 4) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 5) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 6) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	    if (imode== 7) mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
-	  }
-	}
 
 	TH1F* h_data_reco;
 	data->cd();
@@ -347,8 +318,8 @@ if (irun==99) {            // irun==99 => pur
 	  h_mc2_reco->Scale(norm1_2/norm1);
 	}
 	if (imode==3) {
-	  h_mc2_truth->Scale(norm1_3/norm1);
-	  h_mc2_reco->Scale(norm1_3/norm1);
+	  h_mc2_truth->Scale(norm1/norm1_3);
+	  h_mc2_reco->Scale(norm1/norm1_3);
 	}
 
 	if (title.find("_b")!=string::npos) {
@@ -557,7 +528,23 @@ if (irun==99) {            // irun==99 => pur
         leg1->SetFillColor(0);
         leg1->SetFillStyle(0);
 
-        if (imode<=4) {
+        if (imode==-2) {
+          leg1->AddEntry(h_mc1_reco,"MADGRAPH reco","l");
+          leg1->AddEntry(h_mc1_truth,"MADGRAPH truth","l");
+	}
+        if (imode==-1) {
+          leg1->AddEntry(h_mc1_reco,"MADGRAPH 4FS reco","l");
+          leg1->AddEntry(h_mc1_truth,"MADGRAPH 4FS truth","l");
+	}
+        if (imode>=0&&imode<=2) {
+          leg1->AddEntry(h_mc1_reco,"MADGRAPH reco","l");
+          leg1->AddEntry(h_mc1_truth,"MADGRAPH truth","l");
+	}
+        if (imode==3) {
+          leg1->AddEntry(h_mc1_reco,"MADGRAPH 4FS reco","l");
+          leg1->AddEntry(h_mc1_truth,"MADGRAPH 4FS truth","l");
+	}
+        if (imode==4) {
           leg1->AddEntry(h_mc1_reco,"MADGRAPH reco","l");
           leg1->AddEntry(h_mc1_truth,"MADGRAPH truth","l");
 	}
@@ -573,7 +560,9 @@ if (irun==99) {            // irun==99 => pur
           leg1->AddEntry(h_mc1_reco,"MADGRAPH 4FS reco","l");
           leg1->AddEntry(h_mc1_truth,"MADGRAPH 4FS truth","l");
 	}
-        if (imode<=0) leg1->AddEntry(h_mc2_unfold,"MADGRAPH unfold","l");
+        if (imode==-2) leg1->AddEntry(h_mc2_unfold,"MADGRAPH unfold","l");
+        if (imode==-1) leg1->AddEntry(h_mc2_unfold,"MADGRAPH 4FS unfold","l");
+        if (imode==0) leg1->AddEntry(h_mc2_unfold,"MADGRAPH unfold","l");
         if (imode==1) {
           leg1->AddEntry(h_mc2_reco,"SHERPA reco","l");
           leg1->AddEntry(h_mc2_truth,"SHERPA truth","l");
@@ -585,9 +574,9 @@ if (irun==99) {            // irun==99 => pur
           leg1->AddEntry(h_mc2_unfold,"POWHEG unfold","l");
         }
         if (imode==3) {
-          leg1->AddEntry(h_mc2_reco,"MADGRAPH 4FS reco","l");
-          leg1->AddEntry(h_mc2_truth,"MADGRAPH 4FS truth","l");
-          leg1->AddEntry(h_mc2_unfold,"MADGRAPH 4FS unfold","l");
+          leg1->AddEntry(h_mc2_reco,"MADGRAPH reco","l");
+          leg1->AddEntry(h_mc2_truth,"MADGRAPH truth","l");
+          leg1->AddEntry(h_mc2_unfold,"MADGRAPH unfold","l");
         }
         if (imode>=4) {
           leg1->AddEntry(h_data_reco,"DATA reco","p");
@@ -841,10 +830,11 @@ if (irun==99) {            // irun==99 => pur
 	  marker->Draw();
 	}
 
-	if (imode==0) title = title + "_identity_madgraph";
-	if (imode==1) title = title + "_closure_sherpa";
-	if (imode==2) title = title + "_closure_powheg";
-	if (imode==3) title = title + "_closure_madgraph4fs";
+	if (imode==-1) title = title + "_identity_madgraph4fs";
+	if (imode== 0) title = title + "_identity_madgraph";
+	if (imode== 1) title = title + "_closure_sherpa";
+	if (imode== 2) title = title + "_closure_powheg";
+	if (imode== 3) title = title + "_closure_madgraph4fs";
 
 	if (plot) {
 	  ofstream out;
