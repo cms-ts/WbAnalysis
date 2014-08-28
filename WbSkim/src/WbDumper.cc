@@ -564,13 +564,13 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
        w_Ht_b->Fill(Ht->empty() ? -1 : (*Ht)[0], gen_Ht->empty() ? -1 : (*gen_Ht)[0], my_weight);
        w_Ht_bb->Fill(Ht->empty() ? -1 : (*Ht)[0], gen_Ht->empty() ? -1 : (*gen_Ht)[0], my_weight);
        w_dijet_pt->Fill(dijet_pt->empty() ? -1 : (*dijet_pt)[0], gen_dijet_pt->empty() ? -1 : (*gen_dijet_pt)[0], my_weight);
-       w_dijet_eta->Fill(dijet_eta->empty() ? -1 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -1 : (*gen_dijet_eta)[0], my_weight);
+       w_dijet_eta->Fill(dijet_eta->empty() ? -3 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -3 : (*gen_dijet_eta)[0], my_weight);
        w_dijet_mass->Fill(dijet_mass->empty() ? -1 : (*dijet_mass)[0], gen_dijet_mass->empty() ? -1 : (*gen_dijet_mass)[0], my_weight);
        w_dijet_pt_b->Fill(dijet_pt->empty() ? -1 : (*dijet_pt)[0], gen_dijet_pt->empty() ? -1 : (*gen_dijet_pt)[0], my_weight);
-       w_dijet_eta_b->Fill(dijet_eta->empty() ? -1 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -1 : (*gen_dijet_eta)[0], my_weight);
+       w_dijet_eta_b->Fill(dijet_eta->empty() ? -3 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -3 : (*gen_dijet_eta)[0], my_weight);
        w_dijet_mass_b->Fill(dijet_mass->empty() ? -1 : (*dijet_mass)[0], gen_dijet_mass->empty() ? -1 : (*gen_dijet_mass)[0], my_weight);
        w_dijet_pt_bb->Fill(dijet_pt->empty() ? -1 : (*dijet_pt)[0], gen_dijet_pt->empty() ? -1 : (*gen_dijet_pt)[0], my_weight);
-       w_dijet_eta_bb->Fill(dijet_eta->empty() ? -1 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -1 : (*gen_dijet_eta)[0], my_weight);
+       w_dijet_eta_bb->Fill(dijet_eta->empty() ? -3 : (*dijet_eta)[0], gen_dijet_eta->empty() ? -3 : (*gen_dijet_eta)[0], my_weight);
        w_dijet_mass_bb->Fill(dijet_mass->empty() ? -1 : (*dijet_mass)[0], gen_dijet_mass->empty() ? -1 : (*gen_dijet_mass)[0], my_weight);
      }
 
@@ -586,9 +586,9 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
        w_pt_W_wenu->Fill(pt_W_wenu->empty() ? -1 : (*pt_W_wenu)[0], gen_pt_W_wenu->empty() ? -1 : (*gen_pt_W_wenu)[0], my_weight);
        w_pt_W_wenu_b->Fill(pt_W_wenu->empty() ? -1 : (*pt_W_wenu)[0], gen_pt_W_wenu->empty() ? -1 : (*gen_pt_W_wenu)[0], my_weight);
        w_pt_W_wenu_bb->Fill(pt_W_wenu->empty() ? -1 : (*pt_W_wenu)[0], gen_pt_W_wenu->empty() ? -1 : (*gen_pt_W_wenu)[0], my_weight);
-       w_eta_W_wenu->Fill(eta_W_wenu->empty() ? -1 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -1 : (*gen_eta_W_wenu)[0], my_weight);
-       w_eta_W_wenu_b->Fill(eta_W_wenu->empty() ? -1 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -1 : (*gen_eta_W_wenu)[0], my_weight);
-       w_eta_W_wenu_bb->Fill(eta_W_wenu->empty() ? -1 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -1 : (*gen_eta_W_wenu)[0], my_weight);
+       w_eta_W_wenu->Fill(eta_W_wenu->empty() ? -3 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -3 : (*gen_eta_W_wenu)[0], my_weight);
+       w_eta_W_wenu_b->Fill(eta_W_wenu->empty() ? -3 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -3 : (*gen_eta_W_wenu)[0], my_weight);
+       w_eta_W_wenu_bb->Fill(eta_W_wenu->empty() ? -3 : (*eta_W_wenu)[0], gen_eta_W_wenu->empty() ? -3 : (*gen_eta_W_wenu)[0], my_weight);
      }
 
      if (wmnu_event) {
@@ -603,9 +603,9 @@ void WbDumper::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) 
        w_pt_W_wmnu->Fill(pt_W_wmnu->empty() ? -1 : (*pt_W_wmnu)[0], gen_pt_W_wmnu->empty() ? -1 : (*gen_pt_W_wmnu)[0], my_weight);
        w_pt_W_wmnu_b->Fill(pt_W_wmnu->empty() ? -1 : (*pt_W_wmnu)[0], gen_pt_W_wmnu->empty() ? -1 : (*gen_pt_W_wmnu)[0], my_weight);
        w_pt_W_wmnu_bb->Fill(pt_W_wmnu->empty() ? -1 : (*pt_W_wmnu)[0], gen_pt_W_wmnu->empty() ? -1 : (*gen_pt_W_wmnu)[0], my_weight);
-       w_eta_W_wmnu->Fill(eta_W_wmnu->empty() ? -1 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -1 : (*gen_eta_W_wmnu)[0], my_weight);
-       w_eta_W_wmnu_b->Fill(eta_W_wmnu->empty() ? -1 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -1 : (*gen_eta_W_wmnu)[0], my_weight);
-       w_eta_W_wmnu_bb->Fill(eta_W_wmnu->empty() ? -1 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -1 : (*gen_eta_W_wmnu)[0], my_weight);
+       w_eta_W_wmnu->Fill(eta_W_wmnu->empty() ? -3 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -3 : (*gen_eta_W_wmnu)[0], my_weight);
+       w_eta_W_wmnu_b->Fill(eta_W_wmnu->empty() ? -3 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -3 : (*gen_eta_W_wmnu)[0], my_weight);
+       w_eta_W_wmnu_bb->Fill(eta_W_wmnu->empty() ? -3 : (*eta_W_wmnu)[0], gen_eta_W_wmnu->empty() ? -3 : (*gen_eta_W_wmnu)[0], my_weight);
      }
 
    }
