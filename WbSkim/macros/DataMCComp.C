@@ -381,13 +381,11 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	if (useWbb) {
 	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    if (h_mc1b) {
-	      h_mc1->Add(h_mc1b, -1.);
-	      for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
-	        float e = TMath::Power(h_mc1->GetBinError(i),2);
-	        e = e - TMath::Power(h_mc1b->GetBinError(i),2);
-	        h_mc1->SetBinError(i, TMath::Sqrt(e));
-	      }
 	      float xval = h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1);
+	      for (int i=0; i<=h_mc1b->GetNbinsX()+1; i++) {
+	        h_mc1b->SetBinError(i, 0.0);
+	      }
+	      h_mc1->Add(h_mc1b, -1.);
 	      mc1 = TFile::Open((path + "/" + version + "/" + "Wbb.root").c_str());
 	      if (ilepton==1) mc1->cd(("demoEle"+postfix).c_str());
 	      if (ilepton==2) mc1->cd(("demoMuo"+postfix).c_str());
