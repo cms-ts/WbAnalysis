@@ -619,12 +619,21 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   unsigned int index_ele=0;
   unsigned int index_ele2=0;
   unsigned int index_goodele=0;
+  bool badele = false;
 
   vector < TLorentzVector > vect_ele;
   ele_photons_canc.clear();
 
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
-    if (fabs(itgen->pdgId())==11 && itgen->status()==1) { // loop over gen electrons
+    for (unsigned int ime=0; ime<itgen->numberOfMothers(); ime++) {
+      const reco::GenParticle *pe = itgen->motherRef(ime).get();
+      const reco::GenParticle* mome = getBAncestors(pe);
+      if (abs(mome->pdgId())==15) badele=true;
+      if (int(abs(mome->pdgId())/1000)==5 || int(abs(mome->pdgId())/100)==5) badele=true;
+      if (int(abs(mome->pdgId())/1000)==4 || int(abs(mome->pdgId())/100)==4) badele=true;
+      if (int(abs(mome->pdgId())/100) ==1 || int(abs(mome->pdgId())/100)==2 || int(abs(mome->pdgId())/100)==3) badele=true;
+    }
+    if (fabs(itgen->pdgId())==11 && itgen->status()==1 && !badele) { // loop over gen electrons
       ele_photons.clear();
       TLorentzVector ele;
       ele.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
@@ -699,11 +708,20 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   unsigned int index_mu = 0;
   unsigned int index_mu2 = 0;
   unsigned int index_goodmu = 0;
+  bool badmu = false;
 
   mu_photons_canc.clear();
 
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
-    if (fabs(itgen->pdgId())==13 && itgen->status()==1) { // loop over gen muons
+    for (unsigned int imm=0; imm<itgen->numberOfMothers(); imm++) {
+      const reco::GenParticle *pm = itgen->motherRef(imm).get();
+      const reco::GenParticle* momm = getBAncestors(pm);
+      if (abs(momm->pdgId())==15) badmu=true;
+      if (int(abs(momm->pdgId())/1000)==5 || int(abs(momm->pdgId())/100)==5) badmu=true;
+      if (int(abs(momm->pdgId())/1000)==4 || int(abs(momm->pdgId())/100)==4) badmu=true;
+      if (int(abs(momm->pdgId())/100) ==1 || int(abs(momm->pdgId())/100)==2 || int(abs(momm->pdgId())/100)==3) badmu=true;
+    }
+    if (fabs(itgen->pdgId())==13 && itgen->status()==1 && !badmu) { // loop over gen muons
       mu_photons.clear();
       TLorentzVector muon;
       muon.SetPtEtaPhiM(itgen->pt(),itgen->eta(),itgen->phi(),itgen->mass());
@@ -968,6 +986,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
       }
     }
   }
+
+  /////////////////////////////////////////////////
+  ist = false; // N.B.: Disable tau filter!!!    //
+  /////////////////////////////////////////////////
 
   //  wenu_event = wenu_event && !ist && Nj==2 && Nb>0 && Nj3==0;
   //  wmnu_event = wmnu_event && !ist && Nj==2 && Nb>0 && Nj3==0;
