@@ -143,9 +143,9 @@ private:
 
     if (jetPt <= 0 || jetPtGen <= 0) return jetPt;
 
-    double correctionFactor[5]     = {1.052, 1.057, 1.096, 1.134, 1.288};
-    double correctionFactorUp[5]   = {1.115, 1.114, 1.161, 1.228, 1.488};
-    double correctionFactorDown[5] = {0.990, 1.001, 1.032, 1.042, 1.089};
+    double correctionFactor[7]     = {1.079, 1.099, 1.121, 1.208, 1.254, 1.395, 1.056};
+    double correctionFactorUp[7]   = {1.105, 1.127, 1.150, 1.254, 1.316, 1.458, 1.247};
+    double correctionFactorDown[7] = {1.053, 1.071, 1.092, 1.162, 1.192, 1.332, 0.865};
 
     int index = 0;
 
@@ -153,7 +153,9 @@ private:
     if (fabs(jetEta) > 0.5 && fabs(jetEta) <= 1.1) index = 1;
     if (fabs(jetEta) > 1.1 && fabs(jetEta) <= 1.7) index = 2;
     if (fabs(jetEta) > 1.7 && fabs(jetEta) <= 2.3) index = 3;
-    if (fabs(jetEta) > 2.3 && fabs(jetEta) <= 3.0) index = 4;
+    if (fabs(jetEta) > 2.3 && fabs(jetEta) <= 2.8) index = 4;
+    if (fabs(jetEta) > 2.8 && fabs(jetEta) <= 3.2) index = 5;
+    if (fabs(jetEta) > 3.2 && fabs(jetEta) <= 5.0) index = 6;
 
     double jetPtNew = jetPt;
 
