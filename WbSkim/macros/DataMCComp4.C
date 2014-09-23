@@ -335,18 +335,47 @@ if (irun==99) {            // irun==99 => pur
 
 	int kreg = 0; // default 0 -> nbins/2
 
-	if (title=="w_first_jet_eta_b") kreg = 0;
-	if (title=="w_first_jet_mass_b") kreg = 0;
-	if (title=="w_first_jet_pt_b") kreg = 0;
-	if (title=="w_first_jet_eta_bb") kreg = 0;
-	if (title=="w_first_jet_mass_bb") kreg = 0;
-	if (title=="w_first_jet_pt_bb") kreg = 0;
-	if (title=="w_second_jet_eta_b") kreg = 0;
-	if (title=="w_second_jet_mass_b") kreg = 0;
-	if (title=="w_second_jet_pt_b") kreg = 0;
-	if (title=="w_second_jet_eta_bb") kreg = 0;
-	if (title=="w_second_jet_mass_bb") kreg = 0;
-	if (title=="w_second_jet_pt_bb") kreg = 0;
+	if (title=="w_first_jet_pt_b") kreg = 3;
+	if (title=="w_first_jet_pt_bb") kreg = 4;
+	if (title=="w_first_jet_eta_b") kreg = 2;
+	if (title=="w_first_jet_eta_bb") kreg = 2;
+	if (title=="w_first_jet_mass_b") kreg = 3;
+	if (title=="w_first_jet_mass_bb") kreg = 3;
+
+	if (title=="w_second_jet_pt_b") kreg = 2;
+	if (title=="w_second_jet_pt_bb") kreg = 3;
+	if (title=="w_second_jet_eta_b") kreg = 3;
+	if (title=="w_second_jet_eta_bb") kreg = 4;
+	if (title=="w_second_jet_mass_b") kreg = 2;
+	if (title=="w_second_jet_mass_bb") kreg = 3;
+
+	if (title=="w_dijet_pt_b") kreg = 6;
+	if (title=="w_dijet_pt_bb") kreg = 4;
+	if (title=="w_dijet_eta_b") kreg = 2;
+	if (title=="w_dijet_eta_bb") kreg = 2;
+	if (title=="w_dijet_mass_b") kreg = 2;
+	if (title=="w_dijet_mass_bb") kreg = 6;
+
+	if (title=="w_Ht_b") kreg = 3;
+	if (title=="w_Ht_bb") kreg = 2;
+
+	if (title=="w_pt_W_wenu_b") kreg=5;
+	if (title=="w_pt_W_wenu_bb") kreg=3;
+	if (title=="w_pt_W_wmnu_b") kreg=5;
+	if (title=="w_pt_W_wmnu_bb") kreg=3;
+	if (title=="w_eta_W_wenu_b") kreg=2;
+	if (title=="w_eta_W_wenu_bb") kreg=2;
+	if (title=="w_eta_W_wmnu_b") kreg=2;
+	if (title=="w_eta_W_wmnu_bb") kreg=2;
+
+	if (title=="w_delta_wenu_b") kreg=2;
+	if (title=="w_delta_wenu_bb") kreg=2;
+	if (title=="w_delta_wmnu_b") kreg=2;
+	if (title=="w_delta_wmnu_bb") kreg=2;
+	if (title=="w_deltaR_wenu_b") kreg=2;
+	if (title=="w_deltaR_wenu_bb") kreg=2;
+	if (title=="w_deltaR_wmnu_b") kreg=2;
+	if (title=="w_deltaR_wmnu_bb") kreg=2;
 
 	if (method==0) {
 	  unfold_mc = new RooUnfoldSvd(&response, h_mc2_reco, kreg);
