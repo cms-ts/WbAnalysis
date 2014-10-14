@@ -627,11 +627,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
     for (unsigned int ime=0; ime<itgen->numberOfMothers(); ime++) {
       const reco::GenParticle *pe = itgen->motherRef(ime).get();
-      const reco::GenParticle* mome = getBAncestors(pe);
-      if (abs(mome->pdgId())==15) badele=true;
-      if (int(abs(mome->pdgId())/1000)==5 || int(abs(mome->pdgId())/100)==5) badele=true;
-      if (int(abs(mome->pdgId())/1000)==4 || int(abs(mome->pdgId())/100)==4) badele=true;
-      if (int(abs(mome->pdgId())/100) ==1 || int(abs(mome->pdgId())/100)==2 || int(abs(mome->pdgId())/100)==3) badele=true;
+      if (abs(pe->pdgId())==15) badele=true;
+      if (int(abs(pe->pdgId())/1000)==5 || int(abs(pe->pdgId())/100)==5) badele=true;
+      if (int(abs(pe->pdgId())/1000)==4 || int(abs(pe->pdgId())/100)==4) badele=true;
+      if (int(abs(pe->pdgId())/100) ==1 || int(abs(pe->pdgId())/100)==2 || int(abs(pe->pdgId())/100)==3) badele=true;
     }
     if (fabs(itgen->pdgId())==11 && itgen->status()==1 && !badele) { // loop over gen electrons
       ele_photons.clear();
@@ -715,11 +714,10 @@ void GenWbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup
   for (vector<reco::GenParticle>::const_iterator itgen=genPart->begin(); itgen!=genPart->end(); itgen++) {
     for (unsigned int imm=0; imm<itgen->numberOfMothers(); imm++) {
       const reco::GenParticle *pm = itgen->motherRef(imm).get();
-      const reco::GenParticle* momm = getBAncestors(pm);
-      if (abs(momm->pdgId())==15) badmu=true;
-      if (int(abs(momm->pdgId())/1000)==5 || int(abs(momm->pdgId())/100)==5) badmu=true;
-      if (int(abs(momm->pdgId())/1000)==4 || int(abs(momm->pdgId())/100)==4) badmu=true;
-      if (int(abs(momm->pdgId())/100) ==1 || int(abs(momm->pdgId())/100)==2 || int(abs(momm->pdgId())/100)==3) badmu=true;
+      if (abs(pm->pdgId())==15) badmu=true;
+      if (int(abs(pm->pdgId())/1000)==5 || int(abs(pm->pdgId())/100)==5) badmu=true;
+      if (int(abs(pm->pdgId())/1000)==4 || int(abs(pm->pdgId())/100)==4) badmu=true;
+      if (int(abs(pm->pdgId())/100) ==1 || int(abs(pm->pdgId())/100)==2 || int(abs(pm->pdgId())/100)==3) badmu=true;
     }
     if (fabs(itgen->pdgId())==13 && itgen->status()==1 && !badmu) { // loop over gen muons
       mu_photons.clear();
