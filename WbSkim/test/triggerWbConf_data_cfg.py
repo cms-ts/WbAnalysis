@@ -60,8 +60,6 @@ useNoTau      = False # before MET top projection
 
 ########## to turn on MET type-0+1 corrections
 
-getattr(process,'patMETs'+postfix).metSource = cms.InputTag('patType1p2CorrectedPFMet'+postfix)
-
 getattr(process,'patType1CorrectedPFMet'+postfix).srcType1Corrections = cms.VInputTag(
     cms.InputTag("patPFJetMETtype1p2Corr"+postfix,"type1"),
     cms.InputTag("patPFMETtype0Corr"+postfix)
