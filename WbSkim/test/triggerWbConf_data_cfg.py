@@ -53,12 +53,14 @@ getattr(process,"pfPileUp"+postfix).checkClosestZVertex = False
 ########### Initialize lepton and PU removal from jets
 
 usePFnoPU     = True
-useNoMuon     = True # before electron top projection
-useNoElectron = True # before jet top projection
+useNoMuon     = False # before electron top projection
+useNoElectron = False # before jet top projection
 useNoJet      = True # before tau top projection
 useNoTau      = False # before MET top projection
 
 ########## to turn on MET type-0+1 corrections
+
+getattr(process,'patMETs'+postfix).metSource = cms.InputTag('patType1CorrectedPFMet'+postfix)
 
 getattr(process,'patType1CorrectedPFMet'+postfix).srcType1Corrections = cms.VInputTag(
     cms.InputTag("patPFJetMETtype1p2Corr"+postfix,"type1"),
@@ -75,6 +77,9 @@ process.pfMEtSysShiftCorr.parameter = process.pfMEtSysShiftCorrParameters_2012ru
 
 getattr(process,'patType1CorrectedPFMet'+postfix).srcType1Corrections.append(cms.InputTag('pfMEtSysShiftCorr'))
 getattr(process,'patType1p2CorrectedPFMet'+postfix).srcType1Corrections.append(cms.InputTag('pfMEtSysShiftCorr'))
+
+getattr(process,'pfType1CorrectedMet').srcType1Corrections.append(cms.InputTag('pfMEtSysShiftCorr'))
+getattr(process,'pfType1p2CorrectedMet').srcType1Corrections.append(cms.InputTag('pfMEtSysShiftCorr'))
 
 ########### mu Trigger Matching
 
@@ -97,9 +102,7 @@ process.selectedPatMuonsTriggerMatch = cms.EDProducer("PATTriggerMatchMuonEmbedd
 
 ############## Making Jets
 
-process.goodJets = selectedPatJets.clone(
-		src = cms.InputTag('selectedPatJets'+postfix),
-                     cut = cms.string(
+getattr(process,'selectedPatJets'+postfix).cut = cms.string(
 			'pt > 20. & abs(eta) < 5.0 &'
 			'numberOfDaughters > 1 &'
 			'neutralHadronEnergyFraction < 0.99 &'
@@ -109,8 +112,62 @@ process.goodJets = selectedPatJets.clone(
 			'chargedHadronEnergyFraction > 0 &'
 			'chargedMultiplicity > 0) | (2.4 < abs(eta) < 5.0))'
 		)
-)
 
+process.goodJets = cms.EDProducer("PATJetCleaner",
+                                      src = cms.InputTag('selectedPatJets'+postfix),
+                                      preselection = cms.string(''),
+                                      checkOverlaps = cms.PSet(
+        muons = cms.PSet(
+            src = cms.InputTag('selectedPatMuons'+postfix),
+            algorithm = cms.string("byDeltaR"),
+            preselection = cms.string(
+                'pt > 30 & abs(eta) < 2.4 &'
+                'isGlobalMuon & isPFMuon &'
+                'globalTrack.normalizedChi2 < 10 &'
+                'track.hitPattern.trackerLayersWithMeasurement > 5 &'
+                'globalTrack.hitPattern.numberOfValidMuonHits > 0 &'
+                'innerTrack.hitPattern.numberOfValidPixelHits > 0 &'
+                'abs(dB) < 0.2 &'
+                'numberOfMatchedStations > 1 &'
+                '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt < 0.12'
+                ),
+            deltaR = cms.double(0.5),
+            checkRecoComponents = cms.bool(False),
+            pairCut = cms.string(""),
+            requireNoOverlaps = cms.bool(True),
+            ),
+        electrons = cms.PSet(
+            src = cms.InputTag('selectedPatElectrons'+postfix),
+            algorithm = cms.string("byDeltaR"),
+            preselection = cms.string(
+			'pt > 30 & abs(eta) < 2.4 &'
+			'(('
+			 'abs(superCluster.eta) < 1.442 &'
+			 'abs(deltaEtaSuperClusterTrackAtVtx) < 0.004 &'
+			 'abs(deltaPhiSuperClusterTrackAtVtx) < 0.03 &'
+			 'sigmaIetaIeta < 0.01 &'
+			 'hadronicOverEm < 0.12'
+			')|('
+			 'abs(superCluster.eta) > 1.566 & abs(superCluster.eta) < 2.5 &'
+			 'abs(deltaEtaSuperClusterTrackAtVtx) < 0.005 &'
+			 'abs(deltaPhiSuperClusterTrackAtVtx) < 0.02 &'
+			 'sigmaIetaIeta < 0.03 &'
+			 'hadronicOverEm < 0.10'
+			')) &'
+			'abs(dB) < 0.02 &'
+			'abs(1./ecalEnergy - eSuperClusterOverP/ecalEnergy) < 0.05 &'
+			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et < 0.10 &'
+			'passConversionVeto &'
+			'gsfTrack.trackerExpectedHitsInner.numberOfHits < 1'
+),
+            deltaR = cms.double(0.5),
+            checkRecoComponents = cms.bool(False),
+            pairCut = cms.string(""),
+            requireNoOverlaps = cms.bool(True),
+            ),
+        ),
+                                      finalCut = cms.string('')
+                                      )
 ############## Making Z to mumu
 
 process.matchedMuons0 = cms.EDProducer("MuScleFitPATMuonCorrector",
@@ -347,6 +404,7 @@ process.p = cms.Path(
    process.goodOfflinePrimaryVertices *
    process.pfMEtSysShiftCorrSequence *
    getattr(process,"patPF2PATSequence"+postfix) *
+   getattr(process,"producePFMETCorrections") *
    process.recoTauClassicHPSSequence *
    process.goodJets *
    process.patTrigger *
@@ -384,6 +442,7 @@ process.out.outputCommands += [
         'keep *_matchedElectronsQCD_*_*',
 	'keep *_matchedMuonsQCD_*_*',
 	'keep *_goodJets_*_*',
-	'keep *_goodOfflinePrimaryVertices_*_*'
+	'keep *_goodOfflinePrimaryVertices_*_*',
+	'keep *_pfType1CorrectedMet_*_*'
 ]
 
