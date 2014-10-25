@@ -2116,6 +2116,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   iEvent.getByLabel ("generalTracks", tracks);
 
   // Get METs
+  // edm::Handle < vector < pat::MET > > mets;
+  // iEvent.getByLabel (edm::InputTag ("patMETsPFlow"), mets);
   edm::Handle < vector < reco::PFMET > > mets;
   iEvent.getByLabel (edm::InputTag ("pfType1CorrectedMet"), mets);
 
