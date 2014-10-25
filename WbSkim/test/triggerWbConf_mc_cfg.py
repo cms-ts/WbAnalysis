@@ -100,7 +100,7 @@ process.selectedPatMuonsTriggerMatch = cms.EDProducer("PATTriggerMatchMuonEmbedd
 	             matches = cms.VInputTag('selectedTriggeredPatMuons')
 )
 
-############## Making Jet
+############## Making Jets
 
 getattr(process,'selectedPatJets'+postfix).cut = cms.string(
 			'pt > 20. & abs(eta) < 5.0 &'
