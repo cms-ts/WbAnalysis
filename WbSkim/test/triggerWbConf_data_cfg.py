@@ -366,9 +366,9 @@ getattr(process,"patElectrons"+postfix).isolationValues = cms.PSet(
         )
 
 getattr(process,"pfIsolatedElectrons"+postfix).doDeltaBetaCorrection = True
-getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 0.10
+getattr(process,"pfIsolatedElectrons"+postfix).isolationCut = 0.15
 getattr(process,"pfIsolatedMuons"+postfix).doDeltaBetaCorrection = True
-getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 0.12
+getattr(process,"pfIsolatedMuons"+postfix).isolationCut = 0.20
 
 setattr(process,"pfQcdElectrons"+postfix, getattr(process,"pfIsolatedElectrons"+postfix).clone())
 setattr(process,"pfQcdMuons"+postfix, getattr(process,"pfIsolatedMuons"+postfix).clone())
