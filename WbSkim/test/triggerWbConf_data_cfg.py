@@ -81,6 +81,9 @@ getattr(process,'patType1p2CorrectedPFMet'+postfix).srcType1Corrections.append(c
 getattr(process,'pfType1CorrectedMet').srcType1Corrections.append(cms.InputTag('pfMEtSysShiftCorr'))
 getattr(process,'pfType1p2CorrectedMet').srcType1Corrections.append(cms.InputTag('pfMEtSysShiftCorr'))
 
+########## Custom MET configuration for Residual corrections on NON standard MET
+getattr(process,'pfJetMETcorr').jetCorrLabel=cms.string('ak5PFL1FastL2L3Residual')
+
 ########### mu Trigger Matching
 
 pathTriggerMu = 'path("HLT_IsoMu24_eta2p1*")'
