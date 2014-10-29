@@ -202,7 +202,7 @@ process.matchedMuonsQCD = selectedPatMuons.clone(
 		        'innerTrack.hitPattern.numberOfValidPixelHits > 0 &'
 		        'abs(dB) < 0.2 &'
 		        'numberOfMatchedStations > 1 &'
-		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt > 0.12 &'
+		        '(pfIsolationR04().sumChargedHadronPt + max(pfIsolationR04().sumNeutralHadronEt + pfIsolationR04().sumPhotonEt - 0.5*pfIsolationR04().sumPUPt,0.0))/pt > 0.20 &'
 		        'triggerObjectMatches.size >= 0'
 		)
 )
@@ -330,7 +330,7 @@ process.matchedElectronsQCD = selectedPatElectrons.clone(
 			')) &'
 			'abs(dB) < 0.02 &'
 			'abs(1./ecalEnergy - eSuperClusterOverP/ecalEnergy) < 0.05 &'
-			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et > 0.10 &'
+			'(chargedHadronIso + max((neutralHadronIso + photonIso - 0.5*puChargedHadronIso),0.0))/et > 0.15 &'
 			'passConversionVeto &'
 			'gsfTrack.trackerExpectedHitsInner.numberOfHits < 1 &'
 			'triggerObjectMatches.size >= 0'
