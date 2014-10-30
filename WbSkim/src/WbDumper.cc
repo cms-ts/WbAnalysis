@@ -203,43 +203,43 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
    edm::Service < TFileService > fs;
 
 
-  w_first_jet_pt =      fs->make < TH2F > ("w_first_jet_pt",    "w_first_jet_pt;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_first_jet_eta =     fs->make < TH2F > ("w_first_jet_eta",   "w_first_jet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_first_jet_mass =      fs->make < TH2F > ("w_first_jet_mass",    "w_first_jet_mass;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
-  w_second_jet_pt =     fs->make < TH2F > ("w_second_jet_pt",   "w_second_jet_pt;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_second_jet_eta =    fs->make < TH2F > ("w_second_jet_eta",  "w_second_jet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_second_jet_mass =      fs->make < TH2F > ("w_second_jet_mass",    "w_second_jet_mass;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
-  w_dijet_pt =     fs->make < TH2F > ("w_dijet_pt",   "w_dijet_pt;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_dijet_eta =    fs->make < TH2F > ("w_dijet_eta",  "w_dijet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_dijet_mass =      fs->make < TH2F > ("w_dijet_mass",    "w_dijet_mass;Mass [GeV]", 20, 20., 260., 20, 20., 260.);
+  w_first_jet_pt =      fs->make < TH2F > ("w_first_jet_pt",    "w_first_jet_pt;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_first_jet_eta =     fs->make < TH2F > ("w_first_jet_eta",   "w_first_jet_eta;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_first_jet_mass =      fs->make < TH2F > ("w_first_jet_mass",    "w_first_jet_mass;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
+  w_second_jet_pt =     fs->make < TH2F > ("w_second_jet_pt",   "w_second_jet_pt;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_second_jet_eta =    fs->make < TH2F > ("w_second_jet_eta",  "w_second_jet_eta;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_second_jet_mass =      fs->make < TH2F > ("w_second_jet_mass",    "w_second_jet_mass;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
+  w_dijet_pt =     fs->make < TH2F > ("w_dijet_pt",   "w_dijet_pt;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_dijet_eta =    fs->make < TH2F > ("w_dijet_eta",  "w_dijet_eta;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_dijet_mass =      fs->make < TH2F > ("w_dijet_mass",    "w_dijet_mass;Mass [GeV]", 9, 25., 250., 9, 25., 250.);
 
-  w_first_jet_pt_b =    fs->make < TH2F > ("w_first_jet_pt_b",   "w_first_jet_pt_b;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_first_jet_eta_b =   fs->make < TH2F > ("w_first_jet_eta_b",  "w_first_jet_eta_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_first_jet_mass_b =      fs->make < TH2F > ("w_first_jet_mass_b",    "w_first_jet_mass_b;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
-  w_second_jet_pt_b =   fs->make < TH2F > ("w_second_jet_pt_b",  "w_second_jet_pt_b;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_second_jet_eta_b =  fs->make < TH2F > ("w_second_jet_eta_b", "w_second_jet_eta_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_second_jet_mass_b =      fs->make < TH2F > ("w_second_jet_mass_b",    "w_second_jet_mass_b;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
-  w_dijet_pt_b =   fs->make < TH2F > ("w_dijet_pt_b",  "w_dijet_pt_b;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_dijet_eta_b =  fs->make < TH2F > ("w_dijet_eta_b", "w_dijet_eta_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_dijet_mass_b =      fs->make < TH2F > ("w_dijet_mass_b",    "w_dijet_mass_b;Mass [GeV]", 20, 20., 260., 20, 20., 260.);
+  w_first_jet_pt_b =    fs->make < TH2F > ("w_first_jet_pt_b",   "w_first_jet_pt_b;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_first_jet_eta_b =   fs->make < TH2F > ("w_first_jet_eta_b",  "w_first_jet_eta_b;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_first_jet_mass_b =      fs->make < TH2F > ("w_first_jet_mass_b",    "w_first_jet_mass_b;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
+  w_second_jet_pt_b =   fs->make < TH2F > ("w_second_jet_pt_b",  "w_second_jet_pt_b;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_second_jet_eta_b =  fs->make < TH2F > ("w_second_jet_eta_b", "w_second_jet_eta_b;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_second_jet_mass_b =      fs->make < TH2F > ("w_second_jet_mass_b",    "w_second_jet_mass_b;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
+  w_dijet_pt_b =   fs->make < TH2F > ("w_dijet_pt_b",  "w_dijet_pt_b;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_dijet_eta_b =  fs->make < TH2F > ("w_dijet_eta_b", "w_dijet_eta_b;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_dijet_mass_b =      fs->make < TH2F > ("w_dijet_mass_b",    "w_dijet_mass_b;Mass [GeV]", 9, 25., 250., 9, 25., 250.);
 
-  w_first_jet_pt_bb =    fs->make < TH2F > ("w_first_jet_pt_bb",   "w_first_jet_pt_bb;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_first_jet_eta_bb =   fs->make < TH2F > ("w_first_jet_eta_bb",  "w_first_jet_eta_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_first_jet_mass_bb =      fs->make < TH2F > ("w_first_jet_mass_bb",    "w_first_jet_mass_bb;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
-  w_second_jet_pt_bb =   fs->make < TH2F > ("w_second_jet_pt_bb",  "w_second_jet_pt_bb;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_second_jet_eta_bb =  fs->make < TH2F > ("w_second_jet_eta_bb", "w_second_jet_eta_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_second_jet_mass_bb =      fs->make < TH2F > ("w_second_jet_mass_bb",    "w_second_jet_mass_bb;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
-  w_dijet_pt_bb =   fs->make < TH2F > ("w_dijet_pt_bb",  "w_dijet_pt_bb;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_dijet_eta_bb =  fs->make < TH2F > ("w_dijet_eta_bb", "w_dijet_eta_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_dijet_mass_bb =      fs->make < TH2F > ("w_dijet_mass_bb",    "w_dijet_mass_bb;Mass [GeV]", 20, 20., 260., 20, 20., 260.);
+  w_first_jet_pt_bb =    fs->make < TH2F > ("w_first_jet_pt_bb",   "w_first_jet_pt_bb;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_first_jet_eta_bb =   fs->make < TH2F > ("w_first_jet_eta_bb",  "w_first_jet_eta_bb;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_first_jet_mass_bb =      fs->make < TH2F > ("w_first_jet_mass_bb",    "w_first_jet_mass_bb;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
+  w_second_jet_pt_bb =   fs->make < TH2F > ("w_second_jet_pt_bb",  "w_second_jet_pt_bb;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_second_jet_eta_bb =  fs->make < TH2F > ("w_second_jet_eta_bb", "w_second_jet_eta_bb;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_second_jet_mass_bb =      fs->make < TH2F > ("w_second_jet_mass_bb",    "w_second_jet_mass_bb;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
+  w_dijet_pt_bb =   fs->make < TH2F > ("w_dijet_pt_bb",  "w_dijet_pt_bb;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_dijet_eta_bb =  fs->make < TH2F > ("w_dijet_eta_bb", "w_dijet_eta_bb;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_dijet_mass_bb =      fs->make < TH2F > ("w_dijet_mass_bb",    "w_dijet_mass_bb;Mass [GeV]", 9, 25., 250., 9, 25., 250.);
 
-  w_first_bjet_pt =     fs->make < TH2F > ("w_first_bjet_pt",    "w_first_bjet_pt;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_first_bjet_eta =    fs->make < TH2F > ("w_first_bjet_eta",   "w_first_bjet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_first_bjet_mass =      fs->make < TH2F > ("w_first_bjet_mass",    "w_first_bjet_mass;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
+  w_first_bjet_pt =     fs->make < TH2F > ("w_first_bjet_pt",    "w_first_bjet_pt;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_first_bjet_eta =    fs->make < TH2F > ("w_first_bjet_eta",   "w_first_bjet_eta;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_first_bjet_mass =      fs->make < TH2F > ("w_first_bjet_mass",    "w_first_bjet_mass;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
 
-  w_second_bjet_pt =    fs->make < TH2F > ("w_second_bjet_pt",   "w_second_bjet_pt;P_t [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_second_bjet_eta =   fs->make < TH2F > ("w_second_bjet_eta",  "w_second_bjet_eta;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_second_bjet_mass =      fs->make < TH2F > ("w_second_bjet_mass",    "w_second_bjet_mass;Mass [GeV]", 18, 0., 36., 18, 0., 36.);
+  w_second_bjet_pt =    fs->make < TH2F > ("w_second_bjet_pt",   "w_second_bjet_pt;P_t [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_second_bjet_eta =   fs->make < TH2F > ("w_second_bjet_eta",  "w_second_bjet_eta;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_second_bjet_mass =      fs->make < TH2F > ("w_second_bjet_mass",    "w_second_bjet_mass;Mass [GeV]", 9, 0., 36., 9, 0., 36.);
 
   w_mt_wenu =           fs->make < TH2F > ("w_mt_wenu",         "w_mt_wenu;M_{T} [GeV]", 20, 45., 205., 20, 45., 205.);
   w_mt_wmnu =           fs->make < TH2F > ("w_mt_wmnu",         "w_mt_wmnu;M_{T} [GeV]", 20, 45., 205., 20, 45., 205.);
@@ -247,39 +247,39 @@ WbDumper::WbDumper(const edm::ParameterSet& iConfig) {
   w_mt_wmnu_b =         fs->make < TH2F > ("w_mt_wmnu_b",       "w_mt_wmnu_b;M_{T} [GeV]", 20, 45., 205., 20, 45., 205.);
   w_mt_wenu_bb =        fs->make < TH2F > ("w_mt_wenu_bb",      "w_mt_wenu_bb;M_{T} [GeV]", 20, 45., 205., 20, 45., 205.);
   w_mt_wmnu_bb =        fs->make < TH2F > ("w_mt_wmnu_bb",      "w_mt_wmnu_bb;M_{T} [GeV]", 20, 45., 205., 20, 45., 205.);
-  w_delta_wenu =          fs->make < TH2F > ("w_delta_wenu",     "w_delta_wenu",    20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_delta_wenu_b =        fs->make < TH2F > ("w_delta_wenu_b",   "w_delta_wenu_b",  20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_delta_wenu_bb =       fs->make < TH2F > ("w_delta_wenu_bb",  "w_delta_wenu_bb", 20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_delta_wenu_2b =       fs->make < TH2F > ("w_delta_wenu_2b",  "w_delta_wenu_2b", 20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_delta_wmnu =          fs->make < TH2F > ("w_delta_wmnu",     "w_delta_wmnu",    20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_delta_wmnu_b =        fs->make < TH2F > ("w_delta_wmnu_b",   "w_delta_wmnu_b",  20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_delta_wmnu_bb =       fs->make < TH2F > ("w_delta_wmnu_bb",  "w_delta_wmnu_bb", 20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_delta_wmnu_2b =       fs->make < TH2F > ("w_delta_wmnu_2b",  "w_delta_wmnu_2b", 20, 0., TMath::Pi (),  20, 0., TMath::Pi ());
-  w_deltaR_wenu =          fs->make < TH2F > ("w_deltaR_wenu",     "w_deltaR_wenu",    24, 0., 4.8, 24, 0., 4.8);
-  w_deltaR_wenu_b =        fs->make < TH2F > ("w_deltaR_wenu_b",   "w_deltaR_wenu_b",  24, 0., 4.8, 24, 0., 4.8);
-  w_deltaR_wenu_bb =       fs->make < TH2F > ("w_deltaR_wenu_bb",  "w_deltaR_wenu_bb", 24, 0., 4.8, 24, 0., 4.8);
-  w_deltaR_wenu_2b =       fs->make < TH2F > ("w_deltaR_wenu_2b",  "w_deltaR_wenu_2b", 24, 0., 4.8, 24, 0., 4.8);
-  w_deltaR_wmnu =          fs->make < TH2F > ("w_deltaR_wmnu",     "w_deltaR_wmnu",    24, 0., 4.8, 24, 0., 4.8);
-  w_deltaR_wmnu_b =        fs->make < TH2F > ("w_deltaR_wmnu_b",   "w_deltaR_wmnu_b",  24, 0., 4.8, 24, 0., 4.8);
-  w_deltaR_wmnu_bb =       fs->make < TH2F > ("w_deltaR_wmnu_bb",  "w_deltaR_wmnu_bb", 24, 0., 4.8, 24, 0., 4.8);
-  w_deltaR_wmnu_2b =       fs->make < TH2F > ("w_deltaR_wmnu_2b",  "w_deltaR_wmnu_2b", 24, 0., 4.8, 24, 0., 4.8);
+  w_delta_wenu =          fs->make < TH2F > ("w_delta_wenu",     "w_delta_wenu",    8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_delta_wenu_b =        fs->make < TH2F > ("w_delta_wenu_b",   "w_delta_wenu_b",  8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_delta_wenu_bb =       fs->make < TH2F > ("w_delta_wenu_bb",  "w_delta_wenu_bb", 8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_delta_wenu_2b =       fs->make < TH2F > ("w_delta_wenu_2b",  "w_delta_wenu_2b", 8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_delta_wmnu =          fs->make < TH2F > ("w_delta_wmnu",     "w_delta_wmnu",    8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_delta_wmnu_b =        fs->make < TH2F > ("w_delta_wmnu_b",   "w_delta_wmnu_b",  8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_delta_wmnu_bb =       fs->make < TH2F > ("w_delta_wmnu_bb",  "w_delta_wmnu_bb", 8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_delta_wmnu_2b =       fs->make < TH2F > ("w_delta_wmnu_2b",  "w_delta_wmnu_2b", 8, 0., TMath::Pi (),  8, 0., TMath::Pi ());
+  w_deltaR_wenu =          fs->make < TH2F > ("w_deltaR_wenu",     "w_deltaR_wenu",    8, 0., 4.8, 8, 0., 4.8);
+  w_deltaR_wenu_b =        fs->make < TH2F > ("w_deltaR_wenu_b",   "w_deltaR_wenu_b",  8, 0., 4.8, 8, 0., 4.8);
+  w_deltaR_wenu_bb =       fs->make < TH2F > ("w_deltaR_wenu_bb",  "w_deltaR_wenu_bb", 8, 0., 4.8, 8, 0., 4.8);
+  w_deltaR_wenu_2b =       fs->make < TH2F > ("w_deltaR_wenu_2b",  "w_deltaR_wenu_2b", 8, 0., 4.8, 8, 0., 4.8);
+  w_deltaR_wmnu =          fs->make < TH2F > ("w_deltaR_wmnu",     "w_deltaR_wmnu",    8, 0., 4.8, 8, 0., 4.8);
+  w_deltaR_wmnu_b =        fs->make < TH2F > ("w_deltaR_wmnu_b",   "w_deltaR_wmnu_b",  8, 0., 4.8, 8, 0., 4.8);
+  w_deltaR_wmnu_bb =       fs->make < TH2F > ("w_deltaR_wmnu_bb",  "w_deltaR_wmnu_bb", 8, 0., 4.8, 8, 0., 4.8);
+  w_deltaR_wmnu_2b =       fs->make < TH2F > ("w_deltaR_wmnu_2b",  "w_deltaR_wmnu_2b", 8, 0., 4.8, 8, 0., 4.8);
 
-  w_pt_W_wenu =           fs->make < TH2F > ("w_pt_W_wenu",         "w_pt_W_wenu;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_pt_W_wmnu =           fs->make < TH2F > ("w_pt_W_wmnu",         "w_pt_W_wmnu;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_pt_W_wenu_b =         fs->make < TH2F > ("w_pt_W_wenu_b",       "w_pt_W_wenu_b;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_pt_W_wmnu_b =         fs->make < TH2F > ("w_pt_W_wmnu_b",       "w_pt_W_wmnu_b;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_pt_W_wenu_bb =        fs->make < TH2F > ("w_pt_W_wenu_bb",      "w_pt_W_wenu_bb;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_pt_W_wmnu_bb =        fs->make < TH2F > ("w_pt_W_wmnu_bb",      "w_pt_W_wmnu_bb;P_t [GeV]", 20, 0., 200., 20, 0., 200.);
-  w_eta_W_wenu =           fs->make < TH2F > ("w_eta_W_wenu",         "w_eta_W_wenu;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_eta_W_wmnu =           fs->make < TH2F > ("w_eta_W_wmnu",         "w_eta_W_wmnu;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_eta_W_wenu_b =         fs->make < TH2F > ("w_eta_W_wenu_b",       "w_eta_W_wenu_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_eta_W_wmnu_b =         fs->make < TH2F > ("w_eta_W_wmnu_b",       "w_eta_W_wmnu_b;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_eta_W_wenu_bb =        fs->make < TH2F > ("w_eta_W_wenu_bb",      "w_eta_W_wenu_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
-  w_eta_W_wmnu_bb =        fs->make < TH2F > ("w_eta_W_wmnu_bb",      "w_eta_W_wmnu_bb;Eta", 20, -2.4, 2.4, 20, -2.4, 2.4);
+  w_pt_W_wenu =           fs->make < TH2F > ("w_pt_W_wenu",         "w_pt_W_wenu;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_pt_W_wmnu =           fs->make < TH2F > ("w_pt_W_wmnu",         "w_pt_W_wmnu;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_pt_W_wenu_b =         fs->make < TH2F > ("w_pt_W_wenu_b",       "w_pt_W_wenu_b;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_pt_W_wmnu_b =         fs->make < TH2F > ("w_pt_W_wmnu_b",       "w_pt_W_wmnu_b;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_pt_W_wenu_bb =        fs->make < TH2F > ("w_pt_W_wenu_bb",      "w_pt_W_wenu_bb;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_pt_W_wmnu_bb =        fs->make < TH2F > ("w_pt_W_wmnu_bb",      "w_pt_W_wmnu_bb;P_t [GeV]", 8, 0., 200., 8, 0., 200.);
+  w_eta_W_wenu =           fs->make < TH2F > ("w_eta_W_wenu",         "w_eta_W_wenu;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_eta_W_wmnu =           fs->make < TH2F > ("w_eta_W_wmnu",         "w_eta_W_wmnu;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_eta_W_wenu_b =         fs->make < TH2F > ("w_eta_W_wenu_b",       "w_eta_W_wenu_b;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_eta_W_wmnu_b =         fs->make < TH2F > ("w_eta_W_wmnu_b",       "w_eta_W_wmnu_b;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_eta_W_wenu_bb =        fs->make < TH2F > ("w_eta_W_wenu_bb",      "w_eta_W_wenu_bb;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
+  w_eta_W_wmnu_bb =        fs->make < TH2F > ("w_eta_W_wmnu_bb",      "w_eta_W_wmnu_bb;Eta", 10, -2.4, 2.4, 10, -2.4, 2.4);
 
-  w_Ht =                fs->make < TH2F > ("w_Ht",              "w_Ht [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_Ht_b =              fs->make < TH2F > ("w_Ht_b",            "w_Ht_b [GeV]", 20, 20., 220., 20, 20., 220.);
-  w_Ht_bb =             fs->make < TH2F > ("w_Ht_bb",           "w_Ht_bb [GeV]", 20, 20., 220., 20, 20., 220.);
+  w_Ht =                fs->make < TH2F > ("w_Ht",              "w_Ht [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_Ht_b =              fs->make < TH2F > ("w_Ht_b",            "w_Ht_b [GeV]", 7, 25., 200., 7, 25., 200.);
+  w_Ht_bb =             fs->make < TH2F > ("w_Ht_bb",           "w_Ht_bb [GeV]", 7, 25., 200., 7, 25., 200.);
 }
 
 WbDumper::~WbDumper() {
