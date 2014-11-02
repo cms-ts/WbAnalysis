@@ -105,6 +105,16 @@ if (irun==99) {            // irun==99 => pur
 	  title_m = "w_deltaR_wmnu_b";
 	}
 
+	if (title=="w_pt_W_b") {
+	  title_e = "w_pt_W_wenu_b";
+	  title_m = "w_pt_W_wmnu_b";
+	}
+
+	if (title=="w_eta_W_b") {
+	  title_e = "w_eta_W_wenu_b";
+	  title_m = "w_eta_W_wmnu_b";
+	}
+
         string title_e_b = title_e;
         string title_m_b = title_m;
 
