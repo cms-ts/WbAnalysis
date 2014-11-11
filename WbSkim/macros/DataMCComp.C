@@ -54,8 +54,8 @@ int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
 //int useWbb=0; // do not use the special Wbb MC sample
 int useWbb=1; // use the special Wbb MC sample
 
-//int printYield=0; // do not print pre-fit and post-fit yields
-int printYield=1; // print pre-fit and post-fit yields
+int printYield=0; // do not print pre-fit and post-fit yields
+//int printYield=1; // print pre-fit and post-fit yields
 
 string subdir="0";
 string postfix="";
