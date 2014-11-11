@@ -1,6 +1,6 @@
 #include "DataMCComp.h"
 #include "LumiLabel.C"
-#include "LumiInfo_v10.h"
+#include "LumiInfo_v12.h"
 
 #include "fixrange.C"
 #include "rebin.C"
@@ -54,8 +54,8 @@ int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
 //int useWbb=0; // do not use the special Wbb MC sample
 int useWbb=1; // use the special Wbb MC sample
 
-int printYield=0; // do not print pre-fit and post-fit yields
-//int printYield=1; // print pre-fit and post-fit yields
+//int printYield=0; // do not print pre-fit and post-fit yields
+int printYield=1; // print pre-fit and post-fit yields
 
 string subdir="0";
 string postfix="";
@@ -577,17 +577,24 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  cout << "PRE FIT YIELDS:" << endl;
 	  cout << "data: " << h_data->Integral(0,h_data->GetNbinsX()+1) << endl;
 	  //	if (h_data_fit) cout << "data_fit: " << h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1) << endl;
-	  cout << "mc1: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
-	  if (h_mc1b) cout << "mc1b: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
-	  if (h_mc1c) cout << "mc1c: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
-	  if (h_mc1t) cout << "mc1t: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
-	  cout << "mc2: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
-	  cout << "mc3: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
-	  cout << "mc4: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
-	  if (h_mc5) cout << "mc5: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
-	  cout << "mc6: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
-	  cout << "mc7: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
-	  cout << "mc8: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
+	  cout << "Wjets: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
+	  if (h_mc1b) cout << "Wb: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
+	  if (h_mc1c) cout << "Wc: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
+	  if (h_mc1t) cout << "Wtau: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wlight: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) 
+					    - h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) 
+					    - h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) 
+					    -h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  cout << "TTbar: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
+	  cout << "ZZ: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
+	  cout << "WZ: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
+	  if (h_mc5) cout << "QCD: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
+	  cout << "WW: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) 
+	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1) 
+	    + h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "DY: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
+	  cout << "T: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
 	  cout << "******************" << endl;
 	  TH1F *dump_data;
 	  TH1F *dump_wjets;
@@ -700,18 +707,25 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  cout << "******************" << endl;
 	  cout << "POST FIT YIELDS:" << endl;
 	  cout << "data: " << h_data->Integral(0,h_data->GetNbinsX()+1) << endl;
-	  if (h_data_fit) cout << "data_fit: " << h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1) << endl;
-	  cout << "mc1: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
-	  if (h_mc1b) cout << "mc1b: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
-	  if (h_mc1c) cout << "mc1c: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
-	  if (h_mc1t) cout << "mc1t: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
-	  cout << "mc2: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
-	  cout << "mc3: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
-	  cout << "mc4: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
-	  if (h_mc5) cout << "mc5: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
-	  cout << "mc6: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
-	  cout << "mc7: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
-	  cout << "mc8: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
+	  //	if (h_data_fit) cout << "data_fit: " << h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1) << endl;
+	  cout << "Wjets: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
+	  if (h_mc1b) cout << "Wb: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
+	  if (h_mc1c) cout << "Wc: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
+	  if (h_mc1t) cout << "Wtau: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wlight: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) 
+					    - h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) 
+					    - h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) 
+					    -h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  cout << "TTbar: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
+	  cout << "ZZ: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
+	  cout << "WZ: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
+	  if (h_mc5) cout << "QCD: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
+	  cout << "WW: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) 
+	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1) 
+	    + h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "DY: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
+	  cout << "T: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
 	  cout << "******************" << endl;
 	}
 
