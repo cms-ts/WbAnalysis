@@ -1570,20 +1570,20 @@ WbAnalyzer::WbAnalyzer (const edm::ParameterSet & iConfig) {
   c_mass_wmnu_blepton_bb =      fs->make < TH1F > ("c_mass_wmnu_blepton_bb",    "c_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
   t_mass_wmnu_blepton_bb =      fs->make < TH1F > ("t_mass_wmnu_blepton_bb",    "t_mass_wmnu_blepton_bb;M_{T} [GeV]", 50, 0., 250.);
 
-  w_mass_ee_b =         fs->make < TH1F > ("w_mass_ee_b",       "w_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  b_mass_ee_b =         fs->make < TH1F > ("b_mass_ee_b",       "b_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  c_mass_ee_b =         fs->make < TH1F > ("c_mass_ee_b",       "c_mass_mm_b;Mass [GeV]", 80, 71., 111.);
-  t_mass_ee_b =         fs->make < TH1F > ("t_mass_ee_b",       "t_mass_mm_b;Mass [GeV]", 80, 71., 111.);
+  w_mass_ee_b =         fs->make < TH1F > ("w_mass_ee_b",       "w_mass_ee_b;Mass [GeV]", 80, 71., 111.);
+  b_mass_ee_b =         fs->make < TH1F > ("b_mass_ee_b",       "b_mass_ee_b;Mass [GeV]", 80, 71., 111.);
+  c_mass_ee_b =         fs->make < TH1F > ("c_mass_ee_b",       "c_mass_ee_b;Mass [GeV]", 80, 71., 111.);
+  t_mass_ee_b =         fs->make < TH1F > ("t_mass_ee_b",       "t_mass_ee_b;Mass [GeV]", 80, 71., 111.);
 
   w_mass_mm_b =         fs->make < TH1F > ("w_mass_mm_b",       "w_mass_mm_b;Mass [GeV]", 80, 71., 111.);
   b_mass_mm_b =         fs->make < TH1F > ("b_mass_mm_b",       "b_mass_mm_b;Mass [GeV]", 80, 71., 111.);
   c_mass_mm_b =         fs->make < TH1F > ("c_mass_mm_b",       "c_mass_mm_b;Mass [GeV]", 80, 71., 111.);
   t_mass_mm_b =         fs->make < TH1F > ("t_mass_mm_b",       "t_mass_mm_b;Mass [GeV]", 80, 71., 111.);
 
-  w_mass_ee_bb =         fs->make < TH1F > ("w_mass_ee_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  b_mass_ee_bb =         fs->make < TH1F > ("b_mass_ee_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  c_mass_ee_bb =         fs->make < TH1F > ("c_mass_ee_bb",       "c_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
-  t_mass_ee_bb =         fs->make < TH1F > ("t_mass_ee_bb",       "t_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
+  w_mass_ee_bb =         fs->make < TH1F > ("w_mass_ee_bb",       "w_mass_ee_bb;Mass [GeV]", 80, 71., 111.);
+  b_mass_ee_bb =         fs->make < TH1F > ("b_mass_ee_bb",       "b_mass_ee_bb;Mass [GeV]", 80, 71., 111.);
+  c_mass_ee_bb =         fs->make < TH1F > ("c_mass_ee_bb",       "c_mass_ee_bb;Mass [GeV]", 80, 71., 111.);
+  t_mass_ee_bb =         fs->make < TH1F > ("t_mass_ee_bb",       "t_mass_ee_bb;Mass [GeV]", 80, 71., 111.);
 
   w_mass_mm_bb =         fs->make < TH1F > ("w_mass_mm_bb",       "w_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
   b_mass_mm_bb =         fs->make < TH1F > ("b_mass_mm_bb",       "b_mass_mm_bb;Mass [GeV]", 80, 71., 111.);
