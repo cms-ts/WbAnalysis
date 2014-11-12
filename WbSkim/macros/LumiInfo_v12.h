@@ -21,8 +21,8 @@ double eXsec_dy = 0;
 //////////////////////// TTbar
 
 double Ngen_tt = 6923750;
-double Xsec_tt = 245.8; // NNLO
-double eXsec_tt = 0.026*Xsec_tt;
+double Xsec_tt = 240.6; // ATLAS+CMS https://cds.cern.ch/record/1950834
+double eXsec_tt = 8.5;
 
 //////////////////////// TTbar_FullLept
 
