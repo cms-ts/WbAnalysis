@@ -171,14 +171,12 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (title=="w_mt_wmnu_bb_wide") useFitResults=0;
 	}
 
-	if (doFit==1 || doFit==5) {
-	  if (title=="w_mt_wenu_wide") useFitResults2=0;
-	  if (title=="w_mt_wenu_b_wide") useFitResults2=0;
-	  if (title=="w_mt_wenu_bb_wide") useFitResults2=0;
-	  if (title=="w_mt_wmnu_wide") useFitResults2=0;
-	  if (title=="w_mt_wmnu_b_wide") useFitResults2=0;
-	  if (title=="w_mt_wmnu_bb_wide") useFitResults2=0;
-	}
+	if (title=="w_mt_wenu_wide") useFitResults2=0;
+	if (title=="w_mt_wenu_b_wide") useFitResults2=0;
+	if (title=="w_mt_wenu_bb_wide") useFitResults2=0;
+	if (title=="w_mt_wmnu_wide") useFitResults2=0;
+	if (title=="w_mt_wmnu_b_wide") useFitResults2=0;
+	if (title=="w_mt_wmnu_bb_wide") useFitResults2=0;
 
 	if (ilepton==3 || ilepton==4) useFitResults=0;
 
@@ -584,7 +582,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wlight: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) 
 					    - h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) 
 					    - h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) 
-					    -h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+					    - h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
 	  cout << "TTbar: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
 	  cout << "ZZ: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
 	  cout << "WZ: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
@@ -681,54 +679,6 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  }
 	}
 
-	if (useFitResults) {
-	  if (title.find("_bb")!=string::npos) {
-	    if (irun==6) {
-	      if (h_mc1b) h_mc1b->Scale(c3_b+0.1*ec3_b);
-	    } else {
-	      if (h_mc1b) h_mc1b->Scale(c3_b);
-	    }
-	  } else if (title.find("_b")!=string::npos) {
-	    if (irun==6) {
-	      if (h_mc1b) h_mc1b->Scale(c2_b+0.1*ec2_b);
-	    } else {
-	      if (h_mc1b) h_mc1b->Scale(c2_b);
-	    }
-	  } else {
-	    if (irun==6) {
-	      if (h_mc1b) h_mc1b->Scale(c1_b+0.1*ec1_b);
-	    } else {
-	      if (h_mc1b) h_mc1b->Scale(c1_b);
-	    }
-	  }
-	}
-
-	if (printYield) {
-	  cout << "******************" << endl;
-	  cout << "POST FIT YIELDS:" << endl;
-	  cout << "data: " << h_data->Integral(0,h_data->GetNbinsX()+1) << endl;
-	  //	if (h_data_fit) cout << "data_fit: " << h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1) << endl;
-	  cout << "Wjets: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
-	  if (h_mc1b) cout << "Wb: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
-	  if (h_mc1c) cout << "Wc: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
-	  if (h_mc1t) cout << "Wtau: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
-	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wlight: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) 
-					    - h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) 
-					    - h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) 
-					    -h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
-	  cout << "TTbar: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
-	  cout << "ZZ: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
-	  cout << "WZ: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
-	  if (h_mc5) cout << "QCD: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
-	  cout << "WW: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
-	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) 
-	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1) 
-	    + h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
-	  cout << "DY: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
-	  cout << "T: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
-	  cout << "******************" << endl;
-	}
-
 	if (irun==13) {
 	  for (int i=0; i<=h_mc1->GetNbinsX()+1; i++) {
 	    h_mc1->SetBinError(i, 1.1*h_mc1->GetBinError(i));
@@ -765,6 +715,54 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (h_mc1c) e = e - TMath::Power(h_mc1c->GetBinError(i),2);
 	  if (h_mc1t) e = e - TMath::Power(h_mc1t->GetBinError(i),2);
 	  h_mc1->SetBinError(i, TMath::Sqrt(e));
+	}
+
+	if (useFitResults) {
+	  if (title.find("_bb")!=string::npos) {
+	    if (irun==6) {
+	      if (h_mc1b) h_mc1b->Scale(c3_b+0.1*ec3_b);
+	    } else {
+	      if (h_mc1b) h_mc1b->Scale(c3_b);
+	    }
+	  } else if (title.find("_b")!=string::npos) {
+	    if (irun==6) {
+	      if (h_mc1b) h_mc1b->Scale(c2_b+0.1*ec2_b);
+	    } else {
+	      if (h_mc1b) h_mc1b->Scale(c2_b);
+	    }
+	  } else {
+	    if (irun==6) {
+	      if (h_mc1b) h_mc1b->Scale(c1_b+0.1*ec1_b);
+	    } else {
+	      if (h_mc1b) h_mc1b->Scale(c1_b);
+	    }
+	  }
+	}
+
+	if (printYield) {
+	  cout << "******************" << endl;
+	  cout << "POST FIT YIELDS:" << endl;
+	  cout << "data: " << h_data->Integral(0,h_data->GetNbinsX()+1) << endl;
+	  //	if (h_data_fit) cout << "data_fit: " << h_data_fit->Integral(0,h_data_fit->GetNbinsX()+1) << endl;
+	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wjets: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) 
+					    + h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) 
+					    + h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) 
+					    + h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  if (h_mc1b) cout << "Wb: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
+	  if (h_mc1c) cout << "Wc: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
+	  if (h_mc1t) cout << "Wtau: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
+	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wlight: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) << endl;
+	  cout << "TTbar: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
+	  cout << "ZZ: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
+	  cout << "WZ: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
+	  if (h_mc5) cout << "QCD: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
+	  cout << "WW: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) 
+	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1) 
+	    + h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
+	  cout << "DY: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
+	  cout << "T: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
+	  cout << "******************" << endl;
 	}
 
 	h_data = rebin(h_data);
