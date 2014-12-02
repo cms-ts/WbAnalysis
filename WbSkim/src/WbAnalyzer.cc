@@ -2761,6 +2761,9 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   if (lepton_=="electronFWD" || lepton_=="muonFWD") {
     wenu_event = wenu_event && Nb>0 && Nj==1;
     wmnu_event = wmnu_event && Nb>0 && Nj==1;
+  } else if (lepton_=="electronTOP" || lepton_=="muonTOP") {
+    wenu_event = wenu_event && Nb>1 && Nj>2 && vect_bjets[0].p4() == vect_jets[0].p4() && vect_bjets[1].p4() == vect_jets[1].p4();
+    wmnu_event = wmnu_event && Nb>1 && Nj>2 && vect_bjets[0].p4() == vect_jets[0].p4() && vect_bjets[1].p4() == vect_jets[1].p4();
   } else {
     wenu_event = wenu_event && Nb>0 && Nj==2;
     wmnu_event = wmnu_event && Nb>0 && Nj==2;
