@@ -615,7 +615,10 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  dump_zz = (TH1F*)h_mc3->Clone("ZZ");
 	  dump_wz = (TH1F*)h_mc4->Clone("WZ");
 	  dump_qcd = 0;
-	  if (h_mc5) dump_qcd = (TH1F*)h_mc5->Clone("QCD");
+	  if (h_mc5) {
+	    dump_qcd = (TH1F*)h_mc5->Clone("QCD");
+	    dump_qcd->Scale(c3_qcd);
+	  }
 	  dump_ww = (TH1F*)h_mc6->Clone("WW");
 	  dump_vv = (TH1F*)h_mc3->Clone("VV");
 	  dump_vv->Add(h_mc4, +1.);
