@@ -12,6 +12,10 @@ TH1F* h_mc_fit0 = 0;
 TH1F* h_mc_fit1 = 0;
 TH1F* h_mc_fit2 = 0;
 
+float mc_fit0 = 1.0;
+float mc_fit1 = 1.0;
+float mc_fit2 = 1.0;
+
 float e_mc_fit0 = 0.0;
 float e_mc_fit1 = 0.0;
 float e_mc_fit2 = 0.0;
@@ -37,9 +41,9 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
     }
     if (xd!=0) chisq = chisq + (xn*xn)/xd;
   }
-  if (e_mc_fit0!=0) chisq = chisq + TMath::Power((par[0]-1.0)/e_mc_fit0,2);
-  if (e_mc_fit1!=0) chisq = chisq + TMath::Power((par[1]-1.0)/e_mc_fit1,2);
-  if (e_mc_fit2!=0) chisq = chisq + TMath::Power((par[2]-1.0)/e_mc_fit2,2);
+  if (e_mc_fit0!=0) chisq = chisq + TMath::Power((par[0]-mc_fit0)/e_mc_fit0,2);
+  if (e_mc_fit1!=0) chisq = chisq + TMath::Power((par[1]-mc_fit1)/e_mc_fit1,2);
+  if (e_mc_fit2!=0) chisq = chisq + TMath::Power((par[2]-mc_fit2)/e_mc_fit2,2);
   fun = chisq;
 }
 
@@ -935,18 +939,21 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_mc_fit1 = h_mc2;
 	  h_mc_fit2 = h_mc5;
 	  if (title.find("_bb")!=string::npos) {
-	    e_mc_fit1 = ec3_t/c3_t;
+	    mc_fit1 = c3_t;
+	    e_mc_fit1 = ec3_t;
 	  } else if (title.find("_b")!=string::npos) {
-	    e_mc_fit1 = ec2_t/c2_t;
+	    mc_fit1 = c2_t;
+	    e_mc_fit1 = ec2_t;
 	  } else {
-	    e_mc_fit1 = ec1_t/c1_t;
+	    mc_fit1 = c1_t;
+	    e_mc_fit1 = ec1_t;
 	  }
 	  fitter = TVirtualFitter::Fitter(0, 3);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
 	  fitter->SetParameter(0, "c(W+bjets)", 1.00, 0.01, 0.00, 100.00);
-	  fitter->SetParameter(1, "c(t)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(1, "c(t)", mc_fit1, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(2, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
 	  h_mc_fit0->Scale(fitter->GetParameter(0));
