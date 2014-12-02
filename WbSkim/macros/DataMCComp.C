@@ -45,7 +45,7 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
 
 void DataMCComp(int irun=0, string title="", int plot=0, int ilepton=1, int doBkg=0, int doFit=0) {
 
-//int useFitResults = 0; // use MC for c_t
+//int useFitResults = 0; // do not use fit results for c_t
 int useFitResults = 1; // use fit results for c_t
 
 //int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
@@ -162,25 +162,18 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	double c3_b=1.0;
 	double ec3_b=0.0;
 
-	if (doFit==1) {
-	  if (title=="w_mt_wenu_wide") useFitResults=0;
-	  if (title=="w_mt_wenu_b_wide") useFitResults=0;
-	  if (title=="w_mt_wenu_bb_wide") useFitResults=0;
-	  if (title=="w_mt_wmnu_wide") useFitResults=0;
-	  if (title=="w_mt_wmnu_b_wide") useFitResults=0;
-	  if (title=="w_mt_wmnu_bb_wide") useFitResults=0;
-	}
-
-	if (title=="w_mt_wenu_wide") useFitResults2=0;
-	if (title=="w_mt_wenu_b_wide") useFitResults2=0;
-	if (title=="w_mt_wenu_bb_wide") useFitResults2=0;
-	if (title=="w_mt_wmnu_wide") useFitResults2=0;
-	if (title=="w_mt_wmnu_b_wide") useFitResults2=0;
-	if (title=="w_mt_wmnu_bb_wide") useFitResults2=0;
+	if (title=="w_mt_wenu_wide") { useFitResults=0; useFitResults2=0; }
+	if (title=="w_mt_wenu_b_wide") { useFitResults=0; useFitResults2=0; }
+	if (title=="w_mt_wenu_bb_wide") { useFitResults=0; useFitResults2=0; }
+	if (title=="w_mt_wmnu_wide") { useFitResults=0; useFitResults2=0; }
+	if (title=="w_mt_wmnu_b_wide") { useFitResults=0; useFitResults2=0; }
+	if (title=="w_mt_wmnu_bb_wide") { useFitResults=0; useFitResults2=0; }
 
 	if (ilepton==3 || ilepton==4) useFitResults=0;
 
-	if (ilepton>=3) useFitResults2=0;
+	if (ilepton==3 || ilepton==4) useFitResults2=0;
+	if (ilepton==5 || ilepton==6) useFitResults2=0;
+	if (ilepton==7 || ilepton==8) useFitResults2=0;
 
 	ifstream in1, in2, in3, in4, in5, in6, in10, in11, in12;
 	if (ilepton==1) {
@@ -819,18 +812,22 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    h_data_fit->Add(h_mc6, -1.);
 	    h_data_fit->Add(h_mc4, -1.);
 	    h_data_fit->Add(h_mc3, -1.);
-	    h_data_fit->Add(h_mc2, -1.);
 	    h_data_fit->Add(h_mc1t, -1.);
 	  }
-	  h_mc_fit0 = h_mc1;
-	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, 1.);
-	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, 1.);
+	  h_data_fit->Add(h_mc1, -1.);
+	  if (h_mc1b) h_data_fit->Add(h_mc1b, -1.);
+	  if (h_mc1c) h_data_fit->Add(h_mc1c, -1.);
+	  h_mc_fit0 = h_mc2;
 	  h_mc_fit1 = h_mc5;
+	  for (int i=0; i<=h_data_fit->GetNbinsX()+1; i++) {
+	    float e = TMath::Power(h_data_fit->GetBinError(i),2);
+	    h_data_fit->SetBinError(i, TMath::Sqrt(e));
+	  }
 	  fitter = TVirtualFitter::Fitter(0, 2);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
-	  fitter->SetParameter(0, "c(W+jets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(0, "c(t)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(1, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
 	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, -1.);
@@ -1261,7 +1258,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
 	  }
 	  if (doFit==2) {
-	    sprintf(buff, "c_{W+jets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    sprintf(buff, "c_{t} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
 	    sprintf(buff, "c_{qcd} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
 	    fitLabel->DrawLatex(0.68, 0.43, buff);

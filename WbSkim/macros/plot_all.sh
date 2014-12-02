@@ -17,13 +17,13 @@ cd -
 i=7
 while [ $i -le 8 ]; do
 
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,1\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,1\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,1\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,2\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,2\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,2\)
 
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,1\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,1\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,1\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,2\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,2\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,2\)
 
   i=$((i+1))
 done
