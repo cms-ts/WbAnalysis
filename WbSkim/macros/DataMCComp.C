@@ -11,14 +11,17 @@ TH1F* h_data_fit = 0;
 TH1F* h_mc_fit0 = 0;
 TH1F* h_mc_fit1 = 0;
 TH1F* h_mc_fit2 = 0;
+TH1F* h_mc_fit3 = 0;
 
 float mc_fit0 = 1.0;
 float mc_fit1 = 1.0;
 float mc_fit2 = 1.0;
+float mc_fit3 = 1.0;
 
 float e_mc_fit0 = 0.0;
 float e_mc_fit1 = 0.0;
 float e_mc_fit2 = 0.0;
+float e_mc_fit3 = 0.0;
 
 void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   double chisq = 0.0;
@@ -27,23 +30,32 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   for (int i=1; i<=h_data_fit->GetNbinsX(); i++) {
     double xn = h_data_fit->GetBinContent(i);
     double xd = TMath::Power(h_data_fit->GetBinError(i),2);
+    double w = 1.0;
+    if (npar>3) {
+      w = par[3];
+    }
     if (npar>0) {
-      xn = xn - par[0]*h_mc_fit0->GetBinContent(i);
-      xd = xd + TMath::Power(par[0]*h_mc_fit0->GetBinError(i),2);
+      xn = xn - w*par[0]*h_mc_fit0->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[0]*h_mc_fit0->GetBinError(i),2);
     }
     if (npar>1) {
-      xn = xn - par[1]*h_mc_fit1->GetBinContent(i);
-      xd = xd + TMath::Power(par[1]*h_mc_fit1->GetBinError(i),2);
+      xn = xn - w*par[1]*h_mc_fit1->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[1]*h_mc_fit1->GetBinError(i),2);
     }
     if (npar>2) {
       xn = xn - par[2]*h_mc_fit2->GetBinContent(i);
       xd = xd + TMath::Power(par[2]*h_mc_fit2->GetBinError(i),2);
+    }
+    if (h_mc_fit3) {
+      xn = xn - w*h_mc_fit3->GetBinContent(i);
+      xd = xd + TMath::Power(w*h_mc_fit3->GetBinError(i),2);
     }
     if (xd!=0) chisq = chisq + (xn*xn)/xd;
   }
   if (e_mc_fit0!=0) chisq = chisq + TMath::Power((par[0]-mc_fit0)/e_mc_fit0,2);
   if (e_mc_fit1!=0) chisq = chisq + TMath::Power((par[1]-mc_fit1)/e_mc_fit1,2);
   if (e_mc_fit2!=0) chisq = chisq + TMath::Power((par[2]-mc_fit2)/e_mc_fit2,2);
+  if (e_mc_fit3!=0) chisq = chisq + TMath::Power((par[3]-mc_fit3)/e_mc_fit3,2);
   fun = chisq;
 }
 
@@ -52,8 +64,8 @@ void DataMCComp(int irun=0, string title="", int plot=0, int ilepton=1, int doBk
 //int useFitResults = 0; // do not use fit results for c_t
 int useFitResults = 1; // use fit results for c_t
 
-//int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
-int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
+//int useFitResults2=0;  // do not use constrained fit results for c_b, c_t, c_qcd, c_s
+int useFitResults2=1;  // use constrained fit results for c_b, c_t, c_qcd, c_s
 
 //int useWbb=0; // do not use the special Wbb MC sample
 int useWbb=1; // use the special Wbb MC sample
@@ -157,6 +169,14 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	double c3_t=1.0;
 	double ec3_t=0.0;
 
+	/* scale factor */
+	double c1_s=1.0;
+	double ec1_s=0.0;
+	double c2_s=1.0;
+	double ec2_s=0.0;
+	double c3_s=1.0;
+	double ec3_s=0.0;
+
 	/* purity */
 
 	double c1_b=1.0;
@@ -168,7 +188,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 
 	if (title=="w_mt_wenu_wide") { useFitResults=0; useFitResults2=0; }
 	if (title=="w_mt_wenu_b_wide") { useFitResults=0; useFitResults2=0; }
-	if (title=="w_mt_wenu_bb_wide") { useFitResults=0; useFitResults2=0; }
+	if (title=="w_mt_wenu_bb_wide") { useFitResults=0;useFitResults2=0; }
 	if (title=="w_mt_wmnu_wide") { useFitResults=0; useFitResults2=0; }
 	if (title=="w_mt_wmnu_b_wide") { useFitResults=0; useFitResults2=0; }
 	if (title=="w_mt_wmnu_bb_wide") { useFitResults=0; useFitResults2=0; }
@@ -268,34 +288,35 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	if (useFitResults2) {
 	  double c;
 	  double ec;
-	  c = 1.0;
-	  ec = 0.0;
-	  in10 >> c >> ec;
-	  c1_b = c1_b * c ; ec1_b = c1_b * ec;
-	  in10 >> c >> ec;
-	  c1_t = c1_t * c; ec1_t = c1_t * ec;
+	  in10 >> c1_b >> ec1_b;
+	  in10 >> c1_t >> ec1_t;
+	  c = 1.0; ec = 0.0;
 	  in10 >> c >> ec;
 	  c1_qcd = c1_qcd * c; ec1_qcd = c1_qcd * ec;
-	  c = 1.0;
-	  ec = 0.0;
-	  in11 >> c >> ec;
-	  c2_b = c2_b * c ; ec2_b = c2_b * ec;
-	  in11 >> c >> ec;
-	  c2_t = c2_t * c; ec2_t = c2_t * ec;
+	  in10 >> c1_s >> ec1_s;
+	  in11 >> c2_b >> ec2_b;
+	  in11 >> c2_t >> ec2_t;
+	  c = 1.0; ec = 0.0;
 	  in11 >> c >> ec;
 	  c2_qcd = c2_qcd * c; ec2_qcd = c2_qcd * ec;
-	  c = 1.0;
-	  ec = 0.0;
-	  in12 >> c >> ec;
-	  c3_b = c3_b * c ; ec3_b = c3_b * ec;
-	  in12 >> c >> ec;
-	  c3_t = c3_t * c; ec3_t = c3_t * ec;
+	  in11 >> c2_s >> ec2_s;
+	  in12 >> c3_b >> ec3_b;
+	  in12 >> c3_t >> ec3_t;
+	  c = 1.0; ec = 0.0;
 	  in12 >> c >> ec;
 	  c3_qcd = c3_qcd * c; ec3_qcd = c3_qcd * ec;
+	  in12 >> c3_s >> ec3_s;
 	  in10.close();
 	  in11.close();
 	  in12.close();
 	}
+
+	c1_b = c1_b * c1_s; ec1_b = TMath::Sqrt(TMath::Power(c1_b*ec1_s,2)+TMath::Power(ec1_b*c1_s,2));
+	c1_t = c1_t * c1_s; ec1_t = TMath::Sqrt(TMath::Power(c1_t*ec1_s,2)+TMath::Power(ec1_t*c1_s,2));
+	c2_b = c2_b * c2_s; ec2_b = TMath::Sqrt(TMath::Power(c2_b*ec2_s,2)+TMath::Power(ec2_b*c2_s,2));
+	c2_t = c2_t * c2_s; ec2_t = TMath::Sqrt(TMath::Power(c2_t*ec2_s,2)+TMath::Power(ec2_t*c2_s,2));
+	c3_b = c3_b * c3_s; ec3_b = TMath::Sqrt(TMath::Power(c3_b*ec3_s,2)+TMath::Power(ec3_b*c3_s,2));
+	c3_t = c3_t * c3_s; ec3_t = TMath::Sqrt(TMath::Power(c3_t*ec3_s,2)+TMath::Power(ec3_t*c3_s,2));
 
 	double Lumi2012=0;
 
@@ -652,20 +673,26 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (title.find("_bb")!=string::npos) {
 	    if (irun==5) {
 	      h_mc2->Scale(c3_t+0.1*ec3_t);
+	      h_mc8->Scale(c3_s+0.1*ec3_s);
 	    } else {
 	      h_mc2->Scale(c3_t);
+	      h_mc8->Scale(c3_s);
 	    }
 	  } else if (title.find("_b")!=string::npos) {
 	    if (irun==5) {
 	      h_mc2->Scale(c2_t+0.1*ec2_t);
+	      h_mc8->Scale(c2_s+0.1*ec2_s);
 	    } else {
 	      h_mc2->Scale(c2_t);
+	      h_mc8->Scale(c2_s);
 	    }
 	  } else {
 	    if (irun==5) {
 	      h_mc2->Scale(c1_t+0.1*ec1_t);
+	      h_mc8->Scale(c1_s+0.1*ec1_s);
 	    } else {
 	      h_mc2->Scale(c1_t);
+	      h_mc8->Scale(c1_s);
 	    }
 	  }
 	}
@@ -959,6 +986,95 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_mc_fit0->Scale(fitter->GetParameter(0));
 	  h_mc_fit1->Scale(fitter->GetParameter(1));
 	  h_mc_fit2->Scale(fitter->GetParameter(2));
+	}
+	if (doFit==6) {
+	  h_data_fit = (TH1F*)h_data->Clone("h_data_fit");
+	  if (!doBkg) {
+	    h_data_fit->Add(h_mc8, -1.);
+	    h_data_fit->Add(h_mc7, -1.);
+	    h_data_fit->Add(h_mc6, -1.);
+	    h_data_fit->Add(h_mc4, -1.);
+	    h_data_fit->Add(h_mc3, -1.);
+	    h_data_fit->Add(h_mc1t, -1.);
+	  }
+	  h_data_fit->Add(h_mc1, -1.);
+	  if (h_mc1c) h_data_fit->Add(h_mc1c, -1.);
+	  h_mc_fit0 = h_mc1b;
+	  h_mc_fit1 = h_mc2;
+	  h_mc_fit2 = h_mc5;
+	  if (title.find("_bb")!=string::npos) {
+	    mc_fit1 = 1.0;
+	    e_mc_fit1 = eXsec_tt/Xsec_tt;
+	    mc_fit3 = c3_t;
+	    e_mc_fit3 = ec3_t;
+	  } else if (title.find("_b")!=string::npos) {
+	    mc_fit1 = 1.0;
+	    e_mc_fit1 = eXsec_tt/Xsec_tt;
+	    mc_fit3 = c2_t;
+	    e_mc_fit3 = ec2_t;
+	  } else {
+	    mc_fit1 = 1.0;
+	    e_mc_fit1 = eXsec_tt/Xsec_tt;
+	    mc_fit3 = c1_t;
+	    e_mc_fit3 = ec1_t;
+	  }
+	  fitter = TVirtualFitter::Fitter(0, 4);
+	  fitter->SetFCN(fcn);
+	  double arglist[1] = {-1.0};
+	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
+	  fitter->SetParameter(0, "c(W+bjets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(1, "c(t)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(2, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(3, "c(scale)", mc_fit3, 0.01, 0.00, 100.00);
+	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
+	  h_mc_fit0->Scale(fitter->GetParameter(0)*fitter->GetParameter(3));
+	  h_mc_fit1->Scale(fitter->GetParameter(1)*fitter->GetParameter(3));
+	  h_mc_fit2->Scale(fitter->GetParameter(2));
+	}
+	if (doFit==7) {
+	  h_data_fit = (TH1F*)h_data->Clone("h_data_fit");
+	  if (!doBkg) {
+	    h_data_fit->Add(h_mc7, -1.);
+	    h_data_fit->Add(h_mc6, -1.);
+	    h_data_fit->Add(h_mc4, -1.);
+	    h_data_fit->Add(h_mc3, -1.);
+	    h_data_fit->Add(h_mc1t, -1.);
+	  }
+	  h_data_fit->Add(h_mc1, -1.);
+	  if (h_mc1c) h_data_fit->Add(h_mc1c, -1.);
+	  h_mc_fit0 = h_mc1b;
+	  h_mc_fit1 = h_mc2;
+	  h_mc_fit2 = h_mc5;
+	  h_mc_fit3 = h_mc8;
+	  if (title.find("_bb")!=string::npos) {
+	    mc_fit1 = 1.0;
+	    e_mc_fit1 = eXsec_tt/Xsec_tt;
+	    mc_fit3 = c3_t;
+	    e_mc_fit3 = ec3_t;
+	  } else if (title.find("_b")!=string::npos) {
+	    mc_fit1 = 1.0;
+	    e_mc_fit1 = eXsec_tt/Xsec_tt;
+	    mc_fit3 = c2_t;
+	    e_mc_fit3 = ec2_t;
+	  } else {
+	    mc_fit1 = 1.0;
+	    e_mc_fit1 = eXsec_tt/Xsec_tt;
+	    mc_fit3 = c1_t;
+	    e_mc_fit3 = ec1_t;
+	  }
+	  fitter = TVirtualFitter::Fitter(0, 4);
+	  fitter->SetFCN(fcn);
+	  double arglist[1] = {-1.0};
+	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
+	  fitter->SetParameter(0, "c(W+bjets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(1, "c(t)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(2, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(3, "c(scale)", mc_fit3, 0.01, 0.00, 100.00);
+	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
+	  h_mc_fit0->Scale(fitter->GetParameter(0)*fitter->GetParameter(3));
+	  h_mc_fit1->Scale(fitter->GetParameter(1)*fitter->GetParameter(3));
+	  h_mc_fit2->Scale(fitter->GetParameter(2));
+	  h_mc_fit3->Scale(fitter->GetParameter(3));
 	}
 
 	if (printYield) {
@@ -1313,6 +1429,16 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    sprintf(buff, "c_{qcd} = %5.3f #pm %5.3f", fitter->GetParameter(2), fitter->GetParError(2));
 	    fitLabel->DrawLatex(0.68, 0.38, buff);
 	  }
+	  if (doFit==6 || doFit==7) {
+	    sprintf(buff, "c_{W+bjets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    fitLabel->DrawLatex(0.68, 0.53, buff);
+	    sprintf(buff, "c_{t} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
+	    fitLabel->DrawLatex(0.68, 0.48, buff);
+	    sprintf(buff, "c_{qcd} = %5.3f #pm %5.3f", fitter->GetParameter(2), fitter->GetParError(2));
+	    fitLabel->DrawLatex(0.68, 0.43, buff);
+	    sprintf(buff, "c_{scale} = %5.3f #pm %5.3f", fitter->GetParameter(3), fitter->GetParError(3));
+	    fitLabel->DrawLatex(0.68, 0.38, buff);
+	  }
 	}
 
 	if (plot) {
@@ -1382,6 +1508,14 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    out << fitter->GetParameter(0) << " " << fitter->GetParError(0) << endl;
 	    out << fitter->GetParameter(1) << " " << fitter->GetParError(1) << endl;
 	    out << fitter->GetParameter(2) << " " << fitter->GetParError(2) << endl;
+	    out << 1.0 << " " << 0.0 << endl;
+	    out.close();
+	  }
+	  if (doFit==6 || doFit==7) {
+	    out << fitter->GetParameter(0) << " " << fitter->GetParError(0) << endl;
+	    out << fitter->GetParameter(1) << " " << fitter->GetParError(1) << endl;
+	    out << fitter->GetParameter(2) << " " << fitter->GetParError(2) << endl;
+	    out << fitter->GetParameter(3) << " " << fitter->GetParError(3) << endl;
 	    out.close();
 	  }
 	}
