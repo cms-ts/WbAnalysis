@@ -31,12 +31,26 @@ done
 i=1
 while [ $i -le 2 ]; do
 
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,5\)
-  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,5\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,5\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,5\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,5\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,5\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,5\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,5\)
+
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,6\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,6\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,6\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,6\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,6\)
+#  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,6\)
+
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_wide\",1,$i,0,7\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_b_wide\",1,$i,0,7\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wenu_bb_wide\",1,$i,0,7\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_wide\",1,$i,0,7\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_b_wide\",1,$i,0,7\)
+  root -l -q -b DataMCComp.C+\($d,\"w_mt_wmnu_bb_wide\",1,$i,0,7\)
 
   i=$((i+1))
 done
