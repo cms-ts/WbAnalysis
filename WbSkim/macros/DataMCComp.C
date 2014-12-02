@@ -65,27 +65,27 @@ if (irun==1) {             // irun==1 => JEC Up
 }
 if (irun==2) {             // irun==2 => JEC Down
   subdir="2";
-  postfix="Down";  
+  postfix="Down";
 }
 if (irun==3) {             // irun==3 => PU Up
   subdir="3";
-  postfix="Pup";  
+  postfix="Pup";
 }
 if (irun==4) {             // irun==4 => PU Down
   subdir="4";
-  postfix="Pum";  
+  postfix="Pum";
 }
 if (irun==5) {             // irun==5 => top bkg
   subdir="5";
-  postfix="";  
+  postfix="";
 }
 if (irun==6) {             // irun==6 => b purity
   subdir="6";
-  postfix="";  
+  postfix="";
 }
 if (irun==7) {             // irun==7 => unfolding
   subdir="7";
-  postfix="";  
+  postfix="";
 }
 if (irun==8) {             // irun==8 => unfolding with Sherpa
   subdir="8";
@@ -571,17 +571,17 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (h_mc1b) cout << "Wb: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
 	  if (h_mc1c) cout << "Wc: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
 	  if (h_mc1t) cout << "Wtau: " << h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
-	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wlight: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) 
-					    - h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) 
-					    - h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) 
+	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wlight: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1)
+					    - h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1)
+					    - h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1)
 					    - h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
 	  cout << "TTbar: " << h_mc2->Integral(0,h_mc2->GetNbinsX()+1) << endl;
 	  cout << "ZZ: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) << endl;
 	  cout << "WZ: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
 	  if (h_mc5) cout << "QCD: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
 	  cout << "WW: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
-	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) 
-	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1) 
+	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1)
+	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1)
 	    + h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
 	  cout << "DY: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
 	  cout << "T: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
@@ -945,9 +945,9 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  cout << "******************" << endl;
 	  cout << "POST FIT YIELDS:" << endl;
 	  cout << "data: " << h_data->Integral(0,h_data->GetNbinsX()+1) << endl;
-	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wjets: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1) 
-					    + h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) 
-					    + h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) 
+	  if (h_mc1b && h_mc1c && h_mc1t) cout << "Wjets: " << h_mc1->Integral(0,h_mc1->GetNbinsX()+1)
+					    + h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1)
+					    + h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1)
 					    + h_mc1t->Integral(0,h_mc1t->GetNbinsX()+1) << endl;
 	  if (h_mc1b) cout << "Wb: " << h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1) << endl;
 	  if (h_mc1c) cout << "Wc: " << h_mc1c->Integral(0,h_mc1c->GetNbinsX()+1) << endl;
@@ -958,8 +958,8 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  cout << "WZ: " << h_mc4->Integral(0,h_mc4->GetNbinsX()+1) << endl;
 	  if (h_mc5) cout << "QCD: " << h_mc5->Integral(0,h_mc5->GetNbinsX()+1) << endl;
 	  cout << "WW: " << h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
-	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1) 
-	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1) 
+	  cout << "VV: " << h_mc3->Integral(0,h_mc3->GetNbinsX()+1)
+	    + h_mc4->Integral(0,h_mc4->GetNbinsX()+1)
 	    + h_mc6->Integral(0,h_mc6->GetNbinsX()+1) << endl;
 	  cout << "DY: " << h_mc7->Integral(0,h_mc7->GetNbinsX()+1) << endl;
 	  cout << "T: " << h_mc8->Integral(0,h_mc8->GetNbinsX()+1) << endl;
