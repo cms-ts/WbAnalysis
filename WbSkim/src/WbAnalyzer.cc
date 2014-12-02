@@ -2452,8 +2452,8 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     if (vect_muon.size()==1 && vect_muon2.size()==0 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
   }
   if (lepton_ == "electronTOP" || lepton_ == "muonTOP") {
-    if (vect_ele.size()==1 && vect_ele2.size()==0 && vect_muon.size()==1 && vect_muon2.size()==0) wenu_event = true;
-    if (vect_muon.size()==1 && vect_muon2.size()==0 && vect_ele.size()==1 && vect_ele2.size()==0) wmnu_event = true;
+    if (vect_ele.size()==1 && vect_ele2.size()==0 && vect_muon.size()==0 && vect_muon2.size()==0) wenu_event = true;
+    if (vect_muon.size()==1 && vect_muon2.size()==0 && vect_ele.size()==0 && vect_ele2.size()==0) wmnu_event = true;
   }
 
   ee_event = ee_event && (lepton_ == "electron" || lepton_ == "electronQCD" || lepton_ == "electronFWD");
@@ -2766,10 +2766,12 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     wmnu_event = wmnu_event && Nb>0 && Nj==2;
   }
 
-  wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_=="electronQCD" || lepton_=="electronTOP"))
-  			      || (vect_jets2.size()==1 && Nb==1 && lepton_=="electronFWD"));
-  wmnu_event = wmnu_event && ((vect_jets2.size()==0 && (lepton_=="muon" || lepton_=="muonQCD" || lepton_=="muonTOP"))
-  			      || (vect_jets2.size()==1 && Nb==1 && lepton_=="muonFWD"));
+  wenu_event = wenu_event && ((vect_jets2.size()==0 && (lepton_=="electron" || lepton_=="electronQCD"))
+			      || (vect_jets2.size()>0 && lepton_=="electronFWD")
+			      || (vect_jets2.size()==0 && (lepton_=="electronTOP")));
+  wmnu_event = wmnu_event && ((vect_jets2.size()==0 && (lepton_=="muon" || lepton_=="muonQCD"))
+			      || (vect_jets2.size()>0 && lepton_=="muonFWD")
+			      || (vect_jets2.size()==0 && (lepton_=="muonTOP")));
 
   if (debug && Nj<1) cout << "Warning: 0 Jets in the event!" << endl;
   if (debug && Nb<1) cout << "Warning: 0 b-Jets in the event!" << endl;
