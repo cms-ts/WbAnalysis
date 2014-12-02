@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v10
+VERSION=v12
 CUT=0
 
 if [ ! -z "$1" ]; then
