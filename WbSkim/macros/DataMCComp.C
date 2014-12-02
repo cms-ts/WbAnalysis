@@ -381,9 +381,9 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    if (h_mc1b) {
 	      float xval = h_mc1b->Integral(0,h_mc1b->GetNbinsX()+1);
 	      for (int i=0; i<=h_mc1b->GetNbinsX()+1; i++) {
-	        h_mc1b->SetBinError(i, 0.0);
+	        h_mc1->SetBinError(i, TMath::Sqrt(TMath::Power(h_mc1->GetBinError(i),2)-TMath::Power(h_mc1b->GetBinError(i),2)));
+	        h_mc1->SetBinContent(i, h_mc1->GetBinContent(i)-h_mc1b->GetBinContent(i));
 	      }
-	      h_mc1->Add(h_mc1b, -1.);
 	      mc1 = TFile::Open((path + "/" + version + "/" + "Wbb.root").c_str());
 	      if (ilepton==1) mc1->cd(("demoEle"+postfix).c_str());
 	      if (ilepton==2) mc1->cd(("demoMuo"+postfix).c_str());
