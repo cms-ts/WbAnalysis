@@ -2758,7 +2758,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   ee_event = ee_event && Nb>0 && Nj>1 && iflag_ee;
   mm_event = mm_event && Nb>0 && Nj>1 && iflag_mm;
 
-  if (lepton_=="electronFWD" && lepton_=="muonFWD") {
+  if (lepton_=="electronFWD" || lepton_=="muonFWD") {
     wenu_event = wenu_event && Nb>0 && Nj==1;
     wmnu_event = wmnu_event && Nb>0 && Nj==1;
   } else {
@@ -4040,7 +4040,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj>1) {
     h_second_jet_pt->Fill (vect_jets[1].pt());
     w_second_jet_pt->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
     w_second_jet_eta->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
@@ -4085,7 +4085,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb==1) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj>1 && Nb==1) {
     h_second_jet_pt_b->Fill (vect_jets[1].pt());
     w_second_jet_pt_b->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
     w_second_jet_eta_b->Fill (vect_jets[1].eta(), MyWeight*scalFac_b);
@@ -4130,7 +4130,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
   }
 
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb>1) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj>1 && Nb>1) {
     scalFac_b = btagSF(isMC, vect_bjets, 2);
     h_second_jet_pt_bb->Fill (vect_jets[1].pt());
     w_second_jet_pt_bb->Fill (vect_jets[1].pt(), MyWeight*scalFac_b);
@@ -4154,7 +4154,7 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   }
 
   math::XYZTLorentzVector dijet;
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nj>1) {
     scalFac_b = btagSF(isMC, vect_bjets, 1);
     dijet = vect_jets[0].p4() + vect_jets[1].p4();
     h_dijet_pt->Fill (dijet.pt());
