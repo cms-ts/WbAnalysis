@@ -12,11 +12,11 @@ void DataMCComp2(int irun=0, string title="", int plot=0, int ilepton=1, int unf
 int useBinnedEfficiency=0; // use average efficiencies
 //int useBinnedEfficiency=1; // use bin-by-bin efficiencies
 
-//int useFitResults=0; // use MC predictions for c_b, c_c, c_uds, c_t
-int useFitResults=1;  // use fit results for c_b, c_c, c_uds, c_t
+//int useFitResults = 0; // do not use fit results for c_b, c_c, c_uds, c_t
+int useFitResults = 1; // use fit results for c_b, c_c, c_uds, c_t
 
-//int useFitResults2=0;  // do not use constrained fit results for c_qcd, c_t
-int useFitResults2=1;  // use constrained fit results for c_qcd, c_t
+//int useFitResults2=0;  // do not use constrained fit results for c_b, c_t, c_qcd, c_s
+int useFitResults2=1;  // use constrained fit results for c_b, c_t, c_qcd, c_s
 
 //int drawInclusive = 0; // do not plot the "inclusive" histogram
 int drawInclusive = 1; // do plot the "inclusive" histogram
@@ -150,6 +150,14 @@ if (irun==99) {            // irun==99 => pur
 	double c3_t=1.0;
 	double ec3_t=0.0;
 
+	/* scale factor */
+	double c1_s=1.0;
+	double ec1_s=0.0;
+	double c2_s=1.0;
+	double ec2_s=0.0;
+	double c3_s=1.0;
+	double ec3_s=0.0;
+
 	ifstream in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12;
 	if (ilepton==1) {
 	  in1.open((path + "/electrons/" + version + "/" + subdir + "/qcd_sub/" + "w_mt_wenu_wide_doFit" + ".dat").c_str());
@@ -216,31 +224,32 @@ if (irun==99) {            // irun==99 => pur
 	if (useFitResults2) {
 	  double c;
 	  double ec;
-	  c = 1.0;
-	  ec = 0.0;
-	  in10 >> c >> ec; // drop first line
-	  in10 >> c >> ec;
-	  c1_t = c1_t * c; ec1_t = c1_t * ec;
+	  in10 >> c1_b >> ec1_b;
+	  in10 >> c1_t >> ec1_t;
+	  c = 1.0; ec = 0.0;
 	  in10 >> c >> ec;
 	  c1_qcd = c1_qcd * c; ec1_qcd = c1_qcd * ec;
-	  c = 1.0;
-	  ec = 0.0;
-	  in11 >> c >> ec; // drop first line
-	  in11 >> c >> ec;
-	  c2_t = c2_t * c; ec2_t = c2_t * ec;
+	  in10 >> c1_s >> ec1_s;
+	  in11 >> c2_b >> ec2_b;
+	  in11 >> c2_t >> ec2_t;
+	  c = 1.0; ec = 0.0;
 	  in11 >> c >> ec;
 	  c2_qcd = c2_qcd * c; ec2_qcd = c2_qcd * ec;
-	  c = 1.0;
-	  ec = 0.0;
-	  in12 >> c >> ec; // drop first line
-	  in12 >> c >> ec;
-	  c3_t = c3_t * c; ec3_t = c3_t * ec;
+	  in11 >> c2_s >> ec2_s;
+	  in12 >> c3_b >> ec3_b;
+	  in12 >> c3_t >> ec3_t;
+	  c = 1.0; ec = 0.0;
 	  in12 >> c >> ec;
 	  c3_qcd = c3_qcd * c; ec3_qcd = c3_qcd * ec;
+	  in12 >> c3_s >> ec3_s;
 	  in10.close();
 	  in11.close();
 	  in12.close();
 	}
+
+	c1_t = c1_t * c1_s; ec1_t = TMath::Sqrt(TMath::Power(c1_t*ec1_s,2)+TMath::Power(ec1_t*c1_s,2));
+	c2_t = c2_t * c2_s; ec2_t = TMath::Sqrt(TMath::Power(c2_t*ec2_s,2)+TMath::Power(ec2_t*c2_s,2));
+	c3_t = c3_t * c3_s; ec3_t = TMath::Sqrt(TMath::Power(c3_t*ec3_s,2)+TMath::Power(ec3_t*c3_s,2));
 
 	double Lumi2012=0;
 
@@ -300,6 +309,8 @@ if (irun==99) {            // irun==99 => pur
 
 	if (title.find("_bjet_")!=string::npos) {
 	  title.erase(title.find("_bjet_")+1, 1);
+	} else if (title.find("_b_wide")!=string::npos) {
+	  title_b.insert(title.find("_b_wide")+1, "b");
 	} else {
 	  title_b = title_b + "b";
         }
@@ -480,27 +491,35 @@ if (irun==99) {            // irun==99 => pur
           if (title.find("_b")!=string::npos) {
             if (irun==5) {
 	      h_mc2->Scale(c2_t+0.1*ec2_t);
+	      h_mc8->Scale(c2_s+0.1*ec2_s);
             } else {
               h_mc2->Scale(c2_t);
+              h_mc8->Scale(c2_s);
             }
           } else {
             if (irun==5) {
 	      h_mc2->Scale(c1_t+0.1*ec1_t);
+	      h_mc8->Scale(c1_s+0.1*ec1_s);
             } else {
               h_mc2->Scale(c1_t);
+              h_mc8->Scale(c1_s);
             }
           }
           if (title_b.find("_bb")!=string::npos) {
             if (irun==5) {
 	      h_mc2_b->Scale(c3_t+0.1*ec3_t);
+	      h_mc8_b->Scale(c3_s+0.1*ec3_s);
             } else {
               h_mc2_b->Scale(c3_t);
+              h_mc8_b->Scale(c3_s);
             }
           } else if (title_b.find("_b")!=string::npos) {
             if (irun==5) {
 	      h_mc2_b->Scale(c2_t+0.1*ec2_t);
+	      h_mc8_b->Scale(c2_s+0.1*ec2_s);
             } else {
               h_mc2_b->Scale(c2_t);
+              h_mc8_b->Scale(c2_s);
             }
           }
         }
@@ -706,6 +725,16 @@ if (irun==99) {            // irun==99 => pur
 	  h_data->Add(h_mc1uds, -1.);
 	  h_data_b->Add(h_mc1c_b, -1.);
 	  h_data_b->Add(h_mc1uds_b, -1.);
+	}
+
+        if (unfold==0 && useFitResults) {
+	  if (title_b.find("_bb")!=string::npos) {
+	    h_data->Scale(1./c3_s);
+	    h_data_b->Scale(1./c3_s);
+          } else {
+	    h_data->Scale(1./c2_s);
+	    h_data_b->Scale(1./c2_s);
+	  }
 	}
 
 	TH1F *h_data_raw=0;
