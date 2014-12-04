@@ -186,6 +186,15 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	double c3_b=1.0;
 	double ec3_b=0.0;
 
+	if (doFit==1 || doFit==2) {
+	  if (title=="w_mt_wenu_wide") useFitResults=0;
+	  if (title=="w_mt_wenu_b_wide") useFitResults=0;
+	  if (title=="w_mt_wenu_bb_wide") useFitResults=0;
+	  if (title=="w_mt_wmnu_wide") useFitResults=0;
+	  if (title=="w_mt_wmnu_b_wide") useFitResults=0;
+	  if (title=="w_mt_wmnu_bb_wide") useFitResults=0;
+	}
+
 	if (title=="w_mt_wenu_wide") useFitResults2=0;
 	if (title=="w_mt_wenu_b_wide") useFitResults2=0;
 	if (title=="w_mt_wenu_bb_wide") useFitResults2=0;
