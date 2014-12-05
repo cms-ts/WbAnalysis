@@ -678,7 +678,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  dumphistos_file.Close();
 	}
 
-	if (useFitResults && doFit!=6 && doFit!=7) {
+	if (useFitResults && !doFit) {
 	  if (title.find("_bb")!=string::npos) {
 	    if (irun==5) {
 	      h_mc2->Scale(c3_t+0.1*ec3_t);
@@ -766,7 +766,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_mc1->SetBinError(i, TMath::Sqrt(e));
 	}
 
-	if (useFitResults && doFit!=6 && doFit!=7) {
+	if (useFitResults && !doFit) {
 	  if (title.find("_bb")!=string::npos) {
 	    if (irun==6) {
 	      if (h_mc1b) h_mc1b->Scale(c3_b+0.1*ec3_b);
