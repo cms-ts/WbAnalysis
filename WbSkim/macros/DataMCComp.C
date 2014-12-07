@@ -146,7 +146,7 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   fun = chisq;
 }
 
-void DataMCCompT(int irun=0, string title="", int plot=0, int ilepton=1, int doBkg=0, int doFit=0) {
+void DataMCComp(int irun=0, string title="", int plot=0, int ilepton=1, int doBkg=0, int doFit=0) {
 
 //int useFitResults = 0; // do not use fit results for c_t
 int useFitResults = 1; // use fit results for c_t
