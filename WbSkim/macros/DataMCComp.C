@@ -1268,7 +1268,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  mc_fit7 = 1.0;
 	  e_mc_fit7 = eXsec_wz/Xsec_wz;
 	  mc_fit8 = 1.0;
-	  e_mc_fit8 = eXsec_dy/Xsec_dy;
+	  e_mc_fit8 = 0.079; // eXsec_dy/Xsec_dy;
 	  if (title.find("_bb")!=string::npos) {
 	    mc_fit10 = c3_t;
 	    e_mc_fit10 = ec3_t;
