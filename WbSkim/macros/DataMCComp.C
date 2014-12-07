@@ -51,13 +51,13 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
       double w = 1.0;
       if (n_mc_fit2>0) w = par[n_mc_fit2];
       xn = xn - w*par[2]*h_mc_fit2->GetBinContent(i);
-      xd = xd + TMath::Power(par[2]*h_mc_fit2->GetBinError(i),2);
+      xd = xd + TMath::Power(w*par[2]*h_mc_fit2->GetBinError(i),2);
     }
     if (h_mc_fit3) {
       double w = 1.0;
       if (n_mc_fit3>0) w = par[n_mc_fit3];
       xn = xn - w*par[3]*h_mc_fit3->GetBinContent(i);
-      xd = xd + TMath::Power(par[3]*h_mc_fit3->GetBinError(i),2);
+      xd = xd + TMath::Power(w*par[3]*h_mc_fit3->GetBinError(i),2);
     }
     if (xd!=0) chisq = chisq + (xn*xn)/xd;
   }
