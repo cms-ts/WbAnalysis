@@ -1697,21 +1697,21 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    sprintf(buff, "c_{W+uds} = %5.3f #pm %5.3f", fitter->GetParameter(2), fitter->GetParError(2));
 	    fitLabel->DrawLatex(0.51, 0.58, buff);
 	    sprintf(buff, "c_{ttbar} = %5.3f #pm %5.3f", fitter->GetParameter(3), fitter->GetParError(3));
-	    fitLabel->DrawLatex(0.72, 0.66, buff);
+	    fitLabel->DrawLatex(0.71, 0.66, buff);
 	    sprintf(buff, "c_{t/tbar} = %5.3f #pm %5.3f", fitter->GetParameter(4), fitter->GetParError(4));
-	    fitLabel->DrawLatex(0.72, 0.62, buff);
+	    fitLabel->DrawLatex(0.71, 0.62, buff);
 	    sprintf(buff, "c_{ww} = %5.3f #pm %5.3f", fitter->GetParameter(5), fitter->GetParError(5));
-	    fitLabel->DrawLatex(0.72, 0.58, buff);
+	    fitLabel->DrawLatex(0.71, 0.58, buff);
 	    sprintf(buff, "c_{zz} = %5.3f #pm %5.3f", fitter->GetParameter(6), fitter->GetParError(6));
-	    fitLabel->DrawLatex(0.72, 0.54, buff);
+	    fitLabel->DrawLatex(0.71, 0.54, buff);
 	    sprintf(buff, "c_{wz} = %5.3f #pm %5.3f", fitter->GetParameter(7), fitter->GetParError(7));
-	    fitLabel->DrawLatex(0.72, 0.50, buff);
-	    sprintf(buff, "c_{dy} = %5.3f #pm %5.3f", fitter->GetParameter(8), fitter->GetParError(8));
-	    fitLabel->DrawLatex(0.72, 0.46, buff);
+	    fitLabel->DrawLatex(0.71, 0.50, buff);
+	    sprintf(buff, "c_{Z+jets} = %5.3f #pm %5.3f", fitter->GetParameter(8), fitter->GetParError(8));
+	    fitLabel->DrawLatex(0.71, 0.46, buff);
 	    sprintf(buff, "c_{qcd} = %5.3f #pm %5.3f", fitter->GetParameter(9), fitter->GetParError(9));
-	    fitLabel->DrawLatex(0.72, 0.42, buff);
+	    fitLabel->DrawLatex(0.71, 0.42, buff);
 	    sprintf(buff, "c_{scale} = %5.3f #pm %5.3f", fitter->GetParameter(10), fitter->GetParError(10));
-	    fitLabel->DrawLatex(0.72, 0.38, buff);
+	    fitLabel->DrawLatex(0.71, 0.38, buff);
 	  }
 	}
 
