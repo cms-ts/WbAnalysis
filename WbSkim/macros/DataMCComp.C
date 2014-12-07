@@ -11,6 +11,7 @@ TH1F* h_data_fit = 0;
 TH1F* h_mc_fit0 = 0;
 TH1F* h_mc_fit1 = 0;
 TH1F* h_mc_fit2 = 0;
+TH1F* h_mc_fit3 = 0;
 
 float mc_fit0 = 1.0;
 float mc_fit1 = 1.0;
@@ -22,6 +23,11 @@ float e_mc_fit1 = 0.0;
 float e_mc_fit2 = 0.0;
 float e_mc_fit3 = 0.0;
 
+int n_mc_fit0 = -1;
+int n_mc_fit1 = -1;
+int n_mc_fit2 = -1;
+int n_mc_fit3 = -1;
+
 void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   double chisq = 0.0;
   if (iflag) {};
@@ -29,21 +35,29 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   for (int i=1; i<=h_data_fit->GetNbinsX(); i++) {
     double xn = h_data_fit->GetBinContent(i);
     double xd = TMath::Power(h_data_fit->GetBinError(i),2);
-    double w = 1.0;
-    if (npar>3) {
-      w = par[3];
-    }
-    if (npar>0) {
+    if (h_mc_fit0) {
+      double w = 1.0;
+      if (n_mc_fit0>0) w = par[n_mc_fit0];
       xn = xn - w*par[0]*h_mc_fit0->GetBinContent(i);
       xd = xd + TMath::Power(w*par[0]*h_mc_fit0->GetBinError(i),2);
     }
-    if (npar>1) {
+    if (h_mc_fit1) {
+      double w = 1.0;
+      if (n_mc_fit1>0) w = par[n_mc_fit1];
       xn = xn - w*par[1]*h_mc_fit1->GetBinContent(i);
       xd = xd + TMath::Power(w*par[1]*h_mc_fit1->GetBinError(i),2);
     }
-    if (npar>2) {
-      xn = xn - par[2]*h_mc_fit2->GetBinContent(i);
+    if (h_mc_fit2) {
+      double w = 1.0;
+      if (n_mc_fit2>0) w = par[n_mc_fit2];
+      xn = xn - w*par[2]*h_mc_fit2->GetBinContent(i);
       xd = xd + TMath::Power(par[2]*h_mc_fit2->GetBinError(i),2);
+    }
+    if (h_mc_fit3) {
+      double w = 1.0;
+      if (n_mc_fit3>0) w = par[n_mc_fit3];
+      xn = xn - w*par[3]*h_mc_fit3->GetBinContent(i);
+      xd = xd + TMath::Power(par[3]*h_mc_fit3->GetBinError(i),2);
     }
     if (xd!=0) chisq = chisq + (xn*xn)/xd;
   }
@@ -1078,6 +1092,8 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    mc_fit3 = c1_t;
 	    e_mc_fit3 = ec1_t;
 	  }
+	  n_mc_fit0 = 3;
+	  n_mc_fit1 = 3;
 	  fitter = TVirtualFitter::Fitter(0, 4);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
