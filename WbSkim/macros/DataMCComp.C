@@ -11,7 +11,6 @@ TH1F* h_data_fit = 0;
 TH1F* h_mc_fit0 = 0;
 TH1F* h_mc_fit1 = 0;
 TH1F* h_mc_fit2 = 0;
-TH1F* h_mc_fit3 = 0;
 
 float mc_fit0 = 1.0;
 float mc_fit1 = 1.0;
@@ -45,10 +44,6 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
     if (npar>2) {
       xn = xn - par[2]*h_mc_fit2->GetBinContent(i);
       xd = xd + TMath::Power(par[2]*h_mc_fit2->GetBinError(i),2);
-    }
-    if (h_mc_fit3) {
-      xn = xn - w*h_mc_fit3->GetBinContent(i);
-      xd = xd + TMath::Power(w*h_mc_fit3->GetBinError(i),2);
     }
     if (xd!=0) chisq = chisq + (xn*xn)/xd;
   }
