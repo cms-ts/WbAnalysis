@@ -1043,7 +1043,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
-	  fitter->SetParameter(0, "c(W+b-jets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(0, "c(W+b)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(1, "c(ttbar)", mc_fit1, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(2, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
@@ -1082,7 +1082,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
-	  fitter->SetParameter(0, "c(W+b-jets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(0, "c(W+b)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(1, "c(ttbar)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(2, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(3, "c(scale)", mc_fit3, 0.01, 0.00, 100.00);
@@ -1121,7 +1121,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
-	  fitter->SetParameter(0, "c(W+b-jets)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(0, "c(W+b)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(1, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(2, "c(scale)", mc_fit2, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
@@ -1251,10 +1251,10 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	if (ilepton==7) leg->AddEntry(h_data,"W(#rightarrow e#nu)+jets [TOP]","p");
 	if (ilepton==8) leg->AddEntry(h_data,"W(#rightarrow #mu#nu)+jets [TOP]","p");
 
-	if (h_mc1b) leg->AddEntry(h_mc1b,"W+b-jets","f");
-	if (h_mc1c) leg->AddEntry(h_mc1c,"W+c-jets","f");
+	if (h_mc1b) leg->AddEntry(h_mc1b,"W+b","f");
+	if (h_mc1c) leg->AddEntry(h_mc1c,"W+c","f");
 	if (h_mc1c && h_mc1b) {
-	  leg->AddEntry(h_mc1,"W+uds-jets","f");
+	  leg->AddEntry(h_mc1,"W+uds","f");
 	} else {
 	  leg->AddEntry(h_mc1,"W+jets","f");
 	}
@@ -1483,7 +1483,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
 	  }
 	  if (doFit==5) {
-	    sprintf(buff, "c_{W+b-jets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    sprintf(buff, "c_{W+b} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
 	    sprintf(buff, "c_{ttbar} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
 	    fitLabel->DrawLatex(0.68, 0.43, buff);
@@ -1491,7 +1491,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    fitLabel->DrawLatex(0.68, 0.38, buff);
 	  }
 	  if (doFit==6) {
-	    sprintf(buff, "c_{W+b-jets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    sprintf(buff, "c_{W+b} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
 	    fitLabel->DrawLatex(0.68, 0.53, buff);
 	    sprintf(buff, "c_{ttbar} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
@@ -1501,7 +1501,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    fitLabel->DrawLatex(0.68, 0.38, buff);
 	  }
 	  if (doFit==7) {
-	    sprintf(buff, "c_{W+b-jets} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    sprintf(buff, "c_{W+b} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
 	    fitLabel->DrawLatex(0.68, 0.48, buff);
 	    sprintf(buff, "c_{qcd} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
 	    fitLabel->DrawLatex(0.68, 0.43, buff);
