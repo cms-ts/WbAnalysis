@@ -12,21 +12,49 @@ TH1F* h_mc_fit0 = 0;
 TH1F* h_mc_fit1 = 0;
 TH1F* h_mc_fit2 = 0;
 TH1F* h_mc_fit3 = 0;
+TH1F* h_mc_fit4 = 0;
+TH1F* h_mc_fit5 = 0;
+TH1F* h_mc_fit6 = 0;
+TH1F* h_mc_fit7 = 0;
+TH1F* h_mc_fit8 = 0;
+TH1F* h_mc_fit9 = 0;
+TH1F* h_mc_fit10 = 0;
 
 float mc_fit0 = 1.0;
 float mc_fit1 = 1.0;
 float mc_fit2 = 1.0;
 float mc_fit3 = 1.0;
+float mc_fit4 = 1.0;
+float mc_fit5 = 1.0;
+float mc_fit6 = 1.0;
+float mc_fit7 = 1.0;
+float mc_fit8 = 1.0;
+float mc_fit9 = 1.0;
+float mc_fit10 = 1.0;
 
 float e_mc_fit0 = 0.0;
 float e_mc_fit1 = 0.0;
 float e_mc_fit2 = 0.0;
 float e_mc_fit3 = 0.0;
+float e_mc_fit4 = 0.0;
+float e_mc_fit5 = 0.0;
+float e_mc_fit6 = 0.0;
+float e_mc_fit7 = 0.0;
+float e_mc_fit8 = 0.0;
+float e_mc_fit9 = 0.0;
+float e_mc_fit10 = 0.0;
 
 int n_mc_fit0 = -1;
 int n_mc_fit1 = -1;
 int n_mc_fit2 = -1;
 int n_mc_fit3 = -1;
+int n_mc_fit4 = -1;
+int n_mc_fit5 = -1;
+int n_mc_fit6 = -1;
+int n_mc_fit7 = -1;
+int n_mc_fit8 = -1;
+int n_mc_fit9 = -1;
+int n_mc_fit10 = -1;
 
 void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   double chisq = 0.0;
@@ -60,16 +88,65 @@ void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
       xn = xn - w*par[3]*h_mc_fit3->GetBinContent(i);
       xd = xd + TMath::Power(w*par[3]*h_mc_fit3->GetBinError(i),2);
     }
+    if (h_mc_fit4) {
+      double w = 1.0;
+      if (n_mc_fit4>0) w = par[n_mc_fit4];
+      xn = xn - w*par[4]*h_mc_fit4->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[4]*h_mc_fit4->GetBinError(i),2);
+    }
+    if (h_mc_fit5) {
+      double w = 1.0;
+      if (n_mc_fit5>0) w = par[n_mc_fit5];
+      xn = xn - w*par[5]*h_mc_fit5->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[5]*h_mc_fit5->GetBinError(i),2);
+    }
+    if (h_mc_fit6) {
+      double w = 1.0;
+      if (n_mc_fit6>0) w = par[n_mc_fit6];
+      xn = xn - w*par[6]*h_mc_fit6->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[6]*h_mc_fit6->GetBinError(i),2);
+    }
+    if (h_mc_fit7) {
+      double w = 1.0;
+      if (n_mc_fit7>0) w = par[n_mc_fit7];
+      xn = xn - w*par[7]*h_mc_fit7->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[7]*h_mc_fit7->GetBinError(i),2);
+    }
+    if (h_mc_fit8) {
+      double w = 1.0;
+      if (n_mc_fit8>0) w = par[n_mc_fit8];
+      xn = xn - w*par[8]*h_mc_fit8->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[8]*h_mc_fit8->GetBinError(i),2);
+    }
+    if (h_mc_fit9) {
+      double w = 1.0;
+      if (n_mc_fit9>0) w = par[n_mc_fit9];
+      xn = xn - w*par[9]*h_mc_fit9->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[9]*h_mc_fit9->GetBinError(i),2);
+    }
+    if (h_mc_fit10) {
+      double w = 1.0;
+      if (n_mc_fit10>0) w = par[n_mc_fit10];
+      xn = xn - w*par[10]*h_mc_fit10->GetBinContent(i);
+      xd = xd + TMath::Power(w*par[10]*h_mc_fit10->GetBinError(i),2);
+    }
     if (xd!=0) chisq = chisq + (xn*xn)/xd;
   }
   if (e_mc_fit0!=0) chisq = chisq + TMath::Power((par[0]-mc_fit0)/e_mc_fit0,2);
   if (e_mc_fit1!=0) chisq = chisq + TMath::Power((par[1]-mc_fit1)/e_mc_fit1,2);
   if (e_mc_fit2!=0) chisq = chisq + TMath::Power((par[2]-mc_fit2)/e_mc_fit2,2);
   if (e_mc_fit3!=0) chisq = chisq + TMath::Power((par[3]-mc_fit3)/e_mc_fit3,2);
+  if (e_mc_fit4!=0) chisq = chisq + TMath::Power((par[4]-mc_fit4)/e_mc_fit4,2);
+  if (e_mc_fit5!=0) chisq = chisq + TMath::Power((par[5]-mc_fit5)/e_mc_fit5,2);
+  if (e_mc_fit6!=0) chisq = chisq + TMath::Power((par[6]-mc_fit6)/e_mc_fit6,2);
+  if (e_mc_fit7!=0) chisq = chisq + TMath::Power((par[7]-mc_fit7)/e_mc_fit7,2);
+  if (e_mc_fit8!=0) chisq = chisq + TMath::Power((par[8]-mc_fit8)/e_mc_fit8,2);
+  if (e_mc_fit9!=0) chisq = chisq + TMath::Power((par[9]-mc_fit9)/e_mc_fit9,2);
+  if (e_mc_fit10!=0) chisq = chisq + TMath::Power((par[10]-mc_fit10)/e_mc_fit10,2);
   fun = chisq;
 }
 
-void DataMCComp(int irun=0, string title="", int plot=0, int ilepton=1, int doBkg=0, int doFit=0) {
+void DataMCCompT(int irun=0, string title="", int plot=0, int ilepton=1, int doBkg=0, int doFit=0) {
 
 //int useFitResults = 0; // do not use fit results for c_t
 int useFitResults = 1; // use fit results for c_t
@@ -1154,6 +1231,93 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  h_mc7->Scale(fitter->GetParameter(2));
 	  h_mc8->Scale(fitter->GetParameter(2));
 	}
+	if (doFit==8) {
+	  h_data_fit = (TH1F*)h_data->Clone("h_data_fit");
+	  if (h_mc1t) h_data_fit->Add(h_mc1t, -1.);
+	  h_mc_fit0 = h_mc1b;
+	  h_mc_fit1 = h_mc1c;
+	  h_mc_fit2 = h_mc1;
+	  h_mc_fit3 = h_mc2;
+	  h_mc_fit4 = h_mc8;
+	  h_mc_fit5 = h_mc6;
+	  h_mc_fit6 = h_mc3;
+	  h_mc_fit7 = h_mc4;
+	  h_mc_fit8 = h_mc7;
+	  h_mc_fit9 = h_mc5;
+	  n_mc_fit0 = 10;
+	  n_mc_fit1 = 10;
+	  n_mc_fit2 = 10;
+	  n_mc_fit3 = 10;
+	  n_mc_fit4 = 10;
+	  n_mc_fit6 = 10;
+	  n_mc_fit7 = 10;
+	  n_mc_fit8 = 10;
+	  n_mc_fit9 = 10;
+	  mc_fit1 = 1.0;
+	  e_mc_fit1 = 0.132;
+	  mc_fit2 = 1.0;
+	  e_mc_fit2 = 0.132;
+	  mc_fit3 = 1.0;
+	  e_mc_fit3 = eXsec_tt/Xsec_tt;
+	  mc_fit4 = 1.0;
+	  e_mc_fit4 = 0.047; // eXsec_t_t/Xsec_t_t;
+	  mc_fit5 = 1.0;
+	  e_mc_fit5 = eXsec_ww/Xsec_ww;
+	  mc_fit6 = 1.0;
+	  e_mc_fit6 = eXsec_zz/Xsec_zz;
+	  mc_fit7 = 1.0;
+	  e_mc_fit7 = eXsec_wz/Xsec_wz;
+	  mc_fit8 = 1.0;
+	  e_mc_fit8 = eXsec_dy/Xsec_dy;
+	  if (title.find("_bb")!=string::npos) {
+	    mc_fit10 = c3_t;
+	    e_mc_fit10 = ec3_t;
+	  } else if (title.find("_b")!=string::npos) {
+	    mc_fit10 = c2_t;
+	    e_mc_fit10 = ec2_t;
+	  } else {
+	    mc_fit10 = c1_t;
+	    e_mc_fit10 = ec1_t;
+	  }
+	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.026,2));
+	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.020,2));
+	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.060,2));
+	  n_mc_fit0 = 10;
+	  n_mc_fit1 = 10;
+	  n_mc_fit2 = 10;
+	  n_mc_fit3 = 10;
+	  n_mc_fit4 = 10;
+	  n_mc_fit5 = 10;
+	  n_mc_fit6 = 10;
+	  n_mc_fit7 = 10;
+	  n_mc_fit8 = 10;
+	  fitter = TVirtualFitter::Fitter(0, 11);
+	  fitter->SetFCN(fcn);
+	  double arglist[1] = {-1.0};
+	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
+	  fitter->SetParameter(0, "c(W+b)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(1, "c(W+c)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(2, "c(W+uds)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(3, "c(ttbar)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(4, "c(t/tbar)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(5, "c(ww)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(6, "c(zz)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(7, "c(wz)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(8, "c(dy)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(9, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(10, "c(scale)", mc_fit3, 0.01, 0.00, 100.00);
+	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
+	  h_mc_fit0->Scale(fitter->GetParameter(0)*fitter->GetParameter(10));
+	  h_mc_fit1->Scale(fitter->GetParameter(1)*fitter->GetParameter(10));
+	  h_mc_fit2->Scale(fitter->GetParameter(2)*fitter->GetParameter(10));
+	  h_mc_fit3->Scale(fitter->GetParameter(3)*fitter->GetParameter(10));
+	  h_mc_fit4->Scale(fitter->GetParameter(4)*fitter->GetParameter(10));
+	  h_mc_fit5->Scale(fitter->GetParameter(5)*fitter->GetParameter(10));
+	  h_mc_fit6->Scale(fitter->GetParameter(6)*fitter->GetParameter(10));
+	  h_mc_fit7->Scale(fitter->GetParameter(7)*fitter->GetParameter(10));
+	  h_mc_fit8->Scale(fitter->GetParameter(8)*fitter->GetParameter(10));
+	  h_mc_fit9->Scale(fitter->GetParameter(9));
+	}
 
 	if (printYield) {
 	  cout << "******************" << endl;
@@ -1525,6 +1689,30 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    sprintf(buff, "c_{non-qcd} = %5.3f #pm %5.3f", fitter->GetParameter(2), fitter->GetParError(2));
 	    fitLabel->DrawLatex(0.68, 0.38, buff);
 	  }
+	  if (doFit==8) {
+	    sprintf(buff, "c_{W+b} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
+	    fitLabel->DrawLatex(0.51, 0.66, buff);
+	    sprintf(buff, "c_{W+uds} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
+	    fitLabel->DrawLatex(0.51, 0.62, buff);
+	    sprintf(buff, "c_{W+c} = %5.3f #pm %5.3f", fitter->GetParameter(2), fitter->GetParError(2));
+	    fitLabel->DrawLatex(0.51, 0.58, buff);
+	    sprintf(buff, "c_{ttbar} = %5.3f #pm %5.3f", fitter->GetParameter(3), fitter->GetParError(3));
+	    fitLabel->DrawLatex(0.72, 0.66, buff);
+	    sprintf(buff, "c_{t/tbar} = %5.3f #pm %5.3f", fitter->GetParameter(4), fitter->GetParError(4));
+	    fitLabel->DrawLatex(0.72, 0.62, buff);
+	    sprintf(buff, "c_{ww} = %5.3f #pm %5.3f", fitter->GetParameter(5), fitter->GetParError(5));
+	    fitLabel->DrawLatex(0.72, 0.58, buff);
+	    sprintf(buff, "c_{zz} = %5.3f #pm %5.3f", fitter->GetParameter(6), fitter->GetParError(6));
+	    fitLabel->DrawLatex(0.72, 0.54, buff);
+	    sprintf(buff, "c_{wz} = %5.3f #pm %5.3f", fitter->GetParameter(7), fitter->GetParError(7));
+	    fitLabel->DrawLatex(0.72, 0.50, buff);
+	    sprintf(buff, "c_{dy} = %5.3f #pm %5.3f", fitter->GetParameter(8), fitter->GetParError(8));
+	    fitLabel->DrawLatex(0.72, 0.46, buff);
+	    sprintf(buff, "c_{qcd} = %5.3f #pm %5.3f", fitter->GetParameter(9), fitter->GetParError(9));
+	    fitLabel->DrawLatex(0.72, 0.42, buff);
+	    sprintf(buff, "c_{scale} = %5.3f #pm %5.3f", fitter->GetParameter(10), fitter->GetParError(10));
+	    fitLabel->DrawLatex(0.72, 0.38, buff);
+	  }
 	}
 
 	if (plot) {
@@ -1612,6 +1800,9 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    out << fitter->GetParameter(1) << " " << fitter->GetParError(1) << endl;
 	    out << 1.0 << " " << 0.0 << endl;
 	    out << fitter->GetParameter(2) << " " << fitter->GetParError(2) << endl;
+	    out.close();
+	  }
+	  if (doFit==8) {
 	    out.close();
 	  }
 	}
