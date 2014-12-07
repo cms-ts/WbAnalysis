@@ -30,8 +30,9 @@ int n_mc_fit3 = -1;
 
 void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   double chisq = 0.0;
-  if (iflag) {};
-  if (gin) {};
+  if (npar) {}
+  if (iflag) {}
+  if (gin) {}
   for (int i=1; i<=h_data_fit->GetNbinsX(); i++) {
     double xn = h_data_fit->GetBinContent(i);
     double xd = TMath::Power(h_data_fit->GetBinError(i),2);

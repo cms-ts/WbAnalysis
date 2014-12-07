@@ -9,8 +9,9 @@ TH1F* h_data_fit = 0;
 
 void fcn(int& npar, double* gin, double& fun, double* par, int iflag) {
   double chisq = 0.0;
-  if (iflag) {};
-  if (gin) {};
+  if (npar) {}
+  if (iflag) {}
+  if (gin) {}
   for (int i=1; i<=h_data->GetNbinsX(); i++) {
     double xn = h_data->GetBinContent(i);
     double xd = TMath::Power(h_data->GetBinError(i),2);
