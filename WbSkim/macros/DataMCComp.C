@@ -1692,9 +1692,9 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  if (doFit==8) {
 	    sprintf(buff, "c_{W+b} = %5.3f #pm %5.3f", fitter->GetParameter(0), fitter->GetParError(0));
 	    fitLabel->DrawLatex(0.51, 0.66, buff);
-	    sprintf(buff, "c_{W+uds} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
+	    sprintf(buff, "c_{W+c} = %5.3f #pm %5.3f", fitter->GetParameter(1), fitter->GetParError(1));
 	    fitLabel->DrawLatex(0.51, 0.62, buff);
-	    sprintf(buff, "c_{W+c} = %5.3f #pm %5.3f", fitter->GetParameter(2), fitter->GetParError(2));
+	    sprintf(buff, "c_{W+uds} = %5.3f #pm %5.3f", fitter->GetParameter(2), fitter->GetParError(2));
 	    fitLabel->DrawLatex(0.51, 0.58, buff);
 	    sprintf(buff, "c_{ttbar} = %5.3f #pm %5.3f", fitter->GetParameter(3), fitter->GetParError(3));
 	    fitLabel->DrawLatex(0.72, 0.66, buff);
