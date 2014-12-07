@@ -1123,7 +1123,7 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	  fitter->ExecuteCommand("SET PRINT", arglist, 1);
 	  fitter->SetParameter(0, "c(W+bjets)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(1, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
-	  fitter->SetParameter(2, "c(scale)", mc_fit3, 0.01, 0.00, 100.00);
+	  fitter->SetParameter(2, "c(scale)", mc_fit2, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
 	  h_mc1b->Scale(fitter->GetParameter(0)*fitter->GetParameter(2));
 	  h_mc5->Scale(fitter->GetParameter(1));
