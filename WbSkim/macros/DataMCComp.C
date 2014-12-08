@@ -1279,8 +1279,12 @@ if (ilepton>=5 && ilepton<=8) postfix="";
 	    mc_fit10 = c1_t;
 	    e_mc_fit10 = ec1_t;
 	  }
+	  // luminosity systematic uncertainty
 	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.026,2));
-	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.020,2));
+	  // lepton efficiency systematic uncertainty
+	  if (ilepton==1) e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.015,2));
+	  if (ilepton==2) e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.020,2));
+	  // b-tagging systematic uncertainty
 	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.060,2));
 	  n_mc_fit0 = 10;
 	  n_mc_fit1 = 10;
