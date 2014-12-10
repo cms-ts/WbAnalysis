@@ -235,8 +235,10 @@ if (irun==99) {            // irun==99 => pur
   postfix="Pur";
 }
 
-// skip variations for FWD (5,6) and TOP (7,8) samples
-if (ilepton>=5 && ilepton<=8) postfix="";
+// skip variations for FWD (5,6) samples
+if (ilepton>=5 && ilepton<=6) postfix="";
+// skip variations for TOP (7,8) samples
+if (ilepton>=7 && ilepton<=8) postfix="";
 
 	/* QCD background */
 

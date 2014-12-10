@@ -101,8 +101,10 @@ if (irun==99) {            // irun==99 => pur
   postfix="Pur";
 }
 
-// skip variations for FWD (3,4) and TOP (5,6) samples
-if (ilepton>=3 && ilepton<=6) postfix="";
+// skip variations for FWD (3,4) samples
+if (ilepton>=3 && ilepton<=4) postfix="";
+// skip variations for TOP (5,6) samples
+if (ilepton>=5 && ilepton<=6) postfix="";
 
       double Lumi2012=0;
 
