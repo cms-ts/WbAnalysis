@@ -804,11 +804,21 @@ if (irun==99) {            // irun==99 => pur
 
         if (unfold==0 && useFitResults) {
 	  if (title_b.find("_bb")!=string::npos) {
-	    h_data->Scale(1./(c3_s*c3_r));
-	    h_data_b->Scale(1./(c3_s*c3_r));
-          } else {
-	    h_data->Scale(1./(c2_s*c2_r));
-	    h_data_b->Scale(1./(c2_s*c2_r));
+	    if (irun==5) {
+	      h_data->Scale(1./((c3_s+0.1*ec3_s)*(c3_r+0.1*ec3_r)));
+	      h_data_b->Scale(1./((c3_s+0.1*ec3_s)*(c3_r+0.1*ec3_r)));
+	    } else {
+	      h_data->Scale(1./(c3_s*c3_r));
+	      h_data_b->Scale(1./(c3_s*c3_r));
+	    }
+	  } else {
+	    if (irun==5) {
+	      h_data->Scale(1./((c2_s+0.1*ec2_s)*(c2_r+0.1*ec2_r)));
+	      h_data_b->Scale(1./((c2_s+0.1*ec2_s)*(c2_r+0.1*ec2_r)));
+	    } else {
+	      h_data->Scale(1./(c2_s*c2_r));
+	      h_data_b->Scale(1./(c2_s*c2_r));
+	    }
 	  }
 	}
 
