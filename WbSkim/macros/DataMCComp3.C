@@ -6,6 +6,9 @@ string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
 void DataMCComp3(int irun=0, string title="", int plot=0, int ilepton=1) {
 
+//int useRecoFile=0; // use the GEN histograms as numerators when computing the efficiency
+int useRecoFile=1; // use the REC histograms as numerators when computing the efficiency
+
 //int useWbb=0; // do not use the special Wbb MC sample
 int useWbb=1; // use the special Wbb MC sample
 
@@ -98,11 +101,13 @@ if (irun==99) {            // irun==99 => pur
         }
 
 	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	if (useRecoFile) mc1 = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str());
 	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
 
 	if (useWbb) {
 	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    mc1 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
+	    if (useRecoFile) mc1 = TFile::Open((path + "/" + version + "/" + "Wbb.root").c_str());
 	    mc2 = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
 	  }
 	}
