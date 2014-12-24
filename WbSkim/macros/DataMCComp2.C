@@ -284,6 +284,7 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) Lumi2012 = Lumi2012_muon;
 
 	double norm1 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
+	double norm1b = ((Lumi2012 * Xsec_wbb) / Ngen_wbb);
 	double norm2 = ((Lumi2012 * Xsec_tt) / Ngen_tt);
 	double norm3 = ((Lumi2012 * Xsec_zz) / Ngen_zz);
 	double norm4 = ((Lumi2012 * Xsec_wz) / Ngen_wz);
@@ -294,6 +295,7 @@ if (irun==99) {            // irun==99 => pur
 	double norm8 = ((Lumi2012 * Xsec_t) / Ngen_t);
 
 	double enorm1 = ((Lumi2012 * eXsec_wj) / Ngen_wj);
+	double enorm1b = ((Lumi2012 * eXsec_wbb) / Ngen_wbb);
 	double enorm2 = ((Lumi2012 * eXsec_tt) / Ngen_tt);
 	if (useFitResults) enorm2 = 0.0;
 	double enorm3 = ((Lumi2012 * eXsec_zz) / Ngen_zz);
@@ -323,6 +325,7 @@ if (irun==99) {            // irun==99 => pur
 
 	TFile *mc1 = TFile::Open((path + "/" + version + "/" + "Wj_merge.root").c_str());
 	TFile *mcg = TFile::Open((path + "/" + version + "/" + "Wj_gen_merge.root").c_str());
+	TFile *mcgb = TFile::Open((path + "/" + version + "/" + "Wbb_gen.root").c_str());
 	TFile *mc2 = TFile::Open((path + "/" + version + "/" + "TTbar_merge.root").c_str());
 	TFile *mc3 = TFile::Open((path + "/" + version + "/" + "ZZ.root").c_str());
 	TFile *mc4 = TFile::Open((path + "/" + version + "/" + "WZ.root").c_str());
@@ -391,6 +394,11 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) mcg->cd("demoMuoGen");
 	TH1F* h_mcg = (TH1F*)gDirectory->Get(title.c_str());
 	TH1F* h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
+	if (title_b.find("_bb")!=string::npos) {
+	  if (ilepton==1) mcgb->cd("demoEleGen");
+	  if (ilepton==2) mcgb->cd("demoMuoGen");
+	  h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
+	}
 
 	if (ilepton==1) mc2->cd(("demoEle"+postfix).c_str());
 	if (ilepton==2) mc2->cd(("demoMuo"+postfix).c_str());
@@ -479,6 +487,7 @@ if (irun==99) {            // irun==99 => pur
 
 	if (irun==10) {
 	  norm1 = norm1 + 0.1*enorm1;
+	  norm1b = norm1b + 0.1*enorm1b;
 	  norm2 = norm2 + 0.1*enorm2;
 	  norm3 = norm3 + 0.1*enorm3;
 	  norm4 = norm4 + 0.1*enorm4;
@@ -506,6 +515,9 @@ if (irun==99) {            // irun==99 => pur
 	if (h_mc1c_b) h_mc1c_b->Scale(norm1);
 	if (h_mc1t_b) h_mc1t_b->Scale(norm1);
 	h_mcg_b->Scale(norm1);
+	if (title_b.find("_bb")!=string::npos) {
+	  h_mcg_b->Scale(norm1b/norm1);
+	}
 	h_mc2_b->Scale(norm2);
 	h_mc3_b->Scale(norm3);
 	h_mc4_b->Scale(norm4);
