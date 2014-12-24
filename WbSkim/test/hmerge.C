@@ -66,12 +66,12 @@ void hmerge(string path=".", string version="v01", string title="W") {
     crossSections[4] = (Xsec_t_t / Ngen_t_t);
     crossSections[5] = (Xsec_t_tw / Ngen_t_tw);
 
-    crossSections[0] = crossSections[0] / (Xsec_tbar_t / Ngen_tbar_t);
-    crossSections[1] = crossSections[1] / (Xsec_tbar_t / Ngen_tbar_t);
-    crossSections[2] = crossSections[2] / (Xsec_tbar_t / Ngen_tbar_t);
-    crossSections[3] = crossSections[3] / (Xsec_tbar_t / Ngen_tbar_t);
-    crossSections[4] = crossSections[4] / (Xsec_tbar_t / Ngen_tbar_t);
-    crossSections[5] = crossSections[5] / (Xsec_tbar_t / Ngen_tbar_t);
+    crossSections[0] = crossSections[0] / (Xsec_t / Ngen_t);
+    crossSections[1] = crossSections[1] / (Xsec_t / Ngen_t);
+    crossSections[2] = crossSections[2] / (Xsec_t / Ngen_t);
+    crossSections[3] = crossSections[3] / (Xsec_t / Ngen_t);
+    crossSections[4] = crossSections[4] / (Xsec_t / Ngen_t);
+    crossSections[5] = crossSections[5] / (Xsec_t / Ngen_t);
   }
 
   if (title=="TTbar") {
