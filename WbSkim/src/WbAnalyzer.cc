@@ -2095,17 +2095,27 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
   bool debug = false;
   if (debug) cout << "Processing new event..." << endl;
 
-  // Get electron collection
+  // Get electron collections
   edm::Handle < pat::ElectronCollection > electrons;
   iEvent.getByLabel ("matchedElectrons", electrons);
+  edm::Handle < pat::ElectronCollection > electronsQCD;
+  iEvent.getByLabel ("matchedElectronsQCD", electronsQCD);
 
-  if (lepton_ == "electronQCD") iEvent.getByLabel ("matchedElectronsQCD", electrons);
+  if (lepton_ == "electronQCD") {
+    iEvent.getByLabel ("matchedElectronsQCD", electrons);
+    iEvent.getByLabel ("matchedElectrons", electronsQCD);
+  }
 
-  // Get muon collection
+  // Get muon collections
   edm::Handle < pat::MuonCollection > muons;
   iEvent.getByLabel ("matchedMuons", muons);
+  edm::Handle < pat::MuonCollection > muonsQCD;
+  iEvent.getByLabel ("matchedMuonsQCD", muonsQCD);
 
-  if (lepton_ == "muonQCD") iEvent.getByLabel ("matchedMuonsQCD", muons);
+  if (lepton_ == "muonQCD") {
+    iEvent.getByLabel ("matchedMuonsQCD", muons);
+    iEvent.getByLabel ("matchedMuons", muonsQCD);
+  }
 
   // Get jet collection
   edm::Handle < vector < pat::Jet > > jets;
@@ -2311,6 +2321,31 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   }
 
+  //Additional veto electrons for QCD sample
+  if ( lepton_ == "electronQCD" ) {
+    for (pat::ElectronCollection::const_iterator ele = electronsQCD->begin (); ele != electronsQCD->end (); ++ele) {
+      if (ele->pt()>10 &&
+	  ((fabs(ele->superCluster()->eta())<=1.442 &&
+	    fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.004 &&
+	    fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.03 &&
+	    ele->sigmaIetaIeta()<0.01 &&
+	    ele->hadronicOverEm()<0.12) ||
+	   (fabs(ele->superCluster()->eta())>=1.566 && fabs(ele->eta())<2.4 &&
+	    fabs(ele->deltaEtaSuperClusterTrackAtVtx())<0.005 &&
+	    fabs(ele->deltaPhiSuperClusterTrackAtVtx())<0.02 &&
+	    ele->sigmaIetaIeta()<0.03 &&
+	    ele->hadronicOverEm()<0.10)) &&
+	  fabs(ele->dB())<0.02 &&
+	  fabs(1./ele->ecalEnergy() - ele->eSuperClusterOverP()/ele->ecalEnergy())<0.05 &&
+	  (ele->chargedHadronIso() + fmax(ele->neutralHadronIso() + ele->photonIso() - 0.5*ele->puChargedHadronIso(),0))/ele->et() < 0.15 &&
+	  ele->passConversionVeto() &&
+	  ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits() < 1) {
+        vect_ele2.push_back (*ele);
+	cout << "VETOED LEPTON IN QCD!!!"  << endl;
+      }
+    }
+  }
+
   // Computing Mt:
   double op_met = mets->empty() ? 0. : (*mets)[0].et();
   double elept = vect_ele.empty() ? 0. : vect_ele[0].pt();
@@ -2391,6 +2426,24 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
     }
     if (muon->triggerObjectMatches().size()>0) ntrgMatchesMuo++;
 
+  }
+
+  //Additional veto muons for QCD sample
+  if ( lepton_ == "muonQCD" ) {
+    for (pat::MuonCollection::const_iterator muon = muonsQCD->begin (); muon != muonsQCD->end (); ++muon) {
+      if (muon->pt()>10 && fabs(muon->eta())<2.4 &&
+	  muon->isGlobalMuon() && muon->isPFMuon() &&
+	  muon->globalTrack()->normalizedChi2() < 10 &&
+	  muon->track()->hitPattern().trackerLayersWithMeasurement() > 5 &&
+	  muon->globalTrack()->hitPattern().numberOfValidMuonHits() > 0 &&
+	  muon->innerTrack()->hitPattern().numberOfValidPixelHits() > 0 &&
+	  fabs(muon->dB()) < 0.2 &&
+	  muon->numberOfMatchedStations() > 1 &&
+	  (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() < 0.20) {
+        vect_muon2.push_back (*muon);
+	cout << "VETOED LEPTON IN QCD!!!"  << endl;
+      }
+    }
   }
 
   // Computing Mt:
