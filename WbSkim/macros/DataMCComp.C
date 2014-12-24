@@ -1262,7 +1262,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  mc_fit3 = 1.0;
 	  e_mc_fit3 = eXsec_tt/Xsec_tt;
 	  mc_fit4 = 1.0;
-	  e_mc_fit4 = 0.047; // eXsec_t_t/Xsec_t_t;
+	  e_mc_fit4 = eXsec_t/Xsec_t;
 	  mc_fit5 = 1.0;
 	  e_mc_fit5 = eXsec_ww/Xsec_ww;
 	  mc_fit6 = 1.0;
@@ -1270,7 +1270,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  mc_fit7 = 1.0;
 	  e_mc_fit7 = eXsec_wz/Xsec_wz;
 	  mc_fit8 = 1.0;
-	  e_mc_fit8 = 0.079; // eXsec_dy/Xsec_dy;
+	  e_mc_fit8 = eXsec_dy/Xsec_dy;
 	  if (title.find("_bb")!=string::npos) {
 	    mc_fit10 = c3_t;
 	    e_mc_fit10 = ec3_t;
