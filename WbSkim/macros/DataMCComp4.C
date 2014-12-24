@@ -152,6 +152,9 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==1) norm1_2 = 0;
 	if (ilepton==2) norm1_2 = 0;
 	double norm1_3 = ((Lumi2012 * Xsec_wbb) / Ngen_wbb);
+// FIXME
+	norm1_3 = norm1_3 * (0.52/0.37);
+// FIXME
 
 	if (title.empty()) title = "w_jetmultiplicity";
 

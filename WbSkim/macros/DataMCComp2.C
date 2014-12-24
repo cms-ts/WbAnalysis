@@ -285,6 +285,9 @@ if (irun==99) {            // irun==99 => pur
 
 	double norm1 = ((Lumi2012 * Xsec_wj) / Ngen_wj);
 	double norm1b = ((Lumi2012 * Xsec_wbb) / Ngen_wbb);
+// FIXME
+	norm1b = norm1b * (0.52/0.37);
+// FIXME
 	double norm2 = ((Lumi2012 * Xsec_tt) / Ngen_tt);
 	double norm3 = ((Lumi2012 * Xsec_zz) / Ngen_zz);
 	double norm4 = ((Lumi2012 * Xsec_wz) / Ngen_wz);
