@@ -18,7 +18,7 @@ double Ngen_dy = 30459503;
 double Xsec_dy = 3*1177.3; // NNLO
 double eXsec_dy = 0;
 
-//////////////////////// TTbar
+//////////////////////// TTbar (used also for the merged sample)
 
 double Ngen_tt = 6923750;
 double Xsec_tt = 240.6; // ATLAS+CMS https://cds.cern.ch/record/1950834
@@ -28,13 +28,13 @@ double eXsec_tt = 8.5;
 
 double Ngen_tt_fl = 12011428;
 double Xsec_tt_fl = 25.8; // NNLO : 245.8*0.324*0.324
-double eXsec_tt_fl = 0.026*Xsec_tt;
+double eXsec_tt_fl = 0.026*Xsec_tt_fl;
 
 //////////////////////// TTbar_SemiLept
 
 double Ngen_tt_sl = 24963676;
 double Xsec_tt_sl = 107.67; // NNLO : 245.8*0.324*0.676*2
-double eXsec_tt_sl = 0.026*Xsec_tt;
+double eXsec_tt_sl = 0.026*Xsec_tt_sl;
 
 //////////////////////// TBar_s
 
@@ -71,6 +71,11 @@ double eXsec_t_t = 0;
 double Ngen_t_tw = 497658;
 double Xsec_t_tw = 11.1; // NNLO
 double eXsec_t_tw = 0;
+
+//////////////////////// T+Tbar (used for the merged sample)
+double Ngen_t = Ngen_tbar_s+Ngen_tbar_t+Ngen_tbar_tw+Ngen_t_s+Ngen_t_t+Ngen_t_tw;
+double Xsec_t = Xsec_tbar_s+Xsec_tbar_t+Xsec_tbar_tw+Xsec_t_s+Xsec_t_t+Xsec_t_tw;
+double eXsec_t = TMath::Sqrt(TMath::Power(eXsec_tbar_t+eXsec_t_t,2)+TMath::Power(eXsec_tbar_s+eXsec_t_s,2)+TMath::Power(eXsec_tbar_tw+eXsec_t_tw,2));
 
 //////////////////////// ZZ
 
