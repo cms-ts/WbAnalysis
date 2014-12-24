@@ -16,7 +16,7 @@ double Lumi_2012D_22Jan = 7318.000;
 
 double Ngen_dy = 30459503;
 double Xsec_dy = 3*1177.3; // NNLO
-double eXsec_dy = 0;
+double eXsec_dy = 3*39.1;
 
 //////////////////////// TTbar (used also for the merged sample)
 
@@ -28,49 +28,49 @@ double eXsec_tt = 8.5;
 
 double Ngen_tt_fl = 12011428;
 double Xsec_tt_fl = 25.8; // NNLO : 245.8*0.324*0.324
-double eXsec_tt_fl = 0.026*Xsec_tt_fl;
+double eXsec_tt_fl = 0.039*Xsec_tt_fl;
 
 //////////////////////// TTbar_SemiLept
 
 double Ngen_tt_sl = 24963676;
 double Xsec_tt_sl = 107.67; // NNLO : 245.8*0.324*0.676*2
-double eXsec_tt_sl = 0.026*Xsec_tt_sl;
+double eXsec_tt_sl = 0.039*Xsec_tt_sl;
 
 //////////////////////// TBar_s
 
 double Ngen_tbar_s = 139974;
 double Xsec_tbar_s = 1.76; // NNLO
-double eXsec_tbar_s = 0;
+double eXsec_tbar_s = 0.08;
 
 //////////////////////// TBar_t
 
 double Ngen_tbar_t = 1935072;
-double Xsec_tbar_t = 30.7; // NNLO
-double eXsec_tbar_t = 0;
+double Xsec_tbar_t = 29.74; // NNLO
+double eXsec_tbar_t = 1.58;
 
 //////////////////////// TBar_tW
 
 double Ngen_tbar_tw = 493460;
 double Xsec_tbar_tw = 11.1; // NNLO
-double eXsec_tbar_tw = 0;
+double eXsec_tbar_tw = 0.8;
 
 //////////////////////// T_s
 
 double Ngen_t_s = 259961;
-double Xsec_t_s = 3.97; // NNLO
-double eXsec_t_s = 0;
+double Xsec_t_s = 3.79; // NNLO
+double eXsec_t_s = 0.15;
 
 //////////////////////// T_t
 
 double Ngen_t_t = 3758227;
-double Xsec_t_t = 56.4; // NNLO
-double eXsec_t_t = 0;
+double Xsec_t_t = 54.87; // NNLO
+double eXsec_t_t = 2.10;
 
 //////////////////////// T_tW
 
 double Ngen_t_tw = 497658;
 double Xsec_t_tw = 11.1; // NNLO
-double eXsec_t_tw = 0;
+double eXsec_t_tw = 0.8;
 
 //////////////////////// T+Tbar (used for the merged sample)
 double Ngen_t = Ngen_tbar_s+Ngen_tbar_t+Ngen_tbar_tw+Ngen_t_s+Ngen_t_t+Ngen_t_tw;
@@ -80,14 +80,14 @@ double eXsec_t = TMath::Sqrt(TMath::Power(eXsec_tbar_t+eXsec_t_t,2)+TMath::Power
 //////////////////////// ZZ
 
 double Ngen_zz = 9799908;
-double Xsec_zz = 8.059; // NLO with CTEQ
-double eXsec_zz = 0.15*Xsec_zz; 
+double Xsec_zz = 8.2; // NLO
+double eXsec_zz = 0.4;
 
 //////////////////////// WZ
 
 double Ngen_wz = 10000283;
-double Xsec_wz = 33.21;    // NLO with CTEQ
-double eXsec_wz = 0.15*Xsec_wz; 
+double Xsec_wz = 33.6; // NLO
+double eXsec_wz = 1.3; 
 
 //////////////////////// QCD
 
@@ -98,14 +98,14 @@ double eXsec_qcd = 0.15*Xsec_qcd;
 //////////////////////// WW
 
 double Ngen_ww = 10000431;
-double Xsec_ww = 54.838; // NLO with CTEQ
-double eXsec_ww = 0.15*Xsec_ww; 
+double Xsec_ww = 56.0; // NLO
+double eXsec_ww = 3.0; 
 
 //////////////////////// Wj
 
 double Ngen_wj = 57709905;
-double Xsec_wj = 3*12234.4; // NLO with CTEQ
-double eXsec_wj = 0.15*Xsec_wj; 
+double Xsec_wj = 3*12234.4; // NNLO
+double eXsec_wj = 3*418.9; 
 
 //////////////////////// W1j
 
