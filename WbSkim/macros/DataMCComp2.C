@@ -291,7 +291,7 @@ if (irun==99) {            // irun==99 => pur
 	double norm5 = 1.0;
 	double norm6 = ((Lumi2012 * Xsec_ww) / Ngen_ww);
 	double norm7 = ((Lumi2012 * Xsec_dy) / Ngen_dy);
-	double norm8 = ((Lumi2012 * Xsec_tbar_t) / Ngen_tbar_t);
+	double norm8 = ((Lumi2012 * Xsec_t) / Ngen_t);
 
 	double enorm1 = ((Lumi2012 * eXsec_wj) / Ngen_wj);
 	double enorm2 = ((Lumi2012 * eXsec_tt) / Ngen_tt);
@@ -302,7 +302,7 @@ if (irun==99) {            // irun==99 => pur
 	double enorm5 = 0.0;
 	double enorm6 = ((Lumi2012 * eXsec_ww) / Ngen_ww);
 	double enorm7 = ((Lumi2012 * eXsec_dy) / Ngen_dy);
-	double enorm8 = ((Lumi2012 * eXsec_tbar_t) / Ngen_tbar_t);
+	double enorm8 = ((Lumi2012 * eXsec_t) / Ngen_t);
 
 	if (title.empty()) title = "w_jetmultiplicity";
 
