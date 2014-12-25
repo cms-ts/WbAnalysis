@@ -18,6 +18,9 @@ int useFitResults = 1; // use fit results for c_b, c_c, c_uds, c_t
 //int useFitResults2=0;  // do not use constrained fit results for c_b, c_t, c_qcd, c_s
 int useFitResults2=1;  // use constrained fit results for c_b, c_t, c_qcd, c_s
 
+//int useWbb=0; // do not use the special Wbb MC sample
+int useWbb=1; // use the special Wbb MC sample
+
 //int drawInclusive = 0; // do not plot the "inclusive" histogram
 int drawInclusive = 1; // do plot the "inclusive" histogram
 
@@ -397,10 +400,12 @@ if (irun==99) {            // irun==99 => pur
 	if (ilepton==2) mcg->cd("demoMuoGen");
 	TH1F* h_mcg = (TH1F*)gDirectory->Get(title.c_str());
 	TH1F* h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
-	if (title_b.find("_bb")!=string::npos) {
-	  if (ilepton==1) mcgb->cd("demoEleGen");
-	  if (ilepton==2) mcgb->cd("demoMuoGen");
-	  h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
+	if (useWbb) {
+	  if (title_b.find("_bb")!=string::npos) {
+	    if (ilepton==1) mcgb->cd("demoEleGen");
+	    if (ilepton==2) mcgb->cd("demoMuoGen");
+	    h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
+	  }
 	}
 
 	if (ilepton==1) mc2->cd(("demoEle"+postfix).c_str());
@@ -518,8 +523,10 @@ if (irun==99) {            // irun==99 => pur
 	if (h_mc1c_b) h_mc1c_b->Scale(norm1);
 	if (h_mc1t_b) h_mc1t_b->Scale(norm1);
 	h_mcg_b->Scale(norm1);
-	if (title_b.find("_bb")!=string::npos) {
-	  h_mcg_b->Scale(norm1b/norm1);
+	if (useWbb) {
+	  if (title_b.find("_bb")!=string::npos) {
+	    h_mcg_b->Scale(norm1b/norm1);
+	  }
 	}
 	h_mc2_b->Scale(norm2);
 	h_mc3_b->Scale(norm3);
