@@ -2341,7 +2341,6 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	  ele->passConversionVeto() &&
 	  ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits() < 1) {
         vect_ele2.push_back (*ele);
-	cout << "VETOED LEPTON IN QCD!!!"  << endl;
       }
     }
   }
@@ -2441,7 +2440,6 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 	  muon->numberOfMatchedStations() > 1 &&
 	  (muon->chargedHadronIso() + fmax(muon->neutralHadronIso() + muon->photonIso() - 0.5*muon->puChargedHadronIso(),0))/muon->pt() < 0.20) {
         vect_muon2.push_back (*muon);
-	cout << "VETOED LEPTON IN QCD!!!"  << endl;
       }
     }
   }
