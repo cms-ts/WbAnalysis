@@ -1288,8 +1288,12 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  if (ilepton==2) e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.020,2));
 	  // b-tagging systematic uncertainty
 	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.060,2));
-	  // approximate average JEC systematic uncertainty
-	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.036,2));
+	  // average JEC systematic uncertainty
+	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.164,2));
+	  // average JER systematic uncertainty
+	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.045,2));
+	  // average PU systematic uncertainty
+	  e_mc_fit10 = TMath::Sqrt(TMath::Power(e_mc_fit10,2)+TMath::Power(0.045,2));
 	  n_mc_fit0 = 10;
 	  n_mc_fit1 = 10;
 	  n_mc_fit2 = 10;
