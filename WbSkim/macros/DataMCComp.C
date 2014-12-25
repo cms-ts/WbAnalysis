@@ -1815,7 +1815,14 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	    out << 1.0 << " " << 0.0 << endl;
 	    out << fitter->GetParameter(9) << " " << fitter->GetParError(9) << endl;
 	    out << 1.0 << " " << 0.0 << endl;
-	    out << fitter->GetParameter(10) << " " << fitter->GetParError(10) << endl;
+//	    out << fitter->GetParameter(10) << " " << fitter->GetParError(10) << endl;
+	    if (title.find("_bb")!=string::npos) {
+	      out << fitter->GetParameter(10) << " " << ec3_t << endl;
+	    } else if (title.find("_b")!=string::npos) {
+	      out << fitter->GetParameter(10) << " " << ec2_t << endl;
+	    } else {
+	      out << fitter->GetParameter(10) << " " << ec1_t << endl;
+	    }
 	    out.close();
 	  }
 	}
