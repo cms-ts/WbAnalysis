@@ -1005,11 +1005,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  fitter->SetParameter(0, "c(ttbar)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->SetParameter(1, "c(qcd)", 1.00, 0.01, 0.00, 100.00);
 	  fitter->ExecuteCommand("MIGRAD", arglist, 0);
-	  if (h_mc1b) h_mc_fit0->Add(h_mc1b, -1.);
-	  if (h_mc1c) h_mc_fit0->Add(h_mc1c, -1.);
 	  h_mc_fit0->Scale(fitter->GetParameter(0));
-	  if (h_mc1b) h_mc1b->Scale(fitter->GetParameter(0));
-	  if (h_mc1c) h_mc1c->Scale(fitter->GetParameter(0));
 	  h_mc_fit1->Scale(fitter->GetParameter(1));
 	}
 	if (doFit==3) {
