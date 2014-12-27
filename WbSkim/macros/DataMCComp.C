@@ -1192,7 +1192,6 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  h_mc_fit0 = h_mc1b;
 	  h_mc_fit1 = h_mc5;
 	  h_mc_fit2 = (TH1F*)h_mc1->Clone("h_mc_fit");
-	  h_mc_fit2->Add(h_mc1, 1.);
 	  if (h_mc1c) h_mc_fit2->Add(h_mc1c, 1.);
 	  if (!doBkg) {
 	    h_mc_fit2->Add(h_mc8, 1.);
@@ -1213,6 +1212,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	    mc_fit2 = c1_t;
 	    e_mc_fit2 = ec1_t;
 	  }
+	  n_mc_fit0 = 2;
 	  fitter = TVirtualFitter::Fitter(0, 3);
 	  fitter->SetFCN(fcn);
 	  double arglist[1] = {-1.0};
