@@ -797,7 +797,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	}
 
 	if (useFitResults && !doFit) {
-	  if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    if (irun==5) {
 	      h_mc2->Scale(c3_t+0.1*ec3_t);
 	      h_mc1->Scale(c3_r+0.1*ec3_r);
@@ -861,7 +861,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	}
 
 	if (h_mc5) {
-	  if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    if (irun==15) {
 	      h_mc5->Scale(c3_qcd+0.1*ec3_qcd);
 	    } else {
@@ -910,7 +910,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	}
 
 	if (useFitResults && !doFit) {
-	  if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    if (irun==6) {
 	      if (h_mc1b) h_mc1b->Scale(c3_b+0.1*ec3_b);
 	      if (h_mc1c) h_mc1c->Scale(c3_r+0.1*ec3_r);
@@ -1119,7 +1119,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  h_mc_fit0 = h_mc1b;
 	  h_mc_fit1 = h_mc2;
 	  h_mc_fit2 = h_mc5;
-	  if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    mc_fit1 = c3_t;
 	    e_mc_fit1 = ec3_t;
 	  } else if (title.find("_b")!=string::npos) {
@@ -1158,7 +1158,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  h_mc_fit2 = h_mc5;
 	  mc_fit1 = 1.0;
 	  e_mc_fit1 = eXsec_tt/Xsec_tt;
-	  if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    mc_fit3 = c3_t;
 	    e_mc_fit3 = ec3_t;
 	  } else if (title.find("_b")!=string::npos) {
@@ -1198,7 +1198,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	    h_mc_fit2->Add(h_mc2, 1.);
 	    h_mc_fit2->Add(h_mc1t, 1.);
 	  }
-	  if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    mc_fit2 = c3_t;
 	    e_mc_fit2 = ec3_t;
 	  } else if (title.find("_b")!=string::npos) {
@@ -1258,7 +1258,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	  e_mc_fit7 = eXsec_wz/Xsec_wz;
 	  mc_fit8 = 1.0;
 	  e_mc_fit8 = eXsec_dy/Xsec_dy;
-	  if (title.find("_bb")!=string::npos) {
+	  if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	    mc_fit10 = c3_t;
 	    e_mc_fit10 = ec3_t;
 	  } else if (title.find("_b")!=string::npos) {
@@ -1807,7 +1807,7 @@ if (ilepton>=7 && ilepton<=8) postfix="";
 	    out << fitter->GetParameter(9) << " " << fitter->GetParError(9) << endl;
 	    out << 1.0 << " " << 0.0 << endl;
 //	    out << fitter->GetParameter(10) << " " << fitter->GetParError(10) << endl;
-	    if (title.find("_bb")!=string::npos) {
+	    if (title.find("_bb")!=string::npos || title.find("_2b")!=string::npos) {
 	      out << fitter->GetParameter(10) << " " << ec3_t << endl;
 	    } else if (title.find("_b")!=string::npos) {
 	      out << fitter->GetParameter(10) << " " << ec2_t << endl;

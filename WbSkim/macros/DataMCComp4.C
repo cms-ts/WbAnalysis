@@ -172,7 +172,7 @@ if (irun==99) {            // irun==99 => pur
 	string file = title;
 
 	if (file.find("_bjet_")==string::npos) {
-	  if (file.find("_bb")==string::npos) {
+	  if (file.find("_bb")==string::npos && file.find("_2b")==string::npos) {
 	    file = file + "b";
 	  }
 	}

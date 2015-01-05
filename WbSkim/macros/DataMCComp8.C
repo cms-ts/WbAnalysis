@@ -27,7 +27,7 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
     if (title=="w_eta_W_bb") title_tmp="w_eta_W_wenu_bb";
     string title_tmp2 = title_tmp;
     if (!unfold) {
-      if (title_tmp2.find("_bb")==string::npos) {
+      if (title_tmp2.find("_bb")==string::npos && title_tmp2.find("_2b")==string::npos) {
         title_tmp2 = title_tmp2 + "b";
       }
     }
@@ -54,7 +54,7 @@ TH1F* read(string subdir, string title, int ilepton, TFile* infile=0) {
     if (title=="w_eta_W_bb") title_tmp="w_eta_W_wmnu_bb";
     string title_tmp2 = title_tmp;
     if (!unfold) {
-      if (title_tmp2.find("_bb")==string::npos) {
+      if (title_tmp2.find("_bb")==string::npos && title_tmp2.find("_2b")==string::npos) {
         title_tmp2 = title_tmp2 + "b";
       }
     }

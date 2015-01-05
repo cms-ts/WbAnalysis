@@ -15,7 +15,7 @@ TH1F* read(string subdir, string title, int ilepton) {
   TFile* file=0;
   string title_tmp = title;
   if (!unfold) {
-    if (title_tmp.find("_bb")==string::npos) {
+    if (title_tmp.find("_bb")==string::npos && title_tmp.find("_2b")==string::npos) {
       title_tmp = title_tmp + "b";
     }
   }
@@ -236,7 +236,7 @@ string subdir="0";
 	    h_mc1->SetBinError(i, TMath::Sqrt(e));
 	  }
 	}
-	if (title_b.find("_bb")!=string::npos) {
+	if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
 	  h_mc1b_b->Scale(c3_b);
 	  for (int i=0; i<=h_mc1b_b->GetNbinsX()+1; i++) {
 	    float e = TMath::Power(h_mc1b_b->GetBinError(i),2);
@@ -588,7 +588,7 @@ string subdir="0";
 	}
 	for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
 	  double val = 0.0;
-	  if (title_b.find("_bb")!=string::npos) {
+	  if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
 	    val = 2.0 * btag_sys * h_data_b_scan[0]->GetBinContent(i);
 	  } else {
 	    val = btag_sys * h_data_b_scan[0]->GetBinContent(i);
@@ -600,7 +600,7 @@ string subdir="0";
 	if (title.find("_b")!=string::npos) {
 	  xsec_syst_btag = btag_sys * h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width");
 	}
-	if (title_b.find("_bb")!=string::npos) {
+	if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
 	  xsec_syst_b_btag = 2.0 * btag_sys * h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width");
 	} else {
 	  xsec_syst_b_btag = btag_sys * h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width");

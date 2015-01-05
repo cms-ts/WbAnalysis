@@ -401,7 +401,7 @@ if (irun==99) {            // irun==99 => pur
 	TH1F* h_mcg = (TH1F*)gDirectory->Get(title.c_str());
 	TH1F* h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
 	if (useWbb) {
-	  if (title_b.find("_bb")!=string::npos) {
+	  if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
 	    if (ilepton==1) mcgb->cd("demoEleGen");
 	    if (ilepton==2) mcgb->cd("demoMuoGen");
 	    h_mcg_b = (TH1F*)gDirectory->Get(title_b.c_str());
@@ -524,7 +524,7 @@ if (irun==99) {            // irun==99 => pur
 	if (h_mc1t_b) h_mc1t_b->Scale(norm1);
 	h_mcg_b->Scale(norm1);
 	if (useWbb) {
-	  if (title_b.find("_bb")!=string::npos) {
+	  if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
 	    h_mcg_b->Scale(norm1b/norm1);
 	  }
 	}
@@ -602,7 +602,7 @@ if (irun==99) {            // irun==99 => pur
 	      h_mc8->Scale(c1_r);
             }
           }
-          if (title_b.find("_bb")!=string::npos) {
+          if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
             if (irun==5) {
 	      h_mc2_b->Scale(c3_t+0.1*ec3_t);
 	      h_mc1_b->Scale(c3_r+0.1*ec3_r);
@@ -659,7 +659,7 @@ if (irun==99) {            // irun==99 => pur
               h_mc5->Scale(c1_qcd);
             }
           }
-          if (title_b.find("_bb")!=string::npos) {
+          if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
             if (irun==15) {
 	      h_mc5_b->Scale(c3_qcd+0.1*ec3_qcd);
             } else {
@@ -770,7 +770,7 @@ if (irun==99) {            // irun==99 => pur
 	}
 
         if (useFitResults) {
-	  if (title_b.find("_bb")!=string::npos) {
+	  if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
 	    if (h_mc1uds_b) {
 	      if (irun==6) {
 	        h_mc1uds_b->Scale(c3_uds+0.1*ec3_uds);
@@ -825,7 +825,7 @@ if (irun==99) {            // irun==99 => pur
 	}
 
         if (unfold==0 && useFitResults) {
-	  if (title_b.find("_bb")!=string::npos) {
+	  if (title_b.find("_bb")!=string::npos || title_b.find("_2b")!=string::npos) {
 	    if (irun==5) {
 	      h_data->Scale(1./((c3_s+0.1*ec3_s)*(c3_r+0.1*ec3_r)));
 	      h_data_b->Scale(1./((c3_s+0.1*ec3_s)*(c3_r+0.1*ec3_r)));
