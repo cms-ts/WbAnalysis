@@ -3603,12 +3603,12 @@ void WbAnalyzer::produce (edm::Event & iEvent, const edm::EventSetup & iSetup) {
 
   // ++++++++ MISC PLOTS
 
-  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut) {
-    scalFac_b = btagSF(isMC, vect_bjets, 1);
+  if (((wenu_event && mt_cut_wenu) || (wmnu_event && mt_cut_wmnu)) && vtx_cut && Nb > 1) {
+    scalFac_b = btagSF(isMC, vect_bjets, 2);
     h_pu_weights->Fill (MyWeight*scalFac_b);
-    h_tracks->Fill (tracks->size());
+    h_tracks->Fill (tracks->size(), scalFac_b);
     w_tracks->Fill (tracks->size(), MyWeight*scalFac_b);
-    h_recoVTX->Fill (NVtx);
+    h_recoVTX->Fill (NVtx, scalFac_b);
     w_recoVTX->Fill (NVtx, MyWeight*scalFac_b);
   }
 
