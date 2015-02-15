@@ -292,7 +292,7 @@ if (irun==99) {            // irun==99 => pur
 	      h_mc1_matrix->SetBinError(i,j,val);
 	    }
 	    double val = h_mc1_truth->GetBinContent(j);
-	    double val = h_mc1_truth->GetBinError(j);
+	    double val1 = h_mc1_truth->GetBinError(j);
 	    if (h_mc1_truth->GetBinContent(j)!=0) {
 	      val = val * (h_data_unfold_ref->GetBinContent(j) / h_mc1_truth->GetBinContent(j));
 	      val1 = val1 * (h_data_unfold_ref->GetBinContent(j) / h_mc1_truth->GetBinContent(j));
