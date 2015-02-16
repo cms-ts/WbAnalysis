@@ -280,38 +280,46 @@ if (irun==99) {            // irun==99 => pur
 	  data1->cd();
 	  TH1F* h_data_unfold_ref = (TH1F*)gDirectory->Get((title).c_str());
 
-	  for (int j=0;j<=h_mc1_matrix->GetNbinsY()+1;j++) {
-	    for (int i=0;i<=h_mc1_matrix->GetNbinsX()+1;i++) {
-	      double val = h_mc1_matrix->GetBinContent(i,j);
-	      double val1 = h_mc1_matrix->GetBinError(i,j);
-	      if (h_mc1_truth->GetBinContent(j)!=0) {
-	        val = val * (h_data_unfold_ref->GetBinContent(j) / h_mc1_truth->GetBinContent(j));
-	        val1 = val1 * (h_data_unfold_ref->GetBinContent(j) / h_mc1_truth->GetBinContent(j));
-	      }
-	      h_mc1_matrix->SetBinContent(i,j,val);
-	      h_mc1_matrix->SetBinError(i,j,val);
-	    }
-	    double val = h_mc1_truth->GetBinContent(j);
-	    double val1 = h_mc1_truth->GetBinError(j);
-	    if (h_mc1_truth->GetBinContent(j)!=0) {
-	      val = val * (h_data_unfold_ref->GetBinContent(j) / h_mc1_truth->GetBinContent(j));
-	      val1 = val1 * (h_data_unfold_ref->GetBinContent(j) / h_mc1_truth->GetBinContent(j));
-	    }
-	    h_mc1_truth->SetBinContent(j,val); 
-	    h_mc1_truth->SetBinError(j,val); 
-	  }
+	  TH2F* h_mc1_matrix_ref = (TH2F*) h_mc1_matrix->Clone("h_mc1_matrix_ref");
+
 	  for (int i=0;i<=h_mc1_matrix->GetNbinsX()+1;i++) {
-	    double val = 0.0;
-	    double val1 = 0.0;
 	    for (int j=0;j<=h_mc1_matrix->GetNbinsY()+1;j++) {
-	      val = val + h_mc1_matrix->GetBinContent(i,j);
+	      float xval = h_mc1_truth->GetBinContent(j);
+	      if (xval!=0) {
+	        float val = h_data_unfold_ref->GetBinContent(j)/xval;
+	        h_mc1_matrix->SetBinContent(i,j,h_mc1_matrix_ref->GetBinContent(i,j)*val);
+	        h_mc1_matrix->SetBinError(i,j,h_mc1_matrix_ref->GetBinError(i,j)*val);
+	      } else {
+	        h_mc1_matrix->SetBinContent(i,j,0.0);
+	        h_mc1_matrix->SetBinError(i,j,0.0);
+	      }
 	    }
-	    if (h_mc1_reco->GetBinContent(i)!=0) {
-	      val1 = val * (h_mc1_reco->GetBinError(i) / h_mc1_reco->GetBinContent(i));
-	    }
-	    h_mc1_reco->SetBinContent(i,val);
-	    h_mc1_reco->SetBinError(i,val1);
 	  }
+
+	  for (int j=0;j<=h_mc1_truth->GetNbinsX()+1;j++) {
+	    float xval = h_mc1_truth->GetBinContent(j);
+	    if (xval!=0) {
+	      float val = h_data_unfold_ref->GetBinContent(j)/xval;
+	      h_mc1_truth->SetBinContent(j,h_mc1_truth->GetBinContent(j)*val);
+	      h_mc1_truth->SetBinError(j,h_mc1_truth->GetBinError(j)*val);
+	    } else {
+	      h_mc1_truth->SetBinContent(j,0.0);
+	      h_mc1_truth->SetBinError(j,0.0);
+	    }
+	  }
+
+	  for (int i=0;i<=h_mc1_reco->GetNbinsX()+1;i++) {
+	    float xval = h_mc1_matrix_ref->Integral(i,i,0,h_mc1_matrix_ref->GetNbinsY()+1);
+	    if (xval!=0) {
+	      float val = h_mc1_matrix->Integral(i,i,0,h_mc1_matrix->GetNbinsY()+1)/xval;
+	      h_mc1_reco->SetBinContent(i,h_mc1_reco->GetBinContent(i)*val);
+	      h_mc1_reco->SetBinError(i,h_mc1_reco->GetBinError(i)*val);
+	    } else {
+	      h_mc1_reco->SetBinContent(i,0.0);
+	      h_mc1_reco->SetBinError(i,0.0);
+	    }
+	  }
+
 	  norm1 = 1.0;
 	  norm1_1 = 1.0;
 	  norm1_2 = 1.0;
