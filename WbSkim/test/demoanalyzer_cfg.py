@@ -91,6 +91,20 @@ process.demoEleQCDDown = cms.EDProducer('WbAnalyzer',
         JEC     = cms.untracked.double(-1)
 )
 
+process.demoEleTOPUp = cms.EDProducer('WbAnalyzer',
+	pileupMC = cms.untracked.string("S10"),
+	pileupDT = cms.untracked.string("ee"),
+	lepton  = cms.untracked.string("electronTOP"),
+	JEC     = cms.untracked.double(1)
+)
+
+process.demoEleTOPDown = cms.EDProducer('WbAnalyzer',
+	pileupMC = cms.untracked.string("S10"),
+	pileupDT = cms.untracked.string("ee"),
+	lepton 	= cms.untracked.string("electronTOP"),
+	JEC     = cms.untracked.double(-1)
+)
+
 process.demoMuo = cms.EDProducer('WbAnalyzer',
 	pileupMC = cms.untracked.string("S10"),
 	pileupDT = cms.untracked.string("mm"),
@@ -165,6 +179,20 @@ process.demoMuoQCDDown = cms.EDProducer('WbAnalyzer',
         pileupDT = cms.untracked.string("mm"),
         lepton  = cms.untracked.string("muonQCD"),
         JEC     = cms.untracked.double(-1)
+)
+
+process.demoMuoTOPUp = cms.EDProducer('WbAnalyzer',
+	pileupMC  = cms.untracked.string("S10"),
+	pileupDT = cms.untracked.string("mm"),
+	lepton 	= cms.untracked.string("muonTOP"),
+	JEC    	= cms.untracked.double(1)
+)
+
+process.demoMuoTOPDown = cms.EDProducer('WbAnalyzer',
+	pileupMC    = cms.untracked.string("S10"),
+	pileupDT = cms.untracked.string("mm"),
+	lepton  = cms.untracked.string("muonTOP"),
+	JEC     = cms.untracked.double(-1)
 )
 
 process.demoEleBtag = cms.EDProducer('WbAnalyzer',
@@ -310,4 +338,4 @@ process.demoMuoQCDJerDown = cms.EDProducer('WbAnalyzer',
 process.TFileService = cms.Service("TFileService",
 	fileName = cms.string('WbTree.root')
 )
-process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoEleTOP*process.demoElePum*process.demoElePup*process.demoEleQCDPum*process.demoEleQCDPup*process.demoEleUp*process.demoEleDown*process.demoEleQCDUp*process.demoEleQCDDown*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD*process.demoMuoTOP*process.demoMuoPum*process.demoMuoPup*process.demoMuoQCDPum*process.demoMuoQCDPup*process.demoMuoUp*process.demoMuoDown*process.demoMuoQCDUp*process.demoMuoQCDDown*process.demoEleBtag*process.demoEleQCDBtag*process.demoMuoBtag*process.demoMuoQCDBtag*process.demoElePur*process.demoEleQCDPur*process.demoMuoPur*process.demoMuoQCDPur*process.demoEleDR*process.demoEleQCDDR*process.demoMuoDR*process.demoMuoQCDDR*process.demoEleJerUp*process.demoEleJerDown*process.demoEleQCDJerUp*process.demoEleQCDJerDown*process.demoMuoJerUp*process.demoMuoJerDown*process.demoMuoQCDJerUp*process.demoMuoQCDJerDown)
+process.p = cms.Path(process.demoEle*process.demoEleQCD*process.demoEleFWD*process.demoEleTOP*process.demoElePum*process.demoElePup*process.demoEleQCDPum*process.demoEleQCDPup*process.demoEleUp*process.demoEleDown*process.demoEleQCDUp*process.demoEleQCDDown*process.demoEleTOPUp*process.demoEleTOPDown*process.demoMuo*process.demoMuoQCD*process.demoMuoFWD*process.demoMuoTOP*process.demoMuoPum*process.demoMuoPup*process.demoMuoQCDPum*process.demoMuoQCDPup*process.demoMuoUp*process.demoMuoDown*process.demoMuoQCDUp*process.demoMuoQCDDown*process.demoMuoTOPUp*process.demoMuoTOPDown*process.demoEleBtag*process.demoEleQCDBtag*process.demoMuoBtag*process.demoMuoQCDBtag*process.demoElePur*process.demoEleQCDPur*process.demoMuoPur*process.demoMuoQCDPur*process.demoEleDR*process.demoEleQCDDR*process.demoMuoDR*process.demoMuoQCDDR*process.demoEleJerUp*process.demoEleJerDown*process.demoEleQCDJerUp*process.demoEleQCDJerDown*process.demoMuoJerUp*process.demoMuoJerDown*process.demoMuoQCDJerUp*process.demoMuoQCDJerDown)
