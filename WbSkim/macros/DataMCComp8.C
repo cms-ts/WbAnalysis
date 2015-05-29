@@ -5,7 +5,8 @@
 #include "fixrange.C"
 #include "rebin.C"
 
-string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
+//string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
+string path = "/gpfs/cms/users/schizzi/Wbb2012/test/GDR/data/";
 
 int unfold=0; // use pre-unfolding distributions
 //int unfold=1; // use unfolded distributions
@@ -297,50 +298,50 @@ string subdir="0";
 
 	for (int i=0; i<2; i++) {
 
-	  w_stat_bkg[i] = (TH1F*)w_data[0]->Clone();
-	  w_stat_b_bkg[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_stat_bkg[i] = (TH1F*)w_data[i]->Clone();
+	  w_stat_b_bkg[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_eff[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_eff[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_eff[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_eff[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_jec[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_jec[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_jec[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_jec[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_jer[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_jer[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_jer[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_jer[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_pu[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_pu[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_pu[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_pu[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_bkg[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_bkg[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_bkg[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_bkg[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_stat_top[i] = (TH1F*)w_data[0]->Clone();
-	  w_stat_b_top[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_stat_top[i] = (TH1F*)w_data[i]->Clone();
+	  w_stat_b_top[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_stat_qcd[i] = (TH1F*)w_data[0]->Clone();
-	  w_stat_b_qcd[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_stat_qcd[i] = (TH1F*)w_data[i]->Clone();
+	  w_stat_b_qcd[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_stat_bfit[i] = (TH1F*)w_data[0]->Clone();
-	  w_stat_b_bfit[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_stat_bfit[i] = (TH1F*)w_data[i]->Clone();
+	  w_stat_b_bfit[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_btag[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_btag[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_btag[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_btag[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_stat_unfold[i] = (TH1F*)w_data[0]->Clone();
-	  w_stat_b_unfold[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_stat_unfold[i] = (TH1F*)w_data[i]->Clone();
+	  w_stat_b_unfold[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_unfold[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_unfold[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_unfold[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_unfold[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_lumi[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_lumi[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_lumi[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_lumi[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_stat_tot[i] = (TH1F*)w_data[0]->Clone();
-	  w_stat_b_tot[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_stat_tot[i] = (TH1F*)w_data[i]->Clone();
+	  w_stat_b_tot[i] = (TH1F*)w_data_b[i]->Clone();
 
-	  w_syst_tot[i] = (TH1F*)w_data[0]->Clone();
-	  w_syst_b_tot[i] = (TH1F*)w_data_b[0]->Clone();
+	  w_syst_tot[i] = (TH1F*)w_data[i]->Clone();
+	  w_syst_b_tot[i] = (TH1F*)w_data_b[i]->Clone();
 
 	  ifstream in;
 	  string title_b_tmp = title_b;
