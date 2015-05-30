@@ -5,8 +5,7 @@
 #include "fixrange.C"
 #include "rebin.C"
 
-//string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
-string path = "/gpfs/cms/users/schizzi/Wbb2012/test/GDR/data/";
+string path = "/gpfs/cms/users/schizzi/Wbb2012/test/data/";
 
 int unfold=0; // use pre-unfolding distributions
 //int unfold=1; // use unfolded distributions
@@ -2014,7 +2013,7 @@ string subdir="0";
 	    out << std::setw(8) << h_data_tot->GetBinError(i);
 	    out << " => ";
 	    out << std::setprecision(1);
-	    out << std::setw(4) << 100.*(h_data_stat->GetBinContent(i)==0 ? 0 : h_data_tot->GetBinError(i)/h_data_stat->GetBinContent(i));
+	    out << std::setw(4) << TMath::Abs(100.*(h_data_stat->GetBinContent(i)==0 ? 0 : h_data_tot->GetBinError(i)/h_data_stat->GetBinContent(i)));
 	    out << endl;
 	  }
 	  out << "tot";
@@ -2056,7 +2055,7 @@ string subdir="0";
 	  out << std::setw(8) << xsec_tot_data_tot;
 	  out << " => ";
 	  out << std::setprecision(1);
-	  out << std::setw(4) << 100.*(xsec_tot_data==0 ? 0 : xsec_tot_data_tot/xsec_tot_data);
+	  out << std::setw(4) << TMath::Abs(100.*(xsec_tot_data==0 ? 0 : xsec_tot_data_tot/xsec_tot_data));
 	  out << endl;
 
 	  out << h_data_b->GetName();
@@ -2140,7 +2139,7 @@ string subdir="0";
 	    out << std::setw(8) << h_data_b_tot->GetBinError(i);
 	    out << " => ";
 	    out << std::setprecision(1);
-	    out << std::setw(4) << 100.*(h_data_b_stat->GetBinContent(i)==0 ? 0 : h_data_b_tot->GetBinError(i)/h_data_b_stat->GetBinContent(i));
+	    out << std::setw(4) << TMath::Abs(100.*(h_data_b_stat->GetBinContent(i)==0 ? 0 : h_data_b_tot->GetBinError(i)/h_data_b_stat->GetBinContent(i)));
 	    out << endl;
 	  }
 	  out << "tot";
@@ -2182,7 +2181,7 @@ string subdir="0";
 	  out << std::setw(8) << xsec_tot_data_b_tot;
 	  out << " => ";
 	  out << std::setprecision(1);
-	  out << std::setw(4) << 100.*(xsec_tot_data_b==0 ? 0 : xsec_tot_data_b_tot/xsec_tot_data_b);
+	  out << std::setw(4) << TMath::Abs(100.*(xsec_tot_data_b==0 ? 0 : xsec_tot_data_b_tot/xsec_tot_data_b));
 	  out << endl;
 	  out.close();
 	  out1 << h_data->GetName() << " - RELATIVE ERRORS";
@@ -2224,7 +2223,7 @@ string subdir="0";
 	  out1 << std::setw(8) << "error";
 	  out1 << endl;
 	  for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
-	    double val = 100.*(h_data->GetBinContent(i)==0 ? 0 : 1./h_data->GetBinContent(i));
+	    double val = TMath::Abs(100.*(h_data->GetBinContent(i)==0 ? 0 : 1./h_data->GetBinContent(i)));
 	    out1 << std::fixed;
 	    out1 << std::setw(2) << i;
 	    out1 << " ";
@@ -2264,7 +2263,7 @@ string subdir="0";
 	    out1 << std::setw(4) << h_data_tot->GetBinError(i)*val;
 	    out1 << endl;
 	  }
-	  xval = 100.*(xsec_tot_data==0 ? 0 : 1./xsec_tot_data);
+	  xval = TMath::Abs(100.*(xsec_tot_data==0 ? 0 : 1./xsec_tot_data));
 	  out1 << "tot";
 	  out1 << std::setprecision(1);
 	  out1 << std::setw(4) << xsec_tot_stat_data*xval;
@@ -2340,7 +2339,7 @@ string subdir="0";
 	  out1 << std::setw(8) << "error";
 	  out1 << endl;
 	  for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
-	    double val = 100.*(h_data_b->GetBinContent(i)==0 ? 0 : 1./h_data_b->GetBinContent(i));
+	    double val = TMath::Abs(100.*(h_data_b->GetBinContent(i)==0 ? 0 : 1./h_data_b->GetBinContent(i)));
 	    out1 << std::fixed;
 	    out1 << std::setw(2) << i;
 	    out1 << " ";
@@ -2380,7 +2379,7 @@ string subdir="0";
 	    out1 << std::setw(4) << h_data_b_tot->GetBinError(i)*val;
 	    out1 << endl;
 	  }
-	  xval = 100.*(xsec_tot_data_b==0 ? 0 : 1./xsec_tot_data_b);
+	  xval = TMath::Abs(100.*(xsec_tot_data_b==0 ? 0 : 1./xsec_tot_data_b));
 	  out1 << "tot";
 	  out1 << std::setprecision(1);
 	  out1 << std::setw(4) << xsec_tot_stat_data_b*xval;
@@ -2457,7 +2456,7 @@ string subdir="0";
 	  out2 << std::setw(8) << "\\textbf{error & ";
 	  out2 << endl;
 	  for (int i=0;i<=h_data->GetNbinsX()+1;i++) {
-	    double val = 100.*(h_data->GetBinContent(i)==0 ? 0 : 1./h_data->GetBinContent(i));
+	    double val = TMath::Abs(100.*(h_data->GetBinContent(i)==0 ? 0 : 1./h_data->GetBinContent(i)));
 	    out2 << std::fixed;
 	    out2 << std::setw(2) << i;
 	    out2 << " ";
@@ -2537,7 +2536,7 @@ string subdir="0";
 	  out2 << std::setw(8) << "\\textbf{error} &";
 	  out2 << endl;
 	  for (int i=0;i<=h_data_b->GetNbinsX()+1;i++) {
-	    double val = 100.*(h_data_b->GetBinContent(i)==0 ? 0 : 1./h_data_b->GetBinContent(i));
+	    double val = TMath::Abs(100.*(h_data_b->GetBinContent(i)==0 ? 0 : 1./h_data_b->GetBinContent(i)));
 	    out2 << std::fixed;
 	    out2 << std::setw(2) << i;
 	    out2 << " ";
