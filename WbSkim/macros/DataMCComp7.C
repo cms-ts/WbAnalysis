@@ -573,8 +573,8 @@ string subdir="0";
 	double xsec_syst_bfit2 = 0.0;
 	double xsec_syst_b_bfit2 = 0.0;
 	if (useSysBfit2) {
-	  xsec_syst_bfit2 = TMath::Abs(h_data_scan[99]->Integral(0,h_data_scan[6]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	  xsec_syst_b_bfit2 = TMath::Abs(h_data_b_scan[99]->Integral(0,h_data_b_scan[6]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	  xsec_syst_bfit2 = TMath::Abs(h_data_scan[99]->Integral(0,h_data_scan[99]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
+	  xsec_syst_b_bfit2 = TMath::Abs(h_data_b_scan[99]->Integral(0,h_data_b_scan[99]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
 	}
 
 	TH1F* syst_btag = (TH1F*)h_data->Clone();
