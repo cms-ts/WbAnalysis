@@ -629,8 +629,14 @@ string subdir="0";
 	double xsec_stat_unfold = 0.0;
 	double xsec_stat_b_unfold = 0.0;
 	if (unfold) {
-	  xsec_stat_unfold = TMath::Abs(h_data_scan[7]->Integral(0,h_data_scan[7]->GetNbinsX()+1,"width")-h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width"));
-	  xsec_stat_b_unfold = TMath::Abs(h_data_b_scan[7]->Integral(0,h_data_b_scan[7]->GetNbinsX()+1,"width")-h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width"));
+	  double val7 = 0.0;
+	  double val0 = 0.0;
+	  h_data_scan[7]->IntegralAndError(0,h_data_scan[7]->GetNbinsX()+1,val7,"width");
+	  h_data_scan[0]->IntegralAndError(0,h_data_scan[0]->GetNbinsX()+1,val0,"width");
+	  xsec_stat_unfold = TMath::Sqrt(TMath::Max(0.,TMath::Power(val7,2)-TMath::Power(val0,2)));
+	  h_data_b_scan[7]->IntegralAndError(0,h_data_b_scan[7]->GetNbinsX()+1,val7,"width");
+	  h_data_b_scan[0]->IntegralAndError(0,h_data_b_scan[0]->GetNbinsX()+1,val0,"width");
+	  xsec_stat_b_unfold = TMath::Sqrt(TMath::Max(0.,TMath::Power(val7,2)-TMath::Power(val0,2)));
 	} else {
 	  xsec_stat_unfold = (ee_W/e_W) * h_data_scan[0]->Integral(0,h_data_scan[0]->GetNbinsX()+1,"width");
 	  xsec_stat_b_unfold = (ee_Wb/e_Wb) * h_data_b_scan[0]->Integral(0,h_data_b_scan[0]->GetNbinsX()+1,"width");
