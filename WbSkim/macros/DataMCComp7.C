@@ -1287,6 +1287,7 @@ string subdir="0";
 	  out << " +- ";
 	  out << std::setw(8) << xsec_stat_bfit;
 	  if (useSysBfit2) {
+	    out << " +- ";
 	    out << std::setw(8) << xsec_syst_bfit2;
 	  }
 	  out << " +- ";
@@ -1443,6 +1444,7 @@ string subdir="0";
 	  out << " +- ";
 	  out << std::setw(8) << xsec_stat_b_bfit;
 	  if (useSysBfit2) {
+	    out << " +- ";
 	    out << std::setw(8) << xsec_syst_b_bfit2;
 	  }
 	  out << " +- ";
