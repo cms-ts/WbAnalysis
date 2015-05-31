@@ -1716,48 +1716,48 @@ string subdir="0";
 	  out1 << std::setprecision(1);
 	  out1 << std::setw(4) << xsec_stat_data_b*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_stat_b_bkg*xval;;
+	  out1 << std::setw(4) << xsec_stat_b_bkg*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_eff*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_eff*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_jec*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_jec*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_jer*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_jer*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_pu*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_pu*xval;
 	  if (useSysDR) {
 	    out1 << " +- ";
-	    out1 << std::setw(4) << xsec_syst_b_dr*xval;;
+	    out1 << std::setw(4) << xsec_syst_b_dr*xval;
 	  }
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_bkg*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_bkg*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_stat_b_top*xval;;
+	  out1 << std::setw(4) << xsec_stat_b_top*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_stat_b_qcd*xval;;
+	  out1 << std::setw(4) << xsec_stat_b_qcd*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_stat_b_bfit*xval;;
+	  out1 << std::setw(4) << xsec_stat_b_bfit*xval;
 	  if (useSysBfit2) {
-	    out1 << std::setw(4) << xsec_syst_b_bfit2*xval;;
+	    out1 << std::setw(4) << xsec_syst_b_bfit2*xval;
 	  }
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_btag*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_btag*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_stat_b_unfold*xval;;
+	  out1 << std::setw(4) << xsec_stat_b_unfold*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_unfold*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_unfold*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_syst_b_lumi*xval;;
+	  out1 << std::setw(4) << xsec_syst_b_lumi*xval;
 	  if (useSysRMS) {
 	    out1 << " +- ";
-	    out1 << std::setw(4) << xsec_data_b*(tot_b>0 ? rms_b/tot_b : 0)*xval;;
+	    out1 << std::setw(4) << xsec_data_b*(tot_b>0 ? rms_b/tot_b : 0)*xval;
 	  }
 	  out1 << " => ";
-	  out1 << std::setw(4) << xsec_data_b_tot_stat*xval;;
+	  out1 << std::setw(4) << xsec_data_b_tot_stat*xval;
 	  out1 << " +- ";
-	  out1 << std::setw(4) << xsec_data_b_tot_syst*xval;;
+	  out1 << std::setw(4) << xsec_data_b_tot_syst*xval;
 	  out1 << " => ";
-	  out1 << std::setw(4) << xsec_data_b_tot_tot*xval;;
+	  out1 << std::setw(4) << xsec_data_b_tot_tot*xval;
 	  out1 << endl;
 	  out1.close();
 	}
